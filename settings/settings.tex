@@ -8,7 +8,12 @@
 
 %\usepackage{natbib}
 %\usepackage[style=phys, sorting=none,backend=bibtex]{biblatex}
-\usepackage[style=phys,articletitle=true,biblabel=brackets,chaptertitle=true,pageranges=true]{biblatex}
+\usepackage[style=phys,articletitle=true,biblabel=brackets,chaptertitle=true,pageranges=true,maxbibnames=99]{biblatex}
+\makeatletter
+\newcommand\Setmaxbibnames[1]{\renewcommand\blx@maxbibnames{#1}}
+\makeatletter
+%\usepackage[style=ieee,backend=biber, url = false]{biblatex}
+%, maxcitenames=2
 \bibliography{00_bibliography/references.bib}
 \usepackage{lipsum}
 \usepackage[english]{babel}

@@ -4,11 +4,41 @@
 
 \subsection{Introduction}
 
+Properties of coherent light to produce interference is widely used in metrology for a long time with the famous Fabry-Pérot  \cite{fabry_theorie_1899, perot_application_1899} or Michelson interferometer \cite{michelson_relative_1887} which was initially used to measure the earth rotation and is still used today, in particular, for the recent measurement of gravitational waves
+\cite{ligo_scientific_collaboration_and_virgo_collaboration_gw151226_2016}. 
+Since the beginning of the century, interest on tracking and characterizing colloidal particles risen thanks to the democratization of micro fluidics and lab-on-a-chip technologies. A lot of methods were developed, I will in the folowing give some insights on the three most used :
 
-Holographic video microscopy exists for a certain time, and a lot of different type of exists and have all their type of good and bad things, there is since 2005, we have Rayleigh-Sommerfeld back progapation and lorenz-mie fitting. The first one is great to track lots of particle at the same time and the latter is great to fit only one particle with unprecedent precision but is quite long to compute. 
-In order to study find deviation of the statistical properties of the a free diffusing particle we do need to use the one which is more precise so we will use Lorenz mie tracking. In order to study it 
+\begin{itemize}
+	\item Reflection Interference Contrast Microscopy (\gls{RICM})
+	\item Rayleigh-Sommerfeld back-propagation
+	\item Lorenz-Mie fit
+\end{itemize}
+
+Those methods use directly the images captured from a microscope without any further treatments, thus, they are generally called in-line holographic video microscopy.
 
 \subsection{In-line holographic video microscopy theory}
+
+\subsubsection{Reflection Interference Contrast Microscopy}
+
+
+Reflection Interference Contrast Microscopy was first introduced in cell biology by Curtis to study embryonic chick heart fibroblast \cite{curtis_mechanism_1964} in 1964. \gls{RICM} gained in popularity 40 years after in the same field \cite{filler_reflection_2000, siver_use_2000, weber_2_2003, limozin_quantitative_2009} and was recently used in soft matter physics to study elastohydrodynamic lift at a soft wall \cite{davies_elastohydrodynamic_2018}.
+
+When we illuminate a colloid with a plane wave, a part of the light is reflected from the surface and interference fringes appear. Let's take an interest at the mathematical description of this phenomenon. In the far field, we can describe two different one-dimensional electric field vectors of the same pulsation $\omega$ \cite{f_bohren_absorption_1998} as:
+
+\begin{equation}
+	\vec{E_1}(r, t) = \vec{E_{0_1}} \cos(k_1r - \omega t + \epsilon_1) ~,
+\end{equation}
+and
+\begin{equation}
+	\vec{E_2}(r, t) = \vec{E_{0_2}} \cos (k_2r - \omega t + \epsilon_1) ~.
+\end{equation}
+
+
+\nomenclature{$\vec{E}$}{Electrical field}
+\nomenclature{$k$}{Wave number}
+\nomenclature{$\omega$}{Pulsation}
+
+Where the $k$ is the wave number $k=2\pi/\lambda$, $\lambda$ denoting the wavelength, $\epsilon$ the initial phase of each waves and $r$ the position from the source.
 
 \subsubsection{Rayleigh sommerfeld back propagation}
 je vais expliquer ici qu'est c'est queu le rauleigh sommerfeld back progagation et expliquer les limitations de cette méthode pour les travaux réaliser lors de ma thèse
