@@ -10,26 +10,18 @@ Since the beginning of the century, interest on tracking and characterizing coll
 
 \begin{itemize}
 	\item Reflection Interference Contrast Microscopy (\gls{RICM})
-	\item Lorenz-Mie fit
 	\item Rayleigh-Sommerfeld back-propagation
+	\item Lorenz-Mie fit
 \end{itemize}
 
-Experimentaly, this methods are generaly implemented in setups where the the incident light and scattered (or reflected) ligth are colinear, we thus speak of in-line holography.
+Those methods use directly the images captured from a microscope without any further treatments, thus, they are generally called in-line holographic video microscopy.
 
 \subsection{In-line holographic video microscopy theory}
 
 \subsubsection{Reflection Interference Contrast Microscopy}
 
-\begin{figure}[h]
-	\centering
-	\includegraphics[scale=0.8]{02_body/chapter2/images/RICM.png}
-	\caption{Figure from \cite{davies_elastohydrodynamic_2018} representing \gls{RICM} with two wavelength. (a) Left: interference patterns created with a wavelength $\lambda_1 = 532$ nm (scale bar $ 5~\mathrm{\mu m}$). 
-		Right: radial intensity profile (black dots) extracted from the image, azimuthally averaged (magenta line) and fitted with Eq.\ref{Eq.RICM} to measure the height of the particle here donated with ($h$). (b) Same as (a) with a wavelength $\lambda_2 = 635$ nm. (c) Time series of the height of the particle $h$ (green: $ \lambda_1$, magenta: $\lambda_2$) and the particle velocity along the flow in blue. }
-	\label{fig.RICM}
-\end{figure}
 
-
-Reflection Interference Contrast Microscopy was first introduced in cell biology by Curtis to study embryonic chick heart fibroblast \cite{curtis_mechanism_1964} in 1964. \gls{RICM} gained in popularity 40 years after both in biology and physics \cite{filler_reflection_2000, siver_use_2000, weber_2_2003, limozin_quantitative_2009, nadal_probing_2002, raedler_measurement_1992}. It was also used recently in soft matter physics to study elastohydrodynamic lift at a soft wall \cite{davies_elastohydrodynamic_2018}.
+Reflection Interference Contrast Microscopy was first introduced in cell biology by Curtis to study embryonic chick heart fibroblast \cite{curtis_mechanism_1964} in 1964. \gls{RICM} gained in popularity 40 years after in the same field \cite{filler_reflection_2000, siver_use_2000, weber_2_2003, limozin_quantitative_2009} and was recently used in soft matter physics to study elastohydrodynamic lift at a soft wall \cite{davies_elastohydrodynamic_2018}.
 
 When we illuminate a colloid with a plane wave, a part of the light is reflected from the surface and interference fringes appear. Let's take an interest at the mathematical description of this phenomenon. In the far field, we can describe two different one-dimensional electric field vectors of the same pulsation $\omega$ \cite{f_bohren_absorption_1998} as:
 
@@ -46,7 +38,7 @@ and
 \nomenclature{$k$}{Wave number}
 \nomenclature{$\omega$}{Pulsation}
 
-Where the $k$ is the wave number $k=2\pi n_{solvent}/\lambda$, $\lambda$ denoting the wavelength, $n_solvent$ the optical index of the solvent, $\epsilon_{1,2}$ the initial phase of each waves and $\vec{r}$ the position from the source, here, it is the distance between the glass slides where happens the first relflection and the particle. The intensity we observe can be computed from the time averaged of the squared sum of the eletric field $\vec{E} = \vec{E}_1 + \vec{E}_2$. The measured intensity is thus given by:
+Where the $k$ is the wave number $k=2\pi n_{solvent}/\lambda$, $\lambda$ denoting the wavelength, $n_solvent$ the optical index of the solvent, $\epsilon_{1,2}$ the initial phase of each waves and $\vec{r}$ the position from the source, here it is the distance between the observation focal plain and the particle. The intensity we observe can be computed from the time averaged of the squared sum of the eletric field $\vec{E} = \vec{E}_1 + \vec{E}_2$. The measured intensity is thus given by:
 
 \begin{equation}
 	\begin{aligned}
@@ -98,7 +90,7 @@ with $\phi$ the phase difference between the two fields, which is generaly equal
 	\right)
 \end{equation}
 
-If the indicent and reflected wave are parallel we can work in 1 dimension and we have $k_1 = - k_2$ and simplifying $\vec{r}$ to simply $z$ the height of the particle we have:
+If the indicent and reflected wave are parallel we can work in 1 dimension and we have $k_1 = - k_2$ and simplifying $	\vec{r} $ to simply $z$ the height of the particle we have:
 
 
 \begin{equation}
@@ -107,37 +99,16 @@ If the indicent and reflected wave are parallel we can work in 1 dimension and w
 	\left(
 	\frac{4 \pi n_{solvent}}{\lambda} z + \phi	
 	\right)
-\end{equation}
-
-
-If we now suppose that we have a spherical particle at a height $z$ we can write the radial interference intensity $I(x)$ as \cite{ raedler_measurement_1992}:
-
-\begin{equation}
-	I(x) = A_0 + A_1 \mathrm{e}^{-b_1 x^2} + A_2^{-b_2 x^2} \cos \left[ \frac{4\pi n_m}{\lambda}\left( g(x) + z \right) + \phi \right]
 	\label{Eq.RICM}
 \end{equation}
 
-Where $A_i$ and $b_i$ are fit parameters and $g(x)$ donotes the contour of the sphere.
-Finally, this method is great because the equation are computationaly light and permits to have a quick tracking of particles. However, as we can see on Eq.\ref{Eq.RICM} the interference pattern will be the same for all heights $z$ separated by a distance $\lambda / 2n \approx 200 $ nm for typicaly used light in water ($\lambda = 532$ nm and $n_{solvent} = 1.33$). It is possible to extend this limitation by using 2 differents wavelength to $\approx 1.2 ~ \mathrm{\mu m}$ as used in \cite{davies_elastohydrodynamic_2018}. Also, the small particle ($<5 ~ \mathrm{\mu m}$) will scatter to much compared to the reflection and the method will not work properly.  Despite the effectiveness of this method which can reach the $10$ nm precision on the particle position measurement, the range limitation are not compatible with the study of $ 1 ~ \mathrm{\mu m}$ particle's Brownian motion making \gls{RICM} not usable for our context.
+Finally, this method is great because the equation are computationaly light and permits to have a quick tracking of particles. However, as we can see on Eq.\ref{Eq.RICM} the interference pattern will be the same for all heights $z$ separated by a distance $\lambda / 2n \approx 200 $ nm for typicaly used light in water ($\lambda = 532$ nm and $n_{solvent} = 1.33$). It is possible to extend this limitation by using 2 differents wavelength to $\approx 1.2 ~ \mathrm{\mu m}$ as used in \cite{davies_elastohydrodynamic_2018}. Despite the effectiveness of this method which can reach the $10$ nm precision on the particle position measurement, the range limitation are not compatible with the study of $ 1 ~ \mathrm{\mu m}$ particle's Brownian motion.
 
 
-
-\subsubsection{Lorenz-Mie Fit}
-
-Another method to create hologram, is to look at the superimposition of the scatterd field $\vec{E}_s$ and incident field $\vec{E}_0$. This way, we could track and characterize even small particles. This method is has been develloped in the early 2000 \cite{ovryn_imaging_2000, lee_characterizing_2007}. Since, a lot of studies has been realised with this method[cite a bunch of paper here]. 
-
-Let's the incident field be a plane wave uniformly polarized along the axis $ \hat{e}$ and propagating along the z direction :
-\begin{equation}
-	\vec{E_0} = E_0 \mathrm{e}^{ikz}\hat{e}
-\end{equation}
-Let's consider a particle of radius $a$ at a position $\vec{r}_p $, the scattered field can be written using the Lorenz-Mie theory \cite{f_bohren_absorption_1998} as:
-
-\begin{equation}
-	\vec{E}_s(\vec{r}) = \alpha f_s() 
-\end{equation} 
-
+\subsubsection{Rayleigh sommerfeld back propagation}
+je vais expliquer ici qu'est c'est queu le rauleigh sommerfeld back progagation et expliquer les limitations de cette méthode pour les travaux réaliser lors de ma thèse
 \subsubsection{Lorenz-Mie fitting}
-C'est beau quand même on peu tout reconstruire facilement en 3D ça ne serait pas la meilleur méthode par HASARD ?
+Je vais ici expliquer la théorie derrière l'inline holoogrpahy video microcopy.
 
 \subsection{Experimental setup}
 J'explique ici le setup experimental et comment il faut bien choisir son objectif en side note !!
