@@ -133,8 +133,17 @@ Let's the incident field be a plane wave uniformly polarized along the axis $ \h
 Let's consider a particle of radius $a$ at a position $\vec{r}_p $, the scattered field can be written using the Lorenz-Mie theory \cite{f_bohren_absorption_1998} as:
 
 \begin{equation}
-	\vec{E}_s(\vec{r}) = \alpha f_s() 
+	\vec{E}_s(\vec{r}) = \alpha f_s(r - r_p)E_0(\rho) \exp \left(-ikz_p\right) 
 \end{equation} 
+
+where $\alpha$ accounts for illumination to correct experimental variation of the laser around it's average intensity and $f_s$ is the Lorenz-Mie scattering function which depends on $a$, $n_p$, $n_m$ and $\lambda$. We can already see that this method will permit to characterize the particle (or the medium if the particle is perfectly known). Experimentally we measure the holograms at the focal plane of the objective, the intensity is here given by:
+
+\begin{equation}
+	I(\rho) = |E_s(r) + E_0(r)|^2 
+\end{equation}
+
+It's possible to simplify this equation by normalizing $I(\rho)$ by the intensity of the incident field $|E_0|^2$ which is the experimental background, it can measured by different method, one is to have an empty field of view and the other one which is more convenient is to take the median image of a stack of images, this method also permits to get rid of the dust particles or anything else that could reduce the quality of the image. An example of an hologram before and after the normalization is shown in Fig.XXX. 
+
 
 \subsubsection{Lorenz-Mie fitting}
 C'est beau quand même on peu tout reconstruire facilement en 3D ça ne serait pas la meilleur méthode par HASARD ?
