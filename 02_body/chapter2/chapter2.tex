@@ -124,29 +124,102 @@ Finally, this method is great because the equation are computationaly light and 
 
 \subsubsection{Lorenz-Mie Fit}
 
-Another method to create hologram, is to look at the superimposition of the scatterd field $\vec{E}_s$ and incident field $\vec{E}_0$. This way, we could track and characterize even small particles. This method is has been develloped in the early 2000 \cite{ovryn_imaging_2000, lee_characterizing_2007}. Since, a lot of studies has been realised with this method[cite a bunch of paper here]. 
+Another method to create hologram, is to look at the superimposition of the scatterd field $\vec{E}_s$ and incident field $\vec{E}_0$. This way, we could track and characterize even small particles. This method is has been developed in the early 2000 \cite{ovryn_imaging_2000, lee_characterizing_2007}. Since, a lot of studies has been realised with this method[cite a bunch of paper here]. 
 
-Let's the incident field be a plane wave uniformly polarized along the axis $ \hat{e}$ and propagating along the z direction :
+Let's the incident field be a plane wave uniformly polarized along the axis $ \hat{e}$, with an amplitude $E_0$ and propagating along the $z$ direction :
 \begin{equation}
-	\vec{E_0} = E_0 \mathrm{e}^{ikz}\hat{e}
+	\vec{E}_0(\vec{r},z) = E_0(\vec{r}) \mathrm{e}^{ikz}\hat{e}
 \end{equation}
+
 Let's consider a particle of radius $a$ at a position $\vec{r}_p $, the scattered field can be written using the Lorenz-Mie theory \cite{f_bohren_absorption_1998} as:
 
 \begin{equation}
-	\vec{E}_s(\vec{r}) = \alpha f_s(r - r_p)E_0(\rho) \exp \left(-ikz_p\right) 
+	\vec{E}_s(\vec{r}) =  f_s(k(\vec{r} - \vec{r}_p))E_0(\vec{r}) \exp \left(-ikz\right) 
 \end{equation} 
 
-where $\alpha$ accounts for illumination to correct experimental variation of the laser around it's average intensity and $f_s$ is the Lorenz-Mie scattering function which depends on $a$, $n_p$, $n_m$ and $\lambda$. We can already see that this method will permit to characterize the particle (or the medium if the particle is perfectly known). Experimentally we measure the holograms at the focal plane of the objective, the intensity is here given by:
+With $f_s$ the Lorenz-Mie scattering function \cite{f_bohren_absorption_1998}. The intensity $I$ that we measure at $\vec{r}$ is given by the super imposition of incident and scattered waves. Since the measurements are done at the focal plane, $I$ is given by:
 
 \begin{equation}
-	I(\rho) = |E_s(r) + E_0(r)|^2 
+	\begin{aligned}
+	I(\vec{r}) & = |\vec{E}_s(\vec{r}, 0) + \vec{E}_0(\vec{r}, 0)|^2 \\
+	& = E_0^2(\vec{r}) + 2 E_0^2\operatorname{Re} \left(f_s(k(\vec{r}- \vec{r}_p)) \hat{e}\right) + | f_s(k(\vec{r}- \vec{r}_p)) |^2
+	\end{aligned}
 \end{equation}
 
-It's possible to simplify this equation by normalizing $I(\rho)$ by the intensity of the incident field $|E_0|^2$ which is the experimental background, it can measured by different method, one is to have an empty field of view and the other one which is more convenient is to take the median image of a stack of images, this method also permits to get rid of the dust particles or anything else that could reduce the quality of the image. An example of an hologram before and after the normalization is shown in Fig.XXX. 
+The most of the experimental defects on the images are due to spacial illumination variation caused by dust particle and such. It can be corrected by normalizing the image by the background. In another word, we normalize  $I(\vec{r})$ by the intensity of the incident field $E_0(\vec{r})^2$ which is the experimental background. It can be measured by different methods, one is to have an empty field of view and the other one, which is more convenient is to take the median of a stack of images. The latter also permits to get rid of the immobile particle that could generate any additional noise. An example of an hologram before and after the normalization is shown in Fig.XXX. We write the normalized intensity $b(\vec{r})$:
+
+\begin{equation}
+	b(\vec{r}) = 1 + 2 \operatorname{Re} 
+	\left(  
+		f_s(k(\vec{r}- \vec{r}_p)) \hat{e}
+	\right)
+	+
+	|
+		f_s(k(\vec{r}- \vec{r}_p))
+	|^2
+	\label{Eq.normalized_Mie}	
+\end{equation}
 
 
-\subsubsection{Lorenz-Mie fitting}
-C'est beau quand même on peu tout reconstruire facilement en 3D ça ne serait pas la meilleur méthode par HASARD ?
+Now that we have the analytical form of the holograms intensity it is possible to fit an experimental one to Eq.\ref{Eq.normalized_Mie} as shown in Fig.XXX. For the sake of completeness I will detail the Lorenz-Mie scattering function, $f_s(k\vec{r})$, it is given by the series:
+
+\begin{equation}
+	f_s(k \vec{r}) = \sum _{n=1} ^{n_c} 
+	\frac
+	{
+		i^n (2n +1)
+	}
+	{
+		n(n+1)
+	}
+	\left(
+		i a_n \vec{N}^{(3)}_{eln}(k\vec{r})
+		-
+		b_n \vec{M}^{(3)}_{oln}(k\vec{r})
+	\right)
+	\label{Eq.Lorenz-Mie-function}
+\end{equation} 
+
+
+where $\vec{N}^{(3)}_{eln}(k\vec{r})$ and $\vec{M}^{(3)}_{oln}(k\vec{r})$ are the vector spherical harmonics. $a_n$ and $b_n$ are some coefficients that depend on the particle properties and illumination properties. For a spherical and isotropic particle of radius $a$ and refractive index $n_p$ which is illuminated by a linearly polarized plane wave, the coefficients are expressed in terms of spherical Bessel $j_n$ and Hankel $h_n$ functions as \cite{f_bohren_absorption_1998}:
+
+\begin{equation}
+	a_n = 
+	\frac
+	{
+		\zeta^2 j_n (\zeta k a)k a j_n' (k a) - j_n(ka)[\zeta kaj_n(\zeta ka)]'
+	}
+	{
+		\zeta^2 j_n (\zeta k a)k a h_n^{(1)'} (k a) - h_n^{(1)}(ka)\zeta kaj_n'(\zeta ka)
+	}
+\end{equation}
+
+and
+
+\begin{equation}
+	b_n =
+	\frac
+	{
+		j_n(\zeta k a) kaj_n'(ka) - j_n (ka) \zeta kaj_n'(mka)
+	}
+	{
+		j_n(\zeta k a) kah_n^{(1)'}(ka) - h_n^{(1)} (ka) \zeta kaj_n '(mka)
+	} ~,
+\end{equation}
+
+
+where $\zeta = n_p / n_m$ while the prime notation denotes differentiation with respect to the argument. As we can see, the holograms given by Eq.\ref{Eq.Lorenz-Mie-function} will vary with a lot of parameters ($\lambda$, $n_m$, $n_p$, $a$ and $r_p$) which can all be fitted. In general, the illumination wavelength and medium index are known and we are able to fully characterize a unique particle as well as precisely measure it's position. It is even possible to characterize a particle without a priori knowledge of it's characteristics using Bayesian approach \cite{gregory_bayesian_2005, dimiduk_bayesian_2016}.
+
+ Another interesting question here, is until which number of terms the series Eq.\ref{Eq.Lorenz-Mie-function} converge. It has been found \cite{lentz_generating_1976} that the series converge after a number of terms
+\begin{equation}
+	n_c = k a + 4.05 (k a)^{1/3} + 2 ~.
+\end{equation}
+Thus, larger particles will need more time to be tracked. As an exemple, the largest particle used during my thesis have a radius $a = 2.5 ~ \mathrm{\mu m}$ leading to a number of terms $ n_c = 55$ in water and $\lambda = 532$ nm, for the smallest $a = 0.5 ~ \mathrm{\mu m}$ we find $n_c = 18$ which makes a huge difference in practice.
+
+Finally, Lorenz-Mie is the most versatile in-line holographic method as it permits to track and characterize unique particles even without a priori knowledge. Besides, writing the $f_s$ function for particular particles such as anisotropic \cite{fung_holographic_2013}, non-spherical \cite{wang_using_2014} or clusters \cite{fung_holographic_2013, perry_real-space_2013} of particles permits to use this fitting method in more complex situations . Also it can reach really high precision as the tenth of nanometer on the position and radius and $10^{-3}$ on the optical index \cite{lee_characterizing_2007}. Unfortunately, the Lorenz-Mie fitting suffer from a major drawback which is the time needed to fit one image. For example, a 200 by 200 pixels image of a $2.5 ~ \mathrm{\mu m}$ particle's hologram can take up to 2 seconds to be fitted using a pure python algorithm. A lot of work as been done to have faster tracking such as random-subset fitting \cite{dimiduk_random-subset_2014}, GPU (graphical processing unit) acceleration, machine-learning \cite{yevick_machine-learning_2014, hannel_machine-learning_2018} and deep neural networks \cite{altman_catch_2020}.
+
+\subsubsection{Reyleigh-Sommerfeld back propagation}
+Bon faut s'attaquer au R-SBP un jour :((
 
 \subsection{Experimental setup}
 J'explique ici le setup experimental et comment il faut bien choisir son objectif en side note !!
