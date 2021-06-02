@@ -218,8 +218,51 @@ Thus, larger particles will need more time to be tracked. As an exemple, the lar
 
 Finally, Lorenz-Mie is the most versatile in-line holographic method as it permits to track and characterize unique particles even without a priori knowledge. Besides, writing the $f_s$ function for particular particles such as anisotropic \cite{fung_holographic_2013}, non-spherical \cite{wang_using_2014} or clusters \cite{fung_holographic_2013, perry_real-space_2013} of particles permits to use this fitting method in more complex situations . Also it can reach really high precision as the tenth of nanometer on the position and radius and $10^{-3}$ on the optical index \cite{lee_characterizing_2007}. Unfortunately, the Lorenz-Mie fitting suffer from a major drawback which is the time needed to fit one image. For example, a 200 by 200 pixels image of a $2.5 ~ \mathrm{\mu m}$ particle's hologram can take up to 2 seconds to be fitted using a pure python algorithm. A lot of work as been done to have faster tracking such as random-subset fitting \cite{dimiduk_random-subset_2014}, GPU (graphical processing unit) acceleration, machine-learning \cite{yevick_machine-learning_2014, hannel_machine-learning_2018} and deep neural networks \cite{altman_catch_2020}.
 
-\subsubsection{Reyleigh-Sommerfeld back propagation}
-Bon faut s'attaquer au R-SBP un jour :((
+\subsubsection{ Rayleigh-Sommerfeld back-propagation}
+
+Rayleigh-Sommerfeld back-propagation \cite{wilson_3d_2012} propagation works on the same principle than the Lorenz-Mie fitting but assumes that we have small scatters that stratifies
+
+\begin{equation}
+	|\zeta - 1| << 1 \text{ and } ka|\zeta - 1| << 1 ~.
+\end{equation}
+
+In this case, at the focal plane, the scattered field is smaller than the incident field and the term $|\vec{E}_s|^2$ can be ignored. Thus, the normalized intensity, Eq.\ref{Eq.normalized_Mie} can be rewritten as:
+
+\begin{equation}
+	b(\vec{r})= 1 + 2\operatorname{Re}\left( \frac{E_s(\vec{r},0)}{E_0(\vec{r})} \right) ~.
+\end{equation}
+
+If you can retrieve completely the scattered field from an image it is possible to reconstruct it above the focal plane with a convolution using the Rayleigh-Sommerfeld propagator \cite{goodman_introduction_2005}
+
+\begin{equation}
+	h_{-z}(\vec{r}) = \frac{1}{2 \pi} \frac{\partial}{\partial z} \frac{\mathrm{e}^{ikR}}{R} ~,
+\end{equation}
+
+where $ R^2 = r^2 + z^2 $ and the sign convention on the propagator indicates if the particle is below or above the focal plane. Using this propagator we have:
+
+\begin{equation}
+	E_s(\vec{r}, z) = E_z(\vec{r}, 0) \otimes h_{-z}(\vec{r})
+\end{equation}
+
+Using the convolution theorem \cite{cheong_strategies_2010, goodman_introduction_2005, sherman_application_1967,schnars_digital_1994} we can write reconstruted scattering by supposing a uniform illumination as 
+
+\begin{equation}
+	E_s(\vec{r}, z) \approx \frac{\mathrm{e}^{ikz}}{4\pi ^2}
+	\int ^\infty _{- \infty}
+	B(\vec{q}) H(\vec{q}, -z) \mathrm{e}^{i \vec{q} \cdot r} d^2 q
+	\label{Eq.RS}
+\end{equation}
+
+where $B(\vec{q})$ is the Fourier transform of $b(\vec{r})$ and $H(\vec{q}, -z)$ is given by
+
+\begin{equation}
+	H(\vec{q}, -z) = \mathrm{e}^{iz \sqrt{k^2 - q^2}} ~.
+\end{equation}
+
+Finally, using Eq.\ref{Eq.RS} we can reconstruct the scattered field and intensity since $I(\vec{r}) = |E_s(\vec{r})|^2$ as shown in Fig.XXX. 
+Those equation are way less computational intensive than the Lorenz-Mie Eq.\ref{Eq.Lorenz-Mie-function}. Thus tracking can be way faster, moreover, Fourier transforms can be largely accelerated using GPU. Also as shown in the fig.XXX, this method does not require any information on the particle and the number of particles, we just here assume that they are spherical. Thus this method is great to reconstruct the position of particle on large image where we have a lot of particles or clusters. However, the major drawback is that it is the less precise of the presented measurements and that we can't use it to characterize the particle generating the holograms.
+
+
 
 \subsection{Experimental setup}
 J'explique ici le setup experimental et comment il faut bien choisir son objectif en side note !!
