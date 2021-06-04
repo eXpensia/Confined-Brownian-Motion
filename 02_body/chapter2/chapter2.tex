@@ -124,6 +124,7 @@ Finally, this method is great because the equation are computationaly light and 
 
 \subsubsection{Lorenz-Mie Fit}
 
+
 Another method to create hologram, is to look at the superimposition of the scatterd field $\vec{E}_s$ and incident field $\vec{E}_0$. This way, we could track and characterize even small particles. This method is has been developed in the early 2000 \cite{ovryn_imaging_2000, lee_characterizing_2007}. Since, a lot of studies has been realised with this method[cite a bunch of paper here]. 
 
 Let's the incident field be a plane wave uniformly polarized along the axis $ \hat{e}$, with an amplitude $E_0$ and propagating along the $z$ direction :
@@ -218,7 +219,30 @@ Thus, larger particles will need more time to be tracked. As an exemple, the lar
 
 Finally, Lorenz-Mie is the most versatile in-line holographic method as it permits to track and characterize unique particles even without a priori knowledge. Besides, writing the $f_s$ function for particular particles such as anisotropic \cite{fung_holographic_2013}, non-spherical \cite{wang_using_2014} or clusters \cite{fung_holographic_2013, perry_real-space_2013} of particles permits to use this fitting method in more complex situations . Also it can reach really high precision as the tenth of nanometer on the position and radius and $10^{-3}$ on the optical index \cite{lee_characterizing_2007}. Unfortunately, the Lorenz-Mie fitting suffer from a major drawback which is the time needed to fit one image. For example, a 200 by 200 pixels image of a $2.5 ~ \mathrm{\mu m}$ particle's hologram can take up to 2 seconds to be fitted using a pure python algorithm. A lot of work as been done to have faster tracking such as random-subset fitting \cite{dimiduk_random-subset_2014}, GPU (graphical processing unit) acceleration, machine-learning \cite{yevick_machine-learning_2014, hannel_machine-learning_2018} and deep neural networks \cite{altman_catch_2020}.
 
+\begin{figure}
+	\centering
+		\includegraphics[scale=0.8]{02_body/chapter2/images/lorenz_mie_fit_demo/plot_lorenz_mie.pdf}
+		\caption{a) Raw hologram of a $2.5 ~ \mathrm{\mu m}$ polistyrene particle measured experimentaly with the setup detailed in the chapter XXXX. b) Background obtained by taking the mean value of the time series of images of the diffusing particle. c) Normalized hologram given by dividing a) by b). d) Result of the fit of c) using Eq.{\ref{Eq.normalized_Mie}} the particle is found to be at a height $z = 14.77 \mu m$. e) Comparison of the normalized radial intensity, obtained experimentaly form c) and theoriticaly from d).}
+		\label{fig.Lorenz_mie_demo}
+\end{figure}
+
+
+\begin{figure}
+	\centering
+	\includegraphics{02_body/chapter2/images/demo_Iz.png}
+	\caption{Radial intensity as of the holograms as a function of the height of the coloidal particle. On the right we have the experimentaly measured radial intensity and on the left the theoritical one **FIGURE NEED TO ME REDONE PROPERLY**}
+\end{figure}
 \subsubsection{ Rayleigh-Sommerfeld back-propagation}
+
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[scale=2]{02_body/chapter2/images/sommerfel_demo.jpg}
+	\caption{Figure from \cite{cheong_strategies_2010} a) Volumetric reconstruction using Eq.\ref{Eq.RS} of the scattered intensity de to a single colloidal sphere, colored by intensity. b) Volumetirc reconstructions of $22$ individual $1.58 ~ \mathrm{\mu m}$ diameter silica spheres organised in bcc lattice using holographic optical tweezers in distilled water. Colored regions indicate the isosurface of the brightest 1 percent of reconstructed voxels.}
+	\label{fig.sommerfeld}
+\end{figure}
+
+
 
 Rayleigh-Sommerfeld back-propagation \cite{wilson_3d_2012} propagation works on the same principle than the Lorenz-Mie fitting but assumes that we have small scatters that stratifies
 
@@ -262,17 +286,36 @@ where $B(\vec{q})$ is the Fourier transform of $b(\vec{r})$ and $H(\vec{q}, -z)$
 Finally, using Eq.\ref{Eq.RS} we can reconstruct the scattered field and intensity since $I(\vec{r}) = |E_s(\vec{r})|^2$ as shown in Fig.XXX. 
 Those equation are way less computational intensive than the Lorenz-Mie Eq.\ref{Eq.Lorenz-Mie-function}. Thus tracking can be way faster, moreover, Fourier transforms can be largely accelerated using GPU. Also as shown in the fig.XXX, this method does not require any information on the particle and the number of particles, we just here assume that they are spherical. Thus this method is great to reconstruct the position of particle on large image where we have a lot of particles or clusters. However, the major drawback is that it is the less precise of the presented measurements and that we can't use it to characterize the particle generating the holograms.
 
+\subsubsection{Conclusion}
+
+Finally, the method we choosed is the Lorenz-Mie fitting method, since this method permits the characterization of single particle. Indeed, since we are interested to fine effects near the surface we need to know perfectly the radius and optical index of the particle we have recorded. This feature also make our all process, calibration as we don't need to assume any physical properties. I will in the following detail the experimental setup.
 
 
 \subsection{Experimental setup}
-J'explique ici le setup experimental et comment il faut bien choisir son objectif en side note !!
 
-\subsection{Numerical treatment ??}
+In order to observe the holograms we use an home made inversed microscope as shown on the Fig.XXXX and shematized in Fig... . A sample consists of a parallelepipedic chamber ($1.5 ~ \text{cm} \times ~ 1.5 ~ \text{cm} \times ~ 150 ~ \mathrm{\mu m} $ ), made from two glass covers, a parafilm spacer, and sealed with vacuum grease, containing a dilute suspension of spherical polystyrene beads. We used 3 differents sizes, of nominal raddi $0.56 ~ \mathrm{\mu m}, ~ 1.5 ~ \mathrm{\mu m} \text{ and } 2.5 ~ \mathrm{\mu m} $, at room temperature $T$, in distilled water (type 1, MilliQ device) of viscosity $\eta = 1 \mathrm{mPa.s}$. The sample is illuminated by a collimated laser beam with a $521 \mathrm{\mu m}$ wavelengt. The explain in the chapter 3.3..., the light scattered by one colloidal particle at a given time $t$ interferes with the incident beam. An oil-immersion objective lens (x60 magnification, $1.30$ numerical aperture) collects the ersulting instantaneous interference pattern, and relays it to a camera (Basler acA1920-155um) with a $51.6$ nm/pixel resolution (see Fig.\ref{fig.Lorenz_mie_demo}a)). The exposure timefor each frae is fixed to $3$ ms to avoid motion-induced blurring of the image.
 
-Ici je vais présenter comment j'inverse les holograme, je vais présenter holopy et le code de groupe de grier. Expliquer aussi les limitations temporelles et comment j'ai essayer de les contourner pour finalement dire qu'un doctorant de chez grier a fini de dévelloper l'accélération GPU qui a rendu l'inverversage des trajectoire a un temps humain !
+\begin{figure}[h!]
+	\centering
+	\includegraphics{02_body/chapter2/images/figures_setup/photo_setup.pdf}
+	\caption{Photo of the custom build microscope used along my thesis. It is mainly composed of Thorlabs cage system. The camera used is a Basler acA1920-155um, the objective is an Olympus [REF] x60 magnification, $1.30$ numerical aperture and the laser source is a Thorlabs XXX .}
+\end{figure}
 
-\subsection{Radius and optical index characterization}
+\begin{figure}[h!]
+	\centering
+	\includegraphics[scale=0.9]{02_body/chapter2/images/figures_setup/schema_setup.pdf}
+	\caption{Schematic of the experimental setup. A lase plane wave of intensity $E_0$ illuminates the chamber containing a dilute suspension of microspheres in water. The light scattered by a particle interferes with the incident beam onto the focal plane of an objectivelens, that magnifies the interference patten and relays it to a camera.}
+\end{figure}
 
 
-Ici je vais présenter la characterization et les graphs de n en fonction de r et de discuter la dépendence apparente de r/n où je vais certainement m'appuyer sur un des papiers de Grier. 
+\subsection{Hologram fitting strategy}
+
+\subsubsection{How to fasten the process ?}
+
+As I said in the presentation of the Lorenz-Mie fitting method, the main drawback is the time to fit an image, from $30$ seconds for the images of $100 \times 100$ pixels to a few minutes for the $500\times 500$ pixels. We can directly see a bottleneck, indeed, if we want to track one trajectory made of $100~000$ images we would need to wait $\approx 70$ days for a series of images that need only $16$ minutes to be shot experimentaly. When I started my PhD, two groups, the Grier's lab and the Manoharan's lab, had already introduced python packages, respectively, Pylorenzmie and Holopy in order to inverse holograms. They had introduce ways to only fit a set of randomly choosen pixels and demonstrated that taking only $1\%$ of the image pixel could lead to similar precision and improve considerably the fits \cite{dimiduk_random-subset_2014}. Unfortunatly, even if this is faster, it leads to a few images per second and still is too long for the amount of data we wanted to have. Ironicaly, this part of my project is certainly the one I spent the most time, and learn a lot of things on code optimization and computer cluster usage. It's around the half of my thesis that Pylorenzmie got a new commit on their github repository which was telling that they succeeded on using GPU acceleration using CUDA. This was not an easy task since they needed to reconstruct the Bessel, fortunatly it is possible by using continued fractions \cite{lentz_generating_1976}. This tiny update permits to fit whole images at a whooping speed improvment of 20 fps. At this, speed we fit the tridimension position of the particle, the radius and optical index. To have a more reliable and fast tracking what we do is that we will fit with all free parameters the first $10~000$ of a movie and determine the physical properties of the colloidal particle and then fit the whole movie with only the position as a free parameter.
+
+\subsubsection{Radius and optical index characterization}
+
+
+Once the data of the radius and optical index retrieved, the first quantity we can look at the the distribution of measurements.
 
