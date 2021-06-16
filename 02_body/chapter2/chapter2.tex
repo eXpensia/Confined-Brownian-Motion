@@ -1,5 +1,5 @@
 \newpage
-\section{Particle characterization and particle tracking using holographic video microscopy}
+\section{Particle characterization and particle tracking using interference properties}
 		\label{sec:chapter2}
 
 \subsection{Introduction}
@@ -14,7 +14,7 @@ Since the beginning of the century, interest on tracking and characterizing coll
 	\item Rayleigh-Sommerfeld back-propagation
 \end{itemize}
 
-Experimentaly, this methods are generaly implemented in setups where the the incident light and scattered (or reflected) ligth are colinear, we thus speak of in-line holography.
+The first one, \gls{RICM}, uses the principle of optical difference path as a Michelson interferometer. The other two, uses the interference between the light scattered by the colloid and the incident light. Generaly, both of the sources are colinear, we thus speak of in-line holography. 
 
 \subsection{In-line holographic video microscopy theory}
 
@@ -182,7 +182,7 @@ Now that we have the analytical form of the holograms intensity it is possible t
 \end{equation} 
 
 
-where $\vec{N}^{(3)}_{eln}(k\vec{r})$ and $\vec{M}^{(3)}_{oln}(k\vec{r})$ are the vector spherical harmonics. $a_n$ and $b_n$ are some coefficients that depend on the particle properties and illumination properties. For a spherical and isotropic particle of radius $a$ and refractive index $n_p$ which is illuminated by a linearly polarized plane wave, the coefficients are expressed in terms of spherical Bessel $j_n$ and Hankel $h_n$ functions as \cite{f_bohren_absorption_1998}:
+where $\vec{N}^{(3)}_{eln}(k\vec{r})$ and $\vec{M}^{(3)}_{oln}(k\vec{r})$ are the vector spherical harmonics. $a_n$ and $b_n$ are some coefficients that depend on the particle properties and illumination properties. For a spherical and isotropic particle of radius $a$ and refractive index $n_\mathrm{p}$ which is illuminated by a linearly polarized plane wave, the coefficients are expressed in terms of spherical Bessel $j_n$ and Hankel $h_n$ functions as \cite{f_bohren_absorption_1998}:
 
 \begin{equation}
 	a_n = 
@@ -209,7 +209,7 @@ and
 \end{equation}
 
 
-where $\zeta = n_p / n_m$ while the prime notation denotes differentiation with respect to the argument. As we can see, the holograms given by Eq.\ref{Eq.Lorenz-Mie-function} will vary with a lot of parameters ($\lambda$, $n_m$, $n_p$, $a$ and $r_p$) which can all be fitted. In general, the illumination wavelength and medium index are known and we are able to fully characterize a unique particle as well as precisely measure it's position. It is even possible to characterize a particle without a priori knowledge of it's characteristics using Bayesian approach \cite{gregory_bayesian_2005, dimiduk_bayesian_2016}.
+where $\zeta = n_\mathrm{p} / n_m$ while the prime notation denotes differentiation with respect to the argument. As we can see, the holograms given by Eq.\ref{Eq.Lorenz-Mie-function} will vary with a lot of parameters ($\lambda$, $n_m$, $n_\mathrm{p}$, $a$ and $r_p$) which can all be fitted. In general, the illumination wavelength and medium index are known and we are able to fully characterize a unique particle as well as precisely measure it's position. It is even possible to characterize a particle without a priori knowledge of it's characteristics using Bayesian approach \cite{gregory_bayesian_2005, dimiduk_bayesian_2016}.
 
  Another interesting question here, is until which number of terms the series Eq.\ref{Eq.Lorenz-Mie-function} converge. It has been found \cite{lentz_generating_1976} that the series converge after a number of terms
 \begin{equation}
@@ -229,18 +229,14 @@ Finally, Lorenz-Mie is the most versatile in-line holographic method as it permi
 
 \begin{figure}
 	\centering
-	\includegraphics{02_body/chapter2/images/demo_Iz.png}
-	\caption{Radial intensity as of the holograms as a function of the height of the coloidal particle. On the right we have the experimentaly measured radial intensity and on the left the theoritical one **FIGURE NEED TO ME REDONE PROPERLY**}
+	\includegraphics{02_body/chapter2/images/test_tableau2.pdf}
+	\caption{Stack of radial intensity as of the holograms as a function of the height of the coloidal particle. On the right we have the experimentaly measured radial intensity and on the left the theoritical one.}
 \end{figure}
+
+
 \subsubsection{ Rayleigh-Sommerfeld back-propagation}
 
 
-\begin{figure}[h!]
-	\centering
-	\includegraphics[scale=2]{02_body/chapter2/images/sommerfel_demo.jpg}
-	\caption{Figure from \cite{cheong_strategies_2010} a) Volumetric reconstruction using Eq.\ref{Eq.RS} of the scattered intensity de to a single colloidal sphere, colored by intensity. b) Volumetirc reconstructions of $22$ individual $1.58 ~ \mathrm{\mu m}$ diameter silica spheres organised in bcc lattice using holographic optical tweezers in distilled water. Colored regions indicate the isosurface of the brightest 1 percent of reconstructed voxels.}
-	\label{fig.sommerfeld}
-\end{figure}
 
 
 
@@ -286,6 +282,15 @@ where $B(\vec{q})$ is the Fourier transform of $b(\vec{r})$ and $H(\vec{q}, -z)$
 Finally, using Eq.\ref{Eq.RS} we can reconstruct the scattered field and intensity since $I(\vec{r}) = |E_s(\vec{r})|^2$ as shown in Fig.XXX. 
 Those equation are way less computational intensive than the Lorenz-Mie Eq.\ref{Eq.Lorenz-Mie-function}. Thus tracking can be way faster, moreover, Fourier transforms can be largely accelerated using GPU. Also as shown in the fig.XXX, this method does not require any information on the particle and the number of particles, we just here assume that they are spherical. Thus this method is great to reconstruct the position of particle on large image where we have a lot of particles or clusters. However, the major drawback is that it is the less precise of the presented measurements and that we can't use it to characterize the particle generating the holograms.
 
+\begin{figure}[h!]
+	\centering
+	\includegraphics[scale=2]{02_body/chapter2/images/sommerfel_demo.jpg}
+	\caption{Figure from \cite{cheong_strategies_2010} a) Volumetric reconstruction using Eq.\ref{Eq.RS} of the scattered intensity de to a single colloidal sphere, colored by intensity. b) Volumetirc reconstructions of $22$ individual $1.58 ~ \mathrm{\mu m}$ diameter silica spheres organised in bcc lattice using holographic optical tweezers in distilled water. Colored regions indicate the isosurface of the brightest 1 percent of reconstructed voxels.}
+	\label{fig.sommerfeld}
+\end{figure}
+
+
+
 \subsubsection{Conclusion}
 
 Finally, the method we choosed is the Lorenz-Mie fitting method, since this method permits the characterization of single particle. Indeed, since we are interested to fine effects near the surface we need to know perfectly the radius and optical index of the particle we have recorded. This feature also make our all process, calibration as we don't need to assume any physical properties. I will in the following detail the experimental setup.
@@ -317,5 +322,16 @@ As I said in the presentation of the Lorenz-Mie fitting method, the main drawbac
 \subsubsection{Radius and optical index characterization}
 
 
-Once the data of the radius and optical index retrieved, the first quantity we can look at the the distribution of measurements.
+Once the data of the radius and optical index retrieved, the first quantity we can look at the the distribution of measurements. Using our $10 ~ 000$ measurements we can plot the histograms of the measured $a$ and $n_\mathrm{p}$.
 
+
+
+
+This simple histogram could suffice to meausure the physical properties of the colloidal particle. However, we can go a bit further and look at the 2D histogram of the $a$ and $n_\mathrm{p}$ as presented in the fig.XX here smoothed using a Gaussian kernel density estimator. Ae we can see it is not isotropic and it seems that the measurement of $n_\mathrm{p}$ and $a$ are correlated.
+ 
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics{02_body/chapter2/images/KDErn.pdf}
+	\caption{2D Probability density function of the measurements of the optical index $n_\mathrm{p}$ and radius $a$. Black lines indicates iso-probability. Taking the $10\% $ top probability, we measure $n_\mathrm{p} = 1.585 \pm 0.002$ and $a=1.514 \pm 0.003 ~ \mathrm{\mu m}$. }
+\end{figure}
