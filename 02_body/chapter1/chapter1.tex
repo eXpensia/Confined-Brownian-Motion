@@ -5,106 +5,107 @@
 
 
 	
-In 1827 the Scottish botanist Robert Brown published a paper \cite{robert_xxvii_1828} on his observation on the pollen of \textit{Clarkia pulchella} with a lot of details on his taught processes. His experiments were made to understand the flower reproduction, but, as he was looking through the microscope he observed some minute particles ejected from the pollen grains. At first, he thought this movement was a test to find the male organ, then looking at grains Mosses and \textit{Equiseta} which had been dried up for one hundred years, he was surprised to see this "peculiar" movement and since he was able to increase the number of particle by bruising ovule or seeds of \textit{Equisetum} he abandoned his supposition. Interestingly each time that he encountered a material that he was able to reduce to a fine enough powder to be suspended in water, he observed a constant motion, although, he never guessed the origin of the particle's movement.
+In 1827 the Scottish botanist Robert Brown published an article \cite{robert_xxvii_1828} on his observation on the pollen of \textit{Clarkia pulchella} with a lot of details on his thought processes. His experiments were made to understand the flower reproduction, but, as he was looking through the microscope he observed some minute particles ejected from the pollen grains. At first, he thought the goal of this movement was to test the presence of a male organ. In order to test this theory, he extended his observations to Mosses and \textit{Equiseta}, which were drying for a hundred years. However, the fact that this peculiar movement was still observable made him invalidate his theory. Interestingly each time that he encountered a material that he was able to reduce to a fine enough powder to be suspended in water, he observed the same type of motion, although, he never understood its particle's movement.
 
-The difficulty at this time to observe and capture this movement made the study of what we call today Brownian motion quite difficult and the first theoretical work on erratic movement was actually done by Louis Bachelier in his PhD thesis "The theory of speculation", where he describes a stochastic analysis of the stock and option market. The mathematical description is still a used in the modern development of tools for the economic industry. 
+The difficulty at this time to observe and capture such a movement made the study of what we call today Brownian motion quite difficult and the first theoretical work was actually done by Louis Bachelier in his PhD thesis ``The theory of speculation", where he described a stochastic analysis of the stock and option market. Nowadays, the mathematical description of random movement is still used in the modern financial industry. 
 
-It's finally in 1905 that Albert Einstein describe that "bodies of microscopically visible size suspended in a liquid will perform movements of such a magnitude that they can be easily observed in a microscope" \cite{einstein_uber_1905}. A nice remark to make here is that in 1948 Einstein wrote a letter to one of his friend where he stated having deduced the Brownian motion "from mechanics, without knowing that anyone had already observed anything of the kind" \cite{peter_brownian_nodate}.
+It is finally in 1905 that Albert Einstein theoretically state that ``bodies of microscopically visible size suspended in a liquid will perform movements of such a magnitude that they can be easily observed in a microscope" \cite{einstein_uber_1905}. A remark to make here is that in 1948 Einstein wrote a letter to one of his friend where he stated having deduced the Brownian motion ``from mechanics, without knowing that anyone had already observed anything of the kind" \cite{peter_brownian_nodate}.
 
-It's in 1908 that Jean Perrin published his experimental work on the Brownian motion, that way he was able to measure the Avogadro number and prove the kinetic theory that Einstein developed. I would also cite M. Chaudesaigues and M. Dabrowski, who helped J. Perrin to track the particles by hand, half-minutes by half-minutes, for more than 3000 displacements (25 hours) and several particles. This impressive and daunting work is highly detailed in \textit{"Mouvement brownien et molécules"} \cite{perrin_mouvement_1910}. This is partly due to this work than J. Perrin received the Nobel award in 1926.
+It is in 1908 that Jean Perrin published his experimental work on Brownian motion. that way he was able to measure the Avogadro number and prove the kinetic theory that Einstein developed. I would also cite Chaudesaigues and Dabrowski, who helped Perrin to track the particles by hand, half-minutes by half-minutes, for more than 3000 displacements (25 hours) and several particles. This impressive and daunting work is highly detailed in \textit{``Mouvement brownien et molécules"} \cite{perrin_mouvement_1910}. This is partly due the results this work that Perrin received the Nobel award in 1926.
 
 \begin{figure}[h]
 	\centering
 	\includegraphics[scale=0.6]{02_body/chapter1/image/graph_perrin.png}
-	\caption{Brownian motion of $1 ~ \mathrm{\mu m}$ particle in water tracked by hand by Jean Perrin and his colleagues, each point are timely space by 30 seconds and 16 divisions represents $50 ~ \mathrm{\mu m}$}
+	\caption{Brownian motion of $1 ~ \mathrm{\mu m}$ particles in water tracked by hand by Jean Perrin and his colleagues. The points are spaced in time by 30 seconds and 16 divisions represents $50 ~ \mathrm{\mu m}$.}
 	\label{fig:Perrin_Brownian}
 \end{figure}
 
-\subsection{The Einstein Brownian theory}
+\subsection{Einstein's Brownian theory}
 
-In this section we will derive the main characteristic of the bulk Brownian motion in the manner of Einstein in 1905 by summarizing the section 4 of \cite{einstein_uber_1905}. We will then examine  the random motion of particles suspended in a liquid and their relation to diffusion, caused by thermal molecular motion. We assume that each particle motion is independent of other particles; also the motion of one particle at different time interval as to be taken independent process as long as the time interval is not too small. We now introduce a time interval $\tau$ which as to be small compared to the observation time but small enough so that  the displacement between two consecutive time intervals $\tau$ may be taken as independent events (i.e. the over damped regime). 
+In this section we will derive the main characteristics of bulk Brownian motion in the manner of Einstein in 1905 by summarizing the section 4 of \cite{einstein_uber_1905}. We will then examine  the random motion of particles suspended in a liquid and its relation to diffusion, caused by thermal molecular motion. We assume that each particle motion is independent of other particles; also the motions of one particle at different times are assumed to be independent of one another provided that the time interval is not too small. Furthermore, we now introduce a time interval $\tau$ which is small compared to the observation time but large enough so that  the displacements in two consecutive time intervals $\tau$ may be taken as independent events. 
 
-For simplicity, we will here look only at the Brownian motion of $n$ particles in 1D along the $x$ axis. In a time interval $\tau$ the position of each individual particle will increase by a displacement $\Delta$, positive or negative and different for all the particles. The number of particle $dn$ experiencing a displacement lying between $\Delta$ and $\Delta + d\Delta$ in a time interval $\tau$ is written as:
+For simplicity, we will here look only at the Brownian motion of $n$ particles in 1D along the $x$ axis. In a time interval $\tau$ the position of each individual particle will increase by a displacement $\Delta$, positive or negative. The number of particles $\textnormal{d}n$ experiencing a displacement lying between $\Delta$ and $\Delta + \textnormal{d}\Delta$ in a time interval $\tau$ is written as:
 
 \begin{equation}
-	dn = n\varphi(\Delta)d\Delta,
+	\textnormal{d}n = n\varphi(\Delta)\textnormal{d}\Delta ~,
 \end{equation}
 
 where
 
 \begin{equation}
-	\int_{-\infty} ^{\infty} \varphi (\Delta)d \Delta = 1,
+	\int_{-\infty} ^{\infty} \varphi (\Delta)\textnormal{d} \Delta = 1 ~,
 	\label{Eq:ein_def_phi}
 \end{equation}
 
 and $\varphi$ is nonzero only for very small displacement $\Delta$ and satisfies $\varphi (\Delta) = \varphi (-\Delta)$.
 
-Let $f(x,t)$ be the number of particles per unit volume. From the definition of the function $\varphi(\Delta)$ we can obtain the distribution of particles found at time $ t + \tau$ from their distribution at a time $t$, we obtain:
+Let $f(x,t)$ be the number of particles per unit volume. From the definition of the function $\varphi(\Delta)$ we can obtain the distribution of particles found at time $ t + \tau$ from their distribution at a time $t$, through:
 
 \begin{equation}
-	f(x, t+\tau)dx = dx\int_{\Delta = -\infty} ^{\Delta = +\infty} f(x+\Delta, t) \varphi (\Delta) d\Delta.
-	\label{Eq:Ein_first}.
+	f(x, t+\tau)\textnormal{d}x = \textnormal{d}x\int_{\Delta = -\infty} ^{\Delta = +\infty} f(x+\Delta, t) \varphi (\Delta) \textnormal{d}\Delta ~.
+	\label{Eq:Ein_first}
 \end{equation}
 
 Since $\tau$ is very small, we have:
 
 \begin{equation}
-	f(x, t+\tau) = f(x,t) + \tau \frac{\partial f}{\partial t}.
+	f(x, t+\tau) = f(x,t) + \tau \frac{\partial f}{\partial t} ~.
 \end{equation}
 
 On the other side we can Taylor expend $f(x+\Delta, t)$ in powers of $\Delta$ since only small values of $\Delta$ contribute. We obtain:
 
 \begin{equation}
-	f(x + \Delta, t) = f(x,t) + \Delta \frac{\partial f(x,t)}{\partial x} + \frac{\Delta ^2}{2!} \frac{\partial ^2 f(x,t)}{\partial x^2}...
+	f(x + \Delta, t) = f(x,t) + \Delta \frac{\partial f(x,t)}{\partial x} + \frac{\Delta ^2}{2!} \frac{\partial ^2 f(x,t)}{\partial x^2} ~... ~\textnormal{ad inf.}
 \end{equation}
 
 Putting all together, in Eq.\ref{Eq:Ein_first} we obtain:
 
 \begin{equation}
-	f + \frac{\partial f}{\partial t} \tau = f \int_{-\infty}^{+\infty} \varphi(\Delta)d \Delta + \frac{\partial f}{\partial x} \int_{-\infty}^{+\infty} \Delta \varphi (\Delta)d \Delta + \frac{\partial ^2 f}{\partial x^2} \int_{-\infty}^{+\infty} \frac{\Delta ^2}{2} \varphi(\Delta)d\Delta ...
+	f + \frac{\partial f}{\partial t} \tau = f \int_{-\infty}^{+\infty} \varphi(\Delta)\textnormal{d} \Delta + \frac{\partial f}{\partial x} \int_{-\infty}^{+\infty} \Delta \varphi (\Delta)\textnormal{d} \Delta + \frac{\partial ^2 f}{\partial x^2} \int_{-\infty}^{+\infty} \frac{\Delta ^2}{2} \varphi(\Delta)\textnormal{d}\Delta ~...
 	\label{Eq:ein_expended}
 \end{equation}
 
-On the right-hand side, since $\varphi(x) = \varphi(-x)$ all even terms will vanish and all the odd terms will be very small compared to the precedent. If we take into account \ref{Eq:ein_def_phi} and only the first and third term of the right-hand side, by putting:
+On the right-hand side, since $\varphi(x) = \varphi(-x)$ all even terms will vanish, moreover, all the odd terms will be very small compared to the precedent. Taking into account Eq.\ref{Eq:ein_def_phi} and invoking the definition:
 
 
 
 \begin{equation}
-	\frac{1}{\tau} \int_{-\infty}^{+\infty} \frac{\Delta^2}{2}\varphi(\Delta)d\Delta =D,
+	\frac{1}{\tau} \int_{-\infty}^{+\infty} \frac{\Delta^2}{2}\varphi(\Delta)\textnormal{d}\Delta = D ~,
 \end{equation}
 
-the Eq.\ref{Eq:ein_expended} finally becomes:
+Eq.\ref{Eq:ein_expended} finally becomes:
 
 \begin{equation}
-	\frac{\partial f}{\partial t} = D \frac{\partial ^2 f}{\partial x ^2}.
+	\frac{\partial f}{\partial t} = D \frac{\partial ^2 f}{\partial x ^2} ~.
+	\label{Eq.HeatEquation}
 \end{equation}
 
 
-We can here recognize a differential equation for the diffusion with $D$ the diffusion coefficient. We will now initiate the same position $x=0$ for all the particle at $t=0$ as in the Fig.\ref{fig:bulkbrown} and $f(x,t)dx$ now denoting the number of particles whose position as increased between the times  $t=0$ and $t=t$  by a quantity lying between $x$ and $x + dx$ such that we must have:
+We can here recognize a partial equation of diffusion with $D$ the diffusion coefficient. We will now initiate the same position $x=0$ for all the particles at $t=0$ as in Fig.\ref{fig:bulkbrown}. $f(x,t)\textnormal{d}x$ denotes the number of particles whose positions have increased between the times  $0$ and $t$  by a quantity lying between $x$ and $x + dx$ such that we must have:
 
 \begin{equation}
-	f(x \ne 0, t=0) = 0 \text{ and } \int_{-\infty}^{+\infty}f(x,t)dx = n.
+	f(x \ne 0, t=0) = 0 \text{ and } \int_{-\infty}^{+\infty}f(x,t)dx = n ~.
 \end{equation}
 
-The solution of this equation is known and the same as the heat equation and is given by the Gaussian:
+The solution Eq.\ref{Eq.HeatEquation} is then the Green's function of the heat equation in the bulk:
 
 
 \begin{equation}
-	f(x,t) = \frac{1}{\sqrt{4\pi D}} \frac{\mathrm{exp}^{\frac{-x^2}{4Dt}}}{\sqrt{t}}.
+	f(x,t) = \frac{1}{\sqrt{4\pi D}} \frac{\exp \left(\frac{-x^2}{4Dt} \right)}{\sqrt{t}} ~.
 \end{equation}
 
-From this solution we can see that the mean value of the displacement of all the particles along the $x$ axis is equal to $0$ and the square root of the arithmetic mean of the squares of displacements (that we commonly call Mean Square displacement (\gls{MSD}))  is given by:
+From this solution we can see that the mean value of the displacement along the $x$ axis is equal to $0$ and the square root of the arithmetic mean of the squares of displacements (that we commonly call the Root Mean Square Displacement (R\gls{MSD}))  is given by:
 \begin{equation}
-	\lambda _x = \sqrt{2Dt}.
+	\lambda _x = \sqrt{\langle \Delta ^2 \rangle} =  \sqrt{2Dt}.
 	\label{Eq:MSD_ein}
 \end{equation}
 
-The mean displacement is thus proportional to the square root of time, this result is generally the first behavior that we check when we study for the first time experimental Brownian motion. We can further suppose that in 3D, the square root of the \gls{MSD} will be given by $\lambda_x \sqrt{3}$
+The mean displacement is thus proportional to the square root of time. This result is generally the first behavior that we check when we study Brownian motion. In 3D, the square root of the \gls{MSD} will be given by $\lambda_x \sqrt{3}$.
 
-Previously in his paper, in the chapter 3, he had found by writing the thermodynamic equilibrium of a suspension of particles that the diffusion coefficient of a particle should be written:
+Previously in his article \cite{einstein_uber_1905}, Einstein had found by writing the thermodynamic equilibrium of a suspension of particles that the diffusion coefficient of a particle should read:
 
 \begin{equation}
-	D = \frac{R T}{N_\mathrm{A}}\frac{1}{6\pi \eta a},
+	D = \frac{R T}{N_\mathrm{A}}\frac{1}{6\pi \eta a} ~,
 	\label{Eq:D_einstein}
 \end{equation}
 
@@ -113,44 +114,44 @@ Previously in his paper, in the chapter 3, he had found by writing the thermodyn
 \nomenclature{$k_\mathrm{B}$}{Boltzmann Constant}
 \nomenclature{$D$}{Diffusion coefficient, see Eq.\ref{Eq:D_einstein}}
 
-with $R$ the gas constant, $T$ the temperature, $N_\mathrm{A}$ the Avogadro number and $\eta$ the fluid viscosity. Thus, an experimental observation measurement could lead to a measurement of the Avogadro number and the true size of the atoms since:
+with $R$ the gas constant, $T$ the temperature, $N_\mathrm{A}$ the Avogadro number and $\eta$ the fluid viscosity. Thus, an experimental measurement of $D$ could lead to a measurement of the Avogadro number since:
 
 \begin{equation}
-	N_\mathrm{A} = \frac{t}{\lambda_x^2} \frac{RT}{3\pi \eta a}.
+	N_\mathrm{A} = \frac{t}{\lambda_x^2} \frac{RT}{3\pi \eta a} ~.
 \end{equation}
 
-Finally, he ends up is paper \cite{einstein_uber_1905} by saying \textit{"Let us hope that a researcher will soon succeed in solving the problem posed here, which is of such importance in the theory of heat!"}. I'd like here to emphasize on the importance of solving this problem in very beginning of the 19's. At this time two theory about the fundamental matter components existed, one's seeing only energy and a second one, atoms, especially supported by Boltzmann and his kinetic theory of gases, here used by Einstein. Thus, an experimental proof of Eq.\ref{Eq:D_einstein} would prove the existence of atoms and molecules. Due to a lot of theoretical misunderstanding of the theory and experimental error scientist such as Svedberg or Henri thought that Einstein's theory was false \cite{genthon_concept_2020} by even proving that the statistical properties of the Brownian motion was changing with the pH of the solution. It's finally in 1908 that Chaudesaigues and Perrin published all the evidence to prove Einstein's theory mainly by their ability to create particle emulsion of well controlled radius. 
+Furthermore, measuring $N_\mathrm{A}$ also gives us the mass of atoms and molecules since the mass of a mole is known; as an example the mass of an oxygen atom will be given by $\frac{16}{N_\mathrm{A}}$ and the mass a water molecule by $\frac{18}{N_\mathrm{A}}$ .Finally, Einstein ends up is article \cite{einstein_uber_1905} by writing \textit{``Let us hope that a researcher will soon succeed in solving the problem posed here, which is of such importance in the theory of heat!"}. I would like here to emphasize the importance of solving this problem at the very beginning of the 20th century. At this time two theories about the fundamental matter components existed, one involving energy and a continuum description in terms of field, and the other one, discrete atoms, especially supported by Boltzmann and his kinetic theory of gases, used by Einstein. Due to a lot of theoretical misunderstandings and experimental error scientist such as Svedberg or Henri thought that Einstein's theory was false \cite{genthon_concept_2020} by even suggesting that the statistical properties of Brownian motion were changing with the pH of the solution. It is finally in 1908 that Chaudesaigues and Perrin published all the evidence to prove Einstein's theory mainly by their ability to create particle emulsions of well controlled radii. 
 
 \begin{figure}[!h]
 	\centering
 	\includegraphics{02_body/chapter1/image/brown_exemple.pdf}
-	\caption{Simulation of bulk Brownian motion of $1 ~ \mathrm{\mu m}$ particles in water. On the top each line represents the trajectory of a Brownian particle over 100 seconds a total of 100 trajectories or shown. On the bottom, bullets represents the \gls{MSD} computed from the simulated trajectories. The black plain line represents the Einstein's theory, which is computed from the square of Eq.\ref{Eq:MSD_ein}.}
+	\caption{Simulation of the bulk Brownian motion of $1 ~ \mathrm{\mu m}$ particles in water. On the top each line represents the trajectory of a Brownian particle over 100 seconds. A total of 100 trajectories or shown. On the bottom, bullets represents the Mean Square Displacement (\gls{MSD}) computed from the simulated trajectories. The black plain line represents Einstein's theory, which is computed from the square of Eq.\ref{Eq:MSD_ein}.}
 	\label{fig:bulkbrown}
 \end{figure}
 
-\subsection{Stochastic Differential Equations}
+\subsection{The Langevin Equation}
 
-In physics we generally write Brownian motion with Stochastic Differential Equations (\gls{SDE}). This model was introduced in 1908 by Langevin \cite{langevin_sur_1908}, since it benefits of a correct mathematical definition of the noise, this model is now used by the major part of physicists working on random processes. Note than it can also be found under the name of Langevin equation. This model is write as follows:
+In physics we generally describe Brownian motion through a particular Stochastic Differential Equations (\gls{SDE}). This model was introduced in 1908 by Langevin \cite{langevin_sur_1908}, this model is now used by the major part of physicists working on random processes. The Langevin equation for a free colloid reads:
 
 \begin{equation}
-	mdV_t  = - \gamma V_t dt + \alpha dB_t ,
+	mdV_t  = - \gamma V_t \textnormal{d}t + \alpha \textnormal{d}tB_t ~,
 \end{equation}
 
 \nomenclature{$V_t$}{Velocity of a particle}
 \nomenclature{$\alpha$}{Noise amplitude}
 \nomenclature{$T$}{Temperature}
 
-with $m$ the mass and $V_t$ the velocity of the particle. This \gls{SDE} is finally the Newton's second law, relating the particle momentum changes on the left-hand side of the equation and an external force on the right-hand side. We see that the external force applied on the particle is given by two terms: a friction term, with a friction coefficient $\gamma$ plus a random force with $a$ a coefficient that we will detail for a spherical particle and $dBt$ is a random noise which has a Gaussian distribution of zero mean thus:
+with $m$ the mass and $V_t$ the velocity of the particle. This \gls{SDE} is the Newton's second law, relating the particle momentum change on the left-hand side of the equation to forces on the right-hand side. We see that the total force applied on the particle is given by two terms: a friction term, with a Stokes-like fluid friction coefficient $\gamma$, a random force with $\alpha$ that we will detail for a spherical particle, $dBt$ a random noise which has a Gaussian distribution of zero mean thus:
 
 \begin{equation}
-	\langle dB_t \rangle  = 0,
+	\langle \textnormal{d}B_t \rangle  = 0~,
 	\label{Eq.meandbt}
 \end{equation}
 
-and we chose de variance to be equal to $dt$ giving : 
+and variance equal to: 
 
 \begin{equation}
-	\langle dB_t ^2 \rangle = dt.
+	\langle \textnormal{d}B_t ^2 \rangle = \textnormal{d}t~.
 \end{equation}
 
 For a spherical particle the friction term is given by the Stoke's formula: $\gamma = 6\pi \eta a$ with $\eta$ the fluid viscosity and $\alpha$ the particle radius. Thus, we can derive the mean value of the particle velocity as:
@@ -159,68 +160,77 @@ For a spherical particle the friction term is given by the Stoke's formula: $\ga
 \nomenclature{$\gamma$}{Friction coefficient}
 
 \begin{equation}
-	\langle dV_t \rangle = - \frac{\gamma}{m} \langle V_t \rangle + \frac{\alpha}{m} \langle dB_t \rangle,
+	\langle dV_t \rangle = - \frac{\gamma}{m} \langle V_t \rangle \textnormal{d}t + \frac{\alpha}{m} \langle dB_t \rangle ~,
+	\label{Eq.langevinsd}
 \end{equation}
 
 \nomenclature{$m$}{Mass of a particle}
 with the properties of $dB_t$ given by Eq.\ref{Eq.meandbt}, it becomes:
 
 \begin{equation}
-	\langle dV_t \rangle = - \frac{\gamma}{m} \langle V_t \rangle ,
+	\langle dV_t \rangle = - \frac{\gamma}{m} \langle V_t \rangle \textnormal{d}t ~,
 \end{equation}
 
-which as a familiar solution:
+which has a familiar solution:
 
 \begin{equation}
-	\langle V_t (t) \rangle =   V_0 \mathrm{e}^{-\frac{\gamma}{m} t}.
+	\langle V_t (t) \rangle =   V_0 \mathrm{e}^{-\frac{\gamma}{m} t}~,
 	\label{Eq.int_V_langevin}
 \end{equation}
 
-This result shows that the average of the velocity should decay to zero with a characteristic time $\tau _\mathrm{B} = \frac{m}{\gamma}$ for the polystyrene  particle used during my experiments which are micro-metric we have $\tau_\mathrm{B} \approx 10^{-7}$ s. This means that if we measure the displacement of a particle with a time interval $ \Delta t  >> \tau _\mathrm{B} $ the displacement can be taken as independent events as it was stated by Einstein. In physics terms, this means that we are in the over damped regime and $dV_t = 0$ thus leading to the over-damped Langevin equation :
+with $V_0$ the initial velocity. This result shows that the average of the velocity should decay to zero with a characteristic time $\tau _\mathrm{B} = \frac{m}{\gamma}$. For instance, the polystyrene particles used during my experiments which are micro-metric we have $\tau_\mathrm{B} \approx 10^{-7}$ s. This means that if we measure the displacements of a particle with a time interval $ \tau  >> \tau _\mathrm{B} $ the displacement can be taken as independent events as it was stated by Einstein. In physical terms, this means that we are in the over-damped regime, in this case the Langevin equation reads:
 
 \begin{equation}
-	-\gamma V_t  + adB_t = 0.
+	-\gamma V_t \textnormal{d}t  + \alpha dB_t = 0~.
 	\label{Eq.overdamped_SDE}
 \end{equation}
 
-The experiments done during my thesis used a video camera that can reach a maximum of hundreds frames per second (\gls{fps}) reaching time steps of $\approx 10^{-2}$ s. Therefore, all my work falls into the over damped regime. Before dropping the full expression of the Langevin we can use it to compute how $\langle V_t ^2 \rangle$ using Taylor expansion we have:
+The experiments done during my thesis used a video camera that can reach a maximum of hundreds frames per second (\gls{fps}) reaching time steps of $\approx 10^{-2}$ s. Therefore, all my work falls into the over damped regime. Before focusing definitely on Eq.\ref{Eq.overdamped_SDE}, we can use Eq.\ref{Eq.langevinsd} to characterize further the unknown coefficient $\alpha$. In order to so we compute the square of Eq.\ref{Eq.langevinsd}, by keeping only the terms in $o(\textnormal{t})$ it reads:
+
+\begin{equation}
+ (\textnormal{d}V_t)^2 = -2 \frac{\alpha \gamma}{m^2} \textnormal{d}t \textnormal{d}B_t 
+ + \frac{\alpha^2}{m^2} (\textnormal{d}B_t)^2 +o(\textnormal{d}t) ~.
+ \label{Eq.v2}
+\end{equation}
+
+Then, by taking the Taylor expand of $\textnormal{d}V_t^2$ and inserting Eq.\ref{Eq.v2}, it becomes:
 
 \begin{equation}
 	\begin{aligned}
-	dV_t^2 &= \frac{\partial V_t ^ 2}{\partial V_t} d V_t + \frac{1}{2} \frac{\partial ^2 V_t^2}{\partial V_t ^2} dV_t^2  \\
-	& = 2 V_t dV_t + \frac{1}{2} 2dV_t^2 \\
-	& = 2V_t\left( -\frac{\gamma}{m}V_tdt + \frac{\alpha}{m}dB_t  \right) + \frac{\alpha^2}{m^2}dB_t ^2 + o(dt^2).
+	(\textnormal{d}V_t)^2 &\simeq \frac{\partial V_t ^ 2}{\partial V_t} \textnormal{d} V_t + \frac{1}{2} \frac{\partial ^2 V_t^2}{\partial V_t ^2} \left( \textnormal{d}V_t \right)^2  \\
+	& = 2 V_t \textnormal{d}V_t + \frac{1}{2} 2\textnormal{d}V_t^2 \\
+	& = 2V_t\left( -\frac{\gamma}{m}V_t\textnormal{d}t + \frac{\alpha}{m}\textnormal{d}B_t  \right) + \frac{\alpha^2}{m^2}\textnormal{d}B_t ^2 + o(\textnormal{d}t) ~.
 	\end{aligned}
 \end{equation}
 
 Taking the average then gives:
 
 \begin{equation}
-	\langle dV_t^2 \rangle = \left[2 \frac{\gamma}{m} \langle V_t ^2 \rangle + \frac{\alpha^2}{m^2}\right]dt.
+	\langle dV_t^2 \rangle = \left[2 \frac{\gamma}{m} \langle V_t ^2 \rangle + \frac{\alpha^2}{m^2}\right]dt~.
 \end{equation}
 
 Since equilibrium average in thermodynamic must become time independent, we have:
 
 \begin{equation}
-	\langle V_t ^2\rangle = \frac{\alpha ^2}{2 \gamma m}. 
+	\langle V_t ^2\rangle = \frac{\alpha ^2}{2 \gamma m}~. 
 \end{equation}
 
 However, from the equipartition of energy we also know that:
 
 \begin{equation}
-	\langle \frac{1}{2} m V_t ^2 \rangle  = \frac{1}{2} k_\mathrm{B} T,
+	\langle \frac{1}{2} m V_t ^2 \rangle  = \frac{1}{2} k_\mathrm{B} T~,
 \end{equation}
 
 this equation permits a direct determination of the amplitude of the noise $\alpha$ : 
 
 \begin{equation}
-	\alpha = \sqrt{2k_\mathrm{B}T \gamma}.
+	\alpha = \sqrt{2k_\mathrm{B}T \gamma}~.
 \end{equation}
 
 Using this model, the position of the particle is given by the integration of $V_t$ such as the position at a time $t$ is given by
 
 \begin{equation}
-	X_t = \int _0 ^t V_{t'}dt'.
+	X_t = \int _0 ^t V_{t'}dt'~.
 	\label{Eq:particle_position}
 \end{equation}
 
@@ -229,20 +239,20 @@ Using this model, the position of the particle is given by the integration of $V
 the \gls{MSD} is then written as:
 
 \begin{equation}
-	\langle X_t ^ 2 \rangle  = \int _0 ^ {t} \int _0 ^{t} \langle V_{t'}V_{t''} \rangle dt'dt''.
+	\langle X_t ^ 2 \rangle  = \int _0 ^ {t} \int _0 ^{t} \langle V_{t'}V_{t''} \rangle dt'dt'' ~.
 	\label{Eq.int_msd}
 \end{equation}
 
 We need to derive the correlation function of the velocity $ \langle V_{t'}V_{t''} \rangle $ using Eq.\ref{Eq.int_V_langevin} we can write:
 
 \begin{equation}
-	\langle V_t V_0 \rangle = \langle V_0 ^2 \rangle \mathrm{e}^{-t/\tau_{\mathrm{B}}}.
+	\langle V_t V_0 \rangle = \langle V_0 ^2 \rangle \mathrm{e}^{-t/\tau_{\mathrm{B}}}~.
 \end{equation}
 
 As the equilibrium state is invariant with a time translation and assume that $V_0$ as an equilibrium steady state distribution such as $\langle V_0^2 \rangle = k_\mathrm{B} T / m$ we have:
 
 \begin{equation}
-	\langle V_t V_t' \rangle = \frac{k_\mathrm{B}T}{m} \mathrm{e}^{-|t-t'|/\tau_{\mathrm{B}}}.
+	\langle V_t V_t' \rangle = \frac{k_\mathrm{B}T}{m} \mathrm{e}^{-|t-t'|/\tau_{\mathrm{B}}}~.
 \end{equation}
 
 By using the symmetry of the absolute function we can solve Eq.\ref{Eq.int_msd} by splitting the integral where $t'>t''$ and where $ t' < t''$:
@@ -250,7 +260,7 @@ By using the symmetry of the absolute function we can solve Eq.\ref{Eq.int_msd} 
 \begin{equation}
 	\begin{aligned}
 	\langle X_t ^2 \rangle & =   2 \frac{k_\mathrm{B}T}{\gamma} = \int _0 ^t dt' \int _0 ^{t'} dt'' \mathrm{e} ^ {- |t' - t''| / \tau_\mathrm{B}} = 2 \frac{k_\mathrm{B}T}{\gamma} \left( \int_0 ^t dt' \left[1 - \mathrm{e}^{-t'/\tau_\mathrm{B}} \right] \right) \\
-	& = 2 \frac{k_\mathrm{B} T}{\gamma} \left( t - \tau_\mathrm{B} \left[ 1 - \mathrm{e}^{-t/\tau_\mathrm{B}}) \right] \right),
+	& = 2 \frac{k_\mathrm{B} T}{\gamma} \left( t - \tau_\mathrm{B} \left[ 1 - \mathrm{e}^{-t/\tau_\mathrm{B}}) \right] \right) ~,
 	\end{aligned}
 \end{equation}
 
@@ -259,20 +269,20 @@ we can extract two results from that equation, at short time $t << \tau_\mathrm{
 \begin{equation}
 	\begin{aligned}
 	\langle X_t ^2 \rangle & =  2 \frac{k_\mathrm{B} T}{\gamma} \left( t - \tau_\mathrm{B} \left[ 1 - 1 - \frac{t}{\tau_\mathrm{B}} + \frac{t^2}{ 2 \tau_\mathrm{B} ^2}\right]         \right) \\
-	& = \frac{k_\mathrm{B} T}{m} t^2.
+	& = \frac{k_\mathrm{B} T}{m} t^2 ~.
 	\end{aligned}
 \end{equation}
 
 This is the ballistic regime, if one can experimentally explore time shorter than $\tau _ \mathrm{B} $ he will then measure the real velocity of the particle and observe that it has the Maxwell-Boltzmann distribution. At longer time, $t >> t_\mathrm{B}$ the \gls{MSD} is given by:
 
 \begin{equation}
-	\langle X_t ^2 \rangle = 2 \frac{k_\mathrm{B}T}{\gamma} t.
+	\langle X_t ^2 \rangle = 2 \frac{k_\mathrm{B}T}{\gamma} t ~.
 \end{equation}
 
 This is the Brownian regime where the \gls{MSD} is linear with the time as depicted by Einstein, and we identify the diffusion coefficient of the particle $ D = k_\mathrm{B} T / \gamma $ which is commonly called the Stokes-Einstein relation. It is possible to simulate an over damped bulk Brownian trajectory by simply replacing in Eq.\ref{Eq.overdamped_SDE} $\langle V_t \rangle $ by $(x_{i} - x_{i-1})/\Delta t $ thus giving:
 
 \begin{equation}
-	x_i = x_{i-1} + \sqrt{2D}w_i,
+	x_i = x_{i-1} + \sqrt{2D}w_i~,
 \end{equation}
 
 with $w_i$ a Gaussian distributed random number generated with a mean $\langle w_i \rangle = 0$ and a standard deviation $\langle w_i ^2 \rangle = dt$, a trajectory of N points can simulated with a few lines of python as in the following snippet code which was used to create Fig.\ref{fig:bulkbrown}.
@@ -301,7 +311,7 @@ We have seen that the bulk Brownian motion is well known and documented for a lo
 		4\mathrm{sinh}^2(n + 1 /2)\beta  - (2n+1)^2 \mathrm{sinh}^2 \beta
 	}
 	-1
-	\right] ,
+	\right] ~,
 	\label{Eq:etaz}
 \end{equation}
 
@@ -312,7 +322,7 @@ and
 	\eta_\parallel = \eta_0 
 	\left[
 		1 - \frac{9}{16} \xi + \frac{1}{8}\xi^3 - \frac{45}{256}\xi^4 - \frac{1}{16}\xi^5
-	\right]^{-1},
+	\right]^{-1}~,
 	\label{Eq:etax}
 \end{equation}
 \nomenclature{$\eta_\parallel$}{Viscosity parrallel to a wall, see Eq.\ref{Eq:etax}}
@@ -320,13 +330,13 @@ and
 where $\xi = \frac{a}{z+a}$ and $\beta = \mathrm{cosh}^{-1}(\xi)$. It is possible to simplify the form of $\eta_\bot$ by using a Padé approximation, which is correct up to $1\%$ of accuracy:
 
 \begin{equation}
-	\eta_\bot = \eta_0 \frac{6z^2 + 9az + 2a^2}{6z^2 + 2az}.
+	\eta_\bot = \eta_0 \frac{6z^2 + 9az + 2a^2}{6z^2 + 2az}~.
 \end{equation}
 
 Of course, this local viscosity is directly reflected on the diffusive properties of the particle, hence a local diffusion coefficient, which we write:
 
 \begin{equation}
-	D_i (z) = \frac{k_\mathrm{B} T}{6\pi\eta_i (z) a}.
+	D_i (z) = \frac{k_\mathrm{B} T}{6\pi\eta_i (z) a}~.
 \end{equation}
 
 One of the first experimental measurement of the local diffusion coefficient was brought by Faucheux and Libchaber \cite{faucheux_confined_1994} where they measured the mean diffusion coefficient with various gaps and particle radius their results can be found in the Fig.\ref{fig:libchaber}.
@@ -341,7 +351,7 @@ One of the first experimental measurement of the local diffusion coefficient was
 Another interesting physical aspect to take into account when looking at confined Brownian motion is the potential the particle is lying into. Let's first consider the weight of the particle. Indeed, if the particle density does not match the fluid' one, a spherical particle will lye in a gravity potential given by:
 
 \begin{equation}
-	U_g(z) = \frac{4}{3} \pi a^3 (\rho_\mathrm{P} - \rho_\mathrm{F})gz,
+	U_g(z) = \frac{4}{3} \pi a^3 (\rho_\mathrm{P} - \rho_\mathrm{F})gz~,
 \end{equation}
 
 \nomenclature{$g$}{Gravity constant}
@@ -351,20 +361,20 @@ Another interesting physical aspect to take into account when looking at confine
 that we can rewrite for simplicity
 
 \begin{equation}
-	\frac{U_g(z)}{k_\mathrm{B} T} = \frac{z}{\ell_\mathrm{B}},
+	\frac{U_g(z)}{k_\mathrm{B} T} = \frac{z}{\ell_\mathrm{B}}~,
 \end{equation}
 
 \nomenclature{$\ell_\mathrm{B}$}{Boltzmann length}
 with $\ell_\mathrm{B}$ the Boltzmann length which represents the balance between the kinetic energy and the weight of the particle:
 
 \begin{equation}
-	\ell_\mathrm{B} = \frac{k_\mathrm{B} T}{ \frac{4}{3} \pi a^3 \Delta \rho g}.
+	\ell_\mathrm{B} = \frac{k_\mathrm{B} T}{ \frac{4}{3} \pi a^3 \Delta \rho g}~.
 \end{equation}
 
 Let's now consider the interactions with the substrate, glass slides when immersed in water do charge negatively as well as polystyrene particles that we use. We will then have repulsive electrostatic interactions between the wall and the particles, the corresponding potential can be written as  \cite{israelachvili_intermolecular_2015}:
 
 \begin{equation}
-	\frac{U_\mathrm{elec}(z)}{k_\mathrm{B}T} = B \mathrm{e}^{-z/\ell_\mathrm{D}},
+	\frac{U_\mathrm{elec}(z)}{k_\mathrm{B}T} = B \mathrm{e}^{-z/\ell_\mathrm{D}}~,
 \end{equation}
 
 \nomenclature{$B$}{Amplitude of the electrostatic interactions}
@@ -373,7 +383,7 @@ Let's now consider the interactions with the substrate, glass slides when immers
 where $B$ is the amplitude of electrostatic interactions, representing the surface charges and $\ell_\mathrm{D}$ being the Debye length, which is the characteristic length of the electrostatic interactions. The particle is thus lying in a total potential given by:
 
 \begin{equation}
-	\frac{U(z)}{k_\mathrm{B}T} =   B \mathrm{e}^{-z/\ell_\mathrm{D}} +  \frac{z}{\ell_\mathrm{B}}.
+	\frac{U(z)}{k_\mathrm{B}T} =   B \mathrm{e}^{-z/\ell_\mathrm{D}} +  \frac{z}{\ell_\mathrm{B}}~.
 \end{equation}
 
 From this total potential one can construct the Gibbs-Boltzmann distribution in position:
@@ -382,7 +392,7 @@ From this total potential one can construct the Gibbs-Boltzmann distribution in 
 	P_\mathrm{eq}(z) = A\mathrm{e}^
 	{
 		\frac{U}{k_\mathrm{B}T}	
-	},
+	}~,
 	\label{Eq:Peq}
 \end{equation}
 
