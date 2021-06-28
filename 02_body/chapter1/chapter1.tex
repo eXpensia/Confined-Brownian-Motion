@@ -105,7 +105,8 @@ The mean displacement is thus proportional to the square root of time. This resu
 Previously in his article \cite{einstein_uber_1905}, Einstein had found by writing the thermodynamic equilibrium of a suspension of particles that the diffusion coefficient of a particle should read:
 
 \begin{equation}
-	D = \frac{R T}{N_\mathrm{A}}\frac{1}{6\pi \eta a} ~,
+	D = \frac{R T}{N_\mathrm{A}}\frac{1}{6\pi \eta a} = \frac{k_\mathrm{B}T}{6 \pi \eta a}
+~,
 	\label{Eq:D_einstein}
 \end{equation}
 
@@ -114,13 +115,13 @@ Previously in his article \cite{einstein_uber_1905}, Einstein had found by writi
 \nomenclature{$k_\mathrm{B}$}{Boltzmann Constant}
 \nomenclature{$D$}{Diffusion coefficient, see Eq.\ref{Eq:D_einstein}}
 
-with $R$ the gas constant, $T$ the temperature, $N_\mathrm{A}$ the Avogadro number and $\eta$ the fluid viscosity. Thus, an experimental measurement of $D$ could lead to a measurement of the Avogadro number since:
+with $R$ the gas constant, $T$ the temperature, $N_\mathrm{A}$ the Avogadro number, $\eta$ the fluid viscosity and $k_\mathrm{B}$ the Boltzmann constant. Thus, an experimental measurement of $D$ could lead to a measurement of the Avogadro number since:
 
 \begin{equation}
 	N_\mathrm{A} = \frac{t}{\lambda_x^2} \frac{RT}{3\pi \eta a} ~.
 \end{equation}
 
-Furthermore, measuring $N_\mathrm{A}$ also gives us the mass of atoms and molecules since the mass of a mole is known; as an example the mass of an oxygen atom will be given by $\frac{16}{N_\mathrm{A}}$ and the mass a water molecule by $\frac{18}{N_\mathrm{A}}$ .Finally, Einstein ends up is article \cite{einstein_uber_1905} by writing \textit{``Let us hope that a researcher will soon succeed in solving the problem posed here, which is of such importance in the theory of heat!"}. I would like here to emphasize the importance of solving this problem at the very beginning of the 20th century. At this time two theories about the fundamental matter components existed, one involving energy and a continuum description in terms of field, and the other one, discrete atoms, especially supported by Boltzmann and his kinetic theory of gases, used by Einstein. Due to a lot of theoretical misunderstandings and experimental error scientist such as Svedberg or Henri thought that Einstein's theory was false \cite{genthon_concept_2020} by even suggesting that the statistical properties of Brownian motion were changing with the pH of the solution. It is finally in 1908 that Chaudesaigues and Perrin published all the evidence to prove Einstein's theory mainly by their ability to create particle emulsions of well controlled radii. 
+Furthermore, measuring $N_\mathrm{A}$ also gives us the mass of atoms and molecules since the mass of a mole is known; as an example the mass of an oxygen atom will be given by $\frac{16}{N_\mathrm{A}}$ and the mass a water molecule by $\frac{18}{N_\mathrm{A}}$. Finally, Einstein ends up is article \cite{einstein_uber_1905} by writing \textit{``Let us hope that a researcher will soon succeed in solving the problem posed here, which is of such importance in the theory of heat!"}. I would like here to emphasize the importance of solving this problem at the very beginning of the 20th century. At this time two theories about the fundamental matter components existed, one involving energy and a continuum description in terms of field, and the other one, discrete atoms, especially supported by Boltzmann and his kinetic theory of gases, used by Einstein. Due to a lot of theoretical misunderstandings and experimental error scientist such as Svedberg or Henri thought that Einstein's theory was false \cite{genthon_concept_2020} by even suggesting that the statistical properties of Brownian motion were changing with the pH of the solution. It is finally in 1908 that Chaudesaigues and Perrin published all the evidence to prove Einstein's theory mainly by their ability to create particle emulsions of well controlled radii. 
 
 \begin{figure}[!h]
 	\centering
@@ -252,16 +253,37 @@ The latter equation permits a direct determination of the amplitude of the noise
 	\alpha = \sqrt{2k_\mathrm{B}T \gamma}~.
 \end{equation}
 
-Using this model, the position of the particle is given by the integration of $V_t$ such as the position at a time $t$ is given by
+The latter result permits to compute the amplitude of the random force in the Langevin equation. Taking the over-damped Langevin equation, it reads:
 
 \begin{equation}
-	X_t = \int _0 ^t V_{t'}dt'~.
+	V_t\textnormal{d}t  = \frac{\sqrt{2k_\mathrm{B}T\gamma}}{\gamma} \textnormal{d}B_t = \sqrt{2D}\textnormal{d}B_t 
+	\label{Eq.v_t_ovdmp}
+\end{equation}
+
+Furthermore, one can write the position of the particule $X_t$ at a time $t$, such as:
+
+\begin{equation}
+	X_t = \int _0 ^t V_{t'}dt'~,
 	\label{Eq:particle_position}
 \end{equation}
 
-\nomenclature{$X_t$}{Particle position, see Eq.\ref{Eq:particle_position}}
+where we can suppose at the initial time $t=0$ that $X_0 = 0$. Computing 
+$\langle X_t^2 \rangle$ using Eqs.\ref{Eq.v_t_ovdmp},\ref{Eq:particle_position} and \ref{Eq.meandbt2} thus gives:
 
-the \gls{MSD} is then written as:
+\begin{equation}
+	\langle X_t ^2 \rangle = 2Dt
+	\label{Eq.xt2}
+\end{equation}
+
+By relating $\langle X_t ^2 \rangle$ to the Mean Square Displacement (\gls{MSD}) to the initial position such as:
+
+\begin{equation}
+	\textnormal{MSD} = \langle (X_0 - X_ t)^2 \rangle = 	\langle X_t ^2 \rangle~,
+\end{equation}
+
+
+we obtain that the \gls{MSD} should be linear with the time. This result confirms that, the overdamped Langevin equation, gives the results got as the Einstein's result Eq.\ref{Eq:MSD_ein}.
+Aditionaly, the Langevin equation is great to compute correlator such as the velocity correlator $ \langle V_{t'}V_{t''} \rangle$ which the simplest to compute and the one that we will detail below. Indeed, if we use the full Langevin equation, $\langle X_t ^2 \rangle$ can't be that easily computed since $m\textnormal{d} V_t$ does not vanishes. We would thus need to rewrite Eq.\ref{Eq.xt2}  using the velocity correletor such as:
 
 \begin{equation}
 	\langle X_t ^ 2 \rangle  = \int _0 ^ {t} \int _0 ^{t} \langle V_{t'}V_{t''} \rangle dt'dt'' ~.
