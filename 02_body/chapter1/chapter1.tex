@@ -135,7 +135,7 @@ Furthermore, measuring $N_\mathrm{A}$ also gives us the mass of atoms and molecu
 In physics we generally describe Brownian motion through a particular Stochastic Differential Equations (\gls{SDE}). This model was introduced in 1908 by Langevin \cite{langevin_sur_1908}, this model is now used by the major part of physicists working on random processes. The Langevin equation for a free colloid reads:
 
 \begin{equation}
-	m \textnormal{d}V_t  = - \gamma V_t \textnormal{d}t + \alpha \textnormal{d}tB_t ~,
+	m \textnormal{d}V_t  = - \gamma V_t \textnormal{d}t + \alpha \textnormal{d}B_t ~,
 	\label{Eq.langevinEquation}
 \end{equation}
 
@@ -228,9 +228,11 @@ Thus, the average value of $ \textnormal{d}(V_t ^2)$ reads:
 
 \begin{equation}
 	\langle \textnormal{d}(V_t ^2)\rangle = -2 \frac{\gamma}{m} \langle V_t ^2 \rangle \textnormal dt + 2 \frac{\alpha}{m} \langle V_t \textnormal{d}B_t \rangle + \frac{\alpha^2}{m^2} \langle \textnormal{d}B_t ^2 \rangle~.
+	\label{Eq.dvt2}
 \end{equation} 
 
-Combining the latter equation with the definitions of $\textnormal{d}B_t$, Eqs.\ref{Eq.meandbt} and \ref{Eq.meandbt2}, we obtain:
+Moreover, since $\textnormal{d}B_t$ is chosen independently of the velocity $V_t$, one can write $\langle V_t \textnormal{d}B_t \rangle $ = $\langle V_t \rangle \langle \textnormal{d}B_t \rangle  =0 $. Taking the latter remark into account and the fact that $\langle \textnormal{d}B_t ^2\rangle = \textnormal{d}t $, Eq.\ref{Eq.dvt2} becomes:
+
 \begin{equation}
 	\langle d(V_t^2) \rangle = \left[-2 \frac{\gamma}{m} \langle V_t ^2 \rangle + \frac{\alpha^2}{m^2}\right]\textnormal{d}t~.
 \end{equation}
@@ -256,7 +258,7 @@ The latter equation permits a direct determination of the amplitude of the noise
 The latter result permits to compute the amplitude of the random force in the Langevin equation. Taking the over-damped Langevin equation, it reads:
 
 \begin{equation}
-	V_t\textnormal{d}t  = \frac{\sqrt{2k_\mathrm{B}T\gamma}}{\gamma} \textnormal{d}B_t = \sqrt{2D}\textnormal{d}B_t 
+	V_t\textnormal{d}t  = \sqrt{2\frac{k_\mathrm{B}T}{\gamma}} \textnormal{d}B_t 
 	\label{Eq.v_t_ovdmp}
 \end{equation}
 
@@ -271,7 +273,7 @@ where we can suppose at the initial time $t=0$ that $X_0 = 0$. Computing
 $\langle X_t^2 \rangle$ using Eqs.\ref{Eq.v_t_ovdmp},\ref{Eq:particle_position} and \ref{Eq.meandbt2} thus gives:
 
 \begin{equation}
-	\langle X_t ^2 \rangle = 2Dt
+	\langle X_t ^2 \rangle =  2\frac{k_\mathrm{B}T}{\gamma}t = 2Dt
 	\label{Eq.xt2}
 \end{equation}
 
@@ -282,65 +284,145 @@ By relating $\langle X_t ^2 \rangle$ to the Mean Square Displacement (\gls{MSD})
 \end{equation}
 
 
-we obtain that the \gls{MSD} should be linear with the time. This result confirms that, the overdamped Langevin equation, gives the results got as the Einstein's result Eq.\ref{Eq:MSD_ein}.
-Aditionaly, the Langevin equation is great to compute correlator such as the velocity correlator $ \langle V_{t'}V_{t''} \rangle$ which the simplest to compute and the one that we will detail below. Indeed, if we use the full Langevin equation, $\langle X_t ^2 \rangle$ can't be that easily computed since $m\textnormal{d} V_t$ does not vanishes. We would thus need to rewrite Eq.\ref{Eq.xt2}  using the velocity correletor such as:
+we obtain that the \gls{MSD} should be linear with the time. This result confirms that using the over-damped Langevin equation, leads to the Einstein's result Eq.\ref{Eq:MSD_ein}. Where one can identify the diffusion coefficient of the particle to be $D = k_\mathrm{B}T / \gamma$. The latter identity is called the Stokes-Einstein  relation.
+
+
+Additionally, the Langevin equation is great to compute correlator such as the velocity correlator $ \langle V_{t'}V_{t''} \rangle$ which the simplest to compute and the one that we will detail below. Indeed, if we use the full Langevin equation, $\langle X_t ^2 \rangle$ can't be that easily computed since $m\textnormal{d} V_t$ does not vanish. We would thus need to rewrite Eq.\ref{Eq.xt2}  using the velocity correletor such as:
 
 \begin{equation}
 	\langle X_t ^ 2 \rangle  = \int _0 ^ {t} \int _0 ^{t} \langle V_{t'}V_{t''} \rangle dt'dt'' ~.
 	\label{Eq.int_msd}
 \end{equation}
 
-We need to derive the correlation function of the velocity $ \langle V_{t'}V_{t''} \rangle $ using Eq.\ref{Eq.int_V_langevin} we can write:
+Let us now study how the two-point correlator function $ \langle V_{t'}V_{t''} \rangle $, using the full Langevin equation multiplied by $V_0$ and following the same steps as for Eq.\ref{Eq.int_V_langevin}, one  has:
 
 \begin{equation}
 	\langle V_t V_0 \rangle = \langle V_0 ^2 \rangle \mathrm{e}^{-t/\tau_{\mathrm{B}}}~.
 \end{equation}
 
-As the equilibrium state is invariant with a time translation and assume that $V_0$ as an equilibrium steady state distribution such as $\langle V_0^2 \rangle = k_\mathrm{B} T / m$ we have:
+As the equilibrium state is invariant under temporal translation and assuming that $V_0$ has an equilibrium steady-state distribution with $\langle V_0^2 \rangle = k_\mathrm{B} T / m$ we have:
 
 \begin{equation}
 	\langle V_t V_t' \rangle = \frac{k_\mathrm{B}T}{m} \mathrm{e}^{-|t-t'|/\tau_{\mathrm{B}}}~.
 \end{equation}
 
-By using the symmetry of the absolute function we can solve Eq.\ref{Eq.int_msd} by splitting the integral where $t'>t''$ and where $ t' < t''$:
+One can solve Eq.\ref{Eq.int_msd} by splitting the integral in two parts, where $t'>t''$ and $ t' < t''$:
 
 \begin{equation}
 	\begin{aligned}
-	\langle X_t ^2 \rangle & =   2 \frac{k_\mathrm{B}T}{\gamma} = \int _0 ^t dt' \int _0 ^{t'} dt'' \mathrm{e} ^ {- |t' - t''| / \tau_\mathrm{B}} = 2 \frac{k_\mathrm{B}T}{\gamma} \left( \int_0 ^t dt' \left[1 - \mathrm{e}^{-t'/\tau_\mathrm{B}} \right] \right) \\
-	& = 2 \frac{k_\mathrm{B} T}{\gamma} \left( t - \tau_\mathrm{B} \left[ 1 - \mathrm{e}^{-t/\tau_\mathrm{B}}) \right] \right) ~,
+	\langle X_t ^2 \rangle & =    \frac{k_\mathrm{B}T}{m}  \int _0 ^t dt' \int _0 ^{t'} dt'' \mathrm{e} ^ {- |t' - t''| / \tau_\mathrm{B}} = 2 \frac{k_\mathrm{B}T}{\gamma} \left( \int_0 ^t dt' \left[1 - \mathrm{e}^{-t'/\tau_\mathrm{B}} \right] \right) \\
+	& = 2 \frac{k_\mathrm{B} T}{\gamma} \left( t - \tau_\mathrm{B} \left[ 1 - \mathrm{e}^{-t/\tau_\mathrm{B}} \right] \right) ~.
 	\end{aligned}
 \end{equation}
 
-we can extract two results from that equation, at short time $t << \tau_\mathrm{B}$
+We can extract two results from that equation. At short time $t << \tau_\mathrm{B}$, one has:
 
 \begin{equation}
 	\begin{aligned}
-	\langle X_t ^2 \rangle & =  2 \frac{k_\mathrm{B} T}{\gamma} \left( t - \tau_\mathrm{B} \left[ 1 - 1 - \frac{t}{\tau_\mathrm{B}} + \frac{t^2}{ 2 \tau_\mathrm{B} ^2}\right]         \right) \\
+	\langle X_t ^2 \rangle & \simeq  2 \frac{k_\mathrm{B} T}{\gamma} \left( t - \tau_\mathrm{B} \left[ 1 - 1 + \frac{t}{\tau_\mathrm{B}} - \frac{t^2}{ 2 \tau_\mathrm{B} ^2}\right]         \right) \\
 	& = \frac{k_\mathrm{B} T}{m} t^2 ~.
 	\end{aligned}
 \end{equation}
 
-This is the ballistic regime, if one can experimentally explore time shorter than $\tau _ \mathrm{B} $ he will then measure the real velocity of the particle and observe that it has the Maxwell-Boltzmann distribution. At longer time, $t >> t_\mathrm{B}$ the \gls{MSD} is given by:
+This is the ballistic regime. If one can experimentally explore times shorter than $\tau _ \mathrm{B} $ one will then measure the real velocity of the particle. At longer times, $t >> t_\mathrm{B}$, the \gls{MSD} is given by:
 
 \begin{equation}
-	\langle X_t ^2 \rangle = 2 \frac{k_\mathrm{B}T}{\gamma} t ~.
+	\langle X_t ^2 \rangle \simeq 2 \frac{k_\mathrm{B}T}{\gamma} t = 2Dt ~.
 \end{equation}
 
-This is the Brownian regime where the \gls{MSD} is linear with the time as depicted by Einstein, and we identify the diffusion coefficient of the particle $ D = k_\mathrm{B} T / \gamma $ which is commonly called the Stokes-Einstein relation. It is possible to simulate an over damped bulk Brownian trajectory by simply replacing in Eq.\ref{Eq.overdamped_SDE} $\langle V_t \rangle $ by $(x_{i} - x_{i-1})/\Delta t $ thus giving:
+This is the diffusive regime where the \gls{MSD}, as found earlier, Eq.\ref{Eq.xt2} with the over-damped Langevin equation. To study this different results, it can be interesting to simulate the Brownian motion.
+
+\subsubsection{Numerical simulation of bulk Brownian motion}
+
+
+The Langevin equation is an ordinary differential equation that can easily be numerically simulated in the bulk case. If one approximate the continuous position of a particle $X_t$ at a time $t$ by a discrete-time sequence $x_i$ which is the solution of the equation at a time $t_i = i  \tau$ with $\tau$ being the time step of the simulation. One can then use the Euler method to numerically write $V_t$ as
+
+\begin{equation}
+	V_t \simeq \frac{x_i - x_{i-1}}{\tau} ~,
+	\label{Eq.vtnum}
+\end{equation}
+
+and $\textnormal{d}V_t$ as
+
+\begin{equation}
+	\begin{aligned}
+	\textnormal{d}V_t &\simeq 
+	\frac{
+		\frac{x_i - x_{i-1}}{\tau}
+		-
+		\frac{x_{i-1} - x_{i-2}}{\tau}
+	}
+	{\tau} \\
+	& =  \frac{x_i - 2x_{i - 1} + x_{i-2}}{\tau^2} ~.
+	\end{aligned}
+	\label{Eq.dvtnum}
+\end{equation}
+
+The only term remaining to be computed numerically is the random term $\textnormal{d}B_t$. One can thus replace $\textnormal{d}B_t$ by $w_i$ \footnote{The notation $w$ was choose since in mathematical term, a real valued continuous-time stochastic process such as $\textnormal{d}B_t$ is called a Wiener process in honor of Norbert Wiener \cite{durrett_probability_2019}} a Gaussian distributed random number generated with a mean $\langle w_i \rangle = 0$ and a variance $\langle w_i^2 \rangle  = \tau$. The probability density of the Gaussian distribution is thus given by:
+
+\begin{equation}
+P(w_i) = \frac{1}{\sqrt{2\pi \tau}}\textnormal{e}^{- \frac{w_i^2}{2\tau}}.
+\end{equation}
+
+
+
+ Such a number can be simply generated with the following Python snippet.
+\begin{minted}
+	[
+	frame=lines,
+	framesep=2mm,
+	baselinestretch=1.2,
+	fontsize=\footnotesize,
+	linenos
+	]
+	{python}
+import numpy as np
+
+tau = 0.5  # time step in seconds
+wi = np.random.normal(0, np.sqrt(tau))
+\end{minted}
+
+
+In the latter, \mintinline{python}{random.normal()} is a built-in Numpy module that permits the generation of Gaussian distributed random numbers.
+Finally, by combining Eqs.\ref{Eq.vtnum}, \ref{Eq.dvtnum} and $w_i$, the full Langevin equation becomes:
+
+\begin{equation}
+	m \frac{x_i  - 2x_{i-1} + x_{i-2}}{\tau^2} = -\gamma \frac{x_i - x_{i-1}}{\tau} + \sqrt{2k_\mathrm{B}T\gamma} w_i ~.
+\end{equation}
+
+From the latter, one can write $x_i$ as:
+
+\begin{equation}	
+	x_i = \frac{2 + \tau /\tau_\mathrm{B}}{1 + \tau / \tau_\mathrm{B} } x_{i-1} 
+	- \frac{1}{1 + \tau / \tau_\mathrm{B}}x_{i-2}
+	+ \frac{\sqrt{2k_\mathrm{B}T\gamma}}{m(1 + \tau/\tau_\mathrm{B})} \tau ^2 w_i ~,
+\end{equation}
+
+where we can observe that we need two initial condition are needed, the two first positions of  the particle. Numerically, those positions could be randomly generated or simply set to $0$, if enough statics are generated it will not play much into the results.
 
 \begin{equation}
 	x_i = x_{i-1} + \sqrt{2D}w_i~,
 \end{equation}
 
-with $w_i$ a Gaussian distributed random number generated with a mean $\langle w_i \rangle = 0$ and a standard deviation $\langle w_i ^2 \rangle = dt$, a trajectory of N points can simulated with a few lines of python as in the following snippet code which was used to create Fig.\ref{fig:bulkbrown}.
 
-\begin{python}
+with $w_i$ a Gaussian distributed random number generated with a mean $\langle w_i \rangle = 0$ and a variance $\langle w_i ^2 \rangle = 
+\tau$. A trajectory of $N$ points can thus be simulated with a few lines as in the following Python snippet which was used to create Fig.\ref{fig:bulkbrown}.
+\begin{minted}
+	[
+	frame=lines,
+	framesep=2mm,
+	baselinestretch=1.2,
+	fontsize=\footnotesize,
+	linenos
+	]
+	{python}
 import numpy as np
-N = 1000 # trajectory length
-D = 1 # diffusion coefficient
-dt = 0.5 # time step
-trajectory = np.cumsum(np.sqrt(2*D)*np.random.normal(0, np.sqrt(dt), N))
-\end{python}
+
+N = 1000  # trajectory length
+D = 1  # diffusion coefficient
+tau = 0.5  # time step
+trajectory = np.cumsum(np.sqrt(2 * D) * np.random.normal(0, np.sqrt(tau), N))
+\end{minted}
 
 
 \subsection{The confined Brownian motion}
