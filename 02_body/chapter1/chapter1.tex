@@ -358,10 +358,11 @@ and $\textnormal{d}V_t$ as
 	\label{Eq.dvtnum}
 \end{equation}
 
-The only term remaining to be computed numerically is the random term $\textnormal{d}B_t$. One can thus replace $\textnormal{d}B_t$ by $w_i$ \footnote{The notation $w$ was choose since in mathematical term, a real valued continuous-time stochastic process such as $\textnormal{d}B_t$ is called a Wiener process in honor of Norbert Wiener \cite{durrett_probability_2019}} a Gaussian distributed random number generated with a mean $\langle w_i \rangle = 0$ and a variance $\langle w_i^2 \rangle  = \tau$. The probability density of the Gaussian distribution is thus given by:
+The only term remaining to be computed numerically is the random term $\textnormal{d}B_t$. One can thus replace $\textnormal{d}B_t$ by $w_i$ \footnote{The notation $w$ was choose since in mathematical term, a real valued continuous-time stochastic process such as $\textnormal{d}B_t$ is called a Wiener process in honor of Norbert Wiener \cite{durrett_probability_2019}} a Gaussian distributed random number generated with a mean $\langle w_i \rangle = 0$ and a variance $\langle w_i^2 \rangle  = \tau$. The Probability Density function (PDF) of the Gaussian distribution is thus given by:
 
 \begin{equation}
 P(w_i) = \frac{1}{\sqrt{2\pi \tau}}\textnormal{e}^{- \frac{w_i^2}{2\tau}}.
+\label{eq.pwi}
 \end{equation}
 
 
@@ -400,10 +401,42 @@ From the latter, one can write $x_i$ as:
 
 where we can observe that we need two initial condition are needed, the two first positions of  the particle. Numerically, those positions could be randomly generated or simply set to $0$, if enough statics are generated it will not play much into the results.
 
+
+
+Before, deeping into the actual simulation, it could be interresting to ask ourselve about how long the simulation should be. Indeed, for the different observables' mean value to remain constant we should wait a suffisient amount of time. It is possible to have qualitative approach by generating $N$ number $w_i$ and measuring the resulting \gls{PDF} $P_c(w_i)$ and looking how much we need to increase $N$ to have $P_c(w_i) \simeq P(w_i)$. As we can see on the Fig.\ref{fig:exempleprecisionwi}, for simulation made with  with $\tau = 10^{-3}$ s and $tau = 1$ s, we oberve that as we increase the number of generated numbers $N$, the measured Probability Density Function (PDF), get closer to the real one given by Eq.\ref{eq.pwi}. 
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics{02_body/chapter1/image/noise_simulation/exemple.pdf}
+	\caption{Bullets represents the probability density function of $w_i$, a Gaussian distributed number with a mean value $\langle w_i \rangle$ and a variance $\langle w_i ^2 \rangle  = \tau$. With $\tau$ being the time step over a simulation could be done. The plain black line reprensents a gaussian of zero mean and a $\tau$ variance, Eq.\ref{eq.pwi}. On the first line simulation is done with $\tau = 10^{-3}$ s and $tau = 1$ s on the second one. Each column correspond to a number of draw $N$, from the left to the right $N=10^2, ~10^3, ~10^4$. }
+	\label{fig:exempleprecisionwi}
+\end{figure}
+
+
+To have a more quantitative approach, one can compute the Mean squared Error (\gls{MSE})) between the measured \gls{PDF} $P_c{w_i}$ and $P_{w_i}$ as a function of the number of generated numbers $N$, such as:
+
+\begin{equation}
+	MSE = \left. \langle (P_c{w_i} - P_{w_i}) ^2\rangle \right|_N
+\end{equation}
+
+where the notation $\left. \right|_N$ denotes that $N$ generation has been done.
+
+\begin{figure}
+	\centering
+	\includegraphics{02_body/chapter1/image/noise_simulation/MSE.pdf}
+	\caption{Mean Squared Error (\gls{MSE}) of the pdf measured from a generation of N Gaussian random number $w_i$, and, the actual Gaussian over which the generatio n is done, Eq.\ref{eq.pwi}. The generation is done over a Gaussian which has a mean value $\langle w_i \rangle =0$ and the variance $\langle w_i^2 \rangle = \tau$ ). We explore generation ranging form $N = 10$ to $10^7$ and $\tau = 10^{-4}$ to $10$ s}  
+	\label{fig:MSEwi}
+\end{figure}
+
+
+
+
+
+
+
 \begin{equation}
 	x_i = x_{i-1} + \sqrt{2D}w_i~,
 \end{equation}
-
 
 with $w_i$ a Gaussian distributed random number generated with a mean $\langle w_i \rangle = 0$ and a variance $\langle w_i ^2 \rangle = 
 \tau$. A trajectory of $N$ points can thus be simulated with a few lines as in the following Python snippet which was used to create Fig.\ref{fig:bulkbrown}.
