@@ -450,7 +450,8 @@ def iqr(wi):
 	return np.subtract(*np.percentile(x, [75, 25]))
 
 def optimal_bins(wi):
-	"""Function to compute the optinal number of bins using Freedan-diaconis rule."""
+	"""Function to compute the optinal number of bins using Freedan-diaconis rule.
+	Input: list of random numbers | Output: optimal bins number"""
 	
 	n = int(diff(wi) / (2 * iqr(wi) * np.power(len(wi), -1 / 3)))
 
@@ -465,6 +466,8 @@ def optimal_bins(wi):
 
 
  As we can see on the the Fig.\ref{fig:MSEwi}, for $\tau$ varying between $10^{-2}$ and $10$ seconds, and, $N$ between $10$ and $10^6$, the \gls{MRSE} decreases as $N$ increseases. More over, it interesting to observe that the \gls{MRSE} is greater as $\tau$ increases for a fix $N$ value. Indeed, as an exemple we would need to only generate $N = 10^{-3}$ numbers to obain a \gls{MRSE} of $10^{-4}$ for $\tau = 0.1~\textnormal{s}$, while we would need to $N= 10^6$ for $\tau = 1 ~ \mathrm{s}$. 
+ 
+ 
 
 \begin{figure}
 	\centering
@@ -475,7 +478,7 @@ def optimal_bins(wi):
 
 
 
-
+Now that the Langevin equation is known numerically, one could use it to simulate some Brownian trajectories.
 
 
 
