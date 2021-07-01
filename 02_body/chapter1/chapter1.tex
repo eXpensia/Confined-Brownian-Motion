@@ -284,7 +284,7 @@ By relating $\langle X_t ^2 \rangle$ to the Mean Square Displacement (\gls{MSD})
 \end{equation}
 
 
-we obtain that the \gls{MSD} should be linear with the time. This result confirms that using the over-damped Langevin equation, leads to the Einstein's result Eq.\ref{Eq:MSD_ein}. Where one can identify the diffusion coefficient of the particle to be $D = k_\mathrm{B}T / \gamma$. The latter identity is called the Stokes-Einstein  relation.
+we obtain that the \gls{MSD} should be linear with the time. This result confirms that using the over-damped Langevin equation, leads to the Einstein's result Eq.\ref{Eq:MSD_ein}. Where one can identify the diffusion coefficient of the particle to be $D = k_\mathrm{B}T / \gamma$. Additionally, the latter identity is called the Stokes-Einstein  relation.
 
 
 Additionally, the Langevin equation is great to compute correlator such as the velocity correlator $ \langle V_{t'}V_{t''} \rangle$ which the simplest to compute and the one that we will detail below. Indeed, if we use the full Langevin equation, $\langle X_t ^2 \rangle$ can't be that easily computed since $m\textnormal{d} V_t$ does not vanish. We would thus need to rewrite Eq.\ref{Eq.xt2}  using the velocity correletor such as:
@@ -332,7 +332,15 @@ This is the ballistic regime. If one can experimentally explore times shorter th
 
 This is the diffusive regime where the \gls{MSD}, as found earlier, Eq.\ref{Eq.xt2} with the over-damped Langevin equation. To study this different results, it can be interesting to simulate the Brownian motion.
 
-\subsubsection{Numerical simulation of bulk Brownian motion}
+\subsection{Numerical simulation of bulk Brownian motion}
+
+
+\begin{figure}[!hb]
+	\centering
+	\includegraphics{02_body/chapter1/image/noise_simulation/exemple.pdf}
+	\caption{Bullets represents the probability density function of $w_i$, a Gaussian distributed number with a mean value $\langle w_i \rangle$ and a variance $\langle w_i ^2 \rangle  = \tau$. The plain black line reprensents a gaussian of zero mean and a $\tau$ variance, Eq.\ref{eq.pwi}. On the first line simulation is done with $\tau = 10^{-3}$ s and $tau = 1$ s on the second one. Each column correspond to a number of draw $N$, from the left to the right $N=10^2, ~10^3 \text{ and } 10^4$. }
+	\label{fig:exempleprecisionwi}
+\end{figure}
 
 
 The Langevin equation is an ordinary differential equation that can easily be numerically simulated in the bulk case. If one approximate the continuous position of a particle $X_t$ at a time $t$ by a discrete-time sequence $x_i$ which is the solution of the equation at a time $t_i = i  \tau$ with $\tau$ being the time step of the simulation. One can then use the Euler method to numerically write $V_t$ as
@@ -387,6 +395,9 @@ wi = np.random.normal(0, np.sqrt(tau))
 In the latter, \mintinline{python}{random.normal()} is a built-in Numpy module that permits the generation of Gaussian distributed random numbers.
 Finally, by combining Eqs.\ref{Eq.vtnum}, \ref{Eq.dvtnum} and $w_i$, the full Langevin equation becomes:
 
+
+
+
 \begin{equation}
 	m \frac{x_i  - 2x_{i-1} + x_{i-2}}{\tau^2} = -\gamma \frac{x_i - x_{i-1}}{\tau} + \sqrt{2k_\mathrm{B}T\gamma} w_i ~.
 \end{equation}
@@ -403,28 +414,62 @@ where we can observe that we need two initial condition are needed, the two firs
 
 
 
-Before, deeping into the actual simulation, it could be interresting to ask ourselve about how long the simulation should be. Indeed, for the different observables' mean value to remain constant we should wait a suffisient amount of time. It is possible to have qualitative approach by generating $N$ number $w_i$ and measuring the resulting \gls{PDF} $P_c(w_i)$ and looking how much we need to increase $N$ to have $P_c(w_i) \simeq P(w_i)$. As we can see on the Fig.\ref{fig:exempleprecisionwi}, for simulation made with $\tau = 10^{-3}$ s and $tau = 1$ s, we oberve that as we increase the number of generated numbers $N$, the measured Probability Density Function (PDF), get closer to the real one given by Eq.\ref{eq.pwi}. 
-
-\begin{figure}[h!]
-	\centering
-	\includegraphics{02_body/chapter1/image/noise_simulation/exemple.pdf}
-	\caption{Bullets represents the probability density function of $w_i$, a Gaussian distributed number with a mean value $\langle w_i \rangle$ and a variance $\langle w_i ^2 \rangle  = \tau$. With $\tau$ being the time step over a simulation could be done. The plain black line reprensents a gaussian of zero mean and a $\tau$ variance, Eq.\ref{eq.pwi}. On the first line simulation is done with $\tau = 10^{-3}$ s and $tau = 1$ s on the second one. Each column correspond to a number of draw $N$, from the left to the right $N=10^2, ~10^3, ~10^4$. }
-	\label{fig:exempleprecisionwi}
-\end{figure}
+Before, deeping into the actual simulation, it could be interresting to ask ourselve about how long the simulation should be. Indeed, for the different observables' mean value to remain constant we should wait a suffisient amount of time. It is possible to have qualitative approach by generating $N$ number $w_i$ and measuring the resulting \gls{PDF} $P_c(w_i)$ and looking how much we need to increase $N$ to have $P_c(w_i) \simeq P(w_i)$. As we can see on the Fig.\ref{fig:exempleprecisionwi}, for simulation made with $\tau = 10^{-3}$ s and $tau = 1$ s, we oberve that as we increase the number of generated numbers $N$, the measured PDF, get closer to the real one given by Eq.\ref{eq.pwi}. 
 
 
-To have a more quantitative approach, one can compute the Mean squared Error (\gls{MSE})) between the measured \gls{PDF} $P_c{w_i}$ and $P_{w_i}$ as a function of the number of generated numbers $N$, such as:
+
+
+To have a more quantitative approach, one can compute the Mean Relative Squared Error (\gls{MRSE})) between the measured \gls{PDF} $P_c(w_i)$ and $P(w_i)$ as a function of the number of generated numbers $N$, such as:
 
 \begin{equation}
-	MSE = \left. \langle (P_c{w_i} - P_{w_i}) ^2\rangle \right|_N
+	\textnormal{MRSE} = \left. \langle \frac{\left( P_c(w_i) -P(w_i) \right)^2  } {P(w_i) ^2}\rangle \right|_N
 \end{equation}
 
-where the notation $\left. \right|_N$ denotes that $N$ generation has been done.
+where the notation $\left. \right|_N$ denotes that $N$ numbers are generated. Additionaly, since we measure the $P_c(w_i)$ by doing an histogram, the question of how many bins is used should be answered. It is possible to use the Freedan-Diaconis rule \cite{freedman_histogram_1981} to compute the width of the bins to be used in a histogram, this rule reads:
+
+\begin{equation}
+	\textnormal{Bin width} = 2 \frac{\textnormal{IQR}(\{w_i\})}{\sqrt[3]{N}},
+\end{equation}
+
+where IQR is the interquartil range, and $\{w_i\}$ a sample of $N$ random numbers. Moreover, one should only take $2$ bins as a minimum. The actual number of bins can be computed using the following Python snippet.
+
+\begin{minted}
+	[
+	frame=lines,
+	framesep=2mm,
+	baselinestretch=1.2,
+	fontsize=\footnotesize,
+	linenos
+	]
+	{python}
+
+import numpy as np
+
+def iqr(wi):
+	"""Function to compute interquartil range."""
+	return np.subtract(*np.percentile(x, [75, 25]))
+
+def optimal_bins(wi):
+	"""Function to compute the optinal number of bins using Freedan-diaconis rule."""
+	
+	n = int(diff(wi) / (2 * iqr(wi) * np.power(len(wi), -1 / 3)))
+
+	if n <= 2:
+		return 2
+	else:
+		return n
+\end{minted}
+
+
+
+
+
+ As we can see on the the Fig.\ref{fig:MSEwi}, for $\tau$ varying between $10^{-2}$ and $10$ seconds, and, $N$ between $10$ and $10^6$, the \gls{MRSE} decreases as $N$ increseases. More over, it interesting to observe that the \gls{MRSE} is greater as $\tau$ increases for a fix $N$ value. Indeed, as an exemple we would need to only generate $N = 10^{-3}$ numbers to obain a \gls{MRSE} of $10^{-4}$ for $\tau = 0.1~\textnormal{s}$, while we would need to $N= 10^6$ for $\tau = 1 ~ \mathrm{s}$. 
 
 \begin{figure}
 	\centering
 	\includegraphics{02_body/chapter1/image/noise_simulation/MSE.pdf}
-	\caption{Mean Squared Error (\gls{MSE}) of the pdf measured from a generation of N Gaussian random number $w_i$, and, the actual Gaussian over which the generatio n is done, Eq.\ref{eq.pwi}. The generation is done over a Gaussian which has a mean value $\langle w_i \rangle =0$ and the variance $\langle w_i^2 \rangle = \tau$ ). We explore generation ranging form $N = 10$ to $10^7$ and $\tau = 10^{-4}$ to $10$ s}  
+	\caption{Mean Squared Error (\gls{MRSE}) of the pdf measured from a generation of N Gaussian random number $w_i$, and, the actual Gaussian over which the generatio n is done, Eq.\ref{eq.pwi}. The generation is done over a Gaussian which has a mean value $\langle w_i \rangle =0$ and the variance $\langle w_i^2 \rangle = \tau$. We explore generation ranging form $N = 10$ to $10^7$ and $\tau = 10^{-4}$ to $10$ s}  
 	\label{fig:MSEwi}
 \end{figure}
 
@@ -561,7 +606,7 @@ From this total potential one can construct the Gibbs-Boltzmann distribution in 
 where $A$ is a normalization constant so that $\int P_\mathrm{eq} = 1$. This distribution gives us the probability to find the particle at a height $z$. The exponential decay due to the gravity was first measured by Perrin \cite{perrin_les_2014} by methodically counting through a microscope the number of colloids in suspension as a function on the height. 
 
 
-\begin{figure}[H]
+\begin{figure}[ht]
 	\centering
 	\includegraphics{02_body/chapter1/image/theorie_chap1.pdf}
 	\caption{On the left, plot of the Gibbs-Boltzmann distribution Eq.\ref{Eq:Peq} for $a = 1 ~ \mathrm{\mu m}$, $ B = 4 $, $\ell _\mathrm{D} = 100 ~ \mathrm{nm}$ and $\Delta \rho = 50 ~ \mathrm{kg.m^{-3}}$. On the right, local diffusion coefficient normalized by bulk diffusion coefficient $D_0 = k_\mathrm{B}T/\gamma$, given by Eq.\ref{Eq:etax} and Eq.\ref{Eq:etaz}}.
