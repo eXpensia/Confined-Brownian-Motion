@@ -322,18 +322,21 @@ We can extract two results from that equation. At short time $t << \tau_\mathrm{
 	\langle X_t ^2 \rangle & \simeq  2 \frac{k_\mathrm{B} T}{\gamma} \left( t - \tau_\mathrm{B} \left[ 1 - 1 + \frac{t}{\tau_\mathrm{B}} - \frac{t^2}{ 2 \tau_\mathrm{B} ^2}\right]         \right) \\
 	& = \frac{k_\mathrm{B} T}{m} t^2 ~.
 	\end{aligned}
+	\label{Eq.shorttimemsd}
 \end{equation}
 
 This is the ballistic regime. If one can experimentally explore times shorter than $\tau _ \mathrm{B} $ one will then measure the real velocity of the particle. At longer times, $t >> t_\mathrm{B}$, the \gls{MSD} is given by:
 
 \begin{equation}
 	\langle X_t ^2 \rangle \simeq 2 \frac{k_\mathrm{B}T}{\gamma} t = 2Dt ~.
+	\label{eq:longtimemsd}
 \end{equation}
 
 This is the diffusive regime where the \gls{MSD}, as found earlier, Eq.\ref{Eq.xt2} with the over-damped Langevin equation. To study this different results, it can be interesting to simulate the Brownian motion.
 
 \subsection{Numerical simulation of bulk Brownian motion}
 
+\subsubsection{The numerical Langevin Equation}
 
 \begin{figure}[!hb]
 	\centering
@@ -407,12 +410,19 @@ From the latter, one can write $x_i$ as:
 \begin{equation}	
 	x_i = \frac{2 + \tau /\tau_\mathrm{B}}{1 + \tau / \tau_\mathrm{B} } x_{i-1} 
 	- \frac{1}{1 + \tau / \tau_\mathrm{B}}x_{i-2}
-	+ \frac{\sqrt{2k_\mathrm{B}T\gamma}}{m(1 + \tau/\tau_\mathrm{B})} \tau ^2 w_i ~,
+	+ \frac{\sqrt{2k_\mathrm{B}T\gamma}}{m(1 + \tau/\tau_\mathrm{B})} \tau w_i ~,
 \end{equation}
 
 where we can observe that we need two initial condition are needed, the two first positions of  the particle. Numerically, those positions could be randomly generated or simply set to $0$, if enough statics are generated it will not play much into the results.
 
+\subsubsection{Simulating Brownian motion using Python}
 
+\begin{figure}[h]
+	\centering
+	\includegraphics{02_body/chapter1/image/noise_simulation/MSE.pdf}
+	\caption{Mean Relative Squared Error (\gls{MRSE}) of the \gls{PDF} measured from a generation of N Gaussian random number $w_i$, and, the actual Gaussian over which the generatio n is done, Eq.\ref{eq.pwi}. The generation is done over a Gaussian which has a mean value $\langle w_i \rangle =0$ and the variance $\langle w_i^2 \rangle = \tau$. We explore generation ranging form $N = 10$ to $10^7$ and $\tau = 10^{-2}$ to $10$ s}  
+	\label{fig:MSEwi}
+\end{figure}
 
 Before, deeping into the actual simulation, it could be interresting to ask ourselve about how long the simulation should be. Indeed, for the different observables' mean value to remain constant we should wait a suffisient amount of time. It is possible to have qualitative approach by generating $N$ number $w_i$ and measuring the resulting \gls{PDF} $P_c(w_i)$ and looking how much we need to increase $N$ to have $P_c(w_i) \simeq P(w_i)$. As we can see on the Fig.\ref{fig:exempleprecisionwi}, for simulation made with $\tau = 10^{-3}$ s and $tau = 1$ s, we oberve that as we increase the number of generated numbers $N$, the measured PDF, get closer to the real one given by Eq.\ref{eq.pwi}. 
 
@@ -431,7 +441,9 @@ where the notation $\left. \right|_N$ denotes that $N$ numbers are generated. Ad
 	\textnormal{Bin width} = 2 \frac{\textnormal{IQR}(\{w_i\})}{\sqrt[3]{N}},
 \end{equation}
 
-where IQR is the interquartil range, and $\{w_i\}$ a sample of $N$ random numbers. Moreover, one should only take $2$ bins as a minimum. The actual number of bins can be computed using the following Python snippet.
+
+where IQR is the interquartile range, and $\{w_i\}$ a sample of $N$ random numbers. Moreover, one should only take $2$ bins as a minimum. The actual number of bins can be computed using the following Python snippet.
+
 
 \begin{minted}
 	[
@@ -446,7 +458,7 @@ where IQR is the interquartil range, and $\{w_i\}$ a sample of $N$ random number
 import numpy as np
 
 def iqr(wi):
-	"""Function to compute interquartil range."""
+	"""Function to compute interquartile range."""
 	return np.subtract(*np.percentile(x, [75, 25]))
 
 def optimal_bins(wi):
@@ -465,22 +477,49 @@ def optimal_bins(wi):
 
 
 
- As we can see on the the Fig.\ref{fig:MSEwi}, for $\tau$ varying between $10^{-2}$ and $10$ seconds, and, $N$ between $10$ and $10^6$, the \gls{MRSE} decreases as $N$ increseases. More over, it interesting to observe that the \gls{MRSE} is greater as $\tau$ increases for a fix $N$ value. Indeed, as an exemple we would need to only generate $N = 10^{-3}$ numbers to obain a \gls{MRSE} of $10^{-4}$ for $\tau = 0.1~\textnormal{s}$, while we would need to $N= 10^6$ for $\tau = 1 ~ \mathrm{s}$. 
+ As we can see on the Fig.\ref{fig:MSEwi}, for $\tau$ varying between $10^{-2}$ and $10$ seconds, and, $N$ between $10$ and $10^6$, the \gls{MRSE} decreases as $N$ increases. More over, it interesting to observe that the \gls{MRSE} is greater as $\tau$ increases for a fix $N$ value. Indeed, as an example we would need to only generate $N = 10^{-3}$ numbers to obain a \gls{MRSE} of $10^{-4}$ for $\tau = 0.1~\textnormal{s}$, while we would need to $N= 10^6$ for $\tau = 1 ~ \mathrm{s}$. 
  
  
 
-\begin{figure}
+
+
+
+Now that the Langevin equation is known numerically, one could use it to simulate some Brownian trajectories. A simple way to do the simulation is shown using Python in the Jupyter notebook framework in the appendix.\ref{app:simfulllangevin}. A set of trajectory simulated for a fictive particle of radius $a = 1 ~ \mathrm{\mu m}$ and mass $m = 10 ~ \mathrm{\mu g}$ in water is shown in Fig.\ref{fig:inertial_langevin}-a). For such a particle the diffusive characteristic time is $\tau_\mathrm{B} = 0.53 s$. Moreover, as one can see on the Fig.\ref{fig:inertial_langevin}-b), the MSD is correctly modeled by the Eq.\ref{Eq.shorttimemsd} for $\tau << \tau_\mathrm{B}$ and by the Eq.\ref{eq:longtimemsd} for $\tau >> \tau_\mathrm{B}$. Please note that for non-continuous data such as the simulation or experimental trajectories, and for a given time increment $\Delta t$, the \gls{MSD}, is generally defined by:
+
+\begin{equation}
+	\left. \langle \Delta x^2 \rangle \right|_t = \left. \langle ( x(t + \Delta t) - x(t)) ^2 \rangle \right|_t ~,
+\end{equation}
+
+where the average $	\left. \langle \rangle \right|_t $ is performed over a time $t$. Additionally, it can be numerically using the following Python function.
+
+\begin{minted}
+	[
+	frame=lines,
+	framesep=2mm,
+	baselinestretch=1.2,
+	fontsize=\footnotesize,
+	linenos
+	]
+	{python}
+def msd(x, Dt):
+"""Function that return the MSD for a list of time index Dt for a trajectory x"""
+	_msd = lambda x, t: np.mean((x[:-Dt] - x[Dt:]) ** 2)
+	return [_msd(x, i) for i in t]
+\end{minted}
+
+\begin{figure}[h]
 	\centering
-	\includegraphics{02_body/chapter1/image/noise_simulation/MSE.pdf}
-	\caption{Mean Squared Error (\gls{MRSE}) of the pdf measured from a generation of N Gaussian random number $w_i$, and, the actual Gaussian over which the generatio n is done, Eq.\ref{eq.pwi}. The generation is done over a Gaussian which has a mean value $\langle w_i \rangle =0$ and the variance $\langle w_i^2 \rangle = \tau$. We explore generation ranging form $N = 10$ to $10^7$ and $\tau = 10^{-4}$ to $10$ s}  
-	\label{fig:MSEwi}
+	\includegraphics{02_body/chapter1/image/simulation_full_langevin/intertial_langevin.pdf}
+	\caption{a) Set of $100$ trajectories simulated using the full Langevin equation for particle of a radius  $a = 1 ~\mathrm{\mu m}$ and a mass $m = 10 ~\mathrm{\mu g}$ in water, $\eta = 0.001 ~\mathrm{Pa.s}$. The simulations are done with a time step $\tau = 0.01 \mathrm{s}$.b) Bullets represents the measured Mean Squared Displacement (\gls{MSD}) of the simulated trajectories. The plain black line represents the characteristic time of the diffusion, here $\tau_\mathrm{B} = m / \gamma = 0.53 \mathrm{s}$. The dotted line represents the MSD theory when $t << \tau _\mathrm{B}$, $\mathrm{MSD} = \tau^2 k_\mathrm{B}T / m$. The dashed line when $t >> \tau _\mathrm{B}$, $\mathrm{MSD} = 2D\tau$. A detailed explanation of the simulation process can be found in the appendix.\ref{app:simfulllangevin}.  }
+	\label{fig:inertial_langevin}
 \end{figure}
 
+\subsubsection{Speedup using Cython}
+
+I would like to point out, that the optimization of a simple simulation of Brownian trajectory can be interesting. Indeed, using a pure Python code as presented in the first part of the appendix.\ref{app:simfulllangevin}, the simulation of one trajectory of $10^6$ steps, needs $6$ s to be computed. Thus, more than $10$ minutes should be required to compute the 100 trajectories showed in the Fig.\ref{fig:inertial_langevin}. This is long due to how Python always verify that what we do is allowed, it thus needs to verify at each step of the \mintinline{python}{for} loop the object type of each variable. This is in general the main drawback of the interpreted language, one solution is then to compile the part of the code where the \mintinline{python}{for} loops are computed. One can use the Cython package in order to specify the type of every single variable, once that done, it will convert the lengthy part in C and compile it. As presented in the appendix.\ref{app:simfulllangevin}, doing that on full langevin simulation reduces the time to generate a $10^6$ steps trajectory from $6$ s to $30$ ms thus achieving a speedup of $\simeq 200 \times$. Moreover, in the compiled version, we are here speed bound by the random number generation, indeed it takes $ 24.0 \pm 0.8 ~ \mathrm{ms}$ using \mintinline{python}{numpy}. Additionally, as shown at the end of the appendix.\ref{app:simfulllangevin} even pure C implementation of the random generation can be slower than the \mintinline{python}{numpy} one, thanks to impressive optimization. Thus, using those tools, this simulation is probably as optimize as it can get.
 
 
-Now that the Langevin equation is known numerically, one could use it to simulate some Brownian trajectories.
-
-
+\subsubsection{Simulation of the over-damped Langevin equation }
 
 \begin{equation}
 	x_i = x_{i-1} + \sqrt{2D}w_i~,
