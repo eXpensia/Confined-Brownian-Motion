@@ -411,6 +411,7 @@ From the latter, one can write $x_i$ as:
 	x_i = \frac{2 + \tau /\tau_\mathrm{B}}{1 + \tau / \tau_\mathrm{B} } x_{i-1} 
 	- \frac{1}{1 + \tau / \tau_\mathrm{B}}x_{i-2}
 	+ \frac{\sqrt{2k_\mathrm{B}T\gamma}}{m(1 + \tau/\tau_\mathrm{B})} \tau w_i ~,
+	\label{Eq.numfulllangevin}
 \end{equation}
 
 where we can observe that we need two initial condition are needed, the two first positions of  the particle. Numerically, those positions could be randomly generated or simply set to $0$, if enough statics are generated it will not play much into the results.
@@ -457,15 +458,17 @@ where IQR is the interquartile range, and $\{w_i\}$ a sample of $N$ random numbe
 
 import numpy as np
 
-def iqr(wi):
+def _iqr(wi):
 	"""Function to compute interquartile range."""
 	return np.subtract(*np.percentile(x, [75, 25]))
 
 def optimal_bins(wi):
-	"""Function to compute the optinal number of bins using Freedan-diaconis rule.
-	Input: list of random numbers | Output: optimal bins number"""
+	"""
+	Function to compute the optinal number of bins using Freedan-diaconis rule.
+	Input: list of random numbers | Output: optimal bins number
+	"""
 	
-	n = int(diff(wi) / (2 * iqr(wi) * np.power(len(wi), -1 / 3)))
+	n = int(diff(wi) / (2 * _iqr(wi) * np.power(len(wi), -1 / 3)))
 
 	if n <= 2:
 		return 2
@@ -477,7 +480,7 @@ def optimal_bins(wi):
 
 
 
- As we can see on the Fig.\ref{fig:MSEwi}, for $\tau$ varying between $10^{-2}$ and $10$ seconds, and, $N$ between $10$ and $10^6$, the \gls{MRSE} decreases as $N$ increases. More over, it interesting to observe that the \gls{MRSE} is greater as $\tau$ increases for a fix $N$ value. Indeed, as an example we would need to only generate $N = 10^{-3}$ numbers to obain a \gls{MRSE} of $10^{-4}$ for $\tau = 0.1~\textnormal{s}$, while we would need to $N= 10^6$ for $\tau = 1 ~ \mathrm{s}$. 
+ As we can see on the Fig.\ref{fig:MSEwi}, for $\tau$ varying between $10^{-2}$ and $10$ seconds, and, $N$ between $10$ and $10^6$, the \gls{MRSE} decreases as $N$ increases. More over, it is interesting to observe that the \gls{MRSE} is greater as $\tau$ increases for a fix $N$ value. Indeed, as an example we would need to only generate $N = 10^{-3}$ numbers to obain a \gls{MRSE} of $10^{-4}$ for $\tau = 0.1~\textnormal{s}$, while we would need to $N= 10^6$ for $\tau = 1 ~ \mathrm{s}$. 
  
  
 
@@ -502,7 +505,7 @@ where the average $	\left. \langle \rangle \right|_t $ is performed over a time 
 	]
 	{python}
 def msd(x, Dt):
-"""Function that return the MSD for a list of time index Dt for a trajectory x"""
+	"""Function that return the MSD for a list of time index Dt for a trajectory x"""
 	_msd = lambda x, t: np.mean((x[:-Dt] - x[Dt:]) ** 2)
 	return [_msd(x, i) for i in t]
 \end{minted}
@@ -510,23 +513,19 @@ def msd(x, Dt):
 \begin{figure}[h]
 	\centering
 	\includegraphics{02_body/chapter1/image/simulation_full_langevin/intertial_langevin.pdf}
-	\caption{a) Set of $100$ trajectories simulated using the full Langevin equation for particle of a radius  $a = 1 ~\mathrm{\mu m}$ and a mass $m = 10 ~\mathrm{\mu g}$ in water, $\eta = 0.001 ~\mathrm{Pa.s}$. The simulations are done with a time step $\tau = 0.01 \mathrm{s}$.b) Bullets represents the measured Mean Squared Displacement (\gls{MSD}) of the simulated trajectories. The plain black line represents the characteristic time of the diffusion, here $\tau_\mathrm{B} = m / \gamma = 0.53 \mathrm{s}$. The dotted line represents the MSD theory when $t << \tau _\mathrm{B}$, $\mathrm{MSD} = \tau^2 k_\mathrm{B}T / m$. The dashed line when $t >> \tau _\mathrm{B}$, $\mathrm{MSD} = 2D\tau$. A detailed explanation of the simulation process can be found in the appendix.\ref{app:simfulllangevin}.  }
+	\caption{a) Set of $100$ trajectories simulated using the full Langevin equation for particle of a radius  $a = 1 ~\mathrm{\mu m}$ and a mass $m = 10 ~\mathrm{\mu g}$ in water, $\eta = 0.001 ~\mathrm{Pa.s}$. The simulations are done with a time step $\tau = 0.01~ \mathrm{s}$. b) Bullets represents the measured Mean Squared Displacement (\gls{MSD}) of the simulated trajectories. The plain black line represents the characteristic time of the diffusion, here $\tau_\mathrm{B} = m / \gamma = 0.53 ~\mathrm{s}$. The dotted line represents the MSD theory when $t << \tau _\mathrm{B}$, $\mathrm{MSD} = \tau^2 k_\mathrm{B}T / m$. The dashed line when $t >> \tau _\mathrm{B}$, $\mathrm{MSD} = 2D\tau$. A detailed explanation of the simulation process can be found in the appendix.\ref{app:simfulllangevin}.  }
 	\label{fig:inertial_langevin}
 \end{figure}
 
-\subsubsection{Speedup using Cython}
-
-I would like to point out, that the optimization of a simple simulation of Brownian trajectory can be interesting. Indeed, using a pure Python code as presented in the first part of the appendix.\ref{app:simfulllangevin}, the simulation of one trajectory of $10^6$ steps, needs $6$ s to be computed. Thus, more than $10$ minutes should be required to compute the 100 trajectories showed in the Fig.\ref{fig:inertial_langevin}. This is long due to how Python always verify that what we do is allowed, it thus needs to verify at each step of the \mintinline{python}{for} loop the object type of each variable. This is in general the main drawback of the interpreted language, one solution is then to compile the part of the code where the \mintinline{python}{for} loops are computed. One can use the Cython package in order to specify the type of every single variable, once that done, it will convert the lengthy part in C and compile it. As presented in the appendix.\ref{app:simfulllangevin}, doing that on full langevin simulation reduces the time to generate a $10^6$ steps trajectory from $6$ s to $30$ ms thus achieving a speedup of $\simeq 200 \times$. Moreover, in the compiled version, we are here speed bound by the random number generation, indeed it takes $ 24.0 \pm 0.8 ~ \mathrm{ms}$ using \mintinline{python}{numpy}. Additionally, as shown at the end of the appendix.\ref{app:simfulllangevin} even pure C implementation of the random generation can be slower than the \mintinline{python}{numpy} one, thanks to impressive optimization. Thus, using those tools, this simulation is probably as optimize as it can get.
-
-
-\subsubsection{Simulation of the over-damped Langevin equation }
+Additionally, as we have seen earlier, the Langevin Equation can be simplified to it's over-damped version Eq.\ref{Eq.overdamped_SDE}. In this case, the time step of the simulation  $\tau$ should be greater than the diffusion time $\tau_\mathrm{B}$. Thus, one who is interested at the long time statistical properties of the Brownian motion can use the over-damped Langevin equation. In this case by putting $m=0$ into Eq.\ref{Eq.numfulllangevin}, one can write $x_i$ as:
 
 \begin{equation}
-	x_i = x_{i-1} + \sqrt{2D}w_i~,
+	x_i = x_{i-1} + \sqrt{2D}w_i~.
+	\label{Eq.shortnumlangevin}
 \end{equation}
 
-with $w_i$ a Gaussian distributed random number generated with a mean $\langle w_i \rangle = 0$ and a variance $\langle w_i ^2 \rangle = 
-\tau$. A trajectory of $N$ points can thus be simulated with a few lines as in the following Python snippet which was used to create Fig.\ref{fig:bulkbrown}.
+The statistical properties at long time could be retrieved by simulating Brownian motion using the full Langevin equation. But, since the integration scheme used for Eq.\ref{Eq.numfulllangevin} requires  $\tau << \tau_\mathrm{B}$  long simulation are necessary to retrieve the over-damped properties. As an example, for the Fig.\ref{fig:bulkbrown} I directly used Eq.\ref{Eq.shortnumlangevin} for the simulation using the Python Snippet below.
+
 \begin{minted}
 	[
 	frame=lines,
@@ -536,120 +535,18 @@ with $w_i$ a Gaussian distributed random number generated with a mean $\langle w
 	linenos
 	]
 	{python}
-import numpy as np
-
-N = 1000  # trajectory length
-D = 1  # diffusion coefficient
-tau = 0.5  # time step
-trajectory = np.cumsum(np.sqrt(2 * D) * np.random.normal(0, np.sqrt(tau), N))
+	import numpy as np
+	
+	N = 1000  # trajectory length
+	D = 1  # diffusion coefficient
+	tau = 0.5  # time step
+	trajectory = np.cumsum(np.sqrt(2 * D) * np.random.normal(0, np.sqrt(tau), N))
 \end{minted}
 
+\subsubsection{Speedup using Cython}
 
-\subsection{The confined Brownian motion}
+I would like to point out, that the optimization of a simple simulation of Brownian trajectory can be interesting. Indeed, using a pure Python code as presented in the first part of the appendix.\ref{app:simfulllangevin}, the simulation of one trajectory of $10^6$ steps, needs $6$ s to be computed. Thus, more than $10$ minutes should be required to compute the 100 trajectories showed in the Fig.\ref{fig:inertial_langevin}. This is long due to how Python always verify that what we do is allowed, it thus needs to verify at each step of the \mintinline{python}{for} loop the object type of each variable. This is in general the main drawback of the interpreted language, one solution is then to compile the part of the code where the \mintinline{python}{for} loops are computed. One can use the Cython package in order to specify the type of every single variable, once that done, it will convert the lengthy part in C and compile it. As presented in the appendix.\ref{app:simfulllangevin}, doing that on full Langevin simulation reduces the time to generate a $10^6$ steps trajectory from $6$ s to $30$ ms thus achieving a speedup of $\simeq 200 \times$. Moreover, in the compiled version, we are here speed bound by the random number generation, indeed it takes $ 24.0 \pm 0.8 ~ \mathrm{ms}$ using \mintinline{python}{numpy}. Additionally, as shown at the end of the appendix.\ref{app:simfulllangevin} even pure C implementation of the random generation can be slower than the \mintinline{python}{numpy} one, thanks to impressive optimization. Thus, using those tools, this simulation is probably as optimize as it can get.
 
-We have seen that the bulk Brownian motion is well known and documented for a long time. But, in the real world, the boundaries are not at infinity and could play a role in the process of diffusion. Indeed, it was theorized by H. Faxen \cite{faxen_fredholm_1924} that the presence of a wall would change the Stokes-Einstein relation with a viscosity dependent to the position of the particle. As the particle get closer to a surface, the presence of the non-slip boundary condition make the fluid harder to push, thus increasing the local viscosity of the particle. This variation of the viscosity will be different for orthogonal and parallel displacement to the wall, thus we write respectively $\eta_\bot $ and $\eta_\parallel$ with $\eta_0$ being the fluid viscosity and $z$ the height of the particle:
+\subsection{Conclusion}
 
-\begin{equation}
-	\eta_\bot = \frac{4}{3} \eta_0 \mathrm{sinh}\beta \sum _{n=1} ^{\infty} \frac{n(n+1)}{{2n-1}{2n+3}}
-	\left[
-	\frac
-	{
-		2\mathrm{sinh}(2n + 1)\beta + (2n +1)\mathrm{sinh}2\beta
-	}
-	{
-		4\mathrm{sinh}^2(n + 1 /2)\beta  - (2n+1)^2 \mathrm{sinh}^2 \beta
-	}
-	-1
-	\right] ~,
-	\label{Eq:etaz}
-\end{equation}
-
-\nomenclature{$\eta_\bot$}{Viscosity orthogonal to a wall, see Eq.\ref{Eq:etaz}}
-and 
-
-\begin{equation}
-	\eta_\parallel = \eta_0 
-	\left[
-		1 - \frac{9}{16} \xi + \frac{1}{8}\xi^3 - \frac{45}{256}\xi^4 - \frac{1}{16}\xi^5
-	\right]^{-1}~,
-	\label{Eq:etax}
-\end{equation}
-\nomenclature{$\eta_\parallel$}{Viscosity parrallel to a wall, see Eq.\ref{Eq:etax}}
-
-where $\xi = \frac{a}{z+a}$ and $\beta = \mathrm{cosh}^{-1}(\xi)$. It is possible to simplify the form of $\eta_\bot$ by using a Padé approximation, which is correct up to $1\%$ of accuracy:
-
-\begin{equation}
-	\eta_\bot = \eta_0 \frac{6z^2 + 9az + 2a^2}{6z^2 + 2az}~.
-\end{equation}
-
-Of course, this local viscosity is directly reflected on the diffusive properties of the particle, hence a local diffusion coefficient, which we write:
-
-\begin{equation}
-	D_i (z) = \frac{k_\mathrm{B} T}{6\pi\eta_i (z) a}~.
-\end{equation}
-
-One of the first experimental measurement of the local diffusion coefficient was brought by Faucheux and Libchaber \cite{faucheux_confined_1994} where they measured the mean diffusion coefficient with various gaps and particle radius their results can be found in the Fig.\ref{fig:libchaber}.
-
-\begin{figure}
-	\centering
-	\includegraphics{02_body/chapter1/image/libchaber.pdf}
-	\caption{Figure extracted from \cite{faucheux_confined_1994}, on the left is the experimental setup used. It is an inverted microscope used in order to track particle of size $2R$ inside a cell of thickness $t$. On the right is their final result, where they measure the diffusion parallel coefficient $D_\bot$ given by Eq.\ref{Eq:etax}, here normalized by $D_0$ the bulk diffusion coefficient as a function of  $\gamma$ a confinement constant $\gamma = (\langle z \rangle -a)/a$. }
-	\label{fig:libchaber}
-\end{figure}
-
-Another interesting physical aspect to take into account when looking at confined Brownian motion is the potential the particle is lying into. Let's first consider the weight of the particle. Indeed, if the particle density does not match the fluid' one, a spherical particle will lye in a gravity potential given by:
-
-\begin{equation}
-	U_g(z) = \frac{4}{3} \pi a^3 (\rho_\mathrm{P} - \rho_\mathrm{F})gz~,
-\end{equation}
-
-\nomenclature{$g$}{Gravity constant}
-\nomenclature{$\rho_\mathrm{P}$}{Particle density}
-\nomenclature{$\rho_\mathrm{F}$}{Fluid density}
-
-that we can rewrite for simplicity
-
-\begin{equation}
-	\frac{U_g(z)}{k_\mathrm{B} T} = \frac{z}{\ell_\mathrm{B}}~,
-\end{equation}
-
-\nomenclature{$\ell_\mathrm{B}$}{Boltzmann length}
-with $\ell_\mathrm{B}$ the Boltzmann length which represents the balance between the kinetic energy and the weight of the particle:
-
-\begin{equation}
-	\ell_\mathrm{B} = \frac{k_\mathrm{B} T}{ \frac{4}{3} \pi a^3 \Delta \rho g}~.
-\end{equation}
-
-Let's now consider the interactions with the substrate, glass slides when immersed in water do charge negatively as well as polystyrene particles that we use. We will then have repulsive electrostatic interactions between the wall and the particles, the corresponding potential can be written as  \cite{israelachvili_intermolecular_2015}:
-
-\begin{equation}
-	\frac{U_\mathrm{elec}(z)}{k_\mathrm{B}T} = B \mathrm{e}^{-z/\ell_\mathrm{D}}~,
-\end{equation}
-
-\nomenclature{$B$}{Amplitude of the electrostatic interactions}
-\nomenclature{$\ell_\mathrm{D}$}{Debye length}
-
-where $B$ is the amplitude of electrostatic interactions, representing the surface charges and $\ell_\mathrm{D}$ being the Debye length, which is the characteristic length of the electrostatic interactions. The particle is thus lying in a total potential given by:
-
-\begin{equation}
-	\frac{U(z)}{k_\mathrm{B}T} =   B \mathrm{e}^{-z/\ell_\mathrm{D}} +  \frac{z}{\ell_\mathrm{B}}~.
-\end{equation}
-
-From this total potential one can construct the Gibbs-Boltzmann distribution in position:
-
-\begin{equation}
-	P_\mathrm{eq}(z) = A\mathrm{e}^
-	{
-		\frac{U}{k_\mathrm{B}T}	
-	}~,
-	\label{Eq:Peq}
-\end{equation}
-
-where $A$ is a normalization constant so that $\int P_\mathrm{eq} = 1$. This distribution gives us the probability to find the particle at a height $z$. The exponential decay due to the gravity was first measured by Perrin \cite{perrin_les_2014} by methodically counting through a microscope the number of colloids in suspension as a function on the height. 
-
-
-\begin{figure}[ht]
-	\centering
-	\includegraphics{02_body/chapter1/image/theorie_chap1.pdf}
-	\caption{On the left, plot of the Gibbs-Boltzmann distribution Eq.\ref{Eq:Peq} for $a = 1 ~ \mathrm{\mu m}$, $ B = 4 $, $\ell _\mathrm{D} = 100 ~ \mathrm{nm}$ and $\Delta \rho = 50 ~ \mathrm{kg.m^{-3}}$. On the right, local diffusion coefficient normalized by bulk diffusion coefficient $D_0 = k_\mathrm{B}T/\gamma$, given by Eq.\ref{Eq:etax} and Eq.\ref{Eq:etaz}}.
-\end{figure}
+In this chapter, we covered the history of the Brownian motion from the first observation of Robert Brown in the middle of 19th century  
