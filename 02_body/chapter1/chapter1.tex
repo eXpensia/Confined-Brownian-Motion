@@ -126,7 +126,7 @@ Furthermore, measuring $N_\mathrm{A}$ also gives us the mass of atoms and molecu
 \begin{figure}[!h]
 	\centering
 	\includegraphics{02_body/chapter1/image/brown_exemple.pdf}
-	\caption{Simulation of the bulk Brownian motion of $1 ~ \mathrm{\mu m}$ particles in water. On the top each line represents the trajectory of a Brownian particle over 100 seconds. A total of 100 trajectories or shown. On the bottom, bullets represents the Mean Square Displacement (\gls{MSD}) computed from the simulated trajectories. The black plain line represents Einstein's theory, which is computed from the square of Eq.\ref{Eq:MSD_ein}.}
+	\caption{Simulation of the bulk Brownian motion of $1 ~ \mathrm{\mu m}$ particles in water. On the top each line represents the trajectory of a Brownian particle over 100 seconds. A total of 100 trajectories or shown. On the bottom, bullets represents the Mean Square Displacement (\gls{MSD}) computed from the simulated trajectories. The black plain line represents Einstein's theory, which is computed from the square of Eq.\ref{Eq:MSD_ein}.\href{https://github.com/eXpensia/Ma-these/blob/main/02_body/chapter1/image/Simple_theory.ipynb}{\faGithub}}
 	\label{fig:bulkbrown}
 \end{figure}
 
@@ -357,7 +357,7 @@ and $\textnormal{d}V_t$ as
 
 \begin{equation}
 	\begin{aligned}
-	\textnormal{d}V_t &\simeq 
+	\frac{\textnormal{d}V_t}{\textnormal{d}t} &\simeq 
 	\frac{
 		\frac{x_i - x_{i-1}}{\tau}
 		-
@@ -369,7 +369,7 @@ and $\textnormal{d}V_t$ as
 	\label{Eq.dvtnum}
 \end{equation}
 
-The only term remaining to be computed numerically is the random term $\textnormal{d}B_t$. One can thus replace $\textnormal{d}B_t$ by $w_i$ \footnote{The notation $w$ was choose since in mathematical term, a real valued continuous-time stochastic process such as $\textnormal{d}B_t$ is called a Wiener process in honor of Norbert Wiener \cite{durrett_probability_2019}} a Gaussian distributed random number generated with a mean $\langle w_i \rangle = 0$ and a variance $\langle w_i^2 \rangle  = \tau$. The Probability Density function (PDF) of the Gaussian distribution is thus given by:
+The only term remaining to be computed numerically is the random term $\textnormal{d}B_t$. One can thus replace $\textnormal{d}B_t / \textnormal{d}t$ by $w_i$\footnote{The notation $w$ was choose since in mathematical term, a real valued continuous-time stochastic process such as $\textnormal{d}B_t$ is called a Wiener process in honor of Norbert Wiener \cite{durrett_probability_2019}.} a Gaussian distributed random number generated with a mean $\langle w_i \rangle = 0$ and a variance $\langle w_i^2 \rangle  = \tau$. The Probability Density function (PDF) of the Gaussian distribution is thus given by:
 
 \begin{equation}
 P(w_i) = \frac{1}{\sqrt{2\pi \tau}}\textnormal{e}^{- \frac{w_i^2}{2\tau}}.
@@ -549,4 +549,4 @@ I would like to point out, that the optimization of a simple simulation of Brown
 
 \subsection{Conclusion}
 
-In this chapter, we covered the history of the Brownian motion from the first observation of Robert Brown in the middle of 19th century  
+In this chapter, we have covered the history of the Brownian motion from the first observation of Robert Brown in the middle of 19th century to it's mathematical and experimental proofs in the early 20s. We have then described mathematicaly the bulk Brownian motion, and its important stastical properties. Finaly, we have used the later description in order to simulate Brownian motion using the both the full Langevin equation and it's over-damped version. In the following chapter, I will describe experimental methods using light interference properties in order to track colloidal particle.
