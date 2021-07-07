@@ -126,7 +126,7 @@ Finally, this method is great because the equation is computationally light and 
 
 When a colloid is illuminated with a plane wave, a part of the light is scattered. In consequence, the superimposition of the incident field $\vec{E}_0$ and scattered field $\vec{E}_s$ interferes. The interference patterns thus obtained are called holograms. If the particle size is at the same order of magnitude or greater than the illumination wavelength, it is not possible to use Rayleigh approximations \cite{strutt_lviii_1871}. Indeed, we would need to use what we call  the Lorenz-Mie theory which describes the scattering of dielectric spheres; this theory was found by Lorenz and independently by Mie in 1880 and 1908 \cite{lorenz_lysbevaegelsen_1890, mie_beitrage_1908}. 
 
-It is in the early 2000 that the Lorenz-Mie background was first used in order to track and characterize particles \cite{ovryn_imaging_2000, lee_characterizing_2007}. Since then, a lot of studies has been realized with this method \cite{katz_applications_2010}. In the following I will describe the Lorenz-Mie Fit method.
+It is in the early 2000 that the Lorenz-Mie theory was first used in order to track and characterize particles \cite{ovryn_imaging_2000, lee_characterizing_2007}. Since then, a lot of studies has been realized with this method \cite{katz_applications_2010}. In the following I will describe the Lorenz-Mie Fit method.
 
 Let the incident field be a plane wave uniformly polarized along the axis $ \hat{e}$, with an amplitude $E_0$ and propagating along the $z$ direction :
 \begin{equation}
@@ -219,20 +219,74 @@ Computing Eq.\ref{Eq.Lorenz-Mie-function} numerically brings another interesting
 
 Consequently, larger particles' holograms will need more terms to converge and, hence, are longer to fit. As an example, the largest particles used during my thesis have a radius $a = 2.5 ~ \mathrm{\mu m}$ leading to a number of terms $ n_c = 55$ in water and $\lambda = 532$ nm, for the smallest ones, where $a = 0.5 ~ \mathrm{\mu m}$ we find $n_c = 18$ which makes a huge difference in practice.
 
+If a reader wants to evaluate an hologram given by the Lorenz-Mie theory for a peculiar particle and position, it can be done in a few lines with the \mintinline{python}{holopy} module using the following Python snippet which was used to make Fig.\ref{fig.holo_fix_n} and \ref{fig.holo_fix_z}:
+
+\begin{minted}
+	[
+	frame=lines,
+	framesep=2mm,
+	baselinestretch=1.2,
+	fontsize=\footnotesize,
+	linenos
+	]
+	{python}
+import holopy as hp
+from holopy.scattering import calc_holo, Sphere
+
+sphere = Sphere(n=1.59, r=1.5, center=(4/0.1, 4/0.1, 10))
+# n is the optical index of the particle, r it's radius in microns
+# center is its center position in microns.
+
+medium_index = 1.33
+illum_wavelen = 0.532
+illum_polarization = (1, 0)
+detector = hp.detector_grid(shape=100, spacing=0.1)
+# shape is the size in pixel of the camera and the spacing is the pixel's size in microns.
+
+holo = calc_holo(
+	detector, sphere, medium_index, illum_wavelen, illum_polarization, theory="auto"
+)
+#the hologram can be directly be plotted using:
+hp.show(holo)
+\end{minted}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=1]{02_body/chapter2/images/lorenz_mie_fit_demo/plot_lorenz_mie.pdf}
+	\caption{a) Raw hologram of a $2.5 ~ \mathrm{\mu m}$ polystyrene particle measured experimentally with the setup detailed in the chapter \ref{chap:exp-setup}. b) Background obtained by taking the median value of the time series of images of the diffusing particle. c) Normalized hologram given by dividing a) by b). d) Result of the fit of c) using Eq.{\ref{Eq.normalized_Mie}} the particle is found to be at a height $z = 14.77 ~ \mathrm{\mu m}$. e) Comparison of the normalized radial intensity, obtained experimentally form c) and theoretically from d).}
+	\label{fig.Lorenz_mie_demo}
+\end{figure}
+
+
+In order to know what to experimentally expect, one can to compute holograms for particles of different size and height, as shown in the Fig.\ref{fig.holo_fix_n} with a fixed optical index $n = 1.59$. In this case, one can observe that as $z$ increases, the hologram's rings gets larger. Unlike a Michelson interferometer or \gls{RICM} we do not observe the rings scrolling. Additionally, this thickening of the rings can also be observed on the Fig.\ref{fig:holo_z_fit}, where hologram's intensity profile are plot as a function of the height $z$. Moreover, we can see that the contrast of the holograms are reduced when the height $z$ is small compared to the radius of the particle. Thus, for having an optimal condition for the fits, one should take care to defocus the enough the objective lens to have $z >> a$.
+
+
 Finally, Lorenz-Mie is the most versatile in-line holographic method, indeed, it permits tracking and characterize unique particles even without a priori knowledge. Besides, it is possible to write the Lorenz-Mie function $\vec{f}_s$ for particular cases such as anisotropic \cite{fung_holographic_2013}, non-spherical particles \cite{wang_using_2014} or particle clusters \cite{fung_holographic_2013, perry_real-space_2013} to name a few; such possibilities open the door to a lot of experimental studies. Additionally, it can reach really high precision as the tenth of nanometer on the position and radius as well as $10^{-3}$ on the optical index \cite{lee_characterizing_2007}. Unfortunately, the Lorenz-Mie fitting suffer from a major drawback which is the time needed to fit one image. For example, a 200 by 200 pixels image, of a $2.5 ~ \mathrm{\mu m}$ particle's hologram, can take up to two minutes to be fitted using a pure and straightforward python algorithm. A lot of work as been done to have faster tracking, such as random-subset fitting \cite{dimiduk_random-subset_2014}, GPU (graphical processing unit) acceleration, machine-learning \cite{yevick_machine-learning_2014, hannel_machine-learning_2018} and deep neural networks \cite{altman_catch_2020}.
 
-\begin{figure}
-	\centering
-		\includegraphics[scale=1]{02_body/chapter2/images/lorenz_mie_fit_demo/plot_lorenz_mie.pdf}
-		\caption{a) Raw hologram of a $2.5 ~ \mathrm{\mu m}$ polystyrene particle measured experimentally with the setup detailed in the chapter \ref{chap:exp-setup}. b) Background obtained by taking the median value of the time series of images of the diffusing particle. c) Normalized hologram given by dividing a) by b). d) Result of the fit of c) using Eq.{\ref{Eq.normalized_Mie}} the particle is found to be at a height $z = 14.77 ~ \mathrm{\mu m}$. e) Comparison of the normalized radial intensity, obtained experimentally form c) and theoretically from d).}
-		\label{fig.Lorenz_mie_demo}
-\end{figure}
+
 
 
 \begin{figure}
 	\centering
 	\includegraphics{02_body/chapter2/images/test_tableau2.pdf}
 	\caption{On the left, experimentally measured  holograms' radial intensity profile stack, generated from a polystyrene bead of nominal radius $a = 1.5 \pm 0.035 ~ \mathrm{\mu m} $ using the experimental setup explained in chapter \ref{chap:exp-setup}. The calibration of this particle radius and optical index is shown in Fig.\ref{fig:KDErn}. On the right, the corresponding theoretical stack using the result of each individual hologram's fit.}
+	\label{fig:holo_z_fit}
+\end{figure}
+
+
+
+\begin{figure}
+	\centering
+	\includegraphics{02_body/chapter2/images/holo_size_exemple/holos_fix_z.pdf}
+	\caption{On the left, experimentally measured  holograms' radial intensity profile stack, generated from a polystyrene bead of nominal radius $a = 1.5 \pm 0.035 ~ \mathrm{\mu m} $ using the experimental setup explained in chapter \ref{chap:exp-setup}. The calibration of this particle radius and optical index is shown in Fig.\ref{fig:KDErn}. On the right, the corresponding theoretical stack using the result of each individual hologram's fit.}
+	\label{fig.holo_fix_z}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics{02_body/chapter2/images/holo_size_exemple/holos_fix_n.pdf}
+	\caption{On the left, experimentally measured  holograms' radial intensity profile stack, generated from a polystyrene bead of nominal radius $a = 1.5 \pm 0.035 ~ \mathrm{\mu m} $ using the experimental setup explained in chapter \ref{chap:exp-setup}. The calibration of this particle radius and optical index is shown in Fig.\ref{fig:KDErn}. On the right, the corresponding theoretical stack using the result of each individual hologram's fit.}
+	\label{fig.holo_fix_n}
 \end{figure}
 
 \newpage
@@ -302,7 +356,7 @@ Finally, the method we choose is the Lorenz-Mie fitting method, since this it pe
 
 \subsection{Experimental setup}
 \label{chap:exp-setup}
-In order to observe the holograms we use an homemade inverted microscope as shown on the Fig.\ref{fig:picture} and shematized in Fig.\ref{fig:schema}. A sample consists of a parallelepipedic chamber ($1.5 ~ \text{cm} ~ \times ~ 1.5 ~ \text{cm} ~ \times ~ 150 ~ \mathrm{\mu m} $), made from two glass covers, a parafilm spacer, and sealed with vacuum grease, containing a dilute suspension of spherical polystyrene beads. We used 3 different sizes, of nominal radii $0.56 ~ \mathrm{\mu m}, ~ 1.5 ~ \mathrm{\mu m} \text{ and } 2.5 ~ \mathrm{\mu m} $, at room temperature $T$, in distilled water (type 1, MilliQ device) of viscosity $\eta = 1 ~ \mathrm{mPa.s}$. The sample is illuminated by a collimated laser beam with a $521 ~ \mathrm{\mu m}$ wavelength. As depicted in the chapter \ref{chap:LM_fit}, the light scattered by one colloidal particle at a given time $t$ interferes with the incident beam. An oil-immersion objective lens (x60 magnification, $1.30$ numerical aperture) collects the resulting instantaneous interference pattern, and relays it to a camera (Basler acA1920-155um) with a $51.6$ nm/pixel resolution (see Fig.\ref{fig.Lorenz_mie_demo}a)). The exposure time of the camera is set to $3$ ms to avoid motion-induced blurring of the image, as a general rule, the particle should not diffuse more than the pixel size during that time.
+In order to observe the holograms we use an homemade inverted microscope as shown on the Fig.\ref{fig:picture} and shematized in Fig.\ref{fig:schema}. A sample consists of a parallelepipedic chamber ($1.5 ~ \text{cm} ~ \times ~ 1.5 ~ \text{cm} ~ \times ~ 150 ~ \mathrm{\mu m} $), made from two glass covers, a parafilm spacer, and sealed with vacuum grease, containing a dilute suspension of spherical polystyrene beads. We used 3 different sizes, of nominal radii $0.56 ~ \mathrm{\mu m}, ~ 1.5 ~ \mathrm{\mu m} \text{ and } 2.5 ~ \mathrm{\mu m} $, at room temperature $T$, in distilled water (type 1, MilliQ device) of viscosity $\eta = 1 ~ \mathrm{mPa.s}$. The sample is illuminated by a collimated laser beam with a $521 ~ \mathrm{\mu m}$ wavelength. As depicted in the chapter \ref{chap:LM_fit}, the light scattered by one colloidal particle at a given time $t$ interferes with the incident beam. An oil-immersion objective lens (x60 magnification, $1.30$ numerical aperture) collects the resulting instantaneous interference pattern, and relays it to a camera (Basler acA1920-155um) with a $51.6$ nm/pixel resolution (see Fig.\ref{fig.Lorenz_mie_demo}a)). The exposure time of the camera is set to $\tau_{\mathrm{expo}} = 3$ ms to avoid motion-induced blurring of the image, as a general rule, the particle should not diffuse more than the pixel size during that time such that here $2D\tau_{\mathrm{expo}} < 51.6$ nm.
 
 \begin{figure}[!ht]
 	\centering
