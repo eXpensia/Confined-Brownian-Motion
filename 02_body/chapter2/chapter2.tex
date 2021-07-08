@@ -16,9 +16,9 @@ Since the beginning of the century, interest on tracking and characterizing coll
 
 The first one, \gls{RICM}, uses the principle of optical difference path as a Michelson interferometer. The other two, uses the interference between the light scattered by the colloid and the incident light. Generally, both of the sources  are colinear, thus, speak of in-line holography. 
 
-\subsection{In-line holographic video microscopy theory}
 
-\subsubsection{Reflection Interference Contrast Microscopy}
+
+\subsection{Reflection Interference Contrast Microscopy}
 
 \begin{figure}[h]
 	\centering
@@ -121,14 +121,14 @@ Finally, this method is great because the equation is computationally light and 
 
 
 
-\subsubsection{Lorenz-Mie Fit}
+\subsection{Lorenz-Mie Fit}
 \label{chap:LM_fit}
 
 When a colloid is illuminated with a plane wave, a part of the light is scattered. In consequence, the superimposition of the incident field $\vec{E}_0$ and scattered field $\vec{E}_s$ interferes. The interference patterns thus obtained are called holograms. If the particle size is at the same order of magnitude or greater than the illumination wavelength, it is not possible to use Rayleigh approximations \cite{strutt_lviii_1871}. Indeed, we would need to use what we call  the Lorenz-Mie theory which describes the scattering of dielectric spheres; this theory was found by Lorenz and independently by Mie in 1880 and 1908 \cite{lorenz_lysbevaegelsen_1890, mie_beitrage_1908}. 
 
-It is in the early 2000 that the Lorenz-Mie theory was first used in order to track and characterize particles \cite{ovryn_imaging_2000, lee_characterizing_2007}. Since then, a lot of studies has been realized with this method \cite{katz_applications_2010}. In the following I will describe the Lorenz-Mie Fit method.
+It is in the early 2000 that the Lorenz-Mie theory was first used in order to track and characterize particles \cite{ovryn_imaging_2000, lee_characterizing_2007}. Since then, a lot of studies has been realized with this method \cite{katz_applications_2010}. In the following I will describe the Lorenz-Mie Fit method. In in this part, the height of the particle $z$ is the distance between the particle's center and the focal plane of the objective lens.
 
-Let the incident field be a plane wave uniformly polarized along the axis $ \hat{e}$, with an amplitude $E_0$ and propagating along the $z$ direction :
+Let the incident field be a plane wave uniformly polarized along the axis $ \hat{e}$, with an amplitude $E_0$ and propagating along the $\hat{z}$ direction :
 \begin{equation}
 	\vec{E}_0(\vec{r},z) = E_0(\vec{r}) \mathrm{e}^{ikz}\hat{e}
 \end{equation}
@@ -257,13 +257,39 @@ hp.show(holo)
 	\label{fig.Lorenz_mie_demo}
 \end{figure}
 
+\subsubsection{Hologram dependance on the particule characteristics}
+
+As we can see with the Eq.\ref{Eq.Lorenz-Mie-function}, the in-line holograms vary with the that position, radius and optical index of the particle. For in-line holograms, since the 
 
 In order to know what to experimentally expect, one can to compute holograms for particles of different size and height, as shown in the Fig.\ref{fig.holo_fix_n} with a fixed optical index $n = 1.59$. In this case, one can observe that as $z$ increases, the hologram's rings gets larger. Unlike a Michelson interferometer or \gls{RICM} we do not observe the rings scrolling. Additionally, this thickening of the rings can also be observed on the Fig.\ref{fig:holo_z_fit}, where hologram's intensity profile are plot as a function of the height $z$. Moreover, we can see that the contrast of the holograms are reduced when the height $z$ is small compared to the radius of the particle. Thus, for having an optimal condition for the fits, one should take care to defocus the enough the objective lens to have $z >> a$.
+
+One can also check how the holograms are varying with the optical inex a particle. In the Fig.\ref{fig.holo_fix_z}, we can observe holograms with a fix height of $z=15 ~ \mathrm{\mu m}$ 
 
 
 Finally, Lorenz-Mie is the most versatile in-line holographic method, indeed, it permits tracking and characterize unique particles even without a priori knowledge. Besides, it is possible to write the Lorenz-Mie function $\vec{f}_s$ for particular cases such as anisotropic \cite{fung_holographic_2013}, non-spherical particles \cite{wang_using_2014} or particle clusters \cite{fung_holographic_2013, perry_real-space_2013} to name a few; such possibilities open the door to a lot of experimental studies. Additionally, it can reach really high precision as the tenth of nanometer on the position and radius as well as $10^{-3}$ on the optical index \cite{lee_characterizing_2007}. Unfortunately, the Lorenz-Mie fitting suffer from a major drawback which is the time needed to fit one image. For example, a 200 by 200 pixels image, of a $2.5 ~ \mathrm{\mu m}$ particle's hologram, can take up to two minutes to be fitted using a pure and straightforward python algorithm. A lot of work as been done to have faster tracking, such as random-subset fitting \cite{dimiduk_random-subset_2014}, GPU (graphical processing unit) acceleration, machine-learning \cite{yevick_machine-learning_2014, hannel_machine-learning_2018} and deep neural networks \cite{altman_catch_2020}.
 
+\begin{figure}
+	\centering
+	\includegraphics{02_body/chapter2/images/holo_size_exemple/holos_only_z.pdf}
+	\caption{On the left, experimentally measured  holograms' radial intensity profile stack, generated from a polystyrene bead of nominal radius $a = 1.5 \pm 0.035 ~ \mathrm{\mu m} $ using the experimental setup explained in chapter \ref{chap:exp-setup}. The calibration of this particle radius and optical index is shown in Fig.\ref{fig:KDErn}. On the right, the corresponding theoretical stack using the result of each individual hologram's fit.}
+	\label{fig:holo_onlyz}
+\end{figure}
 
+
+\begin{figure}
+	\centering
+	\includegraphics{02_body/chapter2/images/holo_size_exemple/holos_only_n.pdf}
+	\caption{On the left, experimentally measured  holograms' radial intensity profile stack, generated from a polystyrene bead of nominal radius $a = 1.5 \pm 0.035 ~ \mathrm{\mu m} $ using the experimental setup explained in chapter \ref{chap:exp-setup}. The calibration of this particle radius and optical index is shown in Fig.\ref{fig:KDErn}. On the right, the corresponding theoretical stack using the result of each individual hologram's fit.}
+	\label{fig:holo_onlyn}
+\end{figure}
+
+
+\begin{figure}
+	\centering
+	\includegraphics{02_body/chapter2/images/holo_size_exemple/holos_only_r.pdf}
+	\caption{On the left, experimentally measured  holograms' radial intensity profile stack, generated from a polystyrene bead of nominal radius $a = 1.5 \pm 0.035 ~ \mathrm{\mu m} $ using the experimental setup explained in chapter \ref{chap:exp-setup}. The calibration of this particle radius and optical index is shown in Fig.\ref{fig:KDErn}. On the right, the corresponding theoretical stack using the result of each individual hologram's fit.}
+	\label{fig:holo_onlyr}
+\end{figure}
 
 
 \begin{figure}
@@ -289,9 +315,10 @@ Finally, Lorenz-Mie is the most versatile in-line holographic method, indeed, it
 	\label{fig.holo_fix_n}
 \end{figure}
 
+\clearpage
 \newpage
 
-\subsubsection{ Rayleigh-Sommerfeld back-propagation}
+\subsection{ Rayleigh-Sommerfeld back-propagation}
 
 
 
