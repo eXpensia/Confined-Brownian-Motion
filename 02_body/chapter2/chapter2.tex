@@ -193,7 +193,8 @@ where $\vec{N}^{(3)}_{eln}(k\vec{r})$ and $\vec{M}^{(3)}_{oln}(k\vec{r})$ are th
 	}
 	{
 		\zeta^2 j_n (\zeta k a)k a h_n^{(1)'} (k a) - h_n^{(1)}(ka)\zeta kaj_n'(\zeta ka)
-	}
+	} ~,
+	\label{Eq:an}
 \end{equation}
 
 and
@@ -207,10 +208,11 @@ and
 	{
 		j_n(\zeta k a) kah_n^{(1)'}(ka) - h_n^{(1)} (ka) \zeta kaj_n '(mka)
 	} ~,
+	\label{Eq:bn}
 \end{equation}
 
 
-	where $\zeta = n_\mathrm{p} / n_m$ and the prime notation denotes differentiation with respect to the argument. As we can see, the holograms will depends on Eq.\ref{Eq.Lorenz-Mie-function} and will vary with a lot of parameters ($\lambda$, $n_m$, $n_\mathrm{p}$, $a$ and $\vec{r}_\mathrm{p}$) which can all be fitted. In general, the illumination wavelength $\lambda$ and medium index $n_\mathrm{m}$ are known and do not need to me fitted. From only one hologram it is could thus be possible to measure precisely the position of the particle $\vec{r}_\mathrm{p}$ and in the same time characterize the radius and optical index of the colloid. As a side note, it is even possible to characterize a particle without a priori knowledge of its characteristics using Bayesian approach \cite{gregory_bayesian_2005, dimiduk_bayesian_2016}.
+	where $\zeta = n_\mathrm{p} / n_m $ and the prime notation denotes differentiation with respect to the argument. As we can see, the holograms will depends on Eq.\ref{Eq.Lorenz-Mie-function} and will vary with a lot of parameters ($\lambda$, $n_m$, $n_\mathrm{p}$, $a$ and $\vec{r}_\mathrm{p}$) which can all be fitted. In general, the illumination wavelength $\lambda$ and medium index $n_\mathrm{m}$ are known and do not need to me fitted. From only one hologram it is could thus be possible to measure precisely the position of the particle $\vec{r}_\mathrm{p}$ and in the same time characterize the radius and optical index of the colloid. As a side note, it is even possible to characterize a particle without a priori knowledge of its characteristics using Bayesian approach \cite{gregory_bayesian_2005, dimiduk_bayesian_2016}.
 
 Computing Eq.\ref{Eq.Lorenz-Mie-function} numerically brings another interesting question, as it is analytically written as a sum over $n$; one could ask after which number of terms $n_c$ the series will converge. It has actually been found that the series converge after a number of terms \cite{lentz_generating_1976}
 \begin{equation}
@@ -259,9 +261,48 @@ hp.show(holo)
 
 \subsubsection{Hologram dependance on the particule characteristics}
 
+
+
 As we can see with the Eq.\ref{Eq.Lorenz-Mie-function}, the in-line holograms vary with the that position, radius and optical index of the particle. For in-line holograms, since the incident and scattered field, the $x$ and $y$ position of the particle will simply be given by the center of the hologram. Thus, it is possible to track only movement of the particle only in 2 dimensions by using algorithm such as the hough transform to find the center. As a side note, in that case, it would be optimal to place the particle just above the focal plane to have an airy disk like hologram, as shown in Fig.\ref{fig.holo_fix_n} for $a = 2.5 ~ \mathrm{\mu m}$ and $z = 5 ~\mathrm{\mu m}$.
 
-In order to gain some insights on how the holograms vary with the different parameters, one can to compute holograms for particles of different size and height. We will start by looking at the a particle of a radius $a = 1.5 ~ \mathrm{\mu m} $ and $n = 1.59 $ as shown in the Fig.\ref{fig:holo_onlyz}. In this case, one can observe that as the distance between the particle and the focal plane $z$ increases, the hologram's rings gets larger. Unlike a Michelson interferometer or \gls{RICM} we do not observe the rings scrolling. Additionally, this thickening of the rings can also be observed on the Fig.\ref{fig:holo_z_fit}, where hologram's intensity profile are plot as a function of the height $z$ both theoretically and experimentally in the for a polystyrene colloidal particle of radius  $a = 1.5 ~ \mathrm{\mu m} $, and, for different couples of parameters on the Fig.\ref{fig.holo_fix_n}.
+\begin{figure}[H]
+	\centering
+	\includegraphics{02_body/chapter2/images/holo_size_exemple/holos_only_z.pdf}
+	\caption{Radial intensity profile stack as a function of the distance between the particle center and the focal place of the objective lens, generated for a particle of radius $a = 1.5 ~\mathrm{\mu m}$ and optical index $n = 1.59$.}
+	\label{fig:holo_onlyz}
+\end{figure}
+
+In order to gain some insights on how the holograms vary with the different parameters, one can to compute holograms for particles of different size and height. We will start by looking at the a particle of a radius $a = 1.5 ~ \mathrm{\mu m} $ and $n = 1.59 $ as shown in the Fig.\ref{fig:holo_onlyz}. In this case, one can observe that as the distance between the particle and the focal plane $z$ increases, the hologram's rings gets larger. Unlike a Michelson interferometer or \gls{RICM} we do not observe the rings scrolling. Additionally, this thickening of the rings can also be observed on the Fig.\ref{fig:holo_z_fit}, where hologram's intensity profile are plot as a function of the height $z$ both theoretically and experimentally in the for a polystyrene colloidal particle of radius  $a = 1.5 ~ \mathrm{\mu m} $, and, for different couples of parameters on the Fig.\ref{fig.holo_fix_n}. Also, we can note that if $z$ is not large enough compared to the radius of the particle, the center of an hologram can be so bright that if the camera does not have a large enough dynamic range, the rings could not be seen.  Thus, for having an optimal condition for the fits, one should take care to defocus the enough the objective lens to have $z >> a$.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics{02_body/chapter2/images/holo_size_exemple/smallparticles.pdf}
+	\caption{Radial intensity profile for of the particle radius $a << \lambda$ , generated for a particles of optical index $n = 1.59$ with a distance between the particle center and the focal place of the objective lens $z = 15 ~\mathrm{\mu m}$ and $\lambda = 532 ~ \mathrm{nm}$.}
+	\label{fig:small_part_holo}
+\end{figure}
+
+
+
+\begin{figure}
+	\centering
+	\includegraphics{02_body/chapter2/images/holo_size_exemple/holos_only_r.pdf}
+	\caption{Radial intensity profile stack as a function of the particle radius, generated for a particle of optical index $n = 1.59$ with a distance between the particle center and the focal place of the objective lens $z = 15 ~\mathrm{\mu m}$.}
+	\label{fig:holo_onlyr}
+\end{figure}
+
+
+
+
+We can now take a look at the variation with respect to the radius of the particle as shown on the Fig.\ref{fig:holo_onlyr} for a particle of optical index $n = 1.59$ and at a distance $z = 15 ~\mathrm{\mu m }$. One can observe that for small particles compared to the wavelength $a << \lambda$ we do not observe the rings this is due to the fact that for the small particles, the scattering can be approximated using the Reyleigh theory which tells us that the scattering is isotropic. Thus, the variation of intensity around $I_0$ will be smaller for small particle. Also, in this small particle regime, the particle size will not affect the general shape of the hologram but just the intensity of the hologram as it can be seen on the Fig.\ref{fig:small_part_holo}, for particle of radius $a = 0.02 ~\mathrm{\mu m}$ to $a = 0.07 ~\mathrm{\mu m}$ for a wavelength $\lambda = 0.532 ~\mathrm{\mu m}$. Additionally, since the noise to signal ratio will be lower than for bigger particles, it will be less precise to characterize small colloids compared to the wavelength.
+
+
+
+
+
+ As the particle gets bigger, the scattering become anisotropic and it mostly towards the incident plane wave direction. This effects leads to an increase of the amplitude of the rings $I/I_0$, as one can see on the Fig.\ref{fig:holo_onlyr}. Thus, the noise to signal ratio is high enough to easily discern the hologram on top of the noise as one can see on the experimental picture fig.\ref{fig.Lorenz_mie_demo}-a). One who wants to use this method should thus take care to use large enough particle for the holograms' intensity to be greater than the camera noise level.
+
+
+
 
 
 
@@ -270,46 +311,24 @@ In order to gain some insights on how the holograms vary with the different para
 
 \begin{figure}[H]
 	\centering
-	\includegraphics{02_body/chapter2/images/holo_size_exemple/holos_only_z.pdf}
-	\caption{On the left, experimentally measured  holograms' radial intensity profile stack, generated from a polystyrene bead of nominal radius $a = 1.5 \pm 0.035 ~ \mathrm{\mu m} $ using the experimental setup explained in chapter \ref{chap:exp-setup}. The calibration of this particle radius and optical index is shown in Fig.\ref{fig:KDErn}. On the right, the corresponding theoretical stack using the result of each individual hologram's fit.}
-	\label{fig:holo_onlyz}
-\end{figure}
-
-We can now take a look at the variation with respect to the radius of the particle as shown on the Fig.\ref{fig:holo_onlyr} for a particle of optical index $n = 1.59$ and at a distance $z = 15 ~\mathrm{\mu m }$. 
-Moreover, we can see that the contrast of the holograms are reduced when the height $z$ is small compared to the radius of the particle. Thus, for having an optimal condition for the fits, one should take care to defocus the enough the objective lens to have $z >> a$.
-
-
-
-
-\begin{figure}
-	\centering
-	\includegraphics{02_body/chapter2/images/holo_size_exemple/holos_only_r.pdf}
-	\caption{On the left, experimentally measured  holograms' radial intensity profile stack, generated from a polystyrene bead of nominal radius $a = 1.5 \pm 0.035 ~ \mathrm{\mu m} $ using the experimental setup explained in chapter \ref{chap:exp-setup}. The calibration of this particle radius and optical index is shown in Fig.\ref{fig:KDErn}. On the right, the corresponding theoretical stack using the result of each individual hologram's fit.}
-	\label{fig:holo_onlyr}
-\end{figure}
-
-
-
-as shown in the Fig.\ref{fig.holo_fix_n} with a fixed optical index $n = 1.59$. 
-
-One can also check how the holograms are varying with the optical inex a particle. In the Fig.\ref{fig.holo_fix_z}, we can observe holograms with a fix height of $z=15 ~ \mathrm{\mu m}$ 
-
-
-Finally, Lorenz-Mie is the most versatile in-line holographic method, indeed, it permits tracking and characterize unique particles even without a priori knowledge. Besides, it is possible to write the Lorenz-Mie function $\vec{f}_s$ for particular cases such as anisotropic \cite{fung_holographic_2013}, non-spherical particles \cite{wang_using_2014} or particle clusters \cite{fung_holographic_2013, perry_real-space_2013} to name a few; such possibilities open the door to a lot of experimental studies. Additionally, it can reach really high precision as the tenth of nanometer on the position and radius as well as $10^{-3}$ on the optical index \cite{lee_characterizing_2007}. Unfortunately, the Lorenz-Mie fitting suffer from a major drawback which is the time needed to fit one image. For example, a 200 by 200 pixels image, of a $2.5 ~ \mathrm{\mu m}$ particle's hologram, can take up to two minutes to be fitted using a pure and straightforward python algorithm. A lot of work as been done to have faster tracking, such as random-subset fitting \cite{dimiduk_random-subset_2014}, GPU (graphical processing unit) acceleration, machine-learning \cite{yevick_machine-learning_2014, hannel_machine-learning_2018} and deep neural networks \cite{altman_catch_2020}.
-
-
-
-\begin{figure}
-	\centering
 	\includegraphics{02_body/chapter2/images/holo_size_exemple/holos_only_n.pdf}
-	\caption{On the left, experimentally measured  holograms' radial intensity profile stack, generated from a polystyrene bead of nominal radius $a = 1.5 \pm 0.035 ~ \mathrm{\mu m} $ using the experimental setup explained in chapter \ref{chap:exp-setup}. The calibration of this particle radius and optical index is shown in Fig.\ref{fig:KDErn}. On the right, the corresponding theoretical stack using the result of each individual hologram's fit.}
+	\caption{Radial intensity profile stack as a function of the particle optical index, generated for a particle of radius $a = 1.5 ~ \mathrm{\mu m}$ with a distance between the particle center and the focal place of the objective lens $z = 15 ~\mathrm{\mu m}$.}
 	\label{fig:holo_onlyn}
 \end{figure}
 
 
+Finally, one can also check how the holograms are varying with the optical index a particle. In this case it is not the particle's optical index $n_\mathrm{p}$ which will matter the most but the ratio $\zeta = n_\mathrm{p} / n_\mathrm{m} $ which can be found in the $a_n$ and $b_n$ formulas, Eq.\ref{Eq:an} and \ref{Eq:bn}. Indeed, for the scatter to happen, the optical index $n_\mathrm{p}$ of the colloid needs to be different from the optical index of the surrounding medium $n_\mathrm{m}$. Additionally, the numerical solution of the Lorenz-Mie scattering is not stable for $n_\mathrm{p} \simeq n_\mathrm{m}$. In the Fig.\ref{fig:holo_onlyn}, we can observe holograms of a particle of radius $a = 1.5 ~ \mathrm{\mu m}$ at fix distance between the particle and the focal plane of the objective lens $z=15 ~ \mathrm{\mu m}$ with a varying colloid's optical index, in water $n_\mathrm{m} = 1.33$. On the Fig.\ref{fig:holo_onlyn} one can thus observe than for  $n_\mathrm{p} \simeq n_\mathrm{m}$ we do not oberve any holograms.  Additionally, one can observe that the noise to signal ratio gradually increases as $n_\mathrm{p}$ became different from $n_\mathrm{m}$. One who wants to use this method should thus take care to the particle material or the solvent to have $n_\mathrm{m}$ different enough to  $n_\mathrm{p}$ for the holograms' intensity to be greater than the camera noise level.
 
 
-\begin{figure}
+
+
+
+
+\subsubsection{Lorenz-Mie conclusion}
+
+The combination of the height, optical index and radius of colloid thus gives unique holograms. This uniqueness of the holograms permits extracting precisely the position, optical index and radius an a colloid. In order to see how holograms are for different couples for parameter on the Figs.\ref{fig:holo_fix_z} and \ref{fig:holo_fix_n}, one can see possible holograms for different size and height. Additionally, one can use the the Jupyter Notebook on my github repository in order to plot any hologram \href{https://github.com/eXpensia/Ma-these/blob/main/02_body/chapter2/images/holo_size_exemple/holosize_variation.ipynb}{\faGithub}.  Finally, Lorenz-Mie is the most versatile in-line holographic method, indeed, it permits tracking and characterize unique particles even without a priori knowledge. Besides, it is possible to write the Lorenz-Mie function $\vec{f}_s$ for particular cases such as anisotropic \cite{fung_holographic_2013}, non-spherical particles \cite{wang_using_2014} or particle clusters \cite{fung_holographic_2013, perry_real-space_2013} to name a few; such possibilities open the door to a lot of experimental studies. Additionally, it can reach really high precision as the tenth of nanometer on the position and radius as well as $10^{-3}$ on the optical index \cite{lee_characterizing_2007}. Unfortunately, the Lorenz-Mie fitting suffer from a major drawback which is the time needed to fit one image. For example, a 200 by 200 pixels image, of a $2.5 ~ \mathrm{\mu m}$ particle's hologram, can take up to two minutes to be fitted using a pure and straightforward python algorithm. A lot of work as been done to have faster tracking, such as random-subset fitting \cite{dimiduk_random-subset_2014}, GPU (graphical processing unit) acceleration, machine-learning \cite{yevick_machine-learning_2014, hannel_machine-learning_2018} and deep neural networks \cite{altman_catch_2020}.
+
+\begin{figure}[H]
 	\centering
 	\includegraphics{02_body/chapter2/images/test_tableau2.pdf}
 	\caption{On the left, experimentally measured  holograms' radial intensity profile stack, generated from a polystyrene bead of nominal radius $a = 1.5 \pm 0.035 ~ \mathrm{\mu m} $ using the experimental setup explained in chapter \ref{chap:exp-setup}. The calibration of this particle radius and optical index is shown in Fig.\ref{fig:KDErn}. On the right, the corresponding theoretical stack using the result of each individual hologram's fit.}
@@ -317,25 +336,26 @@ Finally, Lorenz-Mie is the most versatile in-line holographic method, indeed, it
 \end{figure}
 
 
-
 \begin{figure}
 	\centering
 	\includegraphics{02_body/chapter2/images/holo_size_exemple/holos_fix_z.pdf}
 	\caption{On the left, experimentally measured  holograms' radial intensity profile stack, generated from a polystyrene bead of nominal radius $a = 1.5 \pm 0.035 ~ \mathrm{\mu m} $ using the experimental setup explained in chapter \ref{chap:exp-setup}. The calibration of this particle radius and optical index is shown in Fig.\ref{fig:KDErn}. On the right, the corresponding theoretical stack using the result of each individual hologram's fit.}
-	\label{fig.holo_fix_z}
+	\label{fig:holo_fix_z}
 \end{figure}
+
+
 
 \begin{figure}
 	\centering
 	\includegraphics{02_body/chapter2/images/holo_size_exemple/holos_fix_n.pdf}
 	\caption{On the left, experimentally measured  holograms' radial intensity profile stack, generated from a polystyrene bead of nominal radius $a = 1.5 \pm 0.035 ~ \mathrm{\mu m} $ using the experimental setup explained in chapter \ref{chap:exp-setup}. The calibration of this particle radius and optical index is shown in Fig.\ref{fig:KDErn}. On the right, the corresponding theoretical stack using the result of each individual hologram's fit.}
-	\label{fig.holo_fix_n}
+	\label{fig:holo_fix_n}
 \end{figure}
 
 \clearpage
 \newpage
 
-\subsection{ Rayleigh-Sommerfeld back-propagation}
+\subsection{Rayleigh-Sommerfeld back-propagation}
 
 
 
@@ -383,6 +403,33 @@ where $B(\vec{q})$ is the Fourier transform of $I/I_0$ and $H(\vec{q}, -z)$ is g
 
 Finally, using Eq.\ref{Eq.RS} one can reconstruct the scattered field and intensity since $I(\vec{r}) = |E_s(\vec{r})|^2$ as shown in Fig.\ref{fig.sommerfeld}. Moreover, by finding the position where the field is the brightest as shown in red the Fig.\ref{fig.sommerfeld}, we measure the position of the particle.
 Those equations are way less computational intensive than the Lorenz-Mie function Eq.\ref{Eq.Lorenz-Mie-function}. Thus tracking can be way faster, moreover, Fourier transforms can be largely accelerated using GPU. Additionally, as the propagator Eq.\ref{Eq:propagator} take only into account the intensity of the image, this method does not require any information on the particle and number of particles. As a matter of fact,   to write Eq.\ref{Eq.RS} one just need to assume that we have spherical colloids. Thus, this method is great to reconstruct the 3D position of a lot of particles or clusters formations. However, the major drawback is that it is the less precise of the presented measurements and that we can't use it to characterize the particles generating the holograms.
+
+
+
+
+\subsubsection{Numerical Rayleigh-Sommerfeld back-propagation}
+
+The \mintinline{python}{holopy} Python module also provide a set of method that permits to user the Rayleigh-Sommerfed back-propagation. Given the \mintinline{python}{hologram} variable containing all the needed metadata about the hologram such as the pixel size, medium index $n_\mathrm{n}$ and wavelength $\lambda$ and the actual image, one can then use the \mintinline{python}{propagate} method to back-propagate an hologram over a set of height \mintinline{python}{zstack} using the following Python snippet.
+
+\begin{minted}
+	[
+	frame=lines,
+	framesep=2mm,
+	baselinestretch=1.2,
+	fontsize=\footnotesize,
+	linenos
+	]
+	{python}
+	import holopy as hp
+	import numpy as np
+	
+	zstack = np.linspace(0, 20, 11)
+	rec_vol = hp.propagate(holo, zstack)
+\end{minted}
+
+Please note that using the \mintinline{python}{propagate} this each propagation will be done by performing a convolution of the reference hologram over the distance to be propagated. However, better reconstruction can be obtained iteratively propagating holograms over short distance. The latter method is called Cascaded Free Space Propagation, and is particularly useful when the reconstructions have fine features or when propagating over large distances \cite{kreis_frequency_2002}. It can be done by specifying the argument \mintinline{python}{cfsp} to the  \mintinline{python}{propagate} method. For example, to propagate three steps over each distance, we can use \mintinline{python}{hp.propagate(holo, zstack, cfsp=3)}.
+
+
 
 \begin{figure}[!ht]
 	\centering
