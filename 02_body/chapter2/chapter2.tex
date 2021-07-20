@@ -386,7 +386,7 @@ Unfortunately, the Lorenz-Mie fitting suffer from a major drawback which is the 
 
 
 
-Rayleigh-Sommerfeld back-propagation \cite{wilson_3d_2012} works on the same principle as the Lorenz-Mie fitting but assumes that we have small scatterers., such as :
+Rayleigh-Sommerfeld back-propagation \cite{wilson_3d_2012} works on the same principle as the Lorenz-Mie fitting but assumes that we have small scatterers, or, a low difference of optical index., such as :
 
 \begin{equation}
 	|\zeta - 1| << 1 \text{ and } ka|\zeta - 1| << 1 ~.
@@ -463,10 +463,9 @@ Please note that using the \mintinline{python}{propagate}	 each propagation will
 \begin{figure}[!ht]
 	\centering
 	\includegraphics{02_body/chapter2/images/Back-propagation/backpropagation.pdf}
-	\caption{On the left: the original hologram on the top and propagated along $15 ~ \mathrm{\mu m}$ on the bottom. On the right: Reconstruction using Eq.\ref{Eq.RS} of the scattered intensity of single colloidal sphere of a radius $a = 1.5 ~ \mathrm{\mu m}$  polystyrene spheres, $n_\mathrm{p} = 1.59$ in water at a original height of $15 ~ \mathrm{\mu m}$. [NEED TO CHECK IF THE PARTICLE HERE IS NOT TO LARGE] }
+	\caption{On the left: the original hologram on the top and propagated along $15 ~ \mathrm{\mu m}$ on the bottom. On the right: Reconstruction using Eq.\ref{Eq.RS} of the scattered intensity of single colloidal sphere of a radius $a = 0.1 ~ \mathrm{\mu m}$  polystyrene spheres, $n_\mathrm{p} = 1.59$ in water at a originalm $n_\mathrm{m} = 1.59$, height of $15 ~ \mathrm{\mu m}$.}
 	\label{fig.sommerfeld}
 \end{figure}
-
 
 
 
