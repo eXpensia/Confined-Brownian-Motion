@@ -37,35 +37,37 @@ where
 	\label{Eq:ein_def_phi}
 \end{equation}
 
-and $\varphi$ is nonzero only for very small displacement $\Delta$ and satisfies $\varphi (\Delta) = \varphi (-\Delta)$.
+and $\varphi$ is the probability distribution of displacement. We assume for now, that  $\varphi$ is a Gaussian distribution, with a variance scaling linearly with $\tau$. Additionally, since such a distribution is even, it satisfies: $\varphi (\Delta) = \varphi (-\Delta)$.
 
 Let $f(x,t)$ be the number of particles per unit volume. From the definition of the function $\varphi(\Delta)$ we can obtain the distribution of particles found at time $ t + \tau$ from their distribution at a time $t$, through:
 
 \begin{equation}
-	f(x, t+\tau)\textnormal{d}x = \textnormal{d}x\int_{\Delta = -\infty} ^{\Delta = +\infty} f(x+\Delta, t) \varphi (\Delta) \textnormal{d}\Delta ~.
+	f(x, t+\tau) = \int_{-\infty} ^{ +\infty} f(x-\Delta, t) \varphi (\Delta) \textnormal{d}\Delta ~.
 	\label{Eq:Ein_first}
 \end{equation}
 
-Since $\tau$ is very small, we have:
+Since we suppose that $\tau$ is very small with respect to  $t$, we have at first order in time:
 
 \begin{equation}
-	f(x, t+\tau) = f(x,t) + \tau \frac{\partial f}{\partial t} ~.
+	f(x, t+\tau) \simeq f(x,t) + \tau \frac{\partial f}{\partial t} ~.
+	\label{eq:e1}
 \end{equation}
 
-On the other side we can Taylor expend $f(x+\Delta, t)$ in powers of $\Delta$ since only small values of $\Delta$ contribute. We obtain:
+Besides, we can Taylor expend $f(x+\Delta, t)$ in powers of $\Delta$ since only small values of $\Delta$ contribute. We obtain:
 
 \begin{equation}
-	f(x + \Delta, t) = f(x,t) + \Delta \frac{\partial f(x,t)}{\partial x} + \frac{\Delta ^2}{2!} \frac{\partial ^2 f(x,t)}{\partial x^2} ~... ~\textnormal{ad inf.}
+	f(x - \Delta, t) = f(x,t) - \Delta \frac{\partial f(x,t)}{\partial x} + \frac{\Delta ^2}{2!} \frac{\partial ^2 f(x,t)}{\partial x^2} ~.
+	\label{eq:e2}
 \end{equation}
 
-Putting all together, in Eq.\ref{Eq:Ein_first} we obtain:
+Combining Eqs.\ref{eq:e1}, \ref{eq:e2} and \ref{Eq:Ein_first} we obtain:
 
 \begin{equation}
-	f + \frac{\partial f}{\partial t} \tau = f \int_{-\infty}^{+\infty} \varphi(\Delta)\textnormal{d} \Delta + \frac{\partial f}{\partial x} \int_{-\infty}^{+\infty} \Delta \varphi (\Delta)\textnormal{d} \Delta + \frac{\partial ^2 f}{\partial x^2} \int_{-\infty}^{+\infty} \frac{\Delta ^2}{2} \varphi(\Delta)\textnormal{d}\Delta ~...
+	f + \frac{\partial f}{\partial t} \tau = f \int_{-\infty}^{+\infty} \varphi(\Delta)\textnormal{d} \Delta + \frac{\partial f}{\partial x} \int_{-\infty}^{+\infty} \Delta \varphi (\Delta)\textnormal{d} \Delta + \frac{\partial ^2 f}{\partial x^2} \int_{-\infty}^{+\infty} \frac{\Delta ^2}{2} \varphi(\Delta)\textnormal{d}\Delta ~.
 	\label{Eq:ein_expended}
 \end{equation}
 
-On the right-hand side, since $\varphi(x) = \varphi(-x)$ all even terms will vanish, moreover, all the odd terms will be very small compared to the precedent. Taking into account Eq.\ref{Eq:ein_def_phi} and invoking the definition:
+On the right-hand side, since $\varphi(x)$ is an even function, the second term vanishes. Taking into account Eq.\ref{Eq:ein_def_phi} and invoking the definition:
 
 
 
