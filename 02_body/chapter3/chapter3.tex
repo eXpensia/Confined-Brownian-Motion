@@ -1,5 +1,48 @@
-\section{infer}
-\subsection{The confined Brownian motion}
+\section{Stochastic inference of surface-induced effects using Brownian motion}
+
+\subsection{Confined Brownian motion theory}
+
+By observing the trajectory along the $z$ axis of a particle of $1.5 ~ \mathrm{\mu m} $ as shown on the fig.\ref{Fig:exp_z_traj}, one can see that the particle height does not get heigher than $ \simeq 4 ~ \mathrm{\mu m}$. Indeed due to gravity, the particle is confined near the surface. Brownian motion in confinement and at interfaces is a canonical situation, encountered from fundamental biophysics  to  nanoscale  engineering. This confinement induces near-wall effects, such as hindered mobility and electrostatic interactions. 
+
+In the first part of this chapter, I will detail the theory background of the confined Brownian motion and how to numerically simulate it. In a second part, I will present how to analyse experimental data. In particular, I will detail a multi-fitting procedure that allows a thermal-noise-limited inference of diffsion coefficients spatially resolved at the nanoscale, equilibrium potentials, and forces at the femtomewton resolution.
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics{02_body/chapter3/images/traj_z/traj_z.pdf}
+	\caption{Experimental trajectory of a particule of polystyrene of radius $a = 1.5 ~ \mathrm{\mu m}$ near a wall ($z = 0$) along the $z$ axis --- perpendicular to the wall.}
+	\label{Fig:exp_z_traj}
+\end{figure}
+
+\subsubsection{Gravitational interactions}
+
+In our experiment, we observe confined Brownian motion since the colloids are subject to gravity. Indeed, the density of the observed colloid $\rho_\mathrm{p}$ is different of the medium $\rho_\mathrm{m}$ --- in our experiment water, $\rho_\mathrm{m} = 1000 ~ \mathrm{kg.m^{-3}}$. Thus, the particle lies into a gravitational potential given by:
+
+\begin{equation}
+	U_\mathrm{g} (z) = \Delta m g z = \frac{4}{3}\pi a ^3 g \Delta \rho z ~,
+	\label{eq:ug_full}
+\end{equation}
+
+where $\Delta m$ is the mass difference of the particle and a fluid sphere of the same size, $\Delta \rho$ the corresponding density difference such as $\Delta \rho = \rho_\mathrm{m} - \rho_\mathrm{p} $ and $g$ the gravitational acceleration. By invoking the definition of a distance that we call the Boltzmann length,
+
+\begin{equation}
+	\ell _\mathrm{B} = \frac{k_\mathrm{B}T}{4/3 \pi a ^3 \Delta \rho g } ~,
+\end{equation}
+
+one can rewrite the gravitational potential Eq.\ref{eq:ug_full} as:
+
+\begin{equation}
+	U_\mathrm{g} = \frac{k_\mathrm{B}T}{\ell _\mathrm{B}} ~.
+	\label{eq:ug}
+\end{equation}
+
+The Boltzmann length $\ell_\mathrm{B}$ is the typycal gravitational decay length and represents the balance between the gravital potential and thermal energy. This distance was first measured by Perrin \cite{perrin_les_2014}, by enumerating the number of particles as a function of height to reconstruct the concentraction of the colloidal suspension that exponentially decays as $e^{- z / \ell _\mathrm{B}}$. As an exemple, in water, for a particle polystyrene, $\rho _\mathrm{p} = 1050 ~ \mathrm{kg.m^{-3}}$ and of radius $a  = 1.5 ~ \mathrm{\mu m}$ we have $\ell _\mathrm{B} = 0.58 ~ \mathrm{\mu m}$.
+
+For particle with $\ell _\mathrm{B} >> a $, one can consider that the particle does not feel the gravity. This is particulary the case when the density of the colloids and fluid matches, in this particular case $\ell _\mathrm{B} = 0$. Thus density matching can we a way to do grativation free experiments. In the case of our experiment, we want to measure confinement induced effects, therefore, we need this gravitational interaction to have the particles near the surface. Indeed, as a particle gets larger, or, denser $\ell _\mathrm{B}$ decreases and the particle will be, in average, closer to the surface. 
+
+
+\subsubsection{Local diffusion coefficient}
+
+
 
 We have seen that the bulk Brownian motion is well known and documented for a long time. But, in the real world, the boundaries are not at infinity and could play a role in the process of diffusion. Indeed, it was theorized by H. Faxen \cite{faxen_fredholm_1924} that the presence of a wall would change the Stokes-Einstein relation with a viscosity dependent to the position of the particle. As the particle get closer to a surface, the presence of the non-slip boundary condition make the fluid harder to push, thus increasing the local viscosity of the particle. This variation of the viscosity will be different for orthogonal and parallel displacement to the wall, thus we write respectively $\eta_\bot $ and $\eta_\parallel$ with $\eta_0$ being the fluid viscosity and $z$ the height of the particle:
 
@@ -107,3 +150,32 @@ where $A$ is a normalization constant so that $\int P_\mathrm{eq} = 1$. This dis
 	\includegraphics{02_body/chapter1/image/theorie_chap1.pdf}
 	\caption{On the left, plot of the Gibbs-Boltzmann distribution Eq.\ref{Eq:Peq} for $a = 1 ~ \mathrm{\mu m}$, $ B = 4 $, $\ell _\mathrm{D} = 100 ~ \mathrm{nm}$ and $\Delta \rho = 50 ~ \mathrm{kg.m^{-3}}$. On the right, local diffusion coefficient normalized by bulk diffusion coefficient $D_0 = k_\mathrm{B}T/\gamma$, given by Eq.\ref{Eq:etax} and Eq.\ref{Eq:etaz}}.
 \end{figure}
+
+
+\subsubsection{DLVO interations}
+
+
+
+
+
+\subsubsection{Langevin equation for the Brownian motion}
+
+
+
+\subsubsection{Spurious drift}
+
+\subsubsection{Numerical simulation of confined Brownian motion}
+
+\subsection{Experimental study}
+
+\subsubsection{MSD}
+
+\subsubsection{Non-gaussian dynamics - Displacement distribution}
+
+\subsubsection{Local diffusion coefficient inference}
+
+\subsubsection{Precise potential inference using multi-fitting technique}
+
+\subsubsection{Measuring external forces using the local drifts}
+
+\subsection{conclusion}
