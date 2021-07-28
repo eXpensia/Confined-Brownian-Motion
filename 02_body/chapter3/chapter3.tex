@@ -73,7 +73,7 @@ where $\epsilon_0$ the vacuum permittivity, $\epsilon_r$ the relative permitivit
 	\label{Eq.3}
 \end{equation}
 
-where $e$ is the elementary charge, $i$ denotes an ionic species of valence $z_i$ and local concentration $c_i(\vec{r})$. If the solution is at the thermodynamic equilibrium, the Boltzmann equation is used to calculate the local ion density such that:
+where $e$ is the elementary charge, $i$ denotes an ionic species of valence $z_i$ and local ionic concentration $c_i(\vec{r})$ (number density). If the solution is at the thermodynamic equilibrium, the Boltzmann equation is used to calculate the local ion density such that:
 
 \begin{equation}
 	c_i(\vec{r}) = c_i ^0 \textnormal{exp}\left(\frac{z_i e \Psi(\vec{r})}{k_\mathrm{B} T }\right) ~,
@@ -81,7 +81,7 @@ where $e$ is the elementary charge, $i$ denotes an ionic species of valence $z_i
 \end{equation}
 
 
-where $c_i ^0$ is the bulk concentration of the ionic species $i$. By combining Eqs.\ref{Eq:poisson}, \ref{Eq.3} and \ref{Eq.4}, one can obtain the Poisson-Boltzmann equation:
+where $c_i ^0$ is the bulk concentration (number density) of the ionic species $i$. By combining Eqs.\ref{Eq:poisson}, \ref{Eq.3} and \ref{Eq.4}, one can obtain the Poisson-Boltzmann equation:
 
 \begin{equation}
 	\nabla ^2 \Psi (\vec{r}) = \sum_i \frac{z_i e c_i^0}{\epsilon_0 \epsilon_r} \exp \left( - \frac{z_i e \Psi (\vec{r})}{k_\mathrm{B}T} \right) ~.
@@ -121,11 +121,61 @@ From this approximation, one can identify that the term between brackets is the 
 	\ell _\mathrm{D} =  \sqrt{ \sum_i\frac {\epsilon_0 \epsilon_r k_\mathrm{B} T} {z_i ^2 e^2 c_i^0}} ~.
 \end{equation}
 
-The Debye length...
+The Debye length is the characteristic length of the double-layer, and, the electrostatic interactions. For a monovalent electrolyte,  at 25 \textdegree C (298 K), the Debye length of aqueous solution is:
+
+\begin{equation}
+	\begin{aligned}
+		\ell _\mathrm{D} &= \sqrt{\frac{\epsilon_0 \epsilon_r k_\mathrm{B}T}{2c_s^0 e^2}}
+		= \sqrt{\frac{8.854 \times 10^{-12} \times 78.4 \times 1.381 \times 10^{-23}  \times 298}{2 \times (1.602 \times 10^{-19})^2 \times 6.022 \times 10^{26} M}} \\
+		& = 0.304 \times 10^{-9} / \sqrt{M} ~ \mathrm{m} ~,
+	\end{aligned}
+\end{equation}
 
 
+with M the molar concentration ($1 ~ \mathrm{M} = 1 ~ \mathrm{mol.L^{-1}} $ corresponding to a number density of $c_s^0 = 6.022 \times 10 ^{26} ~ \mathrm{ m^{-3}}$). Thus, for a salty concentration we have
+ $\ell_\mathrm{D} = 0.304/ \sqrt{[\mathrm{NaCl}]} ~ \mathrm{nm}$. For exemple, for NaCl solution, one can have $\ell_\mathrm{D} = 100 ~ \mathrm{nm}$ for a concentration  $[\mathrm{NaCl}] = 9.2 ~ \mathrm{\mu M}$ and   $\ell_\mathrm{D} = 10 ~  \mathrm{nm}$ for a concentration  $[\mathrm{NaCl}] = 9.2 ~ \mathrm{mM}$.
 
+\newpage 
 
+Finally, the Debye-Hünkel approximation finally writes:
+
+\begin{equation}
+	\nabla^2 \Psi (\vec{r}) = \kappa^2  \Psi (\vec{r}) ~,
+	\label{Eq:Debye_hu}
+\end{equation}
+
+with $\kappa = 1/\ell _\mathrm{D}$. Using the latter approximation one can compute the electrostatic potential around a sphere. Let us consider a perfect sphere of radius $a$ and charge $Qe$ of charge density $\sigma = Qe/4\pi a^2$. With $Q$ beeing the number of charge on the surface. Since the system has a spherical symmetry, one has $\Psi (\vec{r}) = \Psi(r)$ with $r = |\vec{r}|$. Using the Laplacian operator $\nabla ^2$ in the spherical coordinates, Eq.\ref{Eq:Debye_hu} writes:
+
+\begin{equation}
+	\frac{1}{r^2}\left[\frac{\partial}{\partial r} \left(r^2 \frac{\partial \Psi(r)}{\partial r}\right)\right] = \kappa^2  \Psi (r) ~,
+\end{equation}
+
+which has a general solution:
+
+\begin{equation}
+	\Psi(r) = C_1 \frac{\exp(\kappa r)}{r} + C_2 \frac{-\exp(\kappa r)}{r}
+\end{equation}
+
+For one sphere, the electrostatic field vanishes at infinity such as $C_1 = 0$, such it has the form of a Yukawa potential:
+
+\begin{equation}
+	\Psi (r) = C_2 \frac{-\exp(\kappa r)}{r} ~.
+	\label{eq:yuka}
+\end{equation}
+
+Additionally, at the surface of a charged sphere, the eletrostatic potential satifies:
+
+\begin{equation}
+\left. \frac{\partial{\Psi (r)}}{\partial r} \right|_{r=a} = \frac{Qe}{4 \pi \epsilon_0 \epsilon_r a^2}  = \frac{\sigma}{\epsilon_0 \epsilon_r} ~.
+\end{equation}
+
+By applying the latter boundary condition to Eq.\ref{eq:yuka} we find:
+
+\begin{equation}
+	\Psi (r) = \frac{\sigma a^2}{\epsilon_0 \epsilon_r} \frac{\exp (\kappa a)}{1 + \kappa a} \frac{\exp (-\kappa r)}{r}
+\end{equation}
+
+It is possible using superposition approximation to compute the electrostatic potential between two spheres,
 
 
 \subsubsection{Local diffusion coefficient}
