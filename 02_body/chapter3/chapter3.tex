@@ -15,6 +15,7 @@ In the first part of this chapter, I will detail the theory background of the co
 
 \subsubsection{Gravitational interactions}
 
+
 In our experiment, we observe confined Brownian motion since the colloids are subject to gravity. Indeed, the density of the observed colloid $\rho_\mathrm{p}$ is different of the medium $\rho_\mathrm{m}$ --- in our experiment water, $\rho_\mathrm{m} = 1000 ~ \mathrm{kg.m^{-3}}$. Thus, the particle lies into a gravitational potential given by:
 
 \begin{equation}
@@ -40,9 +41,17 @@ The Boltzmann length $\ell_\mathrm{B}$ is the typycal gravitational decay length
 For particle with $\ell _\mathrm{B} >> a $, one can consider that the particle does not feel the gravity. This is particulary the case when the density of the colloids and fluid matches, in this particular case $\ell _\mathrm{B} = 0$. Thus density matching can we a way to do grativation free experiments. In the case of our experiment, we want to measure confinement induced effects, therefore, we need this gravitational interaction to have the particles near the surface. Indeed, as a particle gets larger, or, denser $\ell _\mathrm{B}$ decreases and the particle will be, in average, closer to the surface. 
 
 
-\subsubsection{Doube-layer electrostatic interactions}
+\subsubsection{Sphere-wall interactions}
 
-When a surface in immerge in water are usually charged \cite{israelachvili_intermolecular_2015} due to an high dieletric constant $\epsilon \simeq 80$ that permit the build up of charges for low energetic price. Commonly, surface charging is done through ionization of dissociation of surface groups\footnote{For example, the dissociation of protons from surface carboxylic groups \cite{israelachvili_intermolecular_2015} ($-$COOH $\rightarrow$ -COO$^-$ + H$^+$) which charge negatively the surface.}, from the binding of ions from the solution --- for example, adsorption of $-$OH$^-$ onto the the water-air interface that charge it negatively. In the bulk, a fluid should be electrically neutral, thus the fluid contains as many ions of opposite charge. However, when a surface is charged negatively, negative ions are repelled from the surface, while positive ions are attracted towards the surface.  Therefore, a double-layer charge distribution is formed near the surface, as shown Fig.XX. Experimentally, we use glass slides and polystyrene beads, that are both negatively charged in water, thus leading to repulsive double-layer. This repulsive force prevent the colloids to stick together or to the surface of the substrat. 
+As we have seen, external forces acts on the particle such as the gravity, however it is not the only one. As the Brownian particle is close to a wall we can expect some interactions between the surfaces. In our case, we suppose that the Brownian particles do not interact between each other, which is the case for the dilute solution used. Indeed, the particles studied are at a minimum $50 ~ \mathrm{\mu m}$ apart which correspond to 10 times their size for the larger beads. 
+
+To describes the interaction between, the Brownian particle and the wall, we use the DLVO\footnote{The DLVO theory is named after Derjaguin, Landau, Verwey, and Overbeek \cite{israelachvili_intermolecular_2015}.} theory. This theory was first developed to describe the interactions between colloids to explain the stability of colloidal suspension. It describes the interactions using two forces components; the Van Der Waals force which arise form the interactions between surface's molecules and electrostatic interactions due the a double-layer formed with the ions present in the solution. 
+
+\paragraph{Double-Layer interactions}\mbox{}\\
+\vspace{0.10cm}
+
+
+When a surface is immersed in water are usually charged \cite{israelachvili_intermolecular_2015} due to a high dielectric constant $\epsilon \simeq 80$ that permit the build up of charges for low energetic price. Commonly, surface charging is done through ionization of dissociation of surface groups\footnote{For example, the dissociation of protons from surface carboxylic groups \cite{israelachvili_intermolecular_2015} ($-$COOH $\rightarrow$ -COO$^-$ + H$^+$) which charge negatively the surface.}, from the binding of ions from the solution --- for example, adsorption of $-$OH$^-$ onto the water-air interface that charge it negatively. In the bulk, a fluid should be electrically neutral, thus the fluid contains as many ions of opposite charge. However, when a surface is charged negatively, negative ions are repelled from the surface, while positive ions are attracted towards the surface.  Therefore, a double-layer charge distribution is formed near the surface, as shown Fig.XX. Experimentally, we use glass slides and polystyrene beads, that are both negatively charged in water, thus leading to repulsive double-layer. This repulsive force prevent the colloids to stick together or to the surface of the substrate. 
 
 
 
@@ -59,7 +68,7 @@ When a surface in immerge in water are usually charged \cite{israelachvili_inter
 
 
 
-If the solution contains an electrolyte, for example a salty solution, containing Na$^+$ and Cl$^-$ ions. The electrostatic potential $\Psi(\vec{r})$ generated by the double layer satifies Poisson's equation \cite{israelachvili_intermolecular_2015}:
+If the solution contains an electrolyte (ions of positive and negative charges), for example a salty solution, containing Na$^+$ and Cl$^-$ ions. In the DLVO theory, the electrostatic field $\Psi(\vec{r})$ generated by the double layer satisfies the mean field Poisson's equation \cite{israelachvili_intermolecular_2015}:
 
 \begin{equation}
 	\nabla ^2 \Psi(\vec{r}) = -\frac{1}{\epsilon_r \epsilon_0}  \rho_e(\vec{r})~,
@@ -135,7 +144,7 @@ The Debye length is the characteristic length of the double-layer, and, the elec
 with M the molar concentration ($1 ~ \mathrm{M} = 1 ~ \mathrm{mol.L^{-1}} $ corresponding to a number density of $c_s^0 = 6.022 \times 10 ^{26} ~ \mathrm{ m^{-3}}$). Thus, for a salty concentration we have
  $\ell_\mathrm{D} = 0.304/ \sqrt{[\mathrm{NaCl}]} ~ \mathrm{nm}$. For exemple, for NaCl solution, one can have $\ell_\mathrm{D} = 100 ~ \mathrm{nm}$ for a concentration  $[\mathrm{NaCl}] = 9.2 ~ \mathrm{\mu M}$ and   $\ell_\mathrm{D} = 10 ~  \mathrm{nm}$ for a concentration  $[\mathrm{NaCl}] = 9.2 ~ \mathrm{mM}$.
 
-\newpage 
+
 
 Finally, the Debye-Hünkel approximation finally writes:
 
@@ -175,8 +184,86 @@ By applying the latter boundary condition to Eq.\ref{eq:yuka} we find:
 	\Psi (r) = \frac{\sigma a^2}{\epsilon_0 \epsilon_r} \frac{\exp (\kappa a)}{1 + \kappa a} \frac{\exp (-\kappa r)}{r}
 \end{equation}
 
-It is possible using superposition approximation to compute the electrostatic potential between two spheres,
+This solution can be used to determine the  electrostatic field between two spheres. Indeed, if we suppose that the presence of a second sphere, do not interfere with the distribution of ions in the double layer of the other. We can thus use the superposition approximation to write the potential $\Psi _2 (z)$ between two spheres surfaces. Where $z$ is the distance between the 2 colloids. For two spheres of charge $\sigma_1$ and $\sigma_2$ and radius $a_1$ and $a_2$, $\Psi_2 (z)$ writes \cite{bell_approximate_1970}:
 
+\begin{equation}
+	\Psi(z) = \frac{4\pi}{\epsilon_0 \epsilon_r} 
+	\left(
+	\frac{\sigma_1 a_1 ^2}{1 + \kappa a_1}
+	\right)
+	\left(
+	\frac{\sigma_2 a_2 ^2}{1 + \kappa a_2}
+	\right)
+	\frac{\exp(-\kappa z)}{a_1 + a_2 + z} ~.
+\end{equation} 
+
+From the latter equation, it is possible to write the electrostatic field between a wall and a spherical colloid, by setting one of the radius to infinity. Doing so and mulitplying by $e$, one can have the eltrostatic potential $E_\mathrm{elec}(z)$ between a Brownian particle and the wall:
+
+\begin{equation}
+	E_{elec} (z) = B \mathrm{e}^{-\frac{z}{\ell_\mathrm{D}}}~.
+\end{equation}
+
+Where B is the constant that represent the surface charges, for sphere of radius $a$ and charge $\sigma_1$ and a wall of charge $\sigma_2$, one has:
+
+\begin{equation}
+	B = \frac{4 \pi}{\epsilon_0 \epsilon_r} \left( \frac{\sigma_1 a^2 }{1 + \kappa a}  \right) \frac{\sigma_2}{\kappa} ~.
+\end{equation}
+
+Typical values for $B$ ranges from 1 $k_\mathrm{B}T$ to $50 ~ k_\mathrm{B}T$. In our study we will keep $B$ to describe the electrostatic energy potential as it complicated to decouple the $\sigma_1$ and $\sigma_2$ when the colloid and wall's surface materials are different \cite{behrens_charge_2001}. However, this is not impossible and is the idea of future work.
+
+\paragraph{Van der Waals interactions}\mbox{}\\
+\vspace{0.10cm}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics{02_body/chapter3/images/vdw_scheme.pdf}
+	\caption{A colloid of radius $a$ separated from a wall from a distance $z$. The colloid material has a static dielectric constant $\epsilon_1$, the wall $\epsilon_2$ and the solution $\epsilon_3$. }
+	\label{Fig:vdw}
+\end{figure}
+
+In the DLVO theory, the Van der Waals forces describes the interaction between colloids at very short range. This forces are mainly attractive and in our case having Van der Waals interactions would lead to the particles stick to the wall. The Van der Waals potential energy $E_{VdW}$ for a spherical colloid of radius $a$, at a height $z$  at a few nanometers ($< 5$ nm) to the surface \cite{israelachvili_intermolecular_2015}:
+
+\begin{equation}
+	E_{VdW} = -\frac{A a}{6z} 
+\end{equation}
+
+where $A$ is the retarded Hamaker constant. For our system, where the particle, medium and wall are different medium as schematize in Fig.\ref{Fig:vdw}. In that case the Hamaker constant writes \cite{israelachvili_intermolecular_2015}:
+
+\begin{equation}
+	A = \frac{3}{4} k_\mathrm{B}T \left(
+	\frac{\epsilon_1 - \epsilon_3}{\epsilon_1 + \epsilon_3}
+	\right)
+	\left(
+	\frac{\epsilon_2 - \epsilon_3}{\epsilon_2 + \epsilon_3}
+	\right)
+	+
+	\frac{3h}{4\pi}
+	\int_{\nu_1}^{\infty}
+	\left(
+	\frac{\epsilon_1 (i\nu) - \epsilon_3 (i\nu)}{\epsilon_1 (i\nu) + \epsilon_3 (i\nu)}
+	\right)
+	\left(
+	\frac{\epsilon_2 (i\nu) - \epsilon_3 (i\nu)}{\epsilon_2 (i\nu) + \epsilon_3 (i\nu)}
+	\right)
+	\textnormal{d}\nu ~,
+\end{equation}
+
+where $\epsilon_1$, $\epsilon_2$ and $\epsilon_3$ are the static dieletric constants of the three media, $\epsilon (i\nu)$ are the imaginary dieletric constant at a frequency $\nu$ and $\nu_n = (2 \pi k_\mathrm{B}Tn/h = 4 \times 10^{13} n s^{-1}$ at $300$ K; and; h is the Plank's constant. The first term fives the zero-frequency energy of the van der Waals interaction and the second term the dispersion energy.
+However, since the static dielectric of water is large compared to the other medium, one can approximate the Hamaker constant of our system to only the zero-frequency term:
+
+\begin{equation}
+	A = \frac{3}{4} 1.381 \times 10^{-23} \times 298 
+	\left(
+	\frac{2.5 - 80}{2.5 + 80}
+	\right)
+	\left(
+	\frac{5 - 80}{5 + 80}
+	\right)
+	\simeq
+	2.48 \times 10^{-21} \mathrm{J}	= 0.62 ~ k_\mathrm{B}T
+\end{equation}
+
+Since $A$ is positive we correctly have an attractive Van der Waals force, this case will always be the case due to the high dielectric constant of water. More over, the zero-frequency Van der Waals force is mainly due to electrostatic interaction and is thus screened by electrolytes, we thus need to add a factor $\approx e^{-z/\ell_D}$ to the Van der Waals forces. Finally, to have the force at higher distances one should add a second factor to account for the retarded Van der Waals force of $ \simeq (1  + 11z/100 \mathrm{nm})^{-1}$ \cite{israelachvili_intermolecular_2015}. All the effects added together we can see that the Van der Waals forces will play a role only a few nanometer ($< 10$ nm). In our experiments, the Debye length $\ell _\mathrm{D}$ ($>20$ nm) is large enough for the particle to avoid this region, in the following of this work the Van der Waals interactions will be neglected. To study the Van der Waals interactions with Brownian motion, it is possible, if one add enough salt to have $\ell_\mathrm{D} \simeq 1$ nm. With such a short Debye length, all the colloids would stick to the surface and between each other.
 
 \subsubsection{Local diffusion coefficient}
 
@@ -232,55 +319,6 @@ One of the first experimental measurement of the local diffusion coefficient was
 	\label{fig:libchaber}
 \end{figure}
 
-Another interesting physical aspect to take into account when looking at confined Brownian motion is the potential the particle is lying into. Let's first consider the weight of the particle. Indeed, if the particle density does not match the fluid' one, a spherical particle will lye in a gravity potential given by:
-
-\begin{equation}
-	U_g(z) = \frac{4}{3} \pi a^3 (\rho_\mathrm{P} - \rho_\mathrm{F})gz~,
-\end{equation}
-
-\nomenclature{$g$}{Gravity constant}
-\nomenclature{$\rho_\mathrm{P}$}{Particle density}
-\nomenclature{$\rho_\mathrm{F}$}{Fluid density}
-
-that we can rewrite for simplicity
-
-\begin{equation}
-	\frac{U_g(z)}{k_\mathrm{B} T} = \frac{z}{\ell_\mathrm{B}}~,
-\end{equation}
-
-\nomenclature{$\ell_\mathrm{B}$}{Boltzmann length}
-with $\ell_\mathrm{B}$ the Boltzmann length which represents the balance between the kinetic energy and the weight of the particle:
-
-\begin{equation}
-	\ell_\mathrm{B} = \frac{k_\mathrm{B} T}{ \frac{4}{3} \pi a^3 \Delta \rho g}~.
-\end{equation}
-
-Let's now consider the interactions with the substrate, glass slides when immersed in water do charge negatively as well as polystyrene particles that we use. We will then have repulsive electrostatic interactions between the wall and the particles, the corresponding potential can be written as  \cite{israelachvili_intermolecular_2015}:
-
-\begin{equation}
-	\frac{U_\mathrm{elec}(z)}{k_\mathrm{B}T} = B \mathrm{e}^{-z/\ell_\mathrm{D}}~,
-\end{equation}
-
-\nomenclature{$B$}{Amplitude of the electrostatic interactions}
-\nomenclature{$\ell_\mathrm{D}$}{Debye length}
-
-where $B$ is the amplitude of electrostatic interactions, representing the surface charges and $\ell_\mathrm{D}$ being the Debye length, which is the characteristic length of the electrostatic interactions. The particle is thus lying in a total potential given by:
-
-\begin{equation}
-	\frac{U(z)}{k_\mathrm{B}T} =   B \mathrm{e}^{-z/\ell_\mathrm{D}} +  \frac{z}{\ell_\mathrm{B}}~.
-\end{equation}
-
-From this total potential one can construct the Gibbs-Boltzmann distribution in position:
-
-\begin{equation}
-	P_\mathrm{eq}(z) = A\mathrm{e}^
-	{
-		\frac{U}{k_\mathrm{B}T}	
-	}~,
-	\label{Eq:Peq}
-\end{equation}
-
-where $A$ is a normalization constant so that $\int P_\mathrm{eq} = 1$. This distribution gives us the probability to find the particle at a height $z$. The exponential decay due to the gravity was first measured by Perrin \cite{perrin_les_2014} by methodically counting through a microscope the number of colloids in suspension as a function on the height. 
 
 
 \begin{figure}[ht]
