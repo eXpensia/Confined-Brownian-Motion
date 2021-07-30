@@ -201,6 +201,7 @@ From the latter equation, it is possible to write the electrostatic field betwee
 
 \begin{equation}
 	E_{elec} (z) = B \mathrm{e}^{-\frac{z}{\ell_\mathrm{D}}}~.
+	\label{Eq:Uelec}
 \end{equation}
 
 Where B is the constant that represent the surface charges, for sphere of radius $a$ and charge $\sigma_1$ and a wall of charge $\sigma_2$, one has:
@@ -209,7 +210,12 @@ Where B is the constant that represent the surface charges, for sphere of radius
 	B = \frac{4 \pi}{\epsilon_0 \epsilon_r} \left( \frac{\sigma_1 a^2 }{1 + \kappa a}  \right) \frac{\sigma_2}{\kappa} ~.
 \end{equation}
 
-Typical values for $B$ ranges from 1 $k_\mathrm{B}T$ to $50 ~ k_\mathrm{B}T$. In our study we will keep $B$ to describe the electrostatic energy potential as it complicated to decouple the $\sigma_1$ and $\sigma_2$ when the colloid and wall's surface materials are different \cite{behrens_charge_2001}. However, this is not impossible and is the idea of future work.
+ Additionally, $B$ is often written as a function of the surfaces potential as [CITE PRIEVES]:
+
+\begin{equation}
+	B = 16 \epsilon_r \epsilon_0 \left(\frac{k_\mathrm{B}T}{e}\right) \tanh \left(\frac{e\phi_1}{4k_\mathrm{B}T}\right) \tanh \left(\frac{e\phi_2}{4k_\mathrm{B}T}\right) ~,
+\end{equation}
+ where $\phi_1$ and $\phi_2$ are the Stern potentials of the pshere and the wall. Typical values for $B$ ranges from 1 $k_\mathrm{B}T$ to $50 ~ k_\mathrm{B}T$. In our study we will keep $B$ to describe the electrostatic energy potential as it complicated to decouple the $\sigma_1$ and $\sigma_2$ when the colloid and wall's surface materials are different \cite{behrens_charge_2001}. However, this is not impossible and is the idea of future work.
 
 \paragraph{Van der Waals interactions}\mbox{}\\
 \vspace{0.10cm}
@@ -249,7 +255,7 @@ where $A$ is the retarded Hamaker constant. For our system, where the particle, 
 \end{equation}
 
 where $\epsilon_1$, $\epsilon_2$ and $\epsilon_3$ are the static dieletric constants of the three media, $\epsilon (i\nu)$ are the imaginary dieletric constant at a frequency $\nu$ and $\nu_n = (2 \pi k_\mathrm{B}Tn/h = 4 \times 10^{13} n s^{-1}$ at $300$ K; and; h is the Plank's constant. The first term fives the zero-frequency energy of the van der Waals interaction and the second term the dispersion energy.
-However, since the static dielectric of water is large compared to the other medium, one can approximate the Hamaker constant of our system to only the zero-frequency term:
+However, since the static dielectric of water is large compared to the other terms \cite{israelachvili_intermolecular_2015}, one can approximate the Hamaker constant of our system to only the zero-frequency term:
 
 \begin{equation}
 	A = \frac{3}{4} 1.381 \times 10^{-23} \times 298 
@@ -260,10 +266,68 @@ However, since the static dielectric of water is large compared to the other med
 	\frac{5 - 80}{5 + 80}
 	\right)
 	\simeq
-	2.48 \times 10^{-21} \mathrm{J}	= 0.62 ~ k_\mathrm{B}T
+	2.48 \times 10^{-21} \mathrm{J}	= 0.62 ~ k_\mathrm{B}T ~.
 \end{equation}
 
-Since $A$ is positive we correctly have an attractive Van der Waals force, this case will always be the case due to the high dielectric constant of water. More over, the zero-frequency Van der Waals force is mainly due to electrostatic interaction and is thus screened by electrolytes, we thus need to add a factor $\approx e^{-z/\ell_D}$ to the Van der Waals forces. Finally, to have the force at higher distances one should add a second factor to account for the retarded Van der Waals force of $ \simeq (1  + 11z/100 \mathrm{nm})^{-1}$ \cite{israelachvili_intermolecular_2015}. All the effects added together we can see that the Van der Waals forces will play a role only a few nanometer ($< 10$ nm). In our experiments, the Debye length $\ell _\mathrm{D}$ ($>20$ nm) is large enough for the particle to avoid this region, in the following of this work the Van der Waals interactions will be neglected. To study the Van der Waals interactions with Brownian motion, it is possible, if one add enough salt to have $\ell_\mathrm{D} \simeq 1$ nm. However, with such a short Debye length, all the colloids would stick to the surface and between each other.
+Since $A$ is positive we correctly have an attractive Van der Waals force, this case will always be the case due to the high dielectric constant of water. More over, the zero-frequency Van der Waals force is mainly due to electrostatic interaction and is thus screened by electrolytes, we thus need to add a factor $\approx e^{-z/\ell_D}$ to the Van der Waals forces. Also, it has been proposed \cite{gregory_approximate_1981} that to compute the force at higher distances, one should add a second factor, to account for the retarded Van der Waals force of $ \simeq (1  + 11z/100 \mathrm{nm})^{-1}$. 
+
+
+All the effects added together we can see that the Van der Waals forces will play a role only a few nanometer ($< 10$ nm) as it is commonly observed [M,P]. In our experiments, the Debye length $\ell _\mathrm{D}$ ($>20$ nm) is large enough for the particle to avoid this region, in the following of this work the Van der Waals interactions will be neglected. To study the Van der Waals interactions with Brownian motion, it is possible, if one add enough salt to have $\ell_\mathrm{D} \simeq 1$ nm. However, with such a short Debye length, all the colloids would stick to the surface and between each other. However, we have experimentally observed some dynamics on the sucked particles, further work on this movement could lead to interesting determination of the near-wall potential. 
+
+\newpage
+
+\paragraph{Total potential and equilibrium distribution}\mbox{}\\
+\vspace{0.10cm}
+
+If we combine the gravitational and electrostatic interactions the particules lies into a total energy potential $U(z)$:
+
+\begin{equation}
+	U(z) = U_\mathrm{g} + U_\mathrm{elec}
+	\label{eq:uz}
+\end{equation}
+
+By combining Eqs.\ref{eq:ug}, \ref{Eq:Uelec} and \ref{eq:uz}, and also adding the condition that the particle can't go inside the wall $U(z)$ finally writes:
+
+\begin{equation}
+	\frac{U(z)}{k_\mathrm{B}T} =  \left\{
+	\begin{array}{l}
+		\displaystyle B\,\textrm{e}^{-\frac{z}{\ell_\mathrm{D}}} + \frac{z}{\ell_\mathrm{B}}\ ,\quad \text{ for } z>0 \\
+		+\infty\ ,\quad  \text{ for } z\leq 0
+	\end{array}
+	\right. \ ,
+	\label{Eq:PDF}
+\end{equation}
+
+From this total potential energy, one can then construct the Gibbs-Boltzmann distribution to write the equilibrium \gls{PDF} of position $P_{\mathrm{eq}}(z)$:
+
+\begin{equation}
+	P_\mathrm{eq} (z)  = A \exp \left( -\frac{U(z)}{k_\mathrm{B}T} \right) ~,
+\end{equation} 
+
+where A is a normalization constant such that $\int_{0}^{\infty}P_\mathrm{eq}(z)\textnormal{d}z = 1$. Given an array of heights $z_i$ one can use compute $P_\mathrm{eq}$ using the following Python snippet, where the $A$ is computed using the \mintinline{python}{np.trapz} function. Also, the $z$ range should me choosed large enough for having $A$ to converge.
+
+\begin{minted}
+	[
+	frame=lines,
+	framesep=2mm,
+	baselinestretch=1.2,
+	fontsize=\footnotesize,
+	linenos
+	]
+	{python}
+import numpy as np
+
+def _Peq(z):
+  if z <= 0:
+    return 0
+  else:
+    return np.exp(-(B * np.exp(-z / ld) + z / lb))
+
+
+def Peq(z):
+  P = np.array([_Peq(zi) for zi in z])
+  return P / np.trapz(z, P)
+\end{minted}
 
 \subsubsection{Local diffusion coefficient}
 
