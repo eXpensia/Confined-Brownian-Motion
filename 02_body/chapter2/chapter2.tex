@@ -1,10 +1,10 @@
 \newpage
-\section{Particle characterization and tracking using optical interferences}
-		\label{sec:chapter2}
+\section{Particle Characterization and Tracking Using Optical Interferences}
+\label{sec:chapter2}
 
 \subsection{Introduction}
 
-Properties of coherent light to produce interference has been widely used in metrology for a long time as illustrated by, for example, the famous Fabry-Pérot  \cite{fabry_theorie_1899, perot_application_1899} and Michelson interferometers \cite{michelson_relative_1887}. The latter was initially used to measure the rotation of the Earth and is still used today for the recent measurement of gravitational waves
+Properties of coherent light to produce interference has been widely deployed in metrology for a long time as illustrated by, for example, the famous Fabry-Pérot  \cite{fabry_theorie_1899, perot_application_1899} and Michelson interferometers \cite{michelson_relative_1887}. The latter was initially used to evaluate the rotation of the Earth and is still employed today for the recent measurement of gravitational waves
 \cite{ligo_scientific_collaboration_and_virgo_collaboration_gw151226_2016}. 
 Since the beginning of the century, interest on tracking and characterizing colloidal particles risen thanks to the democratization of micro fluidics and lab-on-a-chip technologies. In the following, I will provide some insights on the three most used tracking methods:
 
@@ -14,7 +14,7 @@ Since the beginning of the century, interest on tracking and characterizing coll
 	\item Rayleigh-Sommerfeld back-propagation
 \end{itemize}
 
-The first one, \gls{RICM}, uses the principle of optical-path difference in a Michelson interferometer. The other two, use the interferences between the light scattered by the colloid and the incident light. Generally, both of the sources are colinear, so that we speak of in-line holography. 
+The first one, \gls{RICM}, uses the principle of optical-path difference in a Michelson interferometer. The other two, use the interferences between the light scattered by the colloid and the incident light. Generally, both sources are collinear, so that we speak of in-line holography. 
 
 
 
@@ -23,9 +23,9 @@ The first one, \gls{RICM}, uses the principle of optical-path difference in a Mi
 
 
 
-Reflection Interference Contrast Microscopy was first introduced in cell biology by Curtis to study embryonic chick heart fibroblasts \cite{curtis_mechanism_1964} in 1964. \gls{RICM} gained in popularity 40 years after both in biology and physics \cite{filler_reflection_2000, siver_use_2000, weber_2_2003, limozin_quantitative_2009, nadal_probing_2002, raedler_measurement_1992}. It was also used recently in soft matter physics to study the elastohydrodynamic lift at a soft wall \cite{davies_elastohydrodynamic_2018}.
+\gls{RICM} was first introduced in cell biology by Curtis to study embryonic chick heart fibroblasts \cite{curtis_mechanism_1964} in 1964. \gls{RICM} gained in popularity 40 years after both in biology and physics \cite{filler_reflection_2000, siver_use_2000, weber_2_2003, limozin_quantitative_2009, nadal_probing_2002, raedler_measurement_1992}. It was also used recently in soft matter physics to study the elastohydrodynamic lift at a soft wall \cite{davies_elastohydrodynamic_2018}.
 
-When we illuminate a colloid with a plane wave from the bottom, a part of the light is reflected at the surface of the glass substrate and another part at the colloid surface. The difference of optical paths between two reflections creates an interference patterns. Let us focus on the mathematical description of this phenomenon. In the far field, we can describe two different one-dimensional electric field vectors with same angular frequency $\omega$ \cite{f_bohren_absorption_1998} as propagative wave, through:
+When we illuminate a colloid with a plane wave from the bottom, a part of the light is reflected at the surface of the glass substrate and another part, at the colloid surface. The difference of optical paths between two reflections creates an interference pattern. Let us focus on the mathematical description of this phenomenon. In the far field, we can describe two one-dimensional electric field vectors with same angular frequency $\omega$ \cite{f_bohren_absorption_1998} as propagative waves, through:
 
 \begin{equation}
 	\vec{E}_1(\vec{r}, t) = \vec{E}_{0_1} \cos(\vec{k}_1 \cdot \vec{r} - \omega t + \epsilon_1) ~,
@@ -40,7 +40,7 @@ and:
 \nomenclature{$k$}{Wave number}
 \nomenclature{$\omega$}{Pulsation}
 
-where the $k_i$ are the wave vector satisfying $|\vec{k_i}|=k =2\pi n_{\mathrm{m}}/\lambda$, the angular wavenumber, $\lambda$ beeing the illumination wavelength, $n_\mathrm{m}$ the optical index of the medium, $\epsilon_{1,2}$ the initial phases of each wave and $\vec{r}$ the position. Here, the origin ($\vec{r} = \vec{0}$) is taken at the position of the first reflection (\textit{i.e.} the glass slide). Thus, on the particle, $\vec{r}$ is given by the particle's height such that $|r| = z$. 
+where the $k_i$ are the wave vector satisfying $|\vec{k_i}|=k =2\pi n_{\mathrm{m}}/\lambda$, the angular wavenumber, $\lambda$ being the illumination wavelength, $n_\mathrm{m}$ the optical index of the medium, $\epsilon_{1,2}$ the initial phases of each wave and $\vec{r}$ the position. Here, the origin ($\vec{r} = \vec{0}$) is taken at the position of the first reflection (\textit{i.e.} the glass slide). Thus, on the particle, $\vec{r}$ is given by the particle's height such that $|r| = z$. 
 
 \begin{figure}[H]
 	\centering
@@ -68,15 +68,15 @@ where $ \langle \vec{E}_1^2 \rangle $ and  $\langle \vec{E}_2^2 \rangle$ are res
 	\langle
 	\frac{1}{2} \vec{E}_{0_1}  \vec{E}_{0_2} 
 	\left[
-		\cos 
-		\left(
-			\vec{k}_1 \cdot \vec{r} - \vec{k}_1 \cdot \vec{r} + \phi	
-		\right)	
-		+ 
-		\cos
-		\left(
-			2\omega t + \phi'
-		\right)
+	\cos 
+	\left(
+	\vec{k}_1 \cdot \vec{r} - \vec{k}_1 \cdot \vec{r} + \phi 
+	\right) 
+	+ 
+	\cos
+	\left(
+	2\omega t + \phi'
+	\right)
 	\right]
 	\right\rangle_t~.
 \end{equation}
@@ -87,18 +87,18 @@ As we average over time, the second cosine vanishes. Thus one has:
 	\langle \vec{E}_1 \cdot \vec{E}_2 \rangle = \frac{1}{2} \langle  \vec{E}_{0_1}  \vec{E}_{0_2} \rangle
 	\cos 
 	\left(
-	\vec{k}_1 \cdot \vec{r} - \vec{k}_2 \cdot \vec{r} + \phi	
-	\right)	 ~,
+	\vec{k}_1 \cdot \vec{r} - \vec{k}_2 \cdot \vec{r} + \phi 
+	\right)  ~,
 \end{equation}
 
-with $\phi$ the phase difference between the two fields, which is generally equal to $\pi$ due to the reflection properties on a higher optical index. Indeed, a colloid has generally a greater optical index than the dilution medium.  Finally, the total intensity can be read as:
+with $\phi$ the phase difference between the two fields, which is usually equal to $\pi$ due to the reflection properties on a higher optical index. Indeed, a colloid has generally a greater optical index than the dilution medium.  Finally, the total intensity can be read as:
 
 
 \begin{equation}
 	I = I_1 + I_2 + 2 \sqrt{I_1 I_2} 
 	\cos 
 	\left(
-	\vec{k}_1 \cdot \vec{r} - \vec{k}_2 \cdot \vec{r} + \phi	
+	\vec{k}_1 \cdot \vec{r} - \vec{k}_2 \cdot \vec{r} + \phi 
 	\right) ~.
 \end{equation}
 
@@ -109,12 +109,12 @@ By taking $k_1 = - k_2$ due to the reflection properties, we have:
 	I = I_1 + I_2 + 2 \sqrt{I_1 I_2} 
 	\cos 
 	\left(
-	\frac{4 \pi n_{\mathrm{m}}}{\lambda} z + \phi	
+	\frac{4 \pi n_{\mathrm{m}}}{\lambda} z + \phi 
 	\right) ~.
 \end{equation}
 
 
-So far we supposed that the reflection happens at a unique point, however, we would likely be using spherical colloids. Thus, illuminating from the bottom, the reflection happens on half of the sphere surface. Moreover, thanks to the spherical geometry the holograms exhibits a radial symmetry, we thus write one can write the radial interference intensity $I(x)$, with $x$ the distance from the pattern center, through \cite{ raedler_measurement_1992}:
+So far we supposed that the reflection occurs at a unique point; however, we would likely be using spherical colloids. Therefore, illuminating from the bottom, the reflection happens on half of the sphere surface. Moreover, thanks to the spherical geometry the holograms exhibit a radial symmetry, we thus write one can write the radial interference intensity $I(x)$, with $x$ the distance from the pattern center, through \cite{ raedler_measurement_1992}:
 
 
 \begin{equation}
@@ -128,10 +128,11 @@ Where $A_1$ and $b_1$ are parameters \cite{raedler_measurement_1992} that fit th
 	g(x) = a - \sqrt{a^2 - x^2} ~,
 \end{equation}
 
-is the sphere profile, to take into account the increase sphere-wall as $x$ increases.
-Finally, this method benefits from equations that are computationally light and enables a quick tracking of particles. However, as we can see in Eq.~(\ref{Eq.RICM}), due to the periodicity of the cosine, the interference pattern is the same for all heights $z$ separated by a distance $\lambda / (2n_\mathrm{m}) \approx 200 $ nm for $\lambda = 532$ nm and $n_{\mathrm{m}} = 1.33$. 
+is the sphere profile, to consider  the increase sphere-wall as $x$ increases.
+Finally, this method benefits from equations that are computationally light and enable a quick tracking of particles. However, as we can see in Eq.~(\ref{Eq.RICM}), because of the periodicity of the cosine, the interference pattern is the same for all heights $z$ separated by a distance $\lambda / (2n_\mathrm{m}) \approx 200 $ nm for $\lambda = 532$ nm and $n_{\mathrm{m}} = 1.33$. 
 
-It is possible to extend this separation to $\simeq 1.2 ~ \mathrm{\mu m}$ as used in \cite{davies_elastohydrodynamic_2018} length by using 2 different wavelengths. Despite the spatial resolution of this method which can reach $10$ nm, the measurement ambiguity is not compatible with the study of Brownian motion due the periodicity above. Hence, \gls{RICM} is not usable in our context. As a matter of fact, we experimentally reach height spans of a few microns. 
+It is possible to extend this separation to $\simeq 1.2 ~ \mathrm{\mu m}$ as used in \cite{davies_elastohydrodynamic_2018} length by using two different wavelengths. Despite the spatial resolution of this method which can attain $10$ nm, the measurement ambiguity is not compatible with the study of Brownian motion due to the periodicity above. Hence \gls{RICM} it is not usable in our context. As a matter of fact, we experimentally reach height spans of a few microns. 
+
 
 
 
@@ -163,11 +164,11 @@ with $\vec{f}_\mathrm{s}$, the Lorenz-Mie scattering function. The intensity $I$
 	\end{aligned}
 \end{equation}
 
-Most of the experimental defects on the images are due to spacial illumination variations caused by dust particles. They can be corrected by normalizing the image by the background. In another word, we normalize  $I(\vec{r})$ by the intensity of the incident field $I_0 = E_0(\vec{r})^2$ which corresponds the experimental background. 
+Most of the experimental defects on the images are due to spacial illumination variations caused by dust particles. They can be corrected by normalizing the image by the background. In another word, we normalize $I(\vec{r})$ by the intensity of the incident field $I_0 = E_0(\vec{r})^2$ which corresponds the experimental background. 
 
-Experimentally, the background can be measured by different methods. One is to have an empty field of view and the other one, which is more convenient, is to compute the median of a stack of images. Additionally, for the latter to work, the movie should be long enough for the particle to diffuse sufficiently. If this condition is not satisfied, a ghost of the particle will appear on the background. Moreover, this process permits getting rid of the immobile particles that could generate any additional noise. An example of hologram before and after the normalization is shown in Fig.\ref{fig.Lorenz_mie_demo} a-c).
+Experimentally, the background can be measured by different methods. One is to have an empty field of view and the other one, which is more convenient, is to compute the median of a stack of images. Additionally, for the latter to work, the movie should be long enough for the particle to diffuse sufficiently. If this condition is not satisfied, a ghost of the particle will appear on the background. Moreover, this process permits getting rid of any immobile particles that could generate any additional noise. Examples of hologram before and after the normalization are shown in Figs.\ref{fig.Lorenz_mie_demo} a-c).
 
- Finally, we write the normalized intensity $I/I_0$:
+ Finally, we write the normalized intensity as:
 
 \begin{equation}
 	\frac{I(\vec{r})}{I_0(\vec{r})} = 1 + 2 \Re 
@@ -182,7 +183,7 @@ Experimentally, the background can be measured by different methods. One is to h
 \end{equation}
 
 
-Now that we have the analytical form of the holograms' intensity, it is possible to fit an experimental one to Eq.\ref{Eq.normalized_Mie} as shown in Fig.\ref{fig.Lorenz_mie_demo} d-e). For the sake of completeness, I will detail the Lorenz-Mie scattering function, $\vec{f}_\mathrm{s}(k\vec{r})$ which is given by the series:
+Now that we have the analytical form of the holograms' intensity, it is possible to fit an experimental one to Eq.\ref{Eq.normalized_Mie} as shown in Figs.\ref{fig.Lorenz_mie_demo} d-e). For the sake of completeness, I will detail the Lorenz-Mie scattering function $\vec{f}_\mathrm{s}(k\vec{r})$, which is given by the series:
 
 \begin{equation}
 	\vec{f}_\mathrm{s}(k \vec{r}) = \sum _{n=1} ^{n_c} 
@@ -194,15 +195,15 @@ Now that we have the analytical form of the holograms' intensity, it is possible
 		n(n+1)
 	}
 	\left(
-		i a_n \vec{N}^{(3)}_{eln}(k\vec{r})
+		i a_n \vec{N}^{(3)}_\mathrm{eln}(k\vec{r})
 		-
-		b_n \vec{M}^{(3)}_{oln}(k\vec{r})
+		b_n \vec{M}^{(3)}_\mathrm{oln}(k\vec{r})
 	\right)
 	\label{Eq.Lorenz-Mie-function}
 \end{equation} 
 
 
-where $\vec{N}^{(3)}_{eln}(k\vec{r})$ and $\vec{M}^{(3)}_{oln}(k\vec{r})$ are the vector spherical harmonics. $a_n$ and $b_n$ are some coefficients that depend on the particle and illumination properties. For a spherical and isotropic particle of radius $a$ and refractive index $n_\mathrm{p}$, which is illuminated by a linearly polarized plane wave, the $a_n$ and $b_n$ coefficients are expressed in terms of spherical Bessel $j_n$ and Hankel $h_n$ functions as \cite{f_bohren_absorption_1998}:
+where $\vec{N}^{(3)}_{eln}(k\vec{r})$ and $\vec{M}^{(3)}_{oln}(k\vec{r})$ are the vectorial spherical harmonics, and $a_n$ and $b_n$ are coefficients depending on the particle and illumination properties. For a spherical and isotropic particle of radius $a$ and refractive index $n_\mathrm{p}$, which is illuminated by a linearly polarized plane wave, the $a_n$ and $b_n$ coefficients are expressed in terms of spherical Bessel functions $j_n$ and Hankel functions $h_n$, as \cite{f_bohren_absorption_1998}:
 
 \begin{equation}
 	a_n = 
@@ -216,7 +217,7 @@ where $\vec{N}^{(3)}_{eln}(k\vec{r})$ and $\vec{M}^{(3)}_{oln}(k\vec{r})$ are th
 	\label{Eq:an}
 \end{equation}
 
-and
+and:
 
 \begin{equation}
 	b_n =
@@ -231,18 +232,18 @@ and
 \end{equation}
 
 
-where $\zeta = n_\mathrm{p} / n_m $ and the prime notation denotes differentiation with respect to the argument. 
+where $\zeta = n_\mathrm{p} / n_m $, and where the prime notation denotes differentiation with respect to the argument. 
 	
-Finally, an hologram is mainly given by the Lorenz-Mie scattering function Eq.\ref{Eq.Lorenz-Mie-function}. Moreover, as we can oberve with the Eqs.\ref{Eq:an} and \ref{Eq:bn}, an hologram will vary with a lot of parameters ($\lambda$, $n_m$, $n_\mathrm{p}$, $a$ and $\vec{r}_\mathrm{p}$) which can all be fitted. In general, the illumination wavelength $\lambda$ and medium index $n_\mathrm{m}$ are known and do not need to be fitted. From only one hologram, one can measure precisely the position of the particle $\vec{r}_\mathrm{p}$ and in the same time characterize the radius and optical index of the colloid. As a side note, it is even possible to characterize a particle without a priori knowledge of its characteristics using Bayesian approach \cite{gregory_bayesian_2005, dimiduk_bayesian_2016}.
+Finally, an hologram is mainly given by the Lorenz-Mie scattering function of Eq.\ref{Eq.Lorenz-Mie-function}. Moreover, as we can oberve in Eqs.\ref{Eq:an} and \ref{Eq:bn}, an hologram depends on a lot of parameters and variables ($\lambda$, $n_m$, $n_\mathrm{p}$, $a$ and $\vec{r}_\mathrm{p}$) . The parameters can be fitted by comparison to experimental data. In general, the illumination wavelength $\lambda$ and medium index $n_\mathrm{m}$ are known and do not need to be fitted. From only one hologram, one can measure precisely the position $\vec{r}_\mathrm{p}$ of the particle and simultaneously characterize the radius and optical index of the colloid. As a side note, it is even possible to characterize a particle without a priori knowledge of its characteristics using a Bayesian approach \cite{gregory_bayesian_2005, dimiduk_bayesian_2016}.
 
-Computing Eq.\ref{Eq.Lorenz-Mie-function} numerically brings another interesting question, as it is analytically written as a sum over $n$; one could ask after which number of terms $n_c$ the series will converge. It has actually been found that the series converge after a number of terms \cite{lentz_generating_1976}
+Computing Eq.\ref{Eq.Lorenz-Mie-function} numerically brings another interesting question, as it is analytically written as a sum over $n$. One could ask after which number $n_\mathrm{c}$ of terms the series converges. It has actually been found that the series converges after a number of terms given by \cite{lentz_generating_1976}:
 \begin{equation}
-	n_c = k a + 4.05 (k a)^{1/3} + 2 ~.
+	n_\mathrm{c} = k a + 4.05 (k a)^{1/3} + 2 ~.
 \end{equation}
 
-Consequently, larger particles' holograms will need more terms to converge and, hence, are longer to fit. As an example, the largest particles used during my thesis have a radius $a = 2.5 ~ \mathrm{\mu m}$ leading to a number of terms $ n_c = 55$ in water and and illumination wavelength $\lambda = 532$ nm. For the smallest ones, where $a = 0.5 ~ \mathrm{\mu m}$ we find $n_c = 18$ which makes a huge difference in practice. Indeed, if each of the terms of the sum take the same time to be computed; an image of a $2.5 ~ \mathrm{\mu m}$ particle's hologram will need $55/18 \simeq 3$ times more time to be fitted compared to the holgram of a $0.5 ~ \mathrm{\mu m}$ particle.
+Consequently, the holograms of larger particles require more terms to converge and, hence, are longer to fit. As an example, the largest particles used during my thesis have a radius $a = 2.5 ~ \mathrm{\mu m}$ leading to $ n_c = 55$ in water and for an illumination wavelength $\lambda = 532$ nm. For the smallest ones, where $a = 0.5 ~ \mathrm{\mu m}$ we find $n_c = 18$ which makes a huge difference in practice. Indeed, if each of the terms of the sum takes the same time to be computed; a $2.5 ~ \mathrm{\mu m}$ particle's hologram is $55/18 \simeq 3$ times longer to be fitted compared to the holgram of a $0.5 ~ \mathrm{\mu m}$ particle.
 
-If a reader wants to evaluate an hologram given by the Lorenz-Mie theory for a peculiar particle and position, it can be done in a few lines with the \mintinline{python}{holopy} module using the following Python snippet which was used to make Fig.\ref{fig:holo_fix_n} and \ref{fig:holo_fix_z}:
+If a reader wants to evaluate an hologram given by the Lorenz-Mie theory for a peculiar particle and position, it can be done in a few lines with the \mintinline{python}{holopy} module using the following Python snippet which was used to make Fig.\ref{fig:holo_fix_z} and \ref{fig:holo_fix_n}:
 
 \begin{minted}
 	[
@@ -257,47 +258,47 @@ import holopy as hp
 from holopy.scattering import calc_holo, Sphere
 
 sphere = Sphere(n=1.59, r=1.5, center=(4/0.1, 4/0.1, 10))
-# n is the optical index of the particle, r it's radius in microns
+# n is the optical index of the particle, r its radius in microns
 # center is its center position in microns.
 
 medium_index = 1.33
 illum_wavelen = 0.532
 illum_polarization = (1, 0)
 detector = hp.detector_grid(shape=100, spacing=0.1)
-# shape is the size in pixel of the camera and the spacing is the pixel's size in microns.
+# shape is the size in pixels of the camera and the spacing is the pixel's size in microns.
 
 holo = calc_holo(
 	detector, sphere, medium_index, illum_wavelen, illum_polarization, theory="auto"
 )
-#the hologram can be directly be plotted using:
+#the hologram can directly be plotted using:
 hp.show(holo)
 \end{minted}
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=1]{02_body/chapter2/images/lorenz_mie_fit_demo/plot_lorenz_mie.pdf}
-	\caption{a) Raw hologram of a $2.5 ~ \mathrm{\mu m}$ polystyrene particle measured experimentally with the setup detailed in the chapter \ref{chap:exp-setup}. b) Background obtained by taking the median value of the time series of images of the diffusing particle. c) Normalized hologram given by dividing a) by b). d) Result of the fit of c) using Eq.{\ref{Eq.normalized_Mie}} the particle is found to be at a height $z = 14.77 ~ \mathrm{\mu m}$. e) Comparison of the normalized radial intensity, obtained experimentally form c) and theoretically from d).}
+	\caption{a) Raw hologram of a $2.5 ~ \mathrm{\mu m}$ polystyrene particle measured experimentally with the setup detailed in section \ref{chap:exp-setup}. b) Background obtained by taking the median value of an image time series. c) Normalized hologram given by dividing a) by b). d) Result of the fit of c) using Eq.{\ref{Eq.normalized_Mie}}, from which the particle is found to be at a height $z = 14.77 ~ \mathrm{\mu m}$. e) Comparison of the normalized radial intensities, obtained experimentally from c) and theoretically from d).}
 	\label{fig.Lorenz_mie_demo}
 \end{figure}
 
-\subsubsection{Hologram dependance on the particule characteristics}
+\subsubsection{Hologram dependance on the particule's  characteristics}
 
 
 
-As we can see with the Eq.\ref{Eq.Lorenz-Mie-function}, the in-line holograms vary with the position, radius and optical index of the particle. For in-line holograms, since the incident and scattered field, the $x$ and $y$ position of the particle will simply be given by the center of the hologram. Thus, it is possible to track only movement of the particle only in 2 dimensions by using algorithm such as the Hough transform to find the center. As a side note, in that case, it would be optimal to place the particle just above the focal plane to have an Airy disk like hologram, as shown in Fig.\ref{fig:holo_fix_n} for $a = 2.5 ~ \mathrm{\mu m}$ and $z = 5 ~\mathrm{\mu m}$.
+As we can see with the Eq.\ref{Eq.Lorenz-Mie-function}, the in-line holograms vary with the position, radius and optical index of the particle. For in-line holograms, as both both incident and scattered field are collinear, the $x$ and $y$ positions of the particle are given by the center of the hologram. Thus, it is possible to track the motion of a colloid only in 2 dimensions by using algorithm such as the Hough transforms to find the center. As a side note, in that case, it would be optimal to place the particle just above the focal plane to have an Airy disk-like hologram, as shown in Fig.\ref{fig:holo_fix_n} for $a = 2.5 ~ \mathrm{\mu m}$ and $z = 5 ~\mathrm{\mu m}$.
 
 \begin{figure}[H]
 	\centering
 	\includegraphics{02_body/chapter2/images/holo_size_exemple/holos_only_z.pdf}
-	\caption{Radial intensity profile stack as a function of the distance between the particle center and the focal place of the objective lens, generated for a particle of radius $a = 1.5 ~\mathrm{\mu m}$ and optical index $n = 1.59$.}
+	\caption{Hologram intensity map in the ($r,z$)-plan, calculated (see. Eq.~(\ref{Eq.normalized_Mie})) for a particle of radius $a = 1.5 ~\mathrm{\mu m}$ and optical index $n = 1.59$.}
 	\label{fig:holo_onlyz}
 \end{figure}
 
-In order to gain some insights on how the holograms vary with the different parameters, one can to compute holograms for particles of different size and height. We will start by looking at the a particle of a radius $a = 1.5 ~ \mathrm{\mu m} $ and $n_\mathrm{p}= 1.59 $ as shown in the Fig.\ref{fig:holo_onlyz}. In this case, one can observe that as the distance between the particle and the focal plane $z$ increases, the hologram's rings gets larger. Unlike a Michelson interferometer or \gls{RICM} we do not observe the rings scrolling. 
+In order to gain some insights on how the holograms vary with the different parameters, one can compute theoritical (see. Eq.~(\ref{Eq.normalized_Mie})) holograms for particles of different sizes and heights. We start by considering a particle of radius $a = 1.5 ~ \mathrm{\mu m} $, and optical index $n_\mathrm{p}= 1.59 $ as shown in Fig.\ref{fig:holo_onlyz}. In this case, one can observe that as the distance $z$ between the particle and the focal plane increases, the hologram's rings get larger.
 
-Additionally, this thickening of the rings can also be observed on the Fig.\ref{fig:holo_z_fit}, where hologram's intensity profile are plot as a function of the height $z$ both theoretically and experimentally for a polystyrene colloidal particle of radius  $a = 1.5 ~ \mathrm{\mu m} $, and, for different couples of parameters on the Fig.\ref{fig:holo_fix_n}.
+Additionally, this thickening of the rings can also be observed in the Fig.\ref{fig:holo_z_fit}, where hologram intensity profiles are plotted as a functions of the height $z$ both theoretically and experimentally for a polystyrene colloidal particle of radius  $a = 1.5 ~ \mathrm{\mu m} $, and for different couples of parameters in Fig.\ref{fig:holo_fix_n}.
 
-Also, we can note that if $z$ is not large enough compared to the radius of the particle, the center of an hologram can be so bright that if the camera does not have a large enough dynamic range, the rings could not be seen.  Thus, for having an optimal condition for the fits, one should take care to defocus the enough the objective lens to have $z >> a$.
+Also, we note that if $z$ is not large enough compared to the radius of the particle, the center of an hologram can be so bright that the rings could not be seen if the camera does not have a large enough dynamic range.  Thus, for having an optimal condition for the fits, one should take care of defocusing enough the objective lens to have $z >> a$.
 
 
 
@@ -306,54 +307,45 @@ Also, we can note that if $z$ is not large enough compared to the radius of the 
 \begin{figure}
 	\centering
 	\includegraphics{02_body/chapter2/images/holo_size_exemple/holos_only_r.pdf}
-	\caption{Radial intensity profile stack as a function of the particle radius, generated for a particle of optical index $n = 1.59$ with a distance between the particle center and the focal place of the objective lens $z = 15 ~\mathrm{\mu m}$.}
+	\caption{Hologram intensity map in the ($r,a$)-plan, calculated (see. Eq.~(\ref{Eq.normalized_Mie})) for a particle of optical index $n = 1.59$, and a distance $z = 15 ~\mathrm{\mu m}$ between the particle center and the focal plane of the objective lens.}
 	\label{fig:holo_onlyr}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
 	\includegraphics{02_body/chapter2/images/holo_size_exemple/smallparticles.pdf}
-	\caption{Radial intensity profile for of the particle radius $a << \lambda$ , generated for a particles of optical index $n = 1.59$ with a distance between the particle center and the focal place of the objective lens $z = 15 ~\mathrm{\mu m}$ and $\lambda = 532 ~ \mathrm{nm}$.}
+	\caption{Radial intensity profile for a the particle radius $a << \lambda$, and an optical index $n_\mathrm{p} = 1.59$ with a distance $z = 15 ~\mathrm{\mu m}$ between the particle center and the focal plane of the objective lens, and for a wavelength $\lambda = 532 ~ \mathrm{nm}$.}
 	\label{fig:small_part_holo}
 \end{figure}
 
 
-We can now take a look at the variation with respect to the radius of the particle as shown on the Fig.\ref{fig:holo_onlyr} for a particle of optical index $n = 1.59$ and at a distance $z = 15 ~\mathrm{\mu m }$. One can observe that for small particles compared to the wavelength $a << \lambda$ we do not observe the rings this is due to the fact that for the small particles, the scattering can be approximated using the Reyleigh theory which tells us that the scattering is isotropic. Thus, the variation of intensity around $I_0$ will be smaller for small particle.
+We can now look at the holograms variation with respect to the radius of the particle as shown in Fig.\ref{fig:holo_onlyr} for a particle of optical index $n = 1.59$ and at a distance $z = 15 ~\mathrm{\mu m }$. One can observe that for small particles compared to the wavelength, \textit{i.e.} $a << \lambda$, we do not observe the rings. This is due to the fact that for the small particles, the scattering can be approximated using the Rayleigh theory in which the scattering is isotropic. Thus, the variation of intensity around $I_0$ will be smaller for smaller particles.
 
- Also, in this small particle regime, the particle size will not affect the general shape of the hologram but just the intensity of the hologram as it can be seen on the Fig.\ref{fig:small_part_holo}, for particle of radius $a = 0.02 ~\mathrm{\mu m}$ to $a = 0.07 ~\mathrm{\mu m}$ for a wavelength $\lambda = 0.532 ~\mathrm{\mu m}$.
+ Also, in this small-particle regime, the particle size does not affect the general shape of the hologram but just its intensity as shown in Fig.\ref{fig:small_part_holo}, for particles of radii between $a = 0.02 ~\mathrm{\mu m}$ and $a = 0.07 ~\mathrm{\mu m}$, and for a wavelength $\lambda = 532 ~\mathrm{nm}$.
  
-  Additionally, since the noise to signal ratio will be lower than for bigger particles, it will be less precise to characterize small colloids compared to the wavelength.
+  Additionally, since the signal-to-noise ratio is lower than for bigger particles, it is less precise to characterize small colloids compared to the wavelength.
 
 
-
-
-
- As the particle gets bigger, the scattering become anisotropic and it mostly towards the incident plane wave direction. This effects leads to an increase of the amplitude of the rings $I/I_0$, as one can see on the Fig.\ref{fig:holo_onlyr}. Thus, the noise to signal ratio is high enough to easily discern the hologram on top of the noise as one can see on the experimental picture fig.\ref{fig.Lorenz_mie_demo}-a). One who wants to use this method should thus take care to use large enough particle for the holograms' intensity to be greater than the camera noise level.
-
-
-
-
-
-
+ As the particle gets bigger, the scattering becomes anisotropic and is mostly oriented towards the incident plane-wave direction. This effect leads to an increase of the amplitude $I/I_0$ of the rings, as one can see in Fig.\ref{fig:holo_onlyr}. Thus, the signal-to-noise ratio is high enough to easily discern the hologram on top of the noise as one can see on the experimental picture of Fig.\ref{fig.Lorenz_mie_demo}-a). One who wants to use this method should thus use large enough particles for the hologram intensity to be greater than the camera noise level.
 
 
 
 \begin{figure}[H]
 	\centering
 	\includegraphics{02_body/chapter2/images/holo_size_exemple/holos_only_n.pdf}
-	\caption{Radial intensity profile stack as a function of the particle optical index, generated for a particle of radius $a = 1.5 ~ \mathrm{\mu m}$ with a distance between the particle center and the focal place of the objective lens $z = 15 ~\mathrm{\mu m}$.}
+	\caption{Hologram intensity map in the ($r,a$)-plan, calculated (see. Eq.~(\ref{Eq.normalized_Mie})) for a particle of optical index $n = 1.59$, and a distance $z = 15 ~\mathrm{\mu m}$ between the particle center and the focal plane of the objective lens.}
 	\label{fig:holo_onlyn}
 \end{figure}
 
 
-Finally, one can also check how the holograms are varying with the optical index a particle. In this case it is not the particle's optical index $n_\mathrm{p}$ which will matter the most but the ratio $\zeta = n_\mathrm{p} / n_\mathrm{m} $ which can be found in the $a_n$ and $b_n$ formulas, Eq.\ref{Eq:an} and \ref{Eq:bn}. Indeed, for the scatter to happen, the optical index $n_\mathrm{p}$ of the colloid needs to be different from the optical index of the surrounding medium $n_\mathrm{m}$. Additionally, the numerical solution of the Lorenz-Mie scattering is not stable for $n_\mathrm{p} \simeq n_\mathrm{m}$. In the Fig.\ref{fig:holo_onlyn}, we can observe holograms of a particle of radius $a = 1.5 ~ \mathrm{\mu m}$ at fix distance between the particle and the focal plane of the objective lens $z=15 ~ \mathrm{\mu m}$ with a varying colloid's optical index, in water $n_\mathrm{m} = 1.33$. On the Fig.\ref{fig:holo_onlyn}, one can thus observe than for  $n_\mathrm{p} \simeq n_\mathrm{m}$ we do not oberve any holograms.  Additionally, one can observe that the noise to signal ratio gradually increases as $n_\mathrm{p}$ became different from $n_\mathrm{m}$. One who wants to use this method should thus take care to the particle material or the solvent to have $n_\mathrm{m}$ different enough to  $n_\mathrm{p}$ for the holograms' intensity to be greater than the camera noise level.
+Finally, one can check how the holograms are varying with the optical index of a particle. In this case, it is not the particle's optical index $n_\mathrm{p}$ which matters the most but the ratio $\zeta = n_\mathrm{p} / n_\mathrm{m} $ which can be found in the $a_n$ and $b_n$ formulas, in Eqs.\ref{Eq:an} and \ref{Eq:bn}. Indeed, for the scattering to happen, the optical index $n_\mathrm{p}$ of the colloid needs to be different from the optical index $n_\mathrm{m}$ of the surrounding medium. Additionally, the numerical solution of the Lorenz-Mie framework is not stable for $n_\mathrm{p} \simeq n_\mathrm{m}$. In Fig.\ref{fig:holo_onlyn}, we can observe holograms of a particle of radius $a = 1.5 ~ \mathrm{\mu m}$ at fixed distance $z=15 ~ \mathrm{\mu m}$ between the particle and the focal plane of the objective lens with a varying colloid's optical index, in water where $n_\mathrm{m} = 1.33$. In Fig.\ref{fig:holo_onlyn}, one can thus observe that for  $n_\mathrm{p} \simeq n_\mathrm{m}$ we do not see any holograms.  Additionally, one can observe that the signal-to-noise ratio gradually increases as $n_\mathrm{p}$ becones different from $n_\mathrm{m}$. One who wants to use this method should thus have $n_\mathrm{m}$ different enough from $n_\mathrm{p}$ for the hologram intensity to be greater than the camera noise level.
 
 
 
 
 
 
-\subsubsection{Lorenz-Mie conclusion}
+\subsubsection{Summary on the Lorenz-Mie method}
 
 The combination of the height, optical index and radius of colloid thus gives unique holograms. This uniqueness of the holograms permits extracting precisely the position, optical index and radius of a colloid. In order to see how holograms are for different couples of parameters on the Figs.\ref{fig:holo_fix_z} and \ref{fig:holo_fix_n}, one can see possible holograms for different size and height. Additionally, one can use  the Jupyter Notebook on my github repository in order to plot any hologram \href{https://github.com/eXpensia/Ma-these/blob/main/02_body/chapter2/images/holo_size_exemple/holosize_variation.ipynb}{\faGithub}.  
 

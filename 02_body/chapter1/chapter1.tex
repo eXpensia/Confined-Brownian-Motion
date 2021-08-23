@@ -1,22 +1,22 @@
-\section{Brownian motion}
-	\label{sec:chapter1}
-	
+\section{Brownian Motion}
+\label{sec:chapter1}
+
 \subsection{The Brownian motion discovery}
 
 
-	
-In 1827 the Scottish botanist Robert Brown published an article \cite{robert_xxvii_1828} on his observation on the pollen of \textit{Clarkia pulchella} with a lot of details on his thought processes. His experiments were made to understand the flower reproduction, but, as he was looking through the microscope he observed some minute particles ejected from the pollen grains. At first, he thought the goal of this movement was to test the presence of a male organ. In order to test this theory, he extended his observations to Mosses and \textit{Equiseta}, which were drying for a hundred years. However, the fact that this peculiar movement was still observable made him invalidate his theory. Interestingly each time that he encountered a material that he was able to reduce to a fine enough powder to be suspended in water, he observed the same type of motion, although, he never understood its particle's movement.
 
-The difficulty at this time to observe and capture such a movement made the study of what we call today Brownian motion quite difficult and the first theoretical work was actually done by Louis Bachelier in his PhD thesis ``The theory of speculation", where he described a stochastic analysis of the stock and option market. Nowadays, the mathematical description of random movement is still used in the modern financial industry. 
+in 1827 the Scottish botanist Robert Brown published an article \cite{robert_xxvii_1828} on his observation on the pollen of \textit{Clarkia pulchella} with a lot of details on his reflection processes. His experiments were made to understand the flower reproduction, but, as he was looking through the microscope he observed some minute particles ejected from the pollen grains. At first, he thought the goal of this agitation was to test the presence of a male organ. To test this theory, he extended his observations to Mosses and \textit{Equiseta}, which were drying for a hundred years. However, the fact that this peculiar motion was still observable made him invalidate his theory. Interestingly, each time that he encountered a material that he could reduce to a fine enough powder to be suspended in water, he observed the same type of motion, although, he never understood its particle's movement.
 
-It is finally in 1905 that Albert Einstein theoretically state that ``bodies of microscopically visible size suspended in a liquid will perform movements of such a magnitude that they can be easily observed in a microscope" \cite{einstein_uber_1905}. A remark to make here is that in 1948 Einstein wrote a letter to one of his friend where he stated having deduced the Brownian motion ``from mechanics, without knowing that anyone had already observed anything of the kind" \cite{peter_brownian_nodate}.
+The difficulty at this time to observe and capture such a movement made the study of what we call contemporarily Brownian motion difficult and the first theoretical work was done by Louis Bachelier in his PhD thesis ``The theory of speculation," where he described a stochastic analysis of the stock and option market. Nowadays, the mathematical description of random movement is still used in the modern financial industry. 
 
-It is in 1908 that Jean Perrin published his experimental work on Brownian motion. that way he was able to measure the Avogadro number and prove the kinetic theory that Einstein developed. I would also cite Chaudesaigues and Dabrowski, who helped Perrin to track the particles by hand, half-minutes by half-minutes, for more than 3000 displacements (25 hours) and several particles. This impressive and daunting work is highly detailed in \textit{``Mouvement brownien et molécules"} \cite{perrin_mouvement_1910}. This is partly due the results this work that Perrin received the Nobel award in 1926.
+It is finally in 1905 that Albert Einstein theoretically state that ``bodies of microscopically visible size suspended in a liquid will perform movements of such a magnitude that they can be easily observed in a microscope" \cite{einstein_uber_1905}. A remark to make here is that in 1948 Einstein wrote a letter to one of his friends where he stated having deduced the Brownian motion ``from mechanics, without knowing that anyone had already observed anything of the kind" \cite{peter_brownian_nodate}.
+
+It is in 1908 that Jean Perrin published his experimental work on Brownian motion. That way he could measure the Avogadro number and prove the kinetic theory that Einstein developed. I would also cite Chaudesaigues and Dabrowski, who helped Perrin to track the particles manually, half-minutes by half-minutes, for more than 3000 displacements (25 hours) and several particles. This impressive and daunting work is highly detailed in \textit{``Mouvement brownien et molécules"} \cite{perrin_mouvement_1910}. This is partly due to the results this work that Perrin received the Nobel award in 1926.
 
 \begin{figure}[h]
 	\centering
 	\includegraphics[scale=0.6]{02_body/chapter1/image/graph_perrin.png}
-	\caption{Brownian motion of $1 ~ \mathrm{\mu m}$ particles in water tracked by hand by Jean Perrin and his colleagues. The points are spaced in time by 30 seconds and 16 divisions represents $50 ~ \mathrm{\mu m}$.}
+	\caption{Brownian motion of $1 ~ \mathrm{\mu m}$ particles in water tracked manually by Jean Perrin and his colleagues. The points are spaced in time by 30 seconds, and 16 divisions represent $50 ~ \mathrm{\mu m}$.}
 	\label{fig:Perrin_Brownian}
 \end{figure}
 
@@ -24,7 +24,7 @@ It is in 1908 that Jean Perrin published his experimental work on Brownian motio
 
 In this section we will derive the main characteristics of bulk Brownian motion in the manner of Einstein in 1905 by summarizing the section 4 of \cite{einstein_uber_1905}. We will then examine  the random motion of particles suspended in a liquid and its relation to diffusion, caused by thermal molecular motion. We assume that each particle motion is independent of other particles; also the motions of one particle at different times are assumed to be independent of one another provided that the time interval is not too small. Furthermore, we now introduce a time interval $\tau$ which is small compared to the observation time but large enough so that  the displacements in two consecutive time intervals $\tau$ may be taken as independent events. 
 
-For simplicity, we will here look only at the Brownian motion of $n$ particles in 1D along the $x$ axis. In a time interval $\tau$ the position of each individual particle will increase by a displacement $\Delta$, positive or negative. The number of particles $\textnormal{d}n$ experiencing a displacement lying between $\Delta$ and $\Delta + \textnormal{d}\Delta$ in a time interval $\tau$ is written as:
+For simplicity, we will here look only at the Brownian motion of $n$ particles in 1D along the $x$ axis. In a time interval $\tau$ the position of each particle will increase by a displacement $\Delta$, positive or negative. The number of particles $\textnormal{d}n$ experiencing a displacement lying between $\Delta$ and $\Delta + \textnormal{d}\Delta$ in a time interval $\tau$ is written as:
 
 \begin{equation}
 	\textnormal{d}n = n\varphi(\Delta)\textnormal{d}\Delta ~,
@@ -67,7 +67,7 @@ Combining Eqs.\ref{eq:e1}, \ref{eq:e2} and \ref{Eq:Ein_first} we obtain:
 	\label{Eq:ein_expended}
 \end{equation}
 
-On the right-hand side, since $\varphi(x)$ is an even function, the second term vanishes. Taking into account Eq.\ref{Eq:ein_def_phi} and invoking the definition:
+On the right-hand side, since $\varphi(x)$ is an even function, the second term vanishes. Considering Eq.\ref{Eq:ein_def_phi} and invoking the definition:
 
 
 
@@ -102,13 +102,13 @@ From this solution we can see that the mean value of the displacement along the 
 	\label{Eq:MSD_ein}
 \end{equation}
 
-The mean displacement is thus proportional to the square root of time. This result is generally the first behavior that we check when we study Brownian motion. In 3D, the square root of the \gls{MSD} will be given by $\lambda_x \sqrt{3}$.
+The mean displacement is thus proportional to the square root of time. This result is generally the first behavior that we check when we study Brownian motion. In 3D, the square root of the \gls{MSD} is given by $\lambda_x \sqrt{3}$.
 
 Previously in his article \cite{einstein_uber_1905}, Einstein had found by writing the thermodynamic equilibrium of a suspension of particles that the diffusion coefficient of a particle should read:
 
 \begin{equation}
 	D = \frac{R T}{N_\mathrm{A}}\frac{1}{6\pi \eta a} = \frac{k_\mathrm{B}T}{6 \pi \eta a}
-~,
+	~,
 	\label{Eq:D_einstein}
 \end{equation}
 
@@ -123,18 +123,18 @@ with $R$ the gas constant, $T$ the temperature, $N_\mathrm{A}$ the Avogadro numb
 	N_\mathrm{A} = \frac{t}{\lambda_x^2} \frac{RT}{3\pi \eta a} ~.
 \end{equation}
 
-Furthermore, measuring $N_\mathrm{A}$ also gives us the mass of atoms and molecules since the mass of a mole is known; as an example the mass of an oxygen atom will be given by $\frac{16}{N_\mathrm{A}}$ and the mass a water molecule by $\frac{18}{N_\mathrm{A}}$. Finally, Einstein ends up is article \cite{einstein_uber_1905} by writing \textit{``Let us hope that a researcher will soon succeed in solving the problem posed here, which is of such importance in the theory of heat!"}. I would like here to emphasize the importance of solving this problem at the very beginning of the 20th century. At this time two theories about the fundamental matter components existed, one involving energy and a continuum description in terms of field, and the other one, discrete atoms, especially supported by Boltzmann and his kinetic theory of gases, used by Einstein. Due to a lot of theoretical misunderstandings and experimental error scientist such as Svedberg or Henri thought that Einstein's theory was false \cite{genthon_concept_2020} by even suggesting that the statistical properties of Brownian motion were changing with the pH of the solution. It is finally in 1908 that Chaudesaigues and Perrin published all the evidence to prove Einstein's theory mainly by their ability to create particle emulsions of well controlled radii. 
+Furthermore, measuring $N_\mathrm{A}$ also gives us the mass of atoms and molecules since the mass of a mole is known; as an example the mass of an oxygen atom will be given by $\frac{16}{N_\mathrm{A}}$ and the mass a water molecule by $\frac{18}{N_\mathrm{A}}$. Finally, Einstein ends up is article \cite{einstein_uber_1905} by writing, \textit{``Let us hope that a researcher will soon succeed in solving the problem posed here, which is of such importance in the theory of heat!"} I would like here to emphasize the importance of solving this problem at the very beginning of the 20th century. At this time two hypotheses about the fundamental matter components existed, one involving energy and a continuum description in terms of field, and the other one, discrete atoms, especially supported by Boltzmann and his kinetic theory of gases, used by Einstein. Due to a lot of conceptual misunderstandings and experimental error scientist such as Svedberg or Henri thought that Einstein's theory was false \cite{genthon_concept_2020} by even suggesting that the statistical properties of Brownian motion were changing with the pH of the solution. It is finally in 1908 that Chaudesaigues and Perrin published all the evidence to prove Einstein's theory mainly by their ability to create particle emulsions of well-controlled radii. 
 
 \begin{figure}[!h]
 	\centering
 	\includegraphics{02_body/chapter1/image/brown_exemple.pdf}
-	\caption{Simulation of over-damped Brownian motion in the bulk (see Eq.~(\ref{Eq.shortnumlangevin})) of $1 ~ \mathrm{\mu m}$ particles in water. On the top each line represents the trajectory of a Brownian particle over 100 seconds. A total of 100 trajectories or shown. On the bottom, bullets represents the Mean Square Displacement (\gls{MSD}) computed from the simulated trajectories. The black plain line represents Einstein's theory, which is computed from the square of Eq.\ref{Eq:MSD_ein}.\href{https://github.com/eXpensia/Ma-these/blob/main/02_body/chapter1/image/Simple_theory.ipynb}{\faGithub}}
+	\caption{Simulation of over-damped Brownian motion in the bulk (see Eq.~(\ref{Eq.shortnumlangevin})) of $1 ~ \mathrm{\mu m}$ particles in water. On the top each line represents the trajectory of a Brownian particle over 100 seconds. A total of 100 trajectories are shown. On the bottom, bullets represent the Mean Square Displacement (\gls{MSD}) computed from the simulated trajectories. The plain black line represents Einstein's theory, which is computed from the square of Eq.\ref{Eq:MSD_ein}.\href{https://github.com/eXpensia/Ma-these/blob/main/02_body/chapter1/image/Simple_theory.ipynb}{\faGithub}}
 	\label{fig:bulkbrown}
 \end{figure}
 
 \subsection{The Langevin Equation}
 
-In physics we generally describe Brownian motion through a particular Stochastic Differential Equations (\gls{SDE}). This model was introduced in 1908 by Langevin \cite{langevin_sur_1908}, this model is now used by the major part of physicists working on random processes. The Langevin equation for a free colloid reads:
+in physics we generally describe Brownian motion through a particular Stochastic Differential Equations (\gls{SDE}). This model was introduced in 1908 by Langevin \cite{langevin_sur_1908}, this model is now used by the major part of physicists working on random processes. The Langevin equation for a free colloid reads:
 
 \begin{equation}
 	m \textnormal{d}V_t  = - \gamma V_t \textnormal{d}t + \alpha \textnormal{d}B_t ~,
@@ -159,7 +159,7 @@ and variance equal to:
 	\label{Eq.meandbt2}
 \end{equation}
 
-For a spherical particle the friction term is given by the Stoke's formula: $\gamma = 6\pi \eta a$ with $\eta$ the fluid viscosity and $\alpha$ the particle radius. Thus, we can derive the mean value of the particle velocity as:
+For a spherical particle, the friction term is given by the Stoke's formula: $\gamma = 6\pi \eta a$ with $\eta$ the fluid viscosity and $\alpha$ the particle radius. Thus, we can derive the mean value of the particle velocity as:
 
 \nomenclature{$\eta$}{Fluid viscosity}
 \nomenclature{$\gamma$}{Friction coefficient}
@@ -187,13 +187,13 @@ one can then show that:
 
 \begin{equation}
 	\frac{\textnormal{d}}{\textnormal{d}t}\langle x \rangle = \frac{\textnormal{d}}{ \textnormal{d}t} \left[\frac{1}{N} \sum _{i=1}^N x_i \right] = 
-	 \frac{1}{N} \sum _{i=1}^N \frac{\textnormal{d}}{ \textnormal{d}t} x_i = \langle\frac{\textnormal{d}}{\textnormal{d}t} x \rangle ~.
+	\frac{1}{N} \sum _{i=1}^N \frac{\textnormal{d}}{ \textnormal{d}t} x_i = \langle\frac{\textnormal{d}}{\textnormal{d}t} x \rangle ~.
 \end{equation}
 
-The latter thus shows that it is possible to invert average value $\langle \cdot \rangle$ and a derivative. Therefor, Eq.\ref{Eq.dvt} becomes:
+The latter thus shows that it is possible to invert average value $\langle \cdot \rangle$ and a derivative. Therefore, Eq.\ref{Eq.dvt} becomes:
 
 \begin{equation}
-	 \frac{ \textnormal{d}}{\textnormal{d}t}\langle V_t \rangle = - \frac{\gamma}{m} \langle V_t \rangle ~,
+	\frac{ \textnormal{d}}{\textnormal{d}t}\langle V_t \rangle = - \frac{\gamma}{m} \langle V_t \rangle ~,
 \end{equation}
 
 which has a familiar solution:
@@ -202,20 +202,20 @@ which has a familiar solution:
 	\label{Eq.int_V_langevin}
 \end{equation}
 
-with $V_0$ an initial velocity. This result shows that the average of the velocity should decay to zero with a characteristic time $\tau_\mathrm{B} = \frac{m}{\gamma}$. For instance, the polystyrene particles used during my experiments which are micro-metric we have $\tau_\mathrm{B} \approx 10^{-7}$ s. This means that if we measure the displacements of a particle with a time interval $ \tau  >> \tau _\mathrm{B} $ the displacement can be taken as independent events as it was stated by Einstein. In physical terms, this means that we are in the over-damped regime, in this case the Langevin equation reads:
+with $V_0$ an initial velocity. This result shows that the average of the velocity should decay to zero with a characteristic time $\tau_\mathrm{B} = \frac{m}{\gamma}$. For instance, the polystyrene particles used during my experiments which are micrometric we have $\tau_\mathrm{B} \approx 10^{-7}$ s. This signifies that if we measure the displacements of a particle with a time interval $ \tau  >> \tau _\mathrm{B} $ the displacement can be taken as independent events as it was stated by Einstein. In physical terms, this means that we are in the over-damped regime, in this case the Langevin equation reads:
 
 \begin{equation}
 	-\gamma V_t \textnormal{d}t  + \alpha  \textnormal{d}B_t = 0~.
 	\label{Eq.overdamped_SDE}
 \end{equation}
 
-The experiments done during my thesis used a video camera that can reach a maximum of hundreds frames per second (\gls{fps}) reaching time steps of $\approx 10^{-2}$ s. Therefore, all my work falls into the over damped regime. Before focusing definitely on Eq.\ref{Eq.overdamped_SDE}, we can use Eq.\ref{Eq.langevinsd} to characterize further the unknown coefficient $\alpha$. In order to do so we compute the mean square value of Eq.\ref{Eq.langevinsd}, starting by taking the second order Taylor expansion:
+The experiments done during my thesis used a video camera that can reach a maximum of hundreds frames per second (\gls{fps}) reaching time steps of $\approx 10^{-2}$ s. Therefore, all my work falls into the over-damped regime. Before focusing definitely on Eq.\ref{Eq.overdamped_SDE}, we can use Eq.\ref{Eq.langevinsd} to characterize further the unknown coefficient $\alpha$. To do so we compute the mean square value of Eq.\ref{Eq.langevinsd}, starting by taking the second order Taylor expansion:
 
 
 \begin{equation}
 	\begin{aligned}
-	\textnormal{d}\left(V_t^2\right) &\simeq \frac{\partial V_t ^ 2}{\partial V_t} \textnormal{d} V_t + \frac{1}{2} \frac{\partial ^2 V_t^2}{\partial V_t ^2} \left( \textnormal{d}V_t \right)^2  \\
-	& = 2 V_t \textnormal{d}V_t + (\textnormal{d}V_t)^2 \\	
+		\textnormal{d}\left(V_t^2\right) &\simeq \frac{\partial V_t ^ 2}{\partial V_t} \textnormal{d} V_t + \frac{1}{2} \frac{\partial ^2 V_t^2}{\partial V_t ^2} \left( \textnormal{d}V_t \right)^2  \\
+		& = 2 V_t \textnormal{d}V_t + (\textnormal{d}V_t)^2 \\ 
 	\end{aligned}
 	\label{Eq.compute1}
 \end{equation}
@@ -257,14 +257,14 @@ The latter equation permits a direct determination of the amplitude of the noise
 	\alpha = \sqrt{2k_\mathrm{B}T \gamma}~.
 \end{equation}
 
-The latter result permits to compute the amplitude of the random force in the Langevin equation. Taking the over-damped Langevin equation, it reads:
+The latter result permits computing the amplitude of the random force in the Langevin equation. Taking the over-damped Langevin equation, it reads:
 
 \begin{equation}
 	V_t\textnormal{d}t  = \sqrt{2\frac{k_\mathrm{B}T}{\gamma}} \textnormal{d}B_t 
 	\label{Eq.v_t_ovdmp}
 \end{equation}
 
-Furthermore, one can write the position of the particule $X_t$ at a time $t$, such as:
+Furthermore, one can write the position of the particle $X_t$ at a time $t$, such as:
 
 \begin{equation}
 	X_t = \int _0 ^t V_{t'}dt'~,
@@ -282,21 +282,21 @@ $\langle X_t^2 \rangle$ using Eqs.\ref{Eq.v_t_ovdmp},\ref{Eq:particle_position} 
 By relating $\langle X_t ^2 \rangle$ to the Mean Square Displacement (\gls{MSD}) to the initial position such as:
 
 \begin{equation}
-	\textnormal{MSD} = \langle (X_0 - X_ t)^2 \rangle = 	\langle X_t ^2 \rangle~,
+	\textnormal{MSD} = \langle (X_0 - X_ t)^2 \rangle =  \langle X_t ^2 \rangle~,
 \end{equation}
 
 
 we obtain that the \gls{MSD} should be linear with the time. This result confirms that using the over-damped Langevin equation, leads to the Einstein's result Eq.\ref{Eq:MSD_ein}. Where one can identify the diffusion coefficient of the particle to be $D = k_\mathrm{B}T / \gamma$. Additionally, the latter identity is called the Stokes-Einstein  relation.
 
 
-Additionally, the Langevin equation is great to compute correlator such as the velocity correlator $ \langle V_{t'}V_{t''} \rangle$ which the simplest to compute and the one that we will detail below. Indeed, if we use the full Langevin equation, $\langle X_t ^2 \rangle$ can't be that easily computed since $m\textnormal{d} V_t$ does not vanish. We would thus need to rewrite Eq.\ref{Eq.xt2}  using the velocity correletor such as:
+Additionally, the Langevin equation is great to compute correlator such as the velocity correlator $ \langle V_{t'}V_{t''} \rangle$ which the simplest to compute and the one that we will detail below. Indeed, if we use the full-Langevin equation, $\langle X_t ^2 \rangle$ can't be that easily computed since $m\textnormal{d} V_t$ does not vanish. We would thus need to rewrite Eq.\ref{Eq.xt2}  using the velocity correletor such as:
 
 \begin{equation}
 	\langle X_t ^ 2 \rangle  = \int _0 ^ {t} \int _0 ^{t} \langle V_{t'}V_{t''} \rangle dt'dt'' ~.
 	\label{Eq.int_msd}
 \end{equation}
 
-Let us now study how the two-point correlator function $ \langle V_{t'}V_{t''} \rangle $, using the full Langevin equation multiplied by $V_0$ and following the same steps as for Eq.\ref{Eq.int_V_langevin}, one  has:
+Let us now study how the two-point correlator function $ \langle V_{t'}V_{t''} \rangle $, using the full-Langevin equation multiplied by $V_0$ and following the same steps as for Eq.\ref{Eq.int_V_langevin}, one  has:
 
 \begin{equation}
 	\langle V_t V_0 \rangle = \langle V_0 ^2 \rangle \mathrm{e}^{-t/\tau_{\mathrm{B}}}~.
@@ -312,17 +312,17 @@ One can solve Eq.\ref{Eq.int_msd} by splitting the integral in two parts, where 
 
 \begin{equation}
 	\begin{aligned}
-	\langle X_t ^2 \rangle & =    \frac{k_\mathrm{B}T}{m}  \int _0 ^t \textnormal{d}t' \int _0 ^{t'} \textnormal{d}t'' \mathrm{e} ^ {- |t' - t''| / \tau_\mathrm{B}} = 2 \frac{k_\mathrm{B}T}{\gamma} \left( \int_0 ^t \textnormal{d}t' \left[1 - \mathrm{e}^{-t'/\tau_\mathrm{B}} \right] \right) \\
-	& = 2 \frac{k_\mathrm{B} T}{\gamma} \left( t - \tau_\mathrm{B} \left[ 1 - \mathrm{e}^{-t/\tau_\mathrm{B}} \right] \right) ~.
+		\langle X_t ^2 \rangle & =    \frac{k_\mathrm{B}T}{m}  \int _0 ^t \textnormal{d}t' \int _0 ^{t'} \textnormal{d}t'' \mathrm{e} ^ {- |t' - t''| / \tau_\mathrm{B}} = 2 \frac{k_\mathrm{B}T}{\gamma} \left( \int_0 ^t \textnormal{d}t' \left[1 - \mathrm{e}^{-t'/\tau_\mathrm{B}} \right] \right) \\
+		& = 2 \frac{k_\mathrm{B} T}{\gamma} \left( t - \tau_\mathrm{B} \left[ 1 - \mathrm{e}^{-t/\tau_\mathrm{B}} \right] \right) ~.
 	\end{aligned}
 \end{equation}
 
-We can extract two results from that equation. At short time $t << \tau_\mathrm{B}$, one has:
+We can extract two results from that equation. At a short time $t << \tau_\mathrm{B}$, one has:
 
 \begin{equation}
 	\begin{aligned}
-	\langle X_t ^2 \rangle & \simeq  2 \frac{k_\mathrm{B} T}{\gamma} \left( t - \tau_\mathrm{B} \left[ 1 - 1 + \frac{t}{\tau_\mathrm{B}} - \frac{t^2}{ 2 \tau_\mathrm{B} ^2}\right]         \right) \\
-	& = \frac{k_\mathrm{B} T}{m} t^2 ~.
+		\langle X_t ^2 \rangle & \simeq  2 \frac{k_\mathrm{B} T}{\gamma} \left( t - \tau_\mathrm{B} \left[ 1 - 1 + \frac{t}{\tau_\mathrm{B}} - \frac{t^2}{ 2 \tau_\mathrm{B} ^2}\right]         \right) \\
+		& = \frac{k_\mathrm{B} T}{m} t^2 ~.
 	\end{aligned}
 	\label{Eq.shorttimemsd}
 \end{equation}
@@ -334,7 +334,7 @@ This is the ballistic regime. If one can experimentally explore times shorter th
 	\label{eq:longtimemsd}
 \end{equation}
 
-This is the diffusive regime where the \gls{MSD}, as found earlier, Eq.\ref{Eq.xt2} with the over-damped Langevin equation. To study this different results, it can be interesting to simulate the Brownian motion.
+This is the diffusive regime where the \gls{MSD}, as found earlier, Eq.\ref{Eq.xt2} with the over-damped Langevin equation. To study this different result, it can be interesting to simulate the Brownian motion.
 
 \subsection{Numerical simulation of bulk Brownian motion}
 
@@ -343,7 +343,7 @@ This is the diffusive regime where the \gls{MSD}, as found earlier, Eq.\ref{Eq.x
 \begin{figure}[!hb]
 	\centering
 	\includegraphics{02_body/chapter1/image/noise_simulation/exemple.pdf}
-	\caption{Bullets represents the probability density function of $w_i$, a Gaussian-distributed number with a mean value $\langle w_i \rangle$ and a variance $\langle w_i ^2 \rangle  = \tau$. The plain black line represents a Gaussian of zero mean and a $\tau$ variance (see Eq.\ref{eq.pwi}). On the first line, the simulation is done with $\tau = 10^{-3}$ s and $\tau = 1$ s on the second one. Each column corresponds to a number $N$ of draws. From the left to the right: $N=10^2, ~10^3 \text{ and } 10^4$. }
+	\caption{Bullets represents the probability density function of $w_i$, a Gaussian-distributed number with a mean value $\langle w_i \rangle$ and a variance $\langle w_i ^2 \rangle  = \tau$. The plain black line is a Gaussian distribution of zero mean and a $\tau$ variance (see Eq.\ref{eq.pwi}). On the first line, the simulation is done with $\tau = 10^{-3}$ s and $\tau = 1$ s on the second one. Each column corresponds to a number $N$ of draws. From the left to the right: $N=10^2, ~10^3 \text{ and } 10^4$. }
 	\label{fig:exempleprecisionwi}
 \end{figure}
 
@@ -359,28 +359,28 @@ and $\textnormal{d}V_t / \textnormal{d}t$ as
 
 \begin{equation}
 	\begin{aligned}
-	\frac{\textnormal{d}V_t}{\textnormal{d}t} &\simeq 
-	\frac{
-		\frac{x_i - x_{i-1}}{\tau}
-		-
-		\frac{x_{i-1} - x_{i-2}}{\tau}
-	}
-	{\tau} \\
-	& =  \frac{x_i - 2x_{i - 1} + x_{i-2}}{\tau^2} ~.
+		\frac{\textnormal{d}V_t}{\textnormal{d}t} &\simeq 
+		\frac{
+			\frac{x_i - x_{i-1}}{\tau}
+			-
+			\frac{x_{i-1} - x_{i-2}}{\tau}
+		}
+		{\tau} \\
+		& =  \frac{x_i - 2x_{i - 1} + x_{i-2}}{\tau^2} ~.
 	\end{aligned}
 	\label{Eq.dvtnum}
 \end{equation}
 
-The only term remaining to be computed numerically is the random term $\textnormal{d}B_t$. One can thus replace $\textnormal{d}B_t / \textnormal{d}t$ by $w_i/\tau$ \footnote{The notation $w$ was choosen since in mathematical terms, a real valued continuous-time stochastic process such as $\textnormal{d}B_t$ is called a Wiener process in honor of Norbert Wiener \cite{durrett_probability_2019}.} a Gaussian distributed random number generated with a mean $\langle w_i \rangle = 0$ and a variance $\langle w_i^2 \rangle  = \tau$. The Probability Density function (PDF) of the Gaussian distribution is thus given by:
+The only term remaining to be computed numerically is the random term $\textnormal{d}B_t$. One can thus replace $\textnormal{d}B_t / \textnormal{d}t$ by $w_i/\tau$ \footnote{The notation $w$ was choosen since in mathematical terms, a real-valued continuous-time stochastic process such as $\textnormal{d}B_t$ is called a Wiener process in honor of Norbert Wiener \cite{durrett_probability_2019}.} a Gaussian distributed random number generated with a mean $\langle w_i \rangle = 0$ and a variance $\langle w_i^2 \rangle  = \tau$. The Probability Density function (PDF) of the Gaussian distribution is thus given by:
 
 \begin{equation}
-P(w_i) = \frac{1}{\sqrt{2\pi \tau}}\textnormal{e}^{- \frac{w_i^2}{2\tau}}.
-\label{eq.pwi}
+	P(w_i) = \frac{1}{\sqrt{2\pi \tau}}\textnormal{e}^{- \frac{w_i^2}{2\tau}}.
+	\label{eq.pwi}
 \end{equation}
 
 
 
-The random number $w_i$ can simply be generated with the following Python snippet.
+The random number $w_i$ can be generated with the following Python snippet.
 \begin{minted}
 	[
 	frame=lines,
@@ -390,15 +390,15 @@ The random number $w_i$ can simply be generated with the following Python snippe
 	linenos
 	]
 	{python}
-import numpy as np
-
-tau = 0.5  # time step in seconds
-wi = np.random.normal(0, np.sqrt(tau))
+	import numpy as np
+	
+	tau = 0.5  # time step in seconds
+	wi = np.random.normal(0, np.sqrt(tau))
 \end{minted}
 
 
 In the latter, \mintinline{python}{random.normal()} is a built-in Numpy module that permits the generation of Gaussian-distributed random numbers.
-Finally, by combining Eqs.\ref{Eq.vtnum} and \ref{Eq.dvtnum}, the full Langevin equation becomes:
+Finally, by combining Eqs.\ref{Eq.vtnum} and \ref{Eq.dvtnum}, the full-Langevin equation becomes:
 
 
 
@@ -409,16 +409,16 @@ Finally, by combining Eqs.\ref{Eq.vtnum} and \ref{Eq.dvtnum}, the full Langevin 
 
 From the latter, one can write $x_i$ as:
 
-\begin{equation}	
+\begin{equation} 
 	x_i = \frac{2 + \tau /\tau_\mathrm{B}}{1 + \tau / \tau_\mathrm{B} } x_{i-1} 
 	- \frac{1}{1 + \tau / \tau_\mathrm{B}}x_{i-2}
 	+ \frac{\sqrt{2k_\mathrm{B}T\gamma}}{m(1 + \tau/\tau_\mathrm{B})} \tau w_i ~,
 	\label{Eq.numfulllangevin}
 \end{equation}
 
-where we can observe that two initial conditions are needed, the two first positions of the particle. Numerically, these positions could be randomly generated or simply set to $0$. If enough statics are generated it will affect the results.
+where we can observe that two initial conditions are needed, the first two positions of the particle. Numerically, these positions could be randomly generated or  set to $0$. If enough statics are generated, it will not affect the results.
 
-\subsubsection{Simulating Brownian motion using Python}
+\subsubsection{Simulating Brownian Motion Using Python}
 
 \begin{figure}[h]
 	\centering
@@ -427,7 +427,7 @@ where we can observe that two initial conditions are needed, the two first posit
 	\label{fig:MSEwi}
 \end{figure}
 
-Before, diving into the actual simulation, it could be interesting to ask ourselves how long the simulation should be. Indeed, at equilibrium, the different observables' mean values to remain constant we should wait a sufficient amount of time. It is possible to follow a qualitative approach by generating $N$ numbers $w_i$, measuring the resulting \gls{PDF} $P_\mathrm{c}(w_i)$ and looking for how much we need to increase $N$ to have $P_\mathrm{c}(w_i) \approx P(w_i)$, under some given small-error criterion. As we can see in Fig.\ref{fig:exempleprecisionwi}, for simulations made with $\tau = 10^{-3}$ s and $\tau = 1$ s, we observe that as we increase $N$, the measured PDF, gets closer to the real one given by Eq.~(\ref{eq.pwi}). 
+Before, diving into the simulation, it could be interesting to ask ourselves how long the simulation should be. Indeed, at equilibrium, the different observables' mean values to remain constant we should wait a sufficient amount of time. It is possible to follow a qualitative approach by generating $N$ numbers $w_i$, measuring the resulting \gls{PDF} $P_\mathrm{c}(w_i)$ and looking for how much we need to increase $N$ to have $P_\mathrm{c}(w_i) \approx P(w_i)$, under some given small-error criterion. As we can see in Fig.\ref{fig:exempleprecisionwi}, for simulations made with $\tau = 10^{-3}$ s and $\tau = 1$ s, we observe that as we increase $N$, the measured PDF, gets closer to the real one given by Eq.~(\ref{eq.pwi}). 
 
 
 
@@ -438,14 +438,14 @@ To have a more quantitative approach, one can compute the Mean Relative Squared 
 	\textnormal{MRSE} = \left. \left\langle \frac{\left( P_\mathrm{c}(w_i) -P(w_i) \right)^2  } {P(w_i) ^2}\right\rangle \right|_N
 \end{equation}
 
-where the notation $\left. \right|_N$ denotes the average over $N$ realizations. Additionally, since we measure $P_c(w_i)$ by doing an histogram, the question of how many bins are used should be answered. It is possible to use the optimal Freedan-Diaconis rule \cite{freedman_histogram_1981} to compute the width of the bins to be used in a histogram. This rule reads:
+where the notation $\left. \right|_N$ denotes the average over $N$ realizations. Additionally, since we measure $P_c(w_i)$ by doing a histogram, the question of how many bins are used should be answered. It is possible to use the optimal Freedan-Diaconis rule \cite{freedman_histogram_1981} to compute the width of the bins to be used in a histogram. This rule reads:
 
 \begin{equation}
 	\textnormal{Bin width} = 2 \frac{\textnormal{IQR}(\{w_i\})}{\sqrt[3]{N}},
 \end{equation}
 
 
-where IQR is the interquartile range, and $\{w_i\}$ a sample of $N$ random numbers $w_i$. Moreover, one should at least take $2$ bins as a minimum. The actual number of bins can be computed using the following Python snippet.
+where IQR is the interquartile range, and $\{w_i\}$ a sample of $N$ random numbers $w_i$. Moreover, one should at least take $2$ bins as a minimum. The optimal number of bins can be computed using the following Python snippet.
 
 
 \begin{minted}
@@ -457,46 +457,46 @@ where IQR is the interquartile range, and $\{w_i\}$ a sample of $N$ random numbe
 	linenos
 	]
 	{python}
-
-import numpy as np
-
-def _iqr(wi):
+	
+	import numpy as np
+	
+	def _iqr(wi):
 	"""Function to compute interquartile range."""
 	return np.subtract(*np.percentile(x, [75, 25]))
-
-def optimal_bins(wi):
+	
+	def optimal_bins(wi):
 	"""
 	Function to compute the optinal number of bins using Freedan-Diaconis rule.
 	Input: list of random numbers | Output: optimal bins number
 	"""
 	
 	n = int(diff(wi) / (2 * _iqr(wi) * np.power(len(wi), -1 / 3)))
-
+	
 	if n <= 2:
-		return 2
+	return 2
 	else:
-		return n
+	return n
 \end{minted}
 
 
 
 
 
- As we can see in Fig.\ref{fig:MSEwi}, for $\tau$ varying between $10^{-2}$ and $10$ seconds, and $N$ between $10$ and $10^6$, the \gls{MRSE} decreases as $N$ increases. Moreover, it is interesting to observe that the \gls{MRSE} is greater as $\tau$ increases for a fixed $N$ value. As an example, we would need to only generate $N = 10^{-3}$ numbers to obain a \gls{MRSE} of $10^{-4}$ for $\tau = 0.1~\textnormal{s}$, while we would need to $N= 10^6$ for $\tau = 1 ~ \mathrm{s}$. 
- 
- 
+As we can see in Fig.\ref{fig:MSEwi}, for $\tau$ varying between $10^{-2}$ and $10$ seconds, and $N$ between $10$ and $10^6$, the \gls{MRSE} decreases as $N$ increases. Moreover, it is interesting to observe that the \gls{MRSE} is greater as $\tau$ increases for a fixed $N$ value. As an example, we would need to only generate $N = 10^{-3}$ numbers to obtain an \gls{MRSE} of $10^{-4}$ for $\tau = 0.1~\textnormal{s}$, while we would need to $N= 10^6$ for $\tau = 1 ~ \mathrm{s}$. 
 
 
 
 
-Now that the Langevin equation has been numerically implemented, one could use it to simulate Brownian trajectories. A simple way to do the simulation using Python is provided in appendix.\ref{app:simfulllangevin}. A set of trajectories simulated for a fictive particle of radius $a = 1 ~ \mathrm{\mu m}$ and mass $m = 10 ~ \mathrm{\mu g}$ in water is shown in Fig.\ref{fig:inertial_langevin}-a). For such a particle the diffusive characteristic time is $\tau_\mathrm{B} = 0.53$~s. Moreover, as one can see in Fig.\ref{fig:inertial_langevin}-b), the MSD is correctly modeled by Eq.~(\ref{Eq.shorttimemsd}) for $\tau << \tau_\mathrm{B}$, and by Eq.~(\ref{eq:longtimemsd}) for $\tau >> \tau_\mathrm{B}$. Note that for non-continuous data such as the simulation data presented here or sampled experimental trajectories, and for a given time increment $\Delta t$, the \gls{MSD} is generally defined by:
+
+
+Now that the Langevin equation has been numerically implemented, one could use it to simulate Brownian trajectories. A simple way to do the simulation using Python is provided in the appendix.\ref{app:simfulllangevin}. A set of trajectories simulated for a fictive particle of radius $a = 1 ~ \mathrm{\mu m}$ and mass $m = 10 ~ \mathrm{\mu g}$ in water is shown in Fig.\ref{fig:inertial_langevin}-a). For such a particle, the diffusive characteristic time is $\tau_\mathrm{B} = 0.53$~s. Moreover, as one can see in Fig.\ref{fig:inertial_langevin}-b), the MSD is correctly modeled by Eq.~(\ref{Eq.shorttimemsd}) for $\tau << \tau_\mathrm{B}$, and by Eq.~(\ref{eq:longtimemsd}) for $\tau >> \tau_\mathrm{B}$. Note that for non-continuous data such as the simulation data presented here or sampled experimental trajectories, and for a given time increment $\Delta t$, the \gls{MSD} is generally defined by:
 
 \begin{equation}
-	 \left\langle \Delta x^2 \right\rangle_t =  \left\langle ( x_i(t + \Delta t) - x_i(t)) ^2 \right\rangle _t ~,
-	 \label{Eq.msdn}
+	\left\langle \Delta x^2 \right\rangle_t =  \left\langle ( x_i(t + \Delta t) - x_i(t)) ^2 \right\rangle _t ~,
+	\label{Eq.msdn}
 \end{equation}
 
-where the average $	\left. \langle \rangle \right|_t $ is performed over time $t$.The following Python function can be used to numerically compute the MSD Eq.~(\ref{Eq.msdn}).
+where the average $ \left. \langle \rangle \right|_t $ is performed over time $t$.The following Python function can be used to numerically compute the MSD Eq.~(\ref{Eq.msdn}).
 
 \begin{minted}
 	[
@@ -507,7 +507,7 @@ where the average $	\left. \langle \rangle \right|_t $ is performed over time $t
 	linenos
 	]
 	{python}
-def msd(x, Dt):
+	def msd(x, Dt):
 	"""Function that returns the MSD for a list of time indices Dt for a trajectory x"""
 	_msd = lambda x, t: np.mean((x[:-Dt] - x[Dt:]) ** 2)
 	return [_msd(x, i) for i in t]
@@ -516,11 +516,11 @@ def msd(x, Dt):
 \begin{figure}[h]
 	\centering
 	\includegraphics{02_body/chapter1/image/simulation_full_langevin/intertial_langevin.pdf}
-	\caption{a) Set of $100$ trajectories simulated using the full Langevin equation (see Eq.~(\ref{Eq.numfulllangevin})) for particles of a radius  $a = 1 ~\mathrm{\mu m}$ and mass $m = 10 ~\mathrm{\mu g}$ in water, with viscosity $\eta = 0.001 ~\mathrm{Pa.s}$. The simulations are done with a time step $\tau = 0.01~ \mathrm{s}$. b) Bullets represent the measured Mean Squared Displacements (\gls{MSD}) of the simulated trajectories. The plain black line represents the characteristic inertial timescale, $\tau_\mathrm{B} = m / \gamma = 0.53 ~\mathrm{s}$. The dotted line represents the \gls{MSD} in the ballistic regime (see Eq.~(\ref{Eq.shorttimemsd})), when $t << \tau _\mathrm{B}$. The dashed line represents the \gls{MSD} in the diffusive regime (see Eq.~(\ref{Eq.longtimemsd})), when $t >> \tau _\mathrm{B}$, $\mathrm{MSD} = 2D\tau$. A detailed explanation of the simulation process can be found in the appendix.\ref{app:simfulllangevin}.  }
+	\caption{a) Set of $100$ trajectories simulated using the full-Langevin equation (see Eq.~(\ref{Eq.numfulllangevin})) for particles of a radius  $a = 1 ~\mathrm{\mu m}$ and mass $m = 10 ~\mathrm{\mu g}$ in water, with viscosity $\eta = 0.001 ~\mathrm{Pa.s}$. The simulations are done with a time step $\tau = 0.01~ \mathrm{s}$. b) Bullets represent the measured Mean Squared Displacements (\gls{MSD}) of the simulated trajectories. The plain black line represents the characteristic inertial timescale, $\tau_\mathrm{B} = m / \gamma = 0.53 ~\mathrm{s}$. The dotted line represents the \gls{MSD} in the ballistic regime (see Eq.~(\ref{Eq.shorttimemsd})), when $t << \tau _\mathrm{B}$. The dashed line represents the \gls{MSD} in the diffusive regime (see Eq.~(\ref{Eq.longtimemsd})), when $t >> \tau _\mathrm{B}$, $\mathrm{MSD} = 2D\tau$. A detailed explanation of the simulation process can be found in the appendix.\ref{app:simfulllangevin}.  }
 	\label{fig:inertial_langevin}
 \end{figure}
 
-Additionally, as we have seen earlier, the Langevin Equation can be simplified to it is over-damped version of Eq.~(\ref{Eq.overdamped_SDE}). In this case, the time step $\tau$ of the simulation should be greater than the characteristic time $\tau_\mathrm{B}$. Thus, if one who interested in the long-time statistical properties of Brownian motion one can use the over-damped Langevin equation. In this case, by putting $m=0$ into Eq.
+Additionally, as we have seen earlier, the Langevin Equation can be simplified to it is over-damped version of Eq.~(\ref{Eq.overdamped_SDE}). In this case, the time step $\tau$ of the simulation should be greater than the characteristic time $\tau_\mathrm{B}$. Thus, if one is interested in the long-time statistical properties of Brownian motion one can use the over-damped Langevin equation. In this case, by putting $m=0$ into Eq.
 ~(\ref{Eq.numfulllangevin}), one can write $x_i$ as:
 
 \begin{equation}
@@ -528,7 +528,7 @@ Additionally, as we have seen earlier, the Langevin Equation can be simplified t
 	\label{Eq.shortnumlangevin}
 \end{equation}
 
-The statistical properties at long time could be retrieved by simulating Brownian motion using the full Langevin equation. But, since the integration scheme used for Eq.~(\ref{Eq.numfulllangevin}) requires  $\tau << \tau_\mathrm{B}$, long simulation runs are necessary to retrieve the over-damped properties. A simulation of the over-damped Brownian motion trajectories using Eq.~(\ref{Eq.shortnumlangevin}) is shown in Fig.\ref{fig:bulkbrown} and is realized using the following Python Snippet.
+The statistical properties at a long time could be retrieved by simulating Brownian motion using the full-Langevin equation. But, since the integration scheme used for Eq.~(\ref{Eq.numfulllangevin}) requires  $\tau << \tau_\mathrm{B}$, long simulation runs are necessary to retrieve the over-damped properties. A simulation of the over-damped Brownian motion trajectories using Eq.~(\ref{Eq.shortnumlangevin}) is shown in Fig.\ref{fig:bulkbrown} and is realized using the following Python Snippet.
 
 \begin{minted}
 	[
@@ -549,12 +549,12 @@ The statistical properties at long time could be retrieved by simulating Brownia
 
 \subsubsection{Speedup using Cython}
 
-I would like to point out, that the optimization of a simple simulation of a Brownian trajectory can be interesting. Indeed, using a pure Python code as presented in the first part of appendix.\ref{app:simfulllangevin}, the simulation of one trajectory of $10^6$ steps, needs $6$ s to be computed. Thus, more than $10$ minutes are required to compute the 100 trajectories showed in Fig.\ref{fig:inertial_langevin}. This is long and due to how Python systematically verifies what we do is allowed. Indeed, it verifies at each step of the \mintinline{python}{for} loop the object type of each variable and if the mathematical operation are possible. This is in general the main drawback \cite{ampomah_qualitative_2017} of the interpreted language, and the only solution is to use a compiled language (\textit{e.g} C or Fortran).
+I would like to point out that the optimization of a simple simulation of a Brownian trajectory can be interesting. Indeed, using a pure Python code as presented in the first part of appendix.\ref{app:simfulllangevin}, the simulation of one trajectory of $10^6$ steps, needs $6$ s to be computed. Thus, more than $10$ minutes are required to compute the 100 trajectories shown in Fig.\ref{fig:inertial_langevin}. This is long and due to how Python systematically verifies what we do is allowed. Indeed, it verifies at each step of the \mintinline{python}{for} loop the object type of each variable and if the mathematical operation are possible. This is  generally the main drawback \cite{ampomah_qualitative_2017} of interpreted language, and the only solution is to use a compiled language (\textit{e.g} C or Fortran).
 
-The difference between an interpreted (\textit{e.g.} Python) and compiled language (\textit{e.g.} C) lies in the result of the process of interpreting or compiling. A compiler (\textit{e.g.} gcc for the C language \href{https://github.com/gcc-mirror/gcc}{\faGithub}) translate the source code into the computer native language, and create an executable file. The execution of compiled language does not require any more translation, and hence run significantly faster. Contrariwise, an interpreted language is not translated in advance, but is done at the execution, line by line, and each time the program is executed. This process is done by the interpreter, such as Python, Matlab or Perl for their eponymous language. At each execution, the time taken by the interpreter to read and execute each line slow the process, causing execution to take more time.
+The difference between an interpreted (\textit{e.g.} Python) and compiled language (\textit{e.g.} C) lies in the result of the process of interpreting or compiling. A compiler (\textit{e.g.} gcc for the C language \href{https://github.com/gcc-mirror/gcc}{\faGithub}) translate the source code into the computer native language, and create an executable file. The execution of compiled language does not require any more translations, and hence run significantly faster. Contrariwise, an interpreted language is not translated in advance, but is done at the execution, line by line, and each time the program is executed. This process is done by the interpreter, such as Python, Matlab or Perl for their eponymous language. At each execution, the time taken by the interpreter to read and execute each line slow the process, causing execution to take more time.
 
-To overcome this problem with Python, the \mintinline{python}{cython} package has been developed to translate in C and compile the part of the code that are long, especially the \mintinline{python}{for} loops. Thus, one can transform is Python source code into a hybrid Python-C code. As presented in appendix.\ref{app:simfulllangevin}, compiling the \mintinline{python}{for} loop using \mintinline{python}{cython} in the full Langevin simulations reduces the time to generate a $10^6$-step trajectory from $6$ s to $30$ ms thus achieving a speedup  factor of $200$. Moreover, in the hybrid version, the execution time is limited by the random number generation. Indeed, it takes $ \approx 24.0 \mathrm{ms}$ using \mintinline{python}{numpy} to generate $10^6$ $w_i$ numbers and $\approx 6$~ms for the trajectory computation. Additionally, as shown at the end of appendix.\ref{app:simfulllangevin}, even a pure C implementation of the random generation can be slower than the \mintinline{python}{numpy} one, thanks to  \mintinline{python}{numpy}'s memory optimization. Thus, by using the above mixed-language strategy, the simulation is optimal with the current tools and language at hand.
+To overcome this problem with Python, the \mintinline{python}{cython} package has been developed to translate in C and compile the part of the code that is long to execute, especially the \mintinline{python}{for} loops. Thus, one can transform is Python source code into a hybrid Python-C code. As presented in appendix.\ref{app:simfulllangevin}, compiling the \mintinline{python}{for} loop using \mintinline{python}{cython} in the full-Langevin simulations reduces the time to generate a $10^6$-step trajectory from $6$ s to $30$ ms thus achieving a speedup  factor of $200$. Moreover, in the hybrid version, the execution time is limited by the random number generation. Indeed, it takes $ \approx 24.0 \mathrm{ms}$ using \mintinline{python}{numpy} to generate $10^6$ $w_i$ numbers and $\approx 6$~ms for the trajectory computation. Additionally, as shown at the end of appendix.\ref{app:simfulllangevin}, even a pure C implementation of the random generation can be slower than the \mintinline{python}{numpy} one, thanks to  \mintinline{python}{numpy}'s memory optimization. Thus, by using the above mixed-language strategy, the simulation is optimal with the current tools and language at hand.
 
 \subsection{Conclusion}
 
-In this chapter, we have covered the history of Brownian motion, from the first observation by Robert Brown in the middle of the 19th century to its mathematical and experimental proofs in the early 20th century. We have then described mathematically the bulk Brownian motion, and its important statistical properties. Finally, we have used the latter description in order to simulate Brownian motion using the both full Langevin equation, and its over-damped version. 
+In this chapter, we have covered the history of Brownian motion, from the first observation by Robert Brown in the middle of the 19th century to its mathematical and experimental proofs in the early 20th century. We have then described mathematically the bulk Brownian motion and its important statistical properties. Finally, we have used the latter description to simulate Brownian motion using both the full-Langevin equation, and its over-damped version. 
