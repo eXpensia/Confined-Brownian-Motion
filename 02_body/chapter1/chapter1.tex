@@ -67,7 +67,7 @@ Combining Eqs.\ref{eq:e1}, \ref{eq:e2} and \ref{Eq:Ein_first} we obtain:
 	\label{Eq:ein_expended}
 \end{equation}
 
-On the right-hand side, since $\varphi(x)$ is an even function, the second term vanishes. Considering Eq.\ref{Eq:ein_def_phi} and invoking the definition:
+On the right-hand side, since $\varphi(x)$ is an even function, the second term vanishes. Considering Eq.~(\ref{Eq:ein_def_phi}) and invoking the definition:
 
 
 
@@ -75,7 +75,7 @@ On the right-hand side, since $\varphi(x)$ is an even function, the second term 
 	\frac{1}{\tau} \int_{-\infty}^{+\infty} \frac{\Delta^2}{2}\varphi(\Delta)\textnormal{d}\Delta = D ~,
 \end{equation}
 
-Eq.\ref{Eq:ein_expended} finally becomes:
+Eq.~(\ref{Eq:ein_expended}) finally becomes:
 
 \begin{equation}
 	\frac{\partial f}{\partial t} = D \frac{\partial ^2 f}{\partial x ^2} ~.
@@ -89,7 +89,7 @@ We can here recognize a partial equation of diffusion with $D$ the diffusion coe
 	f(x \ne 0, t=0) = 0 \text{ and } \int_{-\infty}^{+\infty}f(x,t)dx = n ~.
 \end{equation}
 
-The solution Eq.\ref{Eq.HeatEquation} is then the Green's function of the heat equation in the bulk:
+The solution Eq.~(\ref{Eq.HeatEquation}) is then the Green's function of the heat equation in the bulk:
 
 
 \begin{equation}
@@ -115,7 +115,7 @@ Previously in his article \cite{einstein_uber_1905}, Einstein had found by writi
 \nomenclature{$R$}{Gas constant}
 \nomenclature{$N_\mathrm{A}$}{Avogrado constant}
 \nomenclature{$k_\mathrm{B}$}{Boltzmann Constant}
-\nomenclature{$D$}{Diffusion coefficient, see Eq.\ref{Eq:D_einstein}}
+\nomenclature{$D$}{Diffusion coefficient, see Eq.~(\ref{Eq:D_einstein}})
 
 with $R$ the gas constant, $T$ the temperature, $N_\mathrm{A}$ the Avogadro number, $\eta$ the fluid viscosity and $k_\mathrm{B}$ the Boltzmann constant. Thus, an experimental measurement of $D$ could lead to a measurement of the Avogadro number since:
 
@@ -128,7 +128,7 @@ Furthermore, measuring $N_\mathrm{A}$ also gives us the mass of atoms and molecu
 \begin{figure}[!h]
 	\centering
 	\includegraphics{02_body/chapter1/image/brown_exemple.pdf}
-	\caption{Simulation of over-damped Brownian motion in the bulk (see Eq.~(\ref{Eq.shortnumlangevin})) of $1 ~ \mathrm{\mu m}$ particles in water. On the top each line represents the trajectory of a Brownian particle over 100 seconds. A total of 100 trajectories are shown. On the bottom, bullets represent the Mean Square Displacement (\gls{MSD}) computed from the simulated trajectories. The plain black line represents Einstein's theory, which is computed from the square of Eq.\ref{Eq:MSD_ein}.\href{https://github.com/eXpensia/Ma-these/blob/main/02_body/chapter1/image/Simple_theory.ipynb}{\faGithub}}
+	\caption{Simulation of over-damped Brownian motion in the bulk (see Eq.~(\ref{Eq.shortnumlangevin})) of $1 ~ \mathrm{\mu m}$ particles in water. On the top each line represents the trajectory of a Brownian particle over 100 seconds. A total of 100 trajectories are shown. On the bottom, bullets represent the Mean Square Displacement (\gls{MSD}) computed from the simulated trajectories. The plain black line represents Einstein's theory, which is computed from the square of Eq.~(\ref{Eq:MSD_ein}).\href{https://github.com/eXpensia/Ma-these/blob/main/02_body/chapter1/image/Simple_theory.ipynb}{\faGithub}}
 	\label{fig:bulkbrown}
 \end{figure}
 
@@ -170,7 +170,7 @@ For a spherical particle, the friction term is given by the Stoke's formula: $\g
 \end{equation}
 
 \nomenclature{$m$}{Mass of a particle}
-with the properties of $dB_t$ given by Eq.\ref{Eq.meandbt}, it becomes:
+with the properties of $dB_t$ given by Eq.~(\ref{Eq.meandbt}), it becomes:
 
 \begin{equation}
 	\langle  \textnormal{d}V_t \rangle = - \frac{\gamma}{m} \langle V_t \rangle \textnormal{d}t ~.
@@ -190,7 +190,7 @@ one can then show that:
 	\frac{1}{N} \sum _{i=1}^N \frac{\textnormal{d}}{ \textnormal{d}t} x_i = \langle\frac{\textnormal{d}}{\textnormal{d}t} x \rangle ~.
 \end{equation}
 
-The latter thus shows that it is possible to invert average value $\langle \cdot \rangle$ and a derivative. Therefore, Eq.\ref{Eq.dvt} becomes:
+The latter thus shows that it is possible to invert average value $\langle \cdot \rangle$ and a derivative. Therefore, Eq.~(\ref{Eq.dvt}) becomes:
 
 \begin{equation}
 	\frac{ \textnormal{d}}{\textnormal{d}t}\langle V_t \rangle = - \frac{\gamma}{m} \langle V_t \rangle ~,
@@ -209,7 +209,7 @@ with $V_0$ an initial velocity. This result shows that the average of the veloci
 	\label{Eq.overdamped_SDE}
 \end{equation}
 
-The experiments done during my thesis used a video camera that can reach a maximum of hundreds frames per second (\gls{fps}) reaching time steps of $\approx 10^{-2}$ s. Therefore, all my work falls into the over-damped regime. Before focusing definitely on Eq.\ref{Eq.overdamped_SDE}, we can use Eq.\ref{Eq.langevinsd} to characterize further the unknown coefficient $\alpha$. To do so we compute the mean square value of Eq.\ref{Eq.langevinsd}, starting by taking the second order Taylor expansion:
+The experiments done during my thesis used a video camera that can reach a maximum of hundreds frames per second (\gls{fps}) reaching time steps of $\approx 10^{-2}$ s. Therefore, all my work falls into the over-damped regime. Before focusing definitely on Eq.~(\ref{Eq.overdamped_SDE}), we can use Eq.~(\ref{Eq.langevinsd}) to characterize further the unknown coefficient $\alpha$. To do so we compute the mean square value of Eq.~(\ref{Eq.langevinsd}), starting by taking the second order Taylor expansion:
 
 
 \begin{equation}
@@ -220,7 +220,7 @@ The experiments done during my thesis used a video camera that can reach a maxim
 	\label{Eq.compute1}
 \end{equation}
 
-combining Eqs.\ref{Eq.langevinEquation} and \ref{Eq.compute1}, we obtain by only keeping  the terms of order $\textnormal{d}t$:
+combining Eqs.~(\ref{Eq.langevinEquation})~and~(\ref{Eq.compute1}), we obtain by only keeping  the terms of order $\textnormal{d}t$:
 
 \begin{equation}
 	\textnormal{d}\left(V_t^2\right) = 2V_t\left( -\frac{\gamma}{m}V_t\textnormal{d}t + \frac{\alpha}{m}\textnormal{d}B_t  \right) + \frac{\alpha^2}{m^2}\textnormal{d}B_t ^2 ~. 
@@ -233,7 +233,7 @@ Thus, the average value of $ \textnormal{d}(V_t ^2)$ reads:
 	\label{Eq.dvt2}
 \end{equation} 
 
-Moreover, since $\textnormal{d}B_t$ is chosen independently of the velocity $V_t$, one can write $\langle V_t \textnormal{d}B_t \rangle $ = $\langle V_t \rangle \langle \textnormal{d}B_t \rangle  =0 $. Taking the latter remark into account and the fact that $\langle \textnormal{d}B_t ^2\rangle = \textnormal{d}t $, Eq.\ref{Eq.dvt2} becomes:
+Moreover, since $\textnormal{d}B_t$ is chosen independently of the velocity $V_t$, one can write $\langle V_t \textnormal{d}B_t \rangle $ = $\langle V_t \rangle \langle \textnormal{d}B_t \rangle  =0 $. Taking the latter remark into account and the fact that $\langle \textnormal{d}B_t ^2\rangle = \textnormal{d}t $, Eq.~(\ref{Eq.dvt2}) becomes:
 
 \begin{equation}
 	\langle d(V_t^2) \rangle = \left[-2 \frac{\gamma}{m} \langle V_t ^2 \rangle + \frac{\alpha^2}{m^2}\right]\textnormal{d}t~.
@@ -272,7 +272,7 @@ Furthermore, one can write the position of the particle $X_t$ at a time $t$, suc
 \end{equation}
 
 where we can suppose at the initial time $t=0$ that $X_0 = 0$. Computing 
-$\langle X_t^2 \rangle$ using Eqs.\ref{Eq.v_t_ovdmp},\ref{Eq:particle_position} and \ref{Eq.meandbt2} thus gives:
+$\langle X_t^2 \rangle$ using Eqs.~(\ref{Eq.v_t_ovdmp}),~(\ref{Eq:particle_position})~and~(\ref{Eq.meandbt2}) thus gives:
 
 \begin{equation}
 	\langle X_t ^2 \rangle =  2\frac{k_\mathrm{B}T}{\gamma}t = 2Dt
@@ -286,17 +286,17 @@ By relating $\langle X_t ^2 \rangle$ to the Mean Square Displacement (\gls{MSD})
 \end{equation}
 
 
-we obtain that the \gls{MSD} should be linear with the time. This result confirms that using the over-damped Langevin equation, leads to the Einstein's result Eq.\ref{Eq:MSD_ein}. Where one can identify the diffusion coefficient of the particle to be $D = k_\mathrm{B}T / \gamma$. Additionally, the latter identity is called the Stokes-Einstein  relation.
+we obtain that the \gls{MSD} should be linear with the time. This result confirms that using the over-damped Langevin equation, leads to the Einstein's result Eq.~(\ref{Eq:MSD_ein}). Where one can identify the diffusion coefficient of the particle to be $D = k_\mathrm{B}T / \gamma$. Additionally, the latter identity is called the Stokes-Einstein  relation.
 
 
-Additionally, the Langevin equation is great to compute correlator such as the velocity correlator $ \langle V_{t'}V_{t''} \rangle$ which the simplest to compute and the one that we will detail below. Indeed, if we use the full-Langevin equation, $\langle X_t ^2 \rangle$ can't be that easily computed since $m\textnormal{d} V_t$ does not vanish. We would thus need to rewrite Eq.\ref{Eq.xt2}  using the velocity correletor such as:
+Additionally, the Langevin equation is great to compute correlator such as the velocity correlator $ \langle V_{t'}V_{t''} \rangle$ which the simplest to compute and the one that we will detail below. Indeed, if we use the full-Langevin equation, $\langle X_t ^2 \rangle$ can't be that easily computed since $m\textnormal{d} V_t$ does not vanish. We would thus need to rewrite Eq.~(\ref{Eq.xt2})  using the velocity correletor such as:
 
 \begin{equation}
 	\langle X_t ^ 2 \rangle  = \int _0 ^ {t} \int _0 ^{t} \langle V_{t'}V_{t''} \rangle dt'dt'' ~.
 	\label{Eq.int_msd}
 \end{equation}
 
-Let us now study how the two-point correlator function $ \langle V_{t'}V_{t''} \rangle $, using the full-Langevin equation multiplied by $V_0$ and following the same steps as for Eq.\ref{Eq.int_V_langevin}, one  has:
+Let us now study how the two-point correlator function $ \langle V_{t'}V_{t''} \rangle $, using the full-Langevin equation multiplied by $V_0$ and following the same steps as for Eq.~(\ref{Eq.int_V_langevin}), one  has:
 
 \begin{equation}
 	\langle V_t V_0 \rangle = \langle V_0 ^2 \rangle \mathrm{e}^{-t/\tau_{\mathrm{B}}}~.
@@ -308,7 +308,7 @@ As the equilibrium state is invariant under temporal translation and assuming th
 	\langle V_t V_t' \rangle = \frac{k_\mathrm{B}T}{m} \mathrm{e}^{-|t-t'|/\tau_{\mathrm{B}}}~.
 \end{equation}
 
-One can solve Eq.\ref{Eq.int_msd} by splitting the integral in two parts, where $t'>t''$ and $ t' < t''$:
+One can solve Eq.~(\ref{Eq.int_msd}) by splitting the integral in two parts, where $t'>t''$ and $ t' < t''$:
 
 \begin{equation}
 	\begin{aligned}
@@ -334,7 +334,7 @@ This is the ballistic regime. If one can experimentally explore times shorter th
 	\label{eq:longtimemsd}
 \end{equation}
 
-This is the diffusive regime where the \gls{MSD}, as found earlier, Eq.\ref{Eq.xt2} with the over-damped Langevin equation. To study this different result, it can be interesting to simulate the Brownian motion.
+This is the diffusive regime where the \gls{MSD}, as found earlier, Eq.~(\ref{Eq.xt2}) with the over-damped Langevin equation. To study this different result, it can be interesting to simulate the Brownian motion.
 
 \subsection{Numerical simulation of bulk Brownian motion}
 
@@ -343,7 +343,7 @@ This is the diffusive regime where the \gls{MSD}, as found earlier, Eq.\ref{Eq.x
 \begin{figure}[!hb]
 	\centering
 	\includegraphics{02_body/chapter1/image/noise_simulation/exemple.pdf}
-	\caption{Bullets represents the probability density function of $w_i$, a Gaussian-distributed number with a mean value $\langle w_i \rangle$ and a variance $\langle w_i ^2 \rangle  = \tau$. The plain black line is a Gaussian distribution of zero mean and a $\tau$ variance (see Eq.\ref{eq.pwi}). On the first line, the simulation is done with $\tau = 10^{-3}$ s and $\tau = 1$ s on the second one. Each column corresponds to a number $N$ of draws. From the left to the right: $N=10^2, ~10^3 \text{ and } 10^4$. }
+	\caption{Bullets represents the probability density function of $w_i$, a Gaussian-distributed number with a mean value $\langle w_i \rangle$ and a variance $\langle w_i ^2 \rangle  = \tau$. The plain black line is a Gaussian distribution of zero mean and a $\tau$ variance (see Eq.~(\ref{eq.pwi})). On the first line, the simulation is done with $\tau = 10^{-3}$ s and $\tau = 1$ s on the second one. Each column corresponds to a number $N$ of draws. From the left to the right: $N=10^2, ~10^3 \text{ and } 10^4$. }
 	\label{fig:exempleprecisionwi}
 \end{figure}
 
@@ -398,7 +398,7 @@ The random number $w_i$ can be generated with the following Python snippet.
 
 
 In the latter, \mintinline{python}{random.normal()} is a built-in Numpy module that permits the generation of Gaussian-distributed random numbers.
-Finally, by combining Eqs.\ref{Eq.vtnum} and \ref{Eq.dvtnum}, the full-Langevin equation becomes:
+Finally, by combining Eqs.~(\ref{Eq.vtnum})~and~(\ref{Eq.dvtnum}), the full-Langevin equation becomes:
 
 
 
@@ -489,7 +489,7 @@ As we can see in Fig.\ref{fig:MSEwi}, for $\tau$ varying between $10^{-2}$ and $
 
 
 
-Now that the Langevin equation has been numerically implemented, one could use it to simulate Brownian trajectories. A simple way to do the simulation using Python is provided in the appendix.\ref{app:simfulllangevin}. A set of trajectories simulated for a fictive particle of radius $a = 1 ~ \mathrm{\mu m}$ and mass $m = 10 ~ \mathrm{\mu g}$ in water is shown in Fig.\ref{fig:inertial_langevin}-a). For such a particle, the diffusive characteristic time is $\tau_\mathrm{B} = 0.53$~s. Moreover, as one can see in Fig.\ref{fig:inertial_langevin}-b), the MSD is correctly modeled by Eq.~(\ref{Eq.shorttimemsd}) for $\tau << \tau_\mathrm{B}$, and by Eq.~(\ref{eq:longtimemsd}) for $\tau >> \tau_\mathrm{B}$. Note that for non-continuous data such as the simulation data presented here or sampled experimental trajectories, and for a given time increment $\Delta t$, the \gls{MSD} is generally defined by:
+Now that the Langevin equation has been numerically implemented, one could use it to simulate Brownian trajectories. A simple way to do the simulation using Python is provided in appendix.\ref{app:simfulllangevin}. A set of trajectories simulated for a fictive particle of radius $a = 1 ~ \mathrm{\mu m}$ and mass $m = 10 ~ \mathrm{\mu g}$ in water is shown in Fig.\ref{fig:inertial_langevin}-a). For such a particle, the diffusive characteristic time is $\tau_\mathrm{B} = 0.53$~s. Moreover, as one can see in Fig.\ref{fig:inertial_langevin}-b), the MSD is correctly modeled by Eq.~(\ref{Eq.shorttimemsd}) for $\tau << \tau_\mathrm{B}$, and by Eq.~(\ref{eq:longtimemsd}) for $\tau >> \tau_\mathrm{B}$. Note that for non-continuous data such as the simulation data presented here or sampled experimental trajectories, and for a given time increment $\Delta t$, the \gls{MSD} is generally defined by:
 
 \begin{equation}
 	\left\langle \Delta x^2 \right\rangle_t =  \left\langle ( x_i(t + \Delta t) - x_i(t)) ^2 \right\rangle _t ~,
@@ -516,7 +516,7 @@ where the average $ \left. \langle \rangle \right|_t $ is performed over time $t
 \begin{figure}[h]
 	\centering
 	\includegraphics{02_body/chapter1/image/simulation_full_langevin/intertial_langevin.pdf}
-	\caption{a) Set of $100$ trajectories simulated using the full-Langevin equation (see Eq.~(\ref{Eq.numfulllangevin})) for particles of a radius  $a = 1 ~\mathrm{\mu m}$ and mass $m = 10 ~\mathrm{\mu g}$ in water, with viscosity $\eta = 0.001 ~\mathrm{Pa.s}$. The simulations are done with a time step $\tau = 0.01~ \mathrm{s}$. b) Bullets represent the measured Mean Squared Displacements (\gls{MSD}) of the simulated trajectories. The plain black line represents the characteristic inertial timescale, $\tau_\mathrm{B} = m / \gamma = 0.53 ~\mathrm{s}$. The dotted line represents the \gls{MSD} in the ballistic regime (see Eq.~(\ref{Eq.shorttimemsd})), when $t << \tau _\mathrm{B}$. The dashed line represents the \gls{MSD} in the diffusive regime (see Eq.~(\ref{Eq.longtimemsd})), when $t >> \tau _\mathrm{B}$, $\mathrm{MSD} = 2D\tau$. A detailed explanation of the simulation process can be found in the appendix.\ref{app:simfulllangevin}.  }
+	\caption{a) Set of $100$ trajectories simulated using the full-Langevin equation (see Eq.~(\ref{Eq.numfulllangevin})) for particles of a radius  $a = 1 ~\mathrm{\mu m}$ and mass $m = 10 ~\mathrm{\mu g}$ in water, with viscosity $\eta = 0.001 ~\mathrm{Pa.s}$. The simulations are done with a time step $\tau = 0.01~ \mathrm{s}$. b) Bullets represent the measured Mean Squared Displacements (\gls{MSD}) of the simulated trajectories. The plain black line represents the characteristic inertial timescale, $\tau_\mathrm{B} = m / \gamma = 0.53 ~\mathrm{s}$. The dotted line represents the \gls{MSD} in the ballistic regime (see Eq.~(\ref{Eq.shorttimemsd})), when $t << \tau _\mathrm{B}$. The dashed line represents the \gls{MSD} in the diffusive regime (see Eq.~(\ref{eq:longtimemsd})), when $t >> \tau _\mathrm{B}$, $\mathrm{MSD} = 2D\tau$. A detailed explanation of the simulation process can be found in appendix.\ref{app:simfulllangevin}.  }
 	\label{fig:inertial_langevin}
 \end{figure}
 

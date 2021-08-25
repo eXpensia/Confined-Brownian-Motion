@@ -4,23 +4,23 @@ In this section, I will present some of the work that has been started but not f
 
 \subsection{Elastohydrodynamic lift at soft wall}
 
- \begin{figure}[H]
+\begin{figure}[H]
 	\centering
 	\includegraphics{02_body/chapter4/images/EHD_forces/drawing_system.pdf}
-	\caption{Schema of a spherical colloid of radius $a$  immersed in a fluid of viscosity $\eta$ sliding at a velocity $V$ above an incompressible and linear-elastic substrate of shear elastic modulus $G$. From the elastohydrodynamic interactions between the particle and the soft wall arises a net lift force $F_\mathrm{lift}$ (See Eq.\ref{Eq.lift_deter}).}
+	\caption{Schema of a spherical colloid of radius $a$  immersed in a fluid of viscosity $\eta$ sliding at a velocity $V$ above an incompressible and linear-elastic substrate of shear elastic modulus $G$. From the elastohydrodynamic interactions between the particle and the soft wall arises a net lift force $F_\mathrm{lift}$ (see Eq.~(\ref{Eq.lift_deter})).}
 	\label{fig.shema_EHD}
 \end{figure}
 
 
 
-Elastohydrodynamic (\gls{EHD}) is the branch in physics that permit to model the interaction between elasticity an hydrodynamic. We will here focus particularly focus to \gls{EHD} in lubrication, which permits to model the physics of sliding motion between objects with a fluid-lubricated contact. Lubrication \gls{EHD} is present in many length scales and timescale, including for example, landslides, roller bearings or blood cells motion in microfluidic devices. It is recently, in 2015, that the problem of a free particle that can sediment, slide or roll near a soft surface has been treated. As the particle slides near the surface, the moved fluid deforms the soft wall surface's. One of the main result of \cite{Salez} is that sliding induced a symmetry breaking of the deformation, hence, a net force is applied to the sliding object. They further show that this force is oriented towards the particle, and, thus act as a self-sustain \gls{EHD} lift force. The first experimental proofs of this force as been done at the macro scale using negatively buoyant centimetric cylinders immersed in a viscous fluid sliding down a tilted wall that is coated with an elastic layer. They show that the self-sustained \gls{EHD} lift reduces the friction by nearly an order of magnitude and suggests that this \gls{EHD} force could partially explain phenomena such as reduced wear in animal joints and long-runout landslides. The \gls{EHD} lift force has also recently been measured at the micro-scale, using micron-sized colloidal spheres in micro channels in a shear flow. However, all of this experiments uses system which are out of equilibrium, and, we would like to test if Brownian motion could trigger such an effect. In the soft lubrication theory, and, taking a sphere of radius $a$ moving at constant velocity $V$, in a solvent of viscosity $\eta$, at a distance $z$ for a thick (by respect to the particle radius), incompressible, linear-elastic substrate of shear elastic modulus $G$, The lift force $F_\mathrm{lift}$ reads:
+Elastohydrodynamic (\gls{EHD}) is the branch in physics that permit to model the interaction between elasticity and hydrodynamic. We will here focus particularly focus to \gls{EHD} in lubrication, which permits to model the physics of sliding motion between objects with a fluid-lubricated contact. Lubrication \gls{EHD} is present in many length scales and timescales, including for example, landslides, roller bearings or blood cells motion in microfluidic devices. It is recently, in 2015, that the problem of a free particle that can sediment, slide or roll near a soft surface has been treated. As the particle slides near the surface, they moved fluid deforms the soft wall surface. One of the main results of \cite{Salez} is that sliding induced a symmetry breaking of the deformation; hence, a net force is applied to the sliding object. They further show that this force is oriented towards the particle, and, thus act as a self-sustain \gls{EHD} lift force. The first experimental proofs of this force has been done at the macro scale using negatively buoyant centimetric cylinders immersed in a viscous fluid sliding down a tilted wall that is coated with an elastic layer. They show that the self-sustained \gls{EHD} lift reduces the friction by nearly an order of magnitude and suggests that this \gls{EHD} force could partially explain phenomena such as reduced wear in animal joints and long-runout landslides. The \gls{EHD} lift force has also recently been measured at the micro-scale, using micron-sized colloidal spheres in micro channels in a shear flow. However, all of this experiment uses a system which is out of equilibrium, and, we would like to test if Brownian motion could trigger such an effect. In the soft lubrication theory, and, taking a sphere of radius $a$ moving at constant velocity $V$, in a solvent of viscosity $\eta$, at a distance $z$ for a thick (by respect to the particle radius), incompressible, linear-elastic substrate of shears elastic modulus $G$, the lift force $F_\mathrm{lift}$ reads:
 
 \begin{equation}
 	F_\mathrm{lift} \simeq \frac{\eta^2 V^2}{G} \frac{a^{5/2}}{z^{5/2}} ~.
 	\label{Eq.lift_deter}
 \end{equation}
 
-To incorporate fluctuations into this deterministic picture, an idea is to replace the velocity $V$ in Eq.\ref{Eq.lift_deter} by the typical Brownian velocity obtain through the Maxwell-Boltzmann distribution $\sqrt{k_\mathrm{B}T / m}$, leading the the following estimate of the Brownian \gls{EHD} lift force:
+To incorporate fluctuations into this deterministic picture, an idea is to replace the velocity $V$ in Eq.~(\ref{Eq.lift_deter}) by the typical Brownian velocity obtain through the Maxwell-Boltzmann distribution $\sqrt{k_\mathrm{B}T / m}$, leading the following estimate of the Brownian \gls{EHD} lift force:
 
 \begin{equation}
 	F_\mathrm{lift, Brown} \simeq \frac{\eta ^2 k_\mathrm{B}T}{G\rho_\mathrm{p} a^{1/2} z^{5/2}} ~.
@@ -28,128 +28,128 @@ To incorporate fluctuations into this deterministic picture, an idea is to repla
 \end{equation}
 
 
-From this equation, we can observe a counterintuitive effect, as the particle radius decreases (the surface of contact), the larger the \gls{EHD} force $F_\mathrm{lift, Brown}$ is. Taking typical biophysics value such as $G \simeq 10$ kPa, $\rho_\mathrm{p} = 1350$ kg.m$^{-3}$ and $a=100$ nm, the \gls{EHD} force reaches the picoNewton order of magnitude. The latter means that microscopic entities in biology and nanoscience may spontaneously trigger large Brownian \gls{EHD} couplings, drastically affecting their dynamics. However, it is importante to note that it is a simple estimate and, contains a high risk of conceptual failure associated, for example, to the lake of compensating drift at equilibrium as we have with a hard wall (See Eq.\ref{Eq.spurious_drift}). To do the soft coating experimentally, we use Polydimethylsiloxane (\gls{PDMS}), as a soft surface.
+From this equation, we can observe a counterintuitive effect, as the particle radius decreases (the surface of contact), the larger the \gls{EHD} force $F_\mathrm{lift, Brown}$ is. Taking typical biophysics value such as $G \simeq 10$ kPa, $\rho_\mathrm{p} = 1350$ kg.m$^{-3}$ and $a=100$ nm, the \gls{EHD} force reaches the picoNewton order of magnitude. The latter means that microscopic entities in biology and nanoscience may spontaneously trigger large Brownian \gls{EHD} couplings, drastically affecting their dynamics. However, it is important to note that it is a simple estimate and, contains a high risk of conceptual failure associated, for example, to the lake of compensating drift at equilibrium as we have with a hard wall (see Eq.~(\ref{Eq.spurious_drift})). To do the soft coating experimentally, we use Polydimethylsiloxane (\gls{PDMS}), as a soft surface.
 
 \subsubsection{PDMS}
 
-\gls{PDMS} is a silicone-based organic polymer which is widely use due to its versatility and ease of use \cite{wolf_pdms_2018}. Its chemical formula is:
+\gls{PDMS} is a silicone-based organic polymer which is widely used due to its versatility and ease of use \cite{wolf_pdms_2018}. Its chemical formula is:
 
 \begin{equation}
 	\mathrm{CH_3[Si(CH_3)_2 O]}_n \mathrm{Si(CH3)_3} ~,
 \end{equation}
 
-where $n$ is the number of $\mathrm{Si(CH_3)_2 O}$ dimethyl groups. By mixing a solution of \gls{PDMS} chains with curring agent containing, for example hydrosilane groups ($\mathrm{SiH}$), bonds, or crosslink between different \gls{PDMS} chains are appears as shown in Fig.\ref{fig.crosslink}.
+where $n$ is the number of $\mathrm{Si(CH_3)_2 O}$ dimethyl groups. By mixing a solution of \gls{PDMS} chains with curring agent containing, for example hydrosilane groups ($\mathrm{SiH}$), bonds, or crosslink between different \gls{PDMS} chains are appearing as shown in Fig.\ref{fig.crosslink}.
 
 
 
 
- \begin{figure}[H]
+\begin{figure}[H]
 	\centering
 	\includegraphics[scale = 0.8]{02_body/chapter4/images/EHD_forces/figure_cross.png}
-	\caption{Figure taken from \cite{tucher_analysis_2016}. Exemple of crosslinking reaction between the \gls{PDMS} chains and a curing agent containing hydrosilane groups.}
+	\caption{Figure taken from \cite{tucher_analysis_2016}. Examples of crosslinking reaction between the \gls{PDMS} chains and a curing agent containing hydrosilane groups.}
 	\label{fig.crosslink}
 \end{figure}
 
 
-Due to this crosslink, the \gls{PDMS} turns into an incomprehensible and linear-elastic solid. Some of its characteristics is to be hydrophobic and to exhibit strong gas permeability \cite{xia_soft_1998}. The elasticity modulus $G$ of the crosslinked \gls{PDMS} can be tune by changing the mixing ratio of base polymer solution and curing agent. For example, for one of the most used \gls{PDMS} Sygard 184, a mixing ratio of $10:1$ leads to a elastic modulus $G=1.5$ MPa and $G\simeq 100$ kPa for a $35:1$ ratio \cite{wang_crosslinking_2014}. To prepare experimental, samples, it possible to spin coat the microscope slides with base:agent mix before it is cured in order to have a thick soft surface. However, for simplicity and check if we can observe any forces with our experiment we first decided to use already prepared samples sold by Ibidi, these came as soft coated dishes with a coverslip on the bottom that we can directly fit onto our microscope.
+Due to this crosslink, the \gls{PDMS} turns into an incomprehensible and linear-elastic solid. Some of its characteristics are to be hydrophobic and to exhibit strong gas permeability \cite{xia_soft_1998}. The elasticity modulus $G$ of the crosslinked \gls{PDMS} can be tuned by changing the mixing ratio of base polymer solutions and curing agent. For example, for one of the most used \gls{PDMS} Sylgard 184, a mixing ratio of $10:1$ leads to an elastic modulus $G=1.5$ MPa and $G\simeq 100$ kPa for a $35:1$ ratio \cite{wang_crosslinking_2014}. To prepare experimental, samples, it possible to spin coat the microscope slides with base:agent mix before it is cured in order to have a thick soft surface. However, for simplicity and check if we can observe any forces with our experiment we first decided to use already prepared samples sold by Ibidi, these came as soft coated dishes with a coverslip on the bottom that we can directly fit onto our microscope.
 
-  
+
 \subsubsection{Measuring non-conservative forces}
 
-To measure the non-conservative forces that a felt by a Brownian particle diffusing on top of a soft surface, we do the exact same experiment and data analysis as developed in the section \ref{section:expresults}. As the \gls{EHD} force do not derive from a potential, we need to extract the non-conservative forces $F_\mathrm{NC}$ at a distance of 100 nm from the wall, to do so, we combine Eq.\ref{Eq.conservative_force} and Eq.\ref{Eq:Force}, $F_\mathrm{NC}$ thus reads:
+To measure the non-conservative forces that a felt by a Brownian particle diffusing on top of a soft surface, we do the exact same experiment and data analysis as developed in the section \ref{section:expresults}. As the \gls{EHD} force do not derive from a potential, we need to extract the non-conservative forces $F_\mathrm{NC}$ at a distance of 100 nm from the wall, to do so, by combining Eqs.~(\ref{Eq.conservative_force})~and~(\ref{Eq:Force}), the non-conservative force reads:
 
 \begin{equation}
 	F_\mathrm{NC} = F_z(z) - F_z ^\mathrm{eq}(z)
 \end{equation}
 
-As seen on the fig.\ref{fig.ncforce} the measured $F_\mathrm{NC}$ for two different elastic modulus $G=15$ and $28$ kPa, only gets out of the noise for $F_\mathrm{NC} > 10$ fN, as the plot is in logarithmic scale negative values do not show. These first experiment seems to show the that the particle do trigger some non-conservative forces. However, this first experiment are not sufficient to tell if it's the \gls{EHD} lift force but give some support to continue experiment.
+As seen in Fig.\ref{fig.ncforce} the measured $F_\mathrm{NC}$ for two different elastic moduli $G=15$ and $28$ kPa, only gets out of the noise for $F_\mathrm{NC} > 10$ fN, as the plot is in logarithmic scale negative values do not show. These first experiment shows that the particle seems to trigger some non-conservative forces. However, this first experiment is not sufficient to tell if it is the \gls{EHD} lift force but give some support to continue the experiment.
 
-In the forthcoming experiment, we will vary three parameters, $\eta$, $G$ and $a$ to check if we can a universal plot showing that $F_\mathrm{lift, Brown}$ correctly varies as a function of $\frac{\eta^2}{Ga^{1/2}} $ as shown in Fig.\ref{fig.ncforcenormalized} with the first experiments.
+In the forthcoming experiment, we will vary three parameters, $\eta$, $G$ and $a$ to check if we can prove the existence of a universal plot, and show the $F_\mathrm{lift, Brown}$ correctly varies as a function of $\frac{\eta^2}{Ga^{1/2}} $ as shown in Fig.\ref{fig.ncforcenormalized} with the first experiments.
 
- \begin{figure}[H]
+\begin{figure}[H]
 	\centering
 	\includegraphics{02_body/chapter4/images/EHD_forces/EHD_force.pdf}
-	\caption{Non-conservative forces measured experimentally for colloidal particle of radius $a=1.5 ~\mathrm{\mu m}$ diffusing above an incompressible and linear-elastic substrate of shear elastic modulus $G=15$ and $28$ kPa. Plain line corresponds to the Brownian model of the \gls{EHD} lift force $F_\mathrm{lift, Brown}$ (See Eq.\ref{Eq.lift_brown}) with an added noise-level of $10$ fN.}
+	\caption{Non-conservative forces measured experimentally for colloidal particles of radius $a=1.5 ~\mathrm{\mu m}$ diffusing above an incompressible and linear-elastic substrate of shear elastic modulus $G=15$ and $28$ kPa. Plain line corresponds to the Brownian model of the \gls{EHD} lift force $F_\mathrm{lift, Brown}$ (see Eq.~(\ref{Eq.lift_brown})) with an added noise-level of $10$ fN.}
 	\label{fig.ncforce}
 \end{figure}
 
- \begin{figure}[H]
+\begin{figure}[H]
 	\centering
 	\includegraphics{02_body/chapter4/images/EHD_forces/EHD_force_rescale.pdf}
-	\caption{Non-conservative forces  normalized $ G\sqrt{a} $ by measured experimentally for colloidal particle of radius $a=1.5 ~\mathrm{\mu m}$ diffusing above an incompressible and linear-elastic substrate of shear elastic modulus $G=15$ and $28$ kPa. Plain line corresponds to the Brownian model of the \gls{EHD} lift force $F_\mathrm{lift, Brown}$ (See Eq.\ref{Eq.lift_brown}) with an added noise-level of $10$ fN.}
+	\caption{Non-conservative forces  normalized $ G\sqrt{a} $ by measured experimentally for colloidal particles of radius $a=1.5 ~\mathrm{\mu m}$ diffusing above an incompressible and linear-elastic substrate of shear elastic modulus $G=15$ and $28$ kPa. Plain line corresponds to the Brownian model of the \gls{EHD} lift force $F_\mathrm{lift, Brown}$ (see Eq.~(\ref{Eq.lift_brown})) with an added noise-level of $10$ fN.}
 	\label{fig.ncforcenormalized}
 \end{figure}
 
 
 \subsection{Close wall stuck motion}
 
- \begin{figure}[H]
+\begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.5]{02_body/chapter4/images/stucked_particle/ghost.png}
 	\caption{Median image of a stuck particle. The median is calculated over $120$ images taken every $30$ s.}
 	\label{fig.ghost_stucked}
 \end{figure}
 
-As we have done the experiments to measure the Debye length $\ell _\mathrm{D}$ as a function of the concentration of NaCl, we observed that some particle were stuck at the surface. As we first expected, we were not observing any movement from the stucked particle. However, surprisingly we observe that some particle were slightly diffusing. This slight diffusion can be observed directly from the raw data, by looking at the median of the movie, as shown Fig.\ref{fig.ghost_stucked}, one can observe the ``ghost" of the particle due to its movement in time. Moreover, as we can't properly have the background in this experiment since the particle do not diffuse enough, the statistical error of the tracking is increased. The measured trajectory is shown Fig.\ref{fig.trajectory_stuck}, we observe that mechanical drift happened during the experiment, this could be due to a drift of the sample or the objective for example. This drift is of the order of magnitude of $2 ~ \mathrm{\mu m.h^{-1}}$ along the $x$ and $y$ axis and  $6 ~ \mathrm{\mu m.h^{-1}}$, in the following we look at the short time dynamics ($t < 1$~s), since the drift at this time scale is of the order of the nm it is not necessary to remove the drift from the trajectory.
+As we have done the experiments to measure the Debye length $\ell _\mathrm{D}$ as a function of the concentration of NaCl, we observed that some particle was stuck at the surface. As we first expected, we were not observing any movement from the stuck particle. However, surprisingly we observe that some particle was slightly diffusing. This slight diffusion can be observed directly from the raw data, by looking at the median of the video, as shown Fig.\ref{fig.ghost_stucked}, one can observe the ``ghost" of the particle due to its movement in time. Moreover, as we cannot properly have the background in this experiment since the particle do not diffuse enough, the statistical error of the tracking is increased. The measured trajectory is shown Fig.\ref{fig.trajectory_stuck}, we observe that mechanical drift happened during the experiment, this could be due to a drift of the sample or the objective, for example. This drift is of the order of magnitude of $2 ~ \mathrm{\mu m.h^{-1}}$ along the $x$- and $y$-axis and  $6 ~ \mathrm{\mu m.h^{-1}}$, in the following we look at the short time dynamics ($t < 1$~s), since the drift at this time scale is of the order of the nm it is not necessary to remove the drift from the trajectory.
 
- \begin{figure}[H]
+\begin{figure}[H]
 	\centering
 	\includegraphics{02_body/chapter4/images/stucked_particle/trajectory_stucked.pdf}
-	\caption{Raw trajectory measured using the Mie tracking technique for the $x$, $y$ and $z$ axis of a particle of radius $a=1.5 ~\mathrm{\mu m}$. The time between each frame was the to $1/200$ s. }
+	\caption{Raw trajectory measured using the Mie tracking technique for the $x$-, $y$- and $z$- axis of a particle of radius $a=1.5 ~\mathrm{\mu m}$. The time between each frame is$1/200$ s. }
 	\label{fig.trajectory_stuck}
 \end{figure}
 
 
 
-Let's focus directly on the dynamics of the system, the \gls{MSD} along the $x$, $y$ and $z$ axis is shown in Fig.\ref{fig.MSD_stucked}. We observe that the \gls{MSD} along the $z$ axis is a constant, it can be the case because it moves less that the statistical error tracking, the experiment could thus be bound by the experimental precision, or, a diffusion regime could be at shorter time. As we here can't observe any diffusion regime on the $z$ axis, we can't determine if we are bound the tracking, hence, I will not physically comment the results obtained along the $z$ axis. However, on the $x$ axis, interestingly we can observe two regimes as had for the $z$ before meaning that the particle is diffusing in a potential which isotropic along the $x$ and $y$ axis, as if the particle was rolling on the surface due to the rugosities for example (NEED TO ASK YACINE FOR REF). The diffusive regime, at short time, is linear with $\Delta t$ showing a normal diffusion with  average diffusion coefficients (see Eq.\ref{averagediff})  $\langle{D_\parallel}\rangle= \langle D_x\rangle=\langle D_y \rangle =0.14\,D_0$. This diffusion coefficient is lower that what is obtainable using the previous defined equation of $D_\parallel$, Eq.\ref{Eq:etax}, which we do not explain.
+Let's focus directly on the dynamics of the system, the \gls{MSD} along the $x$-, $y$- and $z$-axis is shown in Fig.\ref{fig.MSD_stucked}. We observe that the \gls{MSD} along the $z$- axis is a constant, it can be the case because it moves less that the statistical error tracking, the experiment could thus be bound by the experimental precision, or, a diffusion regime could be at a shorter time. As we here can't observe any diffusion regime on the $z$-axis, we can't determine if we are bound the tracking; hence, I will not physically comment the results obtained along the $z$-axis. However, on the $x$-axis, interestingly we can observe two regimes as had for the $z$ before meaning that the particle is diffusing in a potential which isotropic along the $x$- and $y$-axis, as if the particle was rolling on the surface due to the rugosity for example (NEED TO ASK YACINE FOR REF). The diffusive regime, at a short time, is linear with $\Delta t$ showing a normal diffusion with  average diffusion coefficients (see Eq.~(\ref{averagediff}))  $\langle{D_\parallel}\rangle= \langle D_x\rangle=\langle D_y \rangle =0.14\,D_0$. This diffusion coefficient is lower than what is obtainable using the previous defined equation of $D_\parallel$, Eq.~(\ref{Eq:etax}), which we do not explain.
 
 
 
- \begin{figure}[H]
+\begin{figure}[H]
 	\centering
 	\includegraphics{02_body/chapter4/images/stucked_particle/MSD_stucked.pdf}
-	\caption{Measured mean-squared displacements of a stuck particle (MSD, see Eq.\ref{MSDdef}) as functions of the time increment $\Delta t$, for the three spatial directions, $x$, $y$, and $z$. The solid line is best fit to Eq.~(\ref{averagediff}), having $\langle D_i \rangle$ as a free parameter,
-		providing the average diffusion coefficients $\langle{D_\parallel}\rangle= \langle D_x\rangle=\langle D_y \rangle =0.14\,D_0$. The plain gray line is the average value of the plateau of the MSD along the $x$ and $y$ axis axis, providing $ \lim\limits_{\Delta t \rightarrow \infty }\langle \Delta x ^2 \rangle = 4.3 \times 10 ^{-15} ~ \mathrm{m^2}$.}
+	\caption{Measured mean-squared displacements of a stuck particle (MSD, see Eq.~(\ref{MSDdef})) as functions of the time increment $\Delta t$, for the three spatial directions, $x$, $y$, and $z$. The solid line is the best fit to Eq.~(\ref{averagediff}), having $\langle D_i \rangle$ as a free parameter,
+		providing the average diffusion coefficient $\langle{D_\parallel}\rangle= \langle D_x\rangle=\langle D_y \rangle =0.14\,D_0$. The plain gray line is the average value of the plateau of the MSD along the $x$- and $y$-axis, providing $ \lim\limits_{\Delta t \rightarrow \infty }\langle \Delta x ^2 \rangle = 4.3 \times 10 ^{-15} ~ \mathrm{m^2}$.}
 	\label{fig.MSD_stucked}
 \end{figure}
 
-The plateau of the MSD along the $x$ and $y$ gives a value of  $ \lim\limits_{\Delta t \rightarrow \infty }\langle \Delta x ^2 \rangle = 4.3 \times 10 ^{-15} ~ \mathrm{m^2}$. By supposing that the particle is in an harmonic oscillator potential, we can give an estimate of the spring constant $k_\mathrm{H}$, using the relation:
+The plateau of the MSD along the $x$ and $y$ gives a value of  $ \lim\limits_{\Delta t \rightarrow \infty }\langle \Delta x ^2 \rangle = 4.3 \times 10 ^{-15} ~ \mathrm{m^2}$. By supposing that the particle is in a harmonic oscillator potential, we can make an estimate of the spring constant $k_\mathrm{H}$, using the relation:
 
 \begin{equation}
 	k_\mathrm{H} = \frac{k_\mathrm{B} T}{ \lim\limits_{\Delta t \rightarrow \infty }\langle \Delta x ^2 \rangle}  \simeq \frac{4 \times 10^{-21}}{4.3 \times 10 ^{-15}} \simeq 1 ~ \mathrm{\mu N . m^{-1}}~.
 \end{equation}
 
-An idea we have, is to try to observe the same phenomenon using a soft surface and see if we can oberve a change of $k_\mathrm{H}$ as a function of the elastic modulus $G$. If the latter assumption is possible this experiment could lead to local determination of elastic modulus using Brownian probes. Additionally, we can look at displacement \gls{PDF} $P_i$ as shown on the Fig.\ref{fig.P_dxz_stucked}. Contrary to the result we had for a free diffusing particle (See Fig.\ref{fig.displacement}) we do not observe non-Gaussianity. Moreover, distribution $P_z$ seems to coroborate with the fact that we are bound to the fit error on the fit along the $z$ axis. Indeed, if the particle is at equilibrium, which should be the case with a MSD beeing constant, $P_z$ should be given by exponential as shown in Fig.\ref{fig.displacement}-e). Here $P_z$ looks like a Gaussian distribution of the fit statistical error.
+An idea we have is to try to observe the same phenomenon using a soft surface and see if we can observe a change of $k_\mathrm{H}$ as a function of the elastic modulus $G$. If the latter assumption is possible, this experiment could lead to local determination of elastic modulus using Brownian probes. Additionally, we can look at displacement \gls{PDF} $P_i$ as shown on the Fig.\ref{fig.P_dxz_stucked}. Contrary to the result we had for a free diffusing particle (See Fig.\ref{fig.displacement}) we do not observe non-Gaussianity. Moreover, distribution $P_z$ seems to corroborate with the fact that we are bound to the fit error on the fit along the $z$-axis. Indeed, if the particle is at equilibrium, which should be the case with a MSD being constant, $P_z$ should be given by exponential as shown in Fig.\ref{fig.displacement}-e). Here $P_z$ looks like a Gaussian distribution of the fit statistical error.
 
 
- \begin{figure}[H]
+\begin{figure}[H]
 	\centering
 	\includegraphics{02_body/chapter4/images/stucked_particle/P_xz_stucked.pdf}
-	\caption{ Normalized probability density functions $P_i\,\sigma$ of the normalized displacements $\Delta x/\sigma$ and $\Delta z/\sigma$, at short times, with $\sigma^2$ the corresponding MSD (see Fig.\ref{fig.MSD_stucked}), for different time increments $\Delta t$ ranging from 0.01~s to 0.05~s, as indicated with different colors. The grey dashed lines are normalized Gaussian distributions, with zero means and unit variances.}
+	\caption{ Normalized probability density functions $P_i\,\sigma$ of the normalized displacements $\Delta x/\sigma$ and $\Delta z/\sigma$, at short times, with $\sigma^2$ the corresponding MSD (see Fig.\ref{fig.MSD_stucked}), for different time increments $\Delta t$ ranging from 0.01~s to 0.05~s, as indicated with different colors. The gray dashed lines are normalized Gaussian distributions, with zero means and unit variances.}
 	\label{fig.P_dxz_stucked}
 \end{figure}
 
 \subsection{Direct relative distance measurement using Mie}
 
-One of the effect that is not taken into account in the Mie theory presented in the section \ref{chap:LM_fit} is the presence of the glass slide. Indeed the focal plane, where the holograms are recorded is in the glass slides, thus, the holograms should be refracted at the glass interface. However, it is not a problem, for the realized fit, indeed, to have faster fit, we use only the few maxima leading to radial distance of $\simeq 5 ~\mathrm{\mu m }$ for a height $z\simeq 15~\mathrm{\mu m}$, leading to a maximal angle of incidence $\theta = \tan^{-1} (5/15) \simeq 18.5 ^{\circ} $. As we are working with small angles, we can suppose that for the first maxima, the is not refracted. 
+One of the effects that is not taken into account in the Mie theory presented in the section \ref{chap:LM_fit} is the presence of the glass slide. Indeed the focal plane, where the holograms are recorded is in the glass slides, thus, the holograms should be refracted at the glass interface. However, it is not a problem, for they realized fit, indeed, to have faster fit, we use only the few maxima leading to radial distance of $\simeq 5 ~\mathrm{\mu m }$ for a height $z\simeq 15~\mathrm{\mu m}$, leading to a maximal angle of incidence $\theta = \tan^{-1} (5/15) \simeq 18.5 ^{\circ} $. As we are working with small angles, we can suppose that for the first maxima, there is not refracted. 
 
 However, the small angle approximation does not hold for higher order maxima, thus as the refraction angle depends on the wall-particle distance, adding it to the Mie theory could lead to a direct measurement of the particle height. Moreover, the Mie fitting would even more robust since a mechanical drift of the sample of the objective would not change the refractive angle of the particle. However, the main difficulty is to be able to have a more stable imaging device to detect with a high accuracy the highest order maxima which are less intense.
 
 
- \begin{figure}[H]
+\begin{figure}[H]
 	\centering
 	\includegraphics{02_body/chapter4/images/h_measurement/drawing_angles.pdf}
 	\caption{Scheme of a particle immersed in a fluid of index $n_1$ above a glass substrate of optical index $n_2$. The particle is at a distance $z_\mathrm{w}$ above the glass subrate, and the objective focal plane $z_\mathrm{g}$ below the interface. Due to the Snell-Descartes law, light with an incident angle $\theta_1$ is refracted with an angle $\beta$. }
 	\label{fig.schema_h}
 \end{figure}
 
-Let us build a simple model using the Snell-Descartes law to take into account the refraction at the glass interface, the system is schematized in Fig.\ref{fig.schema_h}. We decompose the height of the particle $z$ in two parts such that:
+Let us build a simple model using the Snell-Descartes’s law to take into account the refraction at the glass interface, the system is schematized in Fig.\ref{fig.schema_h}. We decompose the height of the particle $z$ in two parts such that:
 
 \begin{equation}
 	z = z_\mathrm{w} + z_\mathrm{g} ~,
 \end{equation}
 
-where $z_\mathrm{g}$ is the interface-focal plane interface and $z_\mathrm{w}$ the interface-particle distance, the latter beeing the distance we want to measure. We want to write the radial intensity of the hologram $I$, taking into account the refraction, let us write  $I_\mathrm{Mie}$ the Mie solution without the refraction and $I_\mathrm{new}$ the modified theory. An incident ray coming from the particle with an angle $\theta$ is refracted with an angle $\beta$, as shown in Fig.\ref{fig.schema_h}. Using trigonometry and the Snell-Decartes's law ($n_1 \sin(\theta)  = n_2 \sin(\beta)$), those angles writes:
+where $z_\mathrm{g}$ is the interface-focal plane interface and $z_\mathrm{w}$ the interface-particle distance, the latter being the distance we want to measure. We want to write the radial intensity of the hologram $I$, taking into account the refraction, let us write  $I_\mathrm{Mie}$ the Mie solution without the refraction and $I_\mathrm{new}$ the modified theory. An incident ray coming from the particle with an angle $\theta$ is refracted with an angle $\beta$, as shown in Fig.\ref{fig.schema_h}. Using trigonometry and the Snell-Descartes's law ($n_1 \sin(\theta)  = n_2 \sin(\beta)$), those angles writes:
 
 \begin{equation}
 	\theta = \tan ^{-1} \left( \frac{r_\mathrm{Mie}}{z_\mathrm{w} + z_\mathrm{g}}\right) ~,
@@ -167,10 +167,10 @@ Without refraction, the light arrives at the focal plane at a distance $r_\mathr
 	r_\mathrm{new} = r_\mathrm{Mie} + z_\mathrm{g}(\tan(\beta) - \tan(\theta)) ~.
 \end{equation}
 
-Due to the change of optical path, the Mie scattering field (see Eq.\ref{EMie}) undergoes a phase difference $\Delta \varphi_\mathrm{w}$ in the fluid  and  $\Delta \varphi_\mathrm{g}$ in the glass substrate:
+Due to the change of optical path, the Mie scattering field (see Eq.~(\ref{EMie})) undergoes a phase difference $\Delta \varphi_\mathrm{w}$ in the fluid  and  $\Delta \varphi_\mathrm{g}$ in the glass substrate:
 
 \begin{equation}
-	 \Delta \varphi_\mathrm{w} = \frac{2 \pi}{\lambda} n_1 z \tan(\theta ')~,
+	\Delta \varphi_\mathrm{w} = \frac{2 \pi}{\lambda} n_1 z \tan(\theta ')~,
 \end{equation}
 
 and,
@@ -206,12 +206,13 @@ with the hologram normalized radial intensity given by:
 
 We worked on this project with Mathias Perrin, a specialist of the numerical simulation of Mie systems and he numerically shows that the simple correction made to correctly describes the change made by the presence of the glass slide as shown in the Fig.XX. Thus, proving that it is theoretically possible to directly fit the wall-particle distance using Mie holography tracking. However, we still not succeed on applying to the experimental data, probably due to the lack of accuracy on the higher order hologram's maxima.
 
- \begin{figure}[H]
+\begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.5]{02_body/chapter4/images/h_measurement/simulation_glass_correction.png}
-	\caption{Numerical proof of the hologram correction due to the presence of the glass slide. The yellow dashed line represent the Mie theory without taking into account the substrate. the plain line represent the exact numerical simulation of the phase difference. The red dashed line represents the simple correction made to the Mie theory Eq.\ref{Eq.modified_mie}}
+	\caption{Numerical proof of the hologram correction due to the presence of the glass slide. The yellow dashed line represents the Mie theory without taking into account the substrate. The plain line represents the exact numerical simulation of the phase difference. The red dashed line represents the simple correction made to the Mie theory Eq.~(\ref{Eq.modified_mie})}
 	\label{fig.glass_correction}
 \end{figure}
 
 \subsection{Long time 4th moment - Dean project}
 \subsection{PDMS ageing}
+
