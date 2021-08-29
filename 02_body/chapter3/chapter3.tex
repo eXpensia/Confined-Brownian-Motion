@@ -545,22 +545,22 @@ It is interesting to observe that due to the hindered diffusion the magnitude of
 where $\Delta x_i$ is a space increment. However, the noise term is not well defined and the time at which the magnitude of the force $\sqrt{2D_i(z)}$ in the integration Eq.~(\ref{int}) needs to be specified. It is thus necessary to determine where the diffusion coefficient $D(z)$ in Eq.~(\ref{int}) is evaluated in the time interval $[t_0, t_0 + \tau]$. In general, $D(z)$ is represented by $D(z + \alpha \Delta z)$, or in the same way $D(z(t_0 + \alpha \tau))$, with $\alpha \in [0,1]$. The value of $\alpha$ determines at which time in the interval   $[t_0, t_0 + \tau]$ the local diffusion is evaluated, hence, the magnitude of the random force. The physics will thus change on how the noise is calculated; however, the requirement is that the long-time thermal equilibrium must be consistent with the Boltzmann distribution and, hence, constrain the choice of $\alpha$. Taking into account $\alpha$, removing the external forces, the Langevin equation along the $z$-axis becomes:
 
 \begin{equation}
-	\Delta z  = \sqrt{2D_\parallel (z + \alpha \Delta z)} d B_t ~.
+	\Delta z  = \sqrt{2D_\bot (z + \alpha \Delta z)} d B_t ~.
 	\label{int2}
 \end{equation}
 
-By Taylor expanding $D_ \parallel$ to the first order, one has:
+By Taylor expanding $D_ \bot$ to the first order, one has:
 
 \begin{equation}
-	D_\parallel (z + \alpha \Delta z) \simeq D_\parallel (z)  + \alpha \frac{\textnormal{d} D_\parallel(z)}{\textnormal{d}z} \Delta z ~.
+	D_\bot (z + \alpha \Delta z) \simeq D_\bot (z)  + \alpha \frac{\textnormal{d} D_\bot(z)}{\textnormal{d}z} \Delta z ~.
 \end{equation}
 
 Substituting the later in Eq.~(\ref{int2}) leads to:
 
 \begin{equation}
 	\begin{aligned}
-		\Delta z &\simeq \sqrt{2D_\parallel (z)  + \alpha \frac{\textnormal{d} D_\parallel(z)}{\textnormal{d}z} \Delta z} d B_t  \\
-		& = \sqrt{2D_\parallel (z)} \left[1 + \alpha \frac{\textnormal{d} D_\parallel(z)}{\textnormal{d}z} \frac{\Delta z }{D_\parallel(z)}\right] ^{-1/2} \textnormal{d} B_t  ~.
+		\Delta z &\simeq \sqrt{2D_\bot (z)  + \alpha \frac{\textnormal{d} D_\bot(z)}{\textnormal{d}z} \Delta z} d B_t  \\
+		& = \sqrt{2D_\bot (z)} \left[1 + \alpha \frac{\textnormal{d} D_\bot(z)}{\textnormal{d}z} \frac{\Delta z }{D_\bot(z)}\right] ^{-1/2} \textnormal{d} B_t  ~.
 	\end{aligned}
 	\label{int3}
 \end{equation}
@@ -568,22 +568,22 @@ Substituting the later in Eq.~(\ref{int2}) leads to:
 Additionally, since the last term satisfies:
 
 \begin{equation}
-	\alpha \frac{\textnormal{d} D_\parallel(z)}{\textnormal{d}z} \frac{\Delta z }{D_\parallel(z)} \ll 1 ~,
+	\alpha \frac{\textnormal{d} D_\bot(z)}{\textnormal{d}z} \frac{\Delta z }{D_\bot(z)} \ll 1 ~,
 \end{equation}
 
 one can thus Taylor expend at the first order the last term of Eq.~(\ref{int3}) as:
 
 \begin{equation}
-	\left[1 + \alpha \frac{\textnormal{d} D_\parallel(z)}{\textnormal{d}z} \frac{\Delta z }{D_\parallel(z)}\right] ^{-1/2} \simeq 1 + \frac{\alpha }{2}\frac{\textnormal{d} D_\parallel(z)}{\textnormal{d}z} \frac{\Delta z }{D_\parallel(z)} ~.
+	\left[1 + \alpha \frac{\textnormal{d} D_\bot(z)}{\textnormal{d}z} \frac{\Delta z }{D_\bot(z)}\right] ^{-1/2} \simeq 1 + \frac{\alpha }{2}\frac{\textnormal{d} D_\bot(z)}{\textnormal{d}z} \frac{\Delta z }{D_\bot(z)} ~.
 \end{equation}
 
 By finally substituting the first-order expansion of $\Delta z \simeq \sqrt{2D(z)} \textnormal{d}B_t$, we obtain:
 
 \begin{equation}
 	\begin{aligned}
-		\Delta z & \simeq \sqrt{2D_\parallel (z)} \left[1 + \frac{\alpha }{2} \frac{\textnormal{d} D_\parallel(z)}{\textnormal{d}z} \frac{\Delta z }{D_\parallel(z)}\right]  \textnormal{d} B_t \\
-		& \simeq \sqrt{2D_\parallel (z)} \left[1 + \frac{\alpha }{2} \frac{\textnormal{d} D_\parallel(z)}{\textnormal{d}z} \frac{\sqrt{2D(z)} \textnormal{d}B_t }{D_\parallel(z)}\right]  \textnormal{d} B_t \\
-		& =  \sqrt{2D_\parallel (z)} \textnormal{d}B_t + \alpha  \frac{\textnormal{d} D_\parallel(z)}{\textnormal{d}z} \textnormal{d} B_t ^2
+		\Delta z & \simeq \sqrt{2D_\bot (z)} \left[1 + \frac{\alpha }{2} \frac{\textnormal{d} D_\bot(z)}{\textnormal{d}z} \frac{\Delta z }{D_\bot(z)}\right]  \textnormal{d} B_t \\
+		& \simeq \sqrt{2D_\bot (z)} \left[1 + \frac{\alpha }{2} \frac{\textnormal{d} D_\bot(z)}{\textnormal{d}z} \frac{\sqrt{2D(z)} \textnormal{d}B_t }{D_\bot(z)}\right]  \textnormal{d} B_t \\
+		& =  \sqrt{2D_\bot (z)} \textnormal{d}B_t + \alpha  \frac{\textnormal{d} D_\bot(z)}{\textnormal{d}z} \textnormal{d} B_t ^2
 	\end{aligned}
 \end{equation}
 
@@ -593,16 +593,16 @@ Since for a short time $\textnormal{d}B_t \rightarrow 0$ it is possible to repla
 
 \begin{equation}
 	\begin{aligned}
-		\Delta z &=   \alpha  \frac{\textnormal{d} D_\parallel(z)}{\textnormal{d}z}  \tau - \frac{1}{\gamma(z)}\frac{\partial U(z)}{\partial z}  \tau + \sqrt{2D_\parallel (z)} \textnormal{d}B_t \\
-		&=  \left( - \frac{1}{\gamma(z)}\frac{\partial U(z)}{\partial z} +  \alpha  \frac{\textnormal{d} D_\parallel(z)}{\textnormal{d}z} \right) \tau + \sqrt{2D_\parallel (z)} \textnormal{d}B_t \\
-		&= \bar{v}_\textnormal{d}\tau  + \sqrt{2D_\parallel (z)} \textnormal{d}B_t ~,
+		\Delta z &=   \alpha  \frac{\textnormal{d} D_\bot(z)}{\textnormal{d}z}  \tau - \frac{1}{\gamma(z)}\frac{\partial U(z)}{\partial z}  \tau + \sqrt{2D_\bot (z)} \textnormal{d}B_t \\
+		&=  \left( - \frac{1}{\gamma(z)}\frac{\partial U(z)}{\partial z} +  \alpha  \frac{\textnormal{d} D_\bot(z)}{\textnormal{d}z} \right) \tau + \sqrt{2D_\bot (z)} \textnormal{d}B_t \\
+		&= \bar{v}_\textnormal{d}\tau  + \sqrt{2D_\bot (z)} \textnormal{d}B_t ~,
 	\end{aligned}
 \end{equation}
 
 where:
 
 \begin{equation}
-	\bar{v}_\textnormal{d} = - \frac{1}{\gamma(z)}\frac{\partial U(z)}{\partial z} +  \alpha  \frac{\textnormal{d} D_\parallel(z)}{\textnormal{d}z}  = v_\textnormal{d} + v_\textnormal{noise}~,
+	\bar{v}_\textnormal{d} = - \frac{1}{\gamma(z)}\frac{\partial U(z)}{\partial z} +  \alpha  \frac{\textnormal{d} D_\bot(z)}{\textnormal{d}z}  = v_\textnormal{d} + v_\textnormal{noise}~,
 	\label{Eq.total_drifts}
 \end{equation}
 
