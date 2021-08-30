@@ -213,7 +213,71 @@ We worked on this project with Mathias Perrin, a specialist of the numerical sim
 	\label{fig.glass_correction}
 \end{figure}
 
-\subsection{Long time 4th moment - Dean project}
+\subsection{Long time 4th cumulent - Dean project}
+
+In this subsection we consider the cumulent of higher order than 2 (\gls{MSD}). The 4th order cumulent writes:
+
+\begin{equation}
+	C_4 (\Delta t) = \frac{1}{4!} \left(
+		\left\langle [ x_i(t + \Delta t) - x_i(t) ]^4 \right\rangle_t
+		- 3\left\langle [ x_i(t + \Delta t) - x_i(t) ]^2 \right\rangle_t ^2
+	   \right) ~.
+	   \label{c4}
+\end{equation}
+
+For a Gaussian distributed variable $x$ as Brownian motion in bulk, $C_4$ is a constant as $\langle \Delta x ^2 \rangle _t ^2 = \langle x^4 \rangle_t $. Therefore, the literature often overlook the higer moments as it permits to measure and gain insights from the difference from a Gaussian distribution. However, as it has been shown along this manuscript, confined Brownian motion exhibit non-Gaussian stastical properties as shown in Fig.\ref{fig.displacement}. Thus, it could be interreseting to study the 4th cumulent of confined Brownian particles. We work on this idea with David Dean and Arthur Alexandre who are specialized in Brownian theory. Interestigly, they found interesting behaviour for the 4th cumulent for the parrallel displacement to the wall, for which the the Langevin equation is given by:
+
+\begin{equation}
+	dX_t = \sqrt{2D_\parallel(z_t)} \mathrm{d}B_t
+	\label{c4.dx}
+\end{equation}
+
+After combining Eqs.~(\ref{c4})~and~(\ref{c4.dx}) and some mathematical manipulation, the 4th order cumulent writes:
+
+\begin{equation}
+	C_4(\Delta t) = \int_{-L} ^L \mathrm{d}z 
+	\int ^L _{-L}\mathrm{d}z'
+	D_\parallel(z) D_\parallel(z') p_0(z') 
+	\sum_{\lambda > 0} \psi_{\lambda, R} (z) \psi_{\lambda, L}(z')
+	\left(
+	\frac{\Delta}{\lambda} - \frac{1 - \exp(-\lambda \Delta t)}{\lambda ^2},
+	\right) 
+	\label{c4full}
+\end{equation}
+
+where the Forward Fokker Plank as been decompsed on the set of eigenfunctions $\psi_{\lambda, R}$, the right eigenfunctions of the Generator $G$ such that:
+
+\begin{equation}
+	G\psi_{\lambda, R} = \lambda \psi_{\lambda, R} ~.
+\end{equation}
+
+For $\lambda = 0$, we have: $\psi_{0, R} = p_0$ and $\psi_{\lambda, L} = 1$. Using this decomposition, the density of probability $p$ wirtes:
+
+\begin{equation}
+	p(z, \Delta t|z') = \sum _\lambda \mathrm{e} ^{-\lambda \Delta t} \psi_{\lambda, R} (z) \psi_{\lambda, L} (z') ~.
+\end{equation}
+
+Despite the complicated form of Eq.~(\ref{c4full}) it gives nice approximations at short and long times, in the limit $\Delta \rightarrow 0$, we have:
+
+\begin{equation}
+	\lim\limits_{\Delta t \rightarrow 0 } C_4 (\Delta t) = \frac{\Delta t ^2}{2}
+	\left(
+	\langle D_\parallel ^2 \rangle - \langle D _\parallel \rangle ^2 
+	\right)~,
+\end{equation}
+
+where the averages are done over the equilibrium distribution $P_\mathrm{eq}$ and thus vary as a function of $\Delta t ^2$ at short time. Eq.~(\ref{c4full}) can also me approximated, in the limit $\Delta t \rightarrow + \infty$ where we have:
+
+\begin{equation}
+	\lim\limits_{\Delta t \rightarrow \infty } C_4 (\Delta t) = C_4 ^0 \Delta t - C^1 _4 ~,
+\end{equation}
+
+Where $ C_4 ^0$ and $ C_4 ^1$ are constants that depends on the equilibrium distribution $P_\mathrm{eq}$, and could be written as a function of $B$, $\ell _ \mathrm{D}$, and $\ell _\mathrm{B}$. Unlike the first and second moment of the parrallel displacement,(the displacement distribution $P_x(\Delta x)$ and the \gls{MSD} $\langle \Delta x ^2 \rangle_t $ respectively), the 4th cumulent a peculiar regime when the particle reach equilibrium. This result is thus interresting as it gives a new observable of the equilibrium properties on the parallel displacement. If this theory is verified, it could be added to our inference method (see section \ref{section:expresults}) in order to gain precision and robustess.
+
+As we are only interested to the $x$- and $y$-axis displacement to show this result, we do not need 3D tracking. Thus, we only need to find the holograms centroid, and therefor use faster algorithm than the Mie framework. To do so we use the Trackpy package \href{https://github.com/soft-matter/trackpy}{\faGithub} \cite{allan_soft-mattertrackpy_2021} which implements the Crocker–Grier algorithm \cite{crocker_methods_1996} which permits to track the centroid of hundred of colloids quite rapidly, as shown in Fig.XX.
+
+From the data retrieve, we can compute the 4th cumulent using Eq.~(\ref{c4}) and we do observe a linear regime at long time as shown in Fig.XX. However, this experiment as only been done once, it is thus preliminary results that encourage continuing in this way.
+
 \subsection{Sample ageing}
 
 Doing the experiment on the soft surfaces, we observed that the images was becoming blurry with time, as a diffusive layer was added in the microscope's optical path. An example is shown in Fig.XX where we can see microscope images separated by three hours.
