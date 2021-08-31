@@ -275,9 +275,19 @@ where the averages are done over the equilibrium distribution $P_\mathrm{eq}$ an
 Where $ C_4 ^0$ and $ C_4 ^1$ are constants that depends on the equilibrium distribution $P_\mathrm{eq}$, and could be written as a function of $B$, $\ell _ \mathrm{D}$, and $\ell _\mathrm{B}$. Unlike the first and second moment of the parrallel displacement,(the displacement distribution $P_x(\Delta x)$ and the \gls{MSD} $\langle \Delta x ^2 \rangle_t $ respectively), the 4th cumulent a peculiar regime when the particle reach equilibrium. This result is thus interresting as it gives a new observable of the equilibrium properties on the parallel displacement. If this theory is verified, it could be added to our inference method (see section \ref{section:expresults}) in order to gain precision and robustess.
 
 As we are only interested to the $x$- and $y$-axis displacement to show this result, we do not need 3D tracking. Thus, we only need to find the holograms centroid, and therefor use faster algorithm than the Mie framework. To do so we use the Trackpy package \href{https://github.com/soft-matter/trackpy}{\faGithub} \cite{allan_soft-mattertrackpy_2021} which implements the Crocker–Grier algorithm \cite{crocker_methods_1996} which permits to track the centroid of hundred of colloids quite rapidly, as shown in Fig.XX.
-
+\begin{figure}[H]
+	\centering
+	\includegraphics{02_body/chapter4/images/4th_cumulent/trajectories.pdf}
+	\caption{Scheme of a particle immersed in a fluid of index $n_1$ above a glass substrate of optical index $n_2$. The particle is at a distance $z_\mathrm{w}$ above the glass subrate, and the objective focal plane $z_\mathrm{g}$ below the interface. Due to the Snell-Descartes law, light with an incident angle $\theta_1$ is refracted with an angle $\beta$. }
+	\label{fig.trajtrackpy}
+\end{figure}
 From the data retrieve, we can compute the 4th cumulent using Eq.~(\ref{c4}) and we do observe a linear regime at long time as shown in Fig.XX. However, this experiment as only been done once, it is thus preliminary results that encourage continuing in this way.
-
+\begin{figure}[H]
+	\centering
+	\includegraphics{02_body/chapter4/images/4th_cumulent/fourth.pdf}
+	\caption{qwe  }
+	\label{fig.forth}
+\end{figure}
 \subsection{Sample ageing}
 
 Doing the experiment on the soft surfaces, we observed that the images was becoming blurry with time, as a diffusive layer was added in the microscope's optical path. An example is shown in Fig.XX where we can see microscope images separated by three hours.
