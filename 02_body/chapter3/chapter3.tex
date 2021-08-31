@@ -325,14 +325,14 @@ where A is a normalization constant such that $\int_{0}^{\infty}P_\mathrm{eq}(z)
 	
 	def _Peq(z):
 	if z <= 0:
-	return 0
+	  return 0
 	else:
-	return np.exp(-(B * np.exp(-z / ld) + z / lb))
+	  return np.exp(-(B * np.exp(-z / ld) + z / lb))
 	
 	
 	def Peq(z):
-	P = np.array([_Peq(zi) for zi in z])
-	return P / np.trapz(P,z)
+	  P = np.array([_Peq(zi) for zi in z])
+	  return P / np.trapz(P,z)
 \end{minted}
 
 
@@ -473,27 +473,28 @@ where $\xi  = a / (z+a)$. Eqs.~(\ref{Eq:etaz})~and~(\ref{Eq:etax}) are precise f
 	linenos
 	]
 	{python}
-	from mpmath import nsum 
+from mpmath import nsum 
 	
-	def Dz(eta, z, a):
-	a = (z + a) / a
-	beta = float(acosh(a))
-	summ = nsum(
-	lambda n: (n * (n + 1) / ((2 * n - 1) * (2 * n + 3)))
-	* (
-	(
-	(2 * sinh((2 * n + 1) * xi) + (2 * n + 1) * sinh(2 * beta))
-	/ (
-	4 * (sinh((n + 1 / 2) * beta) ** 2)
-	- ((2 * n + 1) ** 2) * (sinh(beta) ** 2)
-	)
-	)
-	- 1
-	),
-	[0, inf],
-	)
-	summ = float(summ)
-	return kT / (6 * pi * eta * 4 / 3 * float(sinh(beta)) * summ * a)
+def Dz(eta, z, a):
+  a = (z + a) / a
+  beta = float(acosh(a))
+  summ = nsum(
+    lambda n: (n * (n + 1) / ((2 * n - 1) * (2 * n + 3)))
+    * (
+        (
+          (2 * sinh((2 * n + 1) * xi) + (2 * n + 1) * sinh(2 * beta))
+          / (
+              4 * (sinh((n + 1 / 2) * beta) ** 2)
+              - ((2 * n + 1) ** 2) * (sinh(beta) ** 2)
+          )
+    )
+    - 1
+  ),
+  [0, inf],
+  )
+  summ = float(summ)
+  return kT / (6 * pi * eta * 4 / 3 * float(sinh(beta)) * summ * a)
+
 \end{minted}
 
 To simplify the computation of $\lambda_\bot$, Goldman \textit{et al.} \cite{goldman_slow_1967} showed that Eq.~(\ref{Eq:etaz}) can be Padé approximated, giving:
@@ -894,21 +895,20 @@ Let us now analyze the experimental data obtain through the Mie tracking. In the
 	linenos
 	]
 	{python}
-	def movmin(z, window):
-	result = np.empty_like(z)
-	start_pt = 0
-	end_pt = int(np.ceil(window / 2))
+def movmin(z, window):
+  result = np.empty_like(z)
+  start_pt = 0
+  end_pt = int(np.ceil(window / 2))
 	
-	for i in range(len(z)):
-	if i < int(np.ceil(window / 2)):
-	start_pt = 0
-	if i > len(z) - int(np.ceil(window / 2)):
-	end_pt = len(z)
-	result[i] = np.min(z[start_pt:end_pt])
-	start_pt += 1
-	end_pt += 1
-	
-	return result
+  for i in range(len(z)):
+    if i < int(np.ceil(window / 2)):
+      start_pt = 0
+    if i > len(z) - int(np.ceil(window / 2)):
+      end_pt = len(z)
+	  result[i] = np.min(z[start_pt:end_pt])
+	  start_pt += 1
+	  end_pt += 1
+  return result
 \end{minted}
 
 In the latter, \mintinline{python}{window} represent the number of points is used to compute the minimum. As an example, if one chose \mintinline{python}{window = 10000}, the first value of \mintinline{python}{result} is the minimum of the first 10000 points of \mintinline{python}{z}. If there is enough data around the point where the minimum is calculated, the ensemble is centered, with a window of 100, the minimal value at the 100th elements is between the 50th and 150th (\textit{e.g.} \mintinline{python}|result[100] = np.min(z[50:150])|. The raw and rescaled trajectory are shown Fig.~\ref{fig.rescaled_traj}. Of course, that technique is not perfect and we are working on a method that could directly measure the wanted wall-particle distance, also using Mie. However, subtract the moving minimum has a benefit, indeed it can remove some experimental drift that can be due to the physical movement of the optical pieces of the microscope. Moreover, as the exact location of the $z=0$ origin is thus \textit{a priori} undetermined we add to the physical parameters $B$, $\ell_\mathrm{D}$ and $\ell_\mathrm{B}$ a height offset $z_\mathrm{off}$ that accounts for the correction of the wall position.
@@ -1021,27 +1021,27 @@ The latter can be evaluated using the following Python snippet.
 	linenos
 	]
 	{python}
-	def P_D(B, ld, lb):
-	# Computing the D PDF.
-	z = np.linspace(1e-9, 15e-6, 1000)
-	P_D = Dz(z) * P_b_off(z, offset, B, ld, lb)
-	P_D = P_D / np.trapz(P_D, z)  # extra step to ensure PDF normalization
-	return Dz, P_D
+def P_D(B, ld, lb):
+  # Computing the D PDF.
+  z = np.linspace(1e-9, 15e-6, 1000)
+  P_D = Dz(z) * P_b_off(z, offset, B, ld, lb)
+  P_D = P_D / np.trapz(P_D, z)  # extra step to ensure PDF normalization
+  return Dz, P_D
 	
 	
-	def _P_Dz_short_time(Dz, Dt, B, ld, lb):
-	# Using the D PDF to compute the P()
-	D_z, P_D = P_D(B, ld, lb)
-	P = P_D / np.sqrt(4 * np.pi * D_z * Dt) * np.exp(-(Dz ** 2) / (4 * D_z * Dt))
-	P = np.trapz(P, D_z)
-	return P
+def _P_Dz_short_time(Dz, Dt, B, ld, lb):
+  # Using the D PDF to compute the P()
+  D_z, P_D = P_D(B, ld, lb)
+  P = P_D / np.sqrt(4 * np.pi * D_z * Dt) * np.exp(-(Dz ** 2) / (4 * D_z * Dt))
+  P = np.trapz(P, D_z)
+  return P
 	
 	
 	# Wrapping the previous function of easier use for Dz arrays.
-	def P_Dz_short_time(Dz, Dt, B, ld, lb):
-	P = np.array([_P_Dz_short_time(i, Dt, B, ld, lb) for i in Dz])
-	P = P / np.trapz(P, Dz) # extra step to ensure PDF normalization
-	return P
+def P_Dz_short_time(Dz, Dt, B, ld, lb):
+  P = np.array([_P_Dz_short_time(i, Dt, B, ld, lb) for i in Dz])
+  P = P / np.trapz(P, Dz) # extra step to ensure PDF normalization
+  return P
 \end{minted}
 
 In the latter snippet, the evaluation is done for $\Delta z$, however, to compute $P_x(\Delta x)$ one should just change the \mintinline{python}{Dz(z)} function to compute the parallel diffusion coefficient $D_\parallel$. Since $P$ is a \gls{PDF}, it should be normalized such that $\int P = 1$, I added an extra step to ensure \gls{PDF} normalization along the evaluation.
@@ -1067,16 +1067,16 @@ As shown in Fig.~\ref{fig.displacement}-e), Eq.~(\ref{auxiliary}) captures the l
 	linenos
 	]
 	{python}
-	def _Pdeltaz_long(DZ, B, ld, lb):
-	z = np.linspace(0, 20e-6, 1000)    
-	dP = P_eq(z, B, ld, lb) * P_eq(z + DZ, B, ld, lb)
-	P = trapz(dP,z)
-	return P
+def _Pdeltaz_long(DZ, B, ld, lb):
+  z = np.linspace(0, 20e-6, 1000)    
+  dP = P_eq(z, B, ld, lb) * P_eq(z + DZ, B, ld, lb)
+  P = trapz(dP,z)
+  return P
 	
-	def Pdeltaz_long(DZ, B, ld, lb):
-	pdf = np.array([_Pdeltaz_long(i,B, ld, lb) for i in DZ])
-	pdf = pdf / trapz(pdf,DZ)
-	return pdf
+def Pdeltaz_long(DZ, B, ld, lb):
+  pdf = np.array([_Pdeltaz_long(i,B, ld, lb) for i in DZ])
+  pdf = pdf / trapz(pdf,DZ)
+  return pdf
 	
 \end{minted}
 
