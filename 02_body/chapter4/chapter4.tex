@@ -1,6 +1,6 @@
 \section{Work in progress and observations}
 
-In this section, I will present some of the work that has been started but not finished yet, or, observations made during the experiments.
+In this section, I will present some of the work that has been started but not finished yet, and observations made during the experiments.
 
 \subsection{Elastohydrodynamic lift at soft wall}
 
@@ -13,7 +13,7 @@ In this section, I will present some of the work that has been started but not f
 
 
 
-Elastohydrodynamic (\gls{EHD}) is the branch in physics that permit to model the interaction between elasticity and hydrodynamic. We will here focus particularly focus to \gls{EHD} in lubrication, which permits to model the physics of sliding motion between objects with a fluid-lubricated contact. Lubrication \gls{EHD} is present in many length scales and timescales, including for example, landslides \cite{campbell_self-lubrication_1989}, roller bearings \cite{hamrock_fundamentals_2004} or blood cells motion in microfluidic devices \cite{byun_characterizing_2013, higgins_sickle_2007, cohen_hydrodynamics_2013}. It is recently, in 2015, that the problem of a free particle that can sediment, slide or roll near a soft surface has been treated  \cite{salez_elastohydrodynamics_2015}. As the particle slides near the surface, they moved fluid deforms the soft wall surface. One of the main results of \cite{salez_elastohydrodynamics_2015} is that sliding induced a symmetry breaking of the deformation; hence, a net force is applied to the sliding object. They further show that this force is oriented towards the particle, and, thus act as a self-sustain \gls{EHD} lift force. The first experimental proofs of this force has been done at the macro scale using negatively buoyant centimetric cylinders immersed in a viscous fluid sliding down a tilted wall that is coated with an elastic layer. They show that the self-sustained \gls{EHD} lift reduces the friction by nearly an order of magnitude and suggests that this \gls{EHD} force could partially explain phenomena such as reduced wear in animal joints and long-runout landslides. The \gls{EHD} lift force has also recently been measured at the micro-scale, using micron-sized colloidal spheres in micro channels in a shear flow. However, all of this experiment uses a system which is out of equilibrium, and, we would like to test if Brownian motion could trigger such an effect. In the soft lubrication theory, and, taking a sphere of radius $a$ moving at constant velocity $V$, in a solvent of viscosity $\eta$, at a distance $z$ for a thick (by respect to the particle radius), incompressible, linear-elastic substrate of shears elastic modulus $G$, the lift force $F_\mathrm{lift}$ reads:
+Elastohydrodynamic (\gls{EHD}) is the branch in physics that permits modeling the interaction between elasticity and hydrodynamic. We will here focus particularly focus to \gls{EHD} in lubrication, which permits to model the physics of sliding motion between objects with a fluid-lubricated contact. Lubrication \gls{EHD} is present in many length scales and time scales, including for example, landslides \cite{campbell_self-lubrication_1989}, roller bearings \cite{hamrock_fundamentals_2004} or blood cells motion in microfluidic devices \cite{byun_characterizing_2013, higgins_sickle_2007, cohen_hydrodynamics_2013}. It is recently, in 2015, that the problem of a free particle that can sediment, slide or roll near a soft surface has been treated  \cite{salez_elastohydrodynamics_2015}. As the particle slides near the surface, they moved fluid deforms the soft wall surface. One of the main results of \cite{salez_elastohydrodynamics_2015} is that sliding induced a symmetry breaking of the deformation; hence, a net force is applied to the sliding object. They further show that this force is oriented towards the particle, and, thus act \gls{EHD} lift force. If a particle is sliding due to its own weight, this lift force can be self-sustained. The first experimental proof of this force has been done at the macro scale using negatively buoyant centimetric cylinders immersed in a viscous fluid sliding down a tilted wall that is coated with an elastic layer. They show that the self-sustained \gls{EHD} lift reduces the friction by nearly an order of magnitude and suggests that this \gls{EHD} force could partially explain phenomena such as reduced wear in animal joints and long-runout landslides. The \gls{EHD} lift force has also recently been measured at the micro-scale, using micron-sized colloidal spheres in micro channels in a shear flow. However, all of this experiment uses a system which is out of equilibrium, and, we would like to test if Brownian motion could trigger such an effect. In the soft lubrication theory, and taking a sphere of radius $a$ moving at constant velocity $V$, in a solvent of viscosity $\eta$, at a distance $z$ for a thick (with respect to the particle radius), incompressible, linear-elastic substrate of shears elastic modulus $G$, the lift force $F_\mathrm{lift}$ reads \cite{skotheim_soft_2004}:
 
 \begin{equation}
 	F_\mathrm{lift} \simeq \frac{\eta^2 V^2}{G} \frac{a^{5/2}}{z^{5/2}} ~.
@@ -28,7 +28,7 @@ To incorporate fluctuations into this deterministic picture, an idea is to repla
 \end{equation}
 
 
-From this equation, we can observe a counterintuitive effect, as the particle radius decreases (the surface of contact), the larger the \gls{EHD} force $F_\mathrm{lift, Brown}$ is. Taking typical biophysics value such as $G \simeq 10$ kPa, $\rho_\mathrm{p} = 1350$ kg.m$^{-3}$ and $a=100$ nm, the \gls{EHD} force reaches the picoNewton order of magnitude. The latter means that microscopic entities in biology and nanoscience may spontaneously trigger large Brownian \gls{EHD} couplings, drastically affecting their dynamics. However, it is important to note that it is a simple estimate and, contains a high risk of conceptual failure associated, for example, to the lake of compensating drift at equilibrium as we have with a hard wall (see Eq.~(\ref{Eq.spurious_drift})). To do the soft coating experimentally, we use Polydimethylsiloxane (\gls{PDMS}), as a soft surface.
+From this equation, we can observe a counterintuitive effect, as the particle radius decreases (the surface of contact), the larger the \gls{EHD} force $F_\mathrm{lift, Brown}$ is. Taking typical biophysics value such as $G \simeq 10$ kPa, $\rho_\mathrm{p} = 1350$ kg.m$^{-3}$ and $a=100$ nm, the \gls{EHD} force reaches the picoNewton order of magnitude. The latter means that microscopic entities in biology and nanoscience may spontaneously trigger large Brownian \gls{EHD} couplings, drastically affecting their dynamics. However, it is important to note that it is a simple estimate and, contains a high risk of conceptual failure associated, for example, to the lake of compensating drift at equilibrium as we have with a hard wall (see Eq.~(\ref{Eq.spurious_drift})). To do the soft coating experimentally, we use Polydimethylsiloxane (\gls{PDMS}).
 
 \subsubsection{PDMS}
 
@@ -51,7 +51,7 @@ where $n$ is the number of $\mathrm{Si(CH_3)_2 O}$ dimethyl groups. By mixing a 
 \end{figure}
 
 
-Due to this crosslink, the \gls{PDMS} turns into an incomprehensible and linear-elastic solid. Some of its characteristics are to be hydrophobic and to exhibit strong gas permeability \cite{xia_soft_1998}. The elasticity modulus $G$ of the crosslinked \gls{PDMS} can be tuned by changing the mixing ratio of base polymer solutions and curing agent. For example, for one of the most used \gls{PDMS} Sylgard 184, a mixing ratio of $10:1$ leads to an elastic modulus $G=1.5$ MPa and $G\simeq 100$ kPa for a $35:1$ ratio \cite{wang_crosslinking_2014}. To prepare experimental, samples, it possible to spin coat the microscope slides with base:agent mix before it is cured in order to have a thick soft surface. However, for simplicity and check if we can observe any forces with our experiment we first decided to use already prepared samples sold by Ibidi, these came as soft coated dishes with a coverslip on the bottom that we can directly fit onto our microscope.
+Due to this crosslink, the \gls{PDMS} turns into an incomprehensible and linear-elastic solid. Some of its characteristics are to be hydrophobic and to exhibit strong gas permeability \cite{xia_soft_1998}. The elasticity modulus $G$ of the crosslinked \gls{PDMS} can be tuned by changing the mixing ratio of base polymer solutions and curing agent. For example, for one of the most used \gls{PDMS} Sylgard 184, a mixing ratio of $10:1$ leads to an elastic modulus $G=1.5$ MPa and $G\simeq 100$ kPa for a $35:1$ ratio \cite{wang_crosslinking_2014}. To prepare experimental, samples, it possible to spin coat the microscope slides with the base:agent mix before it is cured in order to have a thick soft surface coating onto the slides. However, for simplicity and check if we can observe any forces with our experiment we first decided to use already prepared samples sold by Ibidi, these came as soft coated dishes with a coverslip on the bottom that we can directly fit onto our microscope.
 
 
 \subsubsection{Measuring non-conservative forces}
@@ -131,7 +131,7 @@ An idea we have is to try to observe the same phenomenon using a soft surface an
 
 \subsection{Direct relative distance measurement using Mie}
 
-One of the effects that is not taken into account in the Mie theory presented in the section \ref{chap:LM_fit} is the presence of the glass slide. Indeed the focal plane, where the holograms are recorded is in the glass slides, thus, the holograms should be refracted at the glass interface. However, it is not a problem, for they realized fit, indeed, to have faster fit, we use only the few maxima leading to radial distance of $\simeq 5 ~\mathrm{\mu m }$ for a height $z\simeq 15~\mathrm{\mu m}$, leading to a maximal angle of incidence $\theta = \tan^{-1} (5/15) \simeq 18.5 ^{\circ} $. As we are working with small angles, we can suppose that for the first maxima, there is not refracted. 
+One of the effects that is not taken into account in the Mie theory presented in the section \ref{chap:LM_fit} is the presence of the glass slide. Indeed the focal plane, where the holograms are recorded is in the glass slides. Thus, the holograms should be refracted at the glass interface. However, it is not a problem, for they realized fit, indeed, to have faster fit, we use only the few maxima leading to radial distance of $\simeq 5 ~\mathrm{\mu m }$ for a height $z\simeq 15~\mathrm{\mu m}$, leading to a maximal angle of incidence $\theta = \tan^{-1} (5/15) \simeq 18.5 ^{\circ} $. As we are working with small angles, we can suppose that for the first maxima, there is not refracted. 
 
 However, the small angle approximation does not hold for higher order maxima, thus as the refraction angle depends on the wall-particle distance, adding it to the Mie theory could lead to a direct measurement of the particle height. Moreover, the Mie fitting would even more robust since a mechanical drift of the sample of the objective would not change the refractive angle of the particle. However, the main difficulty is to be able to have a more stable imaging device to detect with a high accuracy the highest order maxima which are less intense.
 
@@ -139,7 +139,7 @@ However, the small angle approximation does not hold for higher order maxima, th
 \begin{figure}[H]
 	\centering
 	\includegraphics{02_body/chapter4/images/h_measurement/drawing_angles.pdf}
-	\caption{Scheme of a particle immersed in a fluid of index $n_1$ above a glass substrate of optical index $n_2$. The particle is at a distance $z_\mathrm{w}$ above the glass subrate, and the objective focal plane $z_\mathrm{g}$ below the interface. Due to the Snell-Descartes law, light with an incident angle $\theta_1$ is refracted with an angle $\beta$. }
+	\caption{Scheme of a particle immersed in a fluid of index $n_1$ above a glass substrate of optical index $n_2$. The particle is at a distance $z_\mathrm{w}$ above the glass subrate, and the objective focal plane $z_\mathrm{g}$ below the interface. Due to the Snell-Descartes’s law, light with an incident angle $\theta_1$ is refracted with an angle $\beta$. }
 	\label{fig.schema_h}
 \end{figure}
 
@@ -204,22 +204,22 @@ with the hologram normalized radial intensity given by:
 	\label{Eq.modified_mie}
 \end{equation}
 
-We are currently working on this project with Mathias Perrin, a specialist of the numerical simulation of Mie system. We need to simulation of the exact modification of the holograms when due to the glass interface. The simulations results will then be compared to the model Eq.~(\ref{Eq.modified_mie}) to verify if it correctly capture the physics. 
+We are currently working on this project with Mathias Perrin, a specialist of the numerical simulation of Mie system. We need to simulation of the exact modification of the holograms when due to the glass interface. The simulation results will then be compared to the model Eq.~(\ref{Eq.modified_mie}) to verify if it correctly captures the physics. 
 
 
-\subsection{Long time 4th cumulent - Dean project}
+\subsection{Long time 4th cumulent}
 
 In this subsection we consider the cumulent of higher order than 2 (\gls{MSD}). The 4th order cumulent writes:
 
 \begin{equation}
 	C_4 (\Delta t) = \frac{1}{4!} \left(
-		\left\langle [ x_i(t + \Delta t) - x_i(t) ]^4 \right\rangle_t
-		- 3\left\langle [ x_i(t + \Delta t) - x_i(t) ]^2 \right\rangle_t ^2
-	   \right) ~.
-	   \label{c4}
+	\left\langle [ x_i(t + \Delta t) - x_i(t) ]^4 \right\rangle_t
+	- 3\left\langle [ x_i(t + \Delta t) - x_i(t) ]^2 \right\rangle_t ^2
+	\right) ~.
+	\label{c4}
 \end{equation}
 
-For a Gaussian distributed variable $x$ as Brownian motion in bulk, $C_4$ is a constant as $\langle \Delta x ^2 \rangle _t ^2 = \langle x^4 \rangle_t $. Therefore, the literature often overlook the higer moments as it permits to measure and gain insights from the difference from a Gaussian distribution. However, as it has been shown along this manuscript, confined Brownian motion exhibit non-Gaussian stastical properties as shown in Fig.\ref{fig.displacement}. Thus, it could be interreseting to study the 4th cumulent of confined Brownian particles. We work on this idea with David Dean and Arthur Alexandre who are specialized in Brownian theory. Interestigly, they found interesting behaviour for the 4th cumulent for the parrallel displacement to the wall, for which the the Langevin equation is given by:
+For a Gaussian distributed variable $x$ as Brownian motion in bulk, $C_4$ is a constant as $\langle \Delta x ^2 \rangle _t ^2 = \langle x^4 \rangle_t $. Therefore, the literature often overlooks the higher moments as it rarely gives additional informations. However, as it has been shown along this manuscript, confined Brownian motion exhibit non-Gaussian statistical properties as shown in Fig.\ref{fig.displacement}. Thus, it could be interesting to study the 4th cumulent of confined Brownian particles. We work on this project with David Dean and Arthur Alexandre who are specialized in Brownian theory. They found interesting behavior for the 4th cumulent along parallel displacement to the wall, for which the Langevin equation is given by:
 
 \begin{equation}
 	\mathrm{d}X_t = \sqrt{2D_\parallel(z_t)} \mathrm{d}B_t
@@ -239,13 +239,13 @@ After combining Eqs.~(\ref{c4})~and~(\ref{c4.dx}) and some mathematical manipula
 	\label{c4full}
 \end{equation}
 
-where the Forward Fokker Plank as been decompsed on the set of eigenfunctions $\psi_{\lambda, R}$, the right eigenfunctions of the Generator $G$ such that:
+where the Forward Fokker Plank has been decomposed on the set of eigenfunctions $\psi_{\lambda, R}$, the right eigenfunctions of the Generator $G$ such that:
 
 \begin{equation}
 	G\psi_{\lambda, R} = \lambda \psi_{\lambda, R} ~.
 \end{equation}
 
-For $\lambda = 0$, we have: $\psi_{0, R} = p_0$ and $\psi_{\lambda, L} = 1$. Using this decomposition, the density of probability $p$ wirtes:
+For $\lambda = 0$, we have: $\psi_{0, R} = p_0$ and $\psi_{\lambda, L} = 1$. Using this decomposition, the density of probability $p$ writes:
 
 \begin{equation}
 	p(z, \Delta t|z') = \sum _\lambda \mathrm{e} ^{-\lambda \Delta t} \psi_{\lambda, R} (z) \psi_{\lambda, L} (z') ~.
@@ -260,31 +260,46 @@ Despite the complicated form of Eq.~(\ref{c4full}) it gives nice approximations 
 	\right)~,
 \end{equation}
 
-where the averages are done over the equilibrium distribution $P_\mathrm{eq}$ and thus vary as a function of $\Delta t ^2$ at short time. Eq.~(\ref{c4full}) can also me approximated, in the limit $\Delta t \rightarrow + \infty$ where we have:
+where the averages are done over the equilibrium distribution $P_\mathrm{eq}$ and thus vary as a function of $\Delta t ^2$ at a short time. Eq.~(\ref{c4full}) can also be approximated, in the limit $\Delta t \rightarrow + \infty$ where we have:
 
 \begin{equation}
 	\lim\limits_{\Delta t \rightarrow \infty } C_4 (\Delta t) = C_4 ^0 \Delta t - C^1 _4 ~,
 \end{equation}
 
-Where $ C_4 ^0$ and $ C_4 ^1$ are constants that depends on the equilibrium distribution $P_\mathrm{eq}$, and could be written as a function of $B$, $\ell _ \mathrm{D}$, and $\ell _\mathrm{B}$. Unlike the first and second moment of the parrallel displacement,(the displacement distribution $P_x(\Delta x)$ and the \gls{MSD} $\langle \Delta x ^2 \rangle_t $ respectively), the 4th cumulent a peculiar regime when the particle reach equilibrium. This result is thus interresting as it gives a new observable of the equilibrium properties on the parallel displacement. If this theory is verified, it could be added to our inference method (see section \ref{section:expresults}) in order to gain precision and robustess.
+Where $ C_4 ^0$ and $ C_4 ^1$ are constants that depends on the equilibrium distribution $P_\mathrm{eq}$, and could be written as a function of $B$, $\ell _ \mathrm{D}$, and $\ell _\mathrm{B}$. Unlike the first and second moment of the parallel displacement (the displacement distribution $P_x(\Delta x)$ and the \gls{MSD} $\langle \Delta x ^2 \rangle_t $ respectively), the 4th cumulent a peculiar regime when the particle reach equilibrium. This result is thus interesting as it gives a new observable of the equilibrium properties on the parallel displacement. If this theory is verified, it could be added to our inference method (see section \ref{section:expresults}) in order to gain precision and robustness.
 
-As we are only interested to the $x$- and $y$-axis displacement to show this result, we do not need 3D tracking. Thus, we only need to find the holograms centroid, and therefor use faster algorithm than the Mie framework. To do so we use the Trackpy package \href{https://github.com/soft-matter/trackpy}{\faGithub} \cite{allan_soft-mattertrackpy_2021} which implements the Crocker–Grier algorithm \cite{crocker_methods_1996} which permits to track the centroid of hundred of colloids quite rapidly, as shown in Fig.XX.
+As we are only interested in the $x$- and $y$-axis displacement to show this result, we do not need 3D tracking. Thus, we only need to find the holograms centroid, and therefore use faster algorithms than the Mie framework. To do so we use the Trackpy package \href{https://github.com/soft-matter/trackpy}{\faGithub} \cite{allan_soft-mattertrackpy_2021} which implements the Crocker–Grier algorithm \cite{crocker_methods_1996} which permits tracking the centroid of hundreds of colloids quite rapidly. Trajectories thus tracked are shown in Fig.~\ref{fig.trajtrackpy}.
 \begin{figure}[H]
 	\centering
 	\includegraphics{02_body/chapter4/images/4th_cumulent/trajectories.pdf}
-	\caption{Scheme of a particle immersed in a fluid of index $n_1$ above a glass substrate of optical index $n_2$. The particle is at a distance $z_\mathrm{w}$ above the glass subrate, and the objective focal plane $z_\mathrm{g}$ below the interface. Due to the Snell-Descartes law, light with an incident angle $\theta_1$ is refracted with an angle $\beta$. }
+	\caption{Trajectory of 300 particles of commercial radius $a=2.5 ~ \mathrm{\mu m}$. The trajectories are composed of 10000 points with a time step $\tau = 0.05$~s. }
 	\label{fig.trajtrackpy}
 \end{figure}
-From the data retrieve, we can compute the 4th cumulent using Eq.~(\ref{c4}) and we do observe a linear regime at long time as shown in Fig.XX. However, this experiment as only been done once, it is thus preliminary results that encourage continuing in this way.
+From the data retrieve, we can compute the 4th cumulent using Eq.~(\ref{c4}) and we do observe a linear regime as shown in Fig.~\ref{fig.forth}. However, this experiment as only been done once, it is thus preliminary results that encourage continuing in this way.
 \begin{figure}[H]
 	\centering
 	\includegraphics{02_body/chapter4/images/4th_cumulent/fourth.pdf}
-	\caption{qwe  }
+	\caption{Bullets corresponds to the experimentally measured 4th cumulent, see Eq.~(\ref{c4.dx}). The plain line is a linear regime indicator.The images are $45~\mathrm{\mu m}$ wide and $50~\mathrm{\mu m}$ tall.}
 	\label{fig.forth}
 \end{figure}
 \subsection{Sample ageing}
 
-Doing the experiment on the soft surfaces, we observed that the images was becoming blurry with time, as a diffusive layer was added in the microscope's optical path. An example is shown in Fig.XX where we can see microscope images separated by three hours.
+While doing the experiment on the soft surfaces, we observed that the image was becoming blurry with time, as a diffusive layer was added in the microscope's optical path. An example is shown in Fig.~\ref{fig.3hours1p5kpa} where we can see microscope images separated by three hours.
 
 
-Trying to find the origin of this effect, we focused on the interface between the soft PDMS layer and glass. Doing so we observe a structure that looks like bubbles, as shown in Fig.XX. We observe that this effect happens faster as the PDMS is softer (lower modulus) and the bubble seems to be also bigger, as shown in Fig.XX. One of the idea we have to explain this phenomenon comes from the high gas permeability of PDMS that could lead to a gas accumulation between the PDMS and glass. The origin of this gas would come from the naturally present gas inside the colloid suspension.
+\begin{figure}[h]
+	\centering
+	\includegraphics{02_body/chapter4/images/ageing/diffusing_particle_1p5kpa_3hours.pdf}
+	\caption{Image of a particle diffusing above a soft surface ($G=1.5$~kPa). The image on the right has been taken 3 hours after the one on the left. The images are $45~\mathrm{\mu m}$ wide and $50~\mathrm{\mu m}$ tall. }
+	\label{fig.3hours1p5kpa}
+\end{figure}
+
+Trying to find the origin of this effect, we focused on the interface between the soft PDMS layer and glass. Doing so, we observe a structure that looks like bubbles, as shown in Fig.\ref{fig.bubbles}. We observe that this effect happens faster as the PDMS is softer (lower modulus) and the bubble seems to be also bigger. One of the ideas we have to explain this phenomenon comes from the high gas permeability of PDMS that could lead to a gas accumulation between the PDMS and glass. The origin of this gas would come from the naturally present gas inside the colloid suspension.
+
+
+\begin{figure}[h]
+	\centering
+	\includegraphics{02_body/chapter4/images/ageing/bullbles_1p5kpa_3hours.pdf}
+	\caption{Image of the glass-PDMS ($G=1.5$~kPa) interface, three hours after that water has been introduced in the sample. The images are $45~\mathrm{\mu m}$ wide and $50~\mathrm{\mu m}$ tall.}
+	\label{fig.bubbles}
+\end{figure}

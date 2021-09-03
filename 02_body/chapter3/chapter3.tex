@@ -314,25 +314,28 @@ where A is a normalization constant such that $\int_{0}^{\infty}P_\mathrm{eq}(z)
 
 \begin{minted}
 	[
+	autogobble,
 	frame=lines,
 	framesep=2mm,
 	baselinestretch=1.2,
+	obeytabs=true,
+	tabsize=2,
 	fontsize=\footnotesize,
 	linenos
 	]
 	{python}
 	import numpy as np
 	
-	def _Peq(z):
+def _Peq(z):
 	if z <= 0:
-	  return 0
+		return 0
 	else:
-	  return np.exp(-(B * np.exp(-z / ld) + z / lb))
+		return np.exp(-(B * np.exp(-z / ld) + z / lb))
 	
 	
-	def Peq(z):
-	  P = np.array([_Peq(zi) for zi in z])
-	  return P / np.trapz(P,z)
+def Peq(z):
+	P = np.array([_Peq(zi) for zi in z])
+return P / np.trapz(P,z)
 \end{minted}
 
 
@@ -892,23 +895,26 @@ Let us now analyze the experimental data obtain through the Mie tracking. In the
 	framesep=2mm,
 	baselinestretch=1.2,
 	fontsize=\footnotesize,
+	obeytabs=true,
+	tabsize=2,
 	linenos
 	]
 	{python}
 def movmin(z, window):
-  result = np.empty_like(z)
-  start_pt = 0
-  end_pt = int(np.ceil(window / 2))
+	result = np.empty_like(z)
+	start_pt = 0
+	end_pt = int(np.ceil(window / 2))
 	
-  for i in range(len(z)):
-    if i < int(np.ceil(window / 2)):
-      start_pt = 0
-    if i > len(z) - int(np.ceil(window / 2)):
-      end_pt = len(z)
-	  result[i] = np.min(z[start_pt:end_pt])
-	  start_pt += 1
-	  end_pt += 1
-  return result
+	for i in range(len(z)):
+		if i < int(np.ceil(window / 2)):
+			start_pt = 0
+		if i > len(z) - int(np.ceil(window / 2)):
+			end_pt = len(z)
+			
+		result[i] = np.min(z[start_pt:end_pt])
+		start_pt += 1
+		end_pt += 1
+		return result
 \end{minted}
 
 In the latter, \mintinline{python}{window} represent the number of points is used to compute the minimum. As an example, if one chose \mintinline{python}{window = 10000}, the first value of \mintinline{python}{result} is the minimum of the first 10000 points of \mintinline{python}{z}. If there is enough data around the point where the minimum is calculated, the ensemble is centered, with a window of 100, the minimal value at the 100th elements is between the 50th and 150th (\textit{e.g.} \mintinline{python}|result[100] = np.min(z[50:150])|. The raw and rescaled trajectory are shown Fig.~\ref{fig.rescaled_traj}. Of course, that technique is not perfect and we are working on a method that could directly measure the wanted wall-particle distance, also using Mie. However, subtract the moving minimum has a benefit, indeed it can remove some experimental drift that can be due to the physical movement of the optical pieces of the microscope. Moreover, as the exact location of the $z=0$ origin is thus \textit{a priori} undetermined we add to the physical parameters $B$, $\ell_\mathrm{D}$ and $\ell_\mathrm{B}$ a height offset $z_\mathrm{off}$ that accounts for the correction of the wall position.
@@ -1152,9 +1158,8 @@ The latter equation corresponds to a linear regression of $\hat{d}_{\mu \nu} (t_
 	fontsize=\footnotesize,
 	linenos
 	]
-	{python}
-	
-	Dx, Dy, Dz, z_D = Compute_diffusion(pos)
+	{python}	
+Dx, Dy, Dz, z_D = Compute_diffusion(pos)
 \end{minted}
 
 Where in the latter \mintinline{python}{pos}, is the 3D trajectory of a Brownian colloid. It allowed us to infer the local diffusion coefficients $D_i(z)$, down to $z=10$~nm, as shown in Fig.~\ref{fig.visco}. The results are in excellent agreement with the theoretical predictions, $D_{\parallel}(z)$ and $D_z(z)$, using  Eqs.~(\ref{Eq:etaz})~and~(\ref{Eq:etaz}), thus validating the method.

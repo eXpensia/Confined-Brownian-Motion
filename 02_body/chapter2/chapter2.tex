@@ -55,8 +55,8 @@ Experimentally, one measures the intensity of the interference patterns. They ca
 
 \begin{equation}
 	\begin{aligned}
-		I & = \langle \vec{E}^2 \rangle = \langle \vec{E}_1^2 + \vec{E}_2^2 + 2\vec{E}_1 \cdot \vec{E}_2 \rangle 
-		= \langle \vec{E}_1^2 \rangle + \langle \vec{E}_2^2 \rangle  + 2 \langle \vec{E}_1 \cdot \vec{E}_2 \rangle  ~,\\
+		I & = \left\langle \vec{E}^2 \right\rangle = \left\langle \vec{E}_1^2 + \vec{E}_2^2 + 2\vec{E}_1 \cdot \vec{E}_2 \right\rangle 
+		= \left\langle \vec{E}_1^2 \right\rangle + \left\langle \vec{E}_2^2 \right\rangle  + 2 \left\langle \vec{E}_1 \cdot \vec{E}_2 \right\rangle  ~,\\
 	\end{aligned}
 \end{equation} 
 
@@ -64,8 +64,8 @@ where $ \langle \vec{E}_1^2 \rangle $ and  $\langle \vec{E}_2^2 \rangle$ are res
 
 \begin{equation}
 	\left\langle  
-	\vec{E}_1 \cdot \vec{E}_2 \rangle = 
-	\langle
+	\vec{E}_1 \cdot \vec{E}_2\right\rangle = 
+	\left\langle
 	\frac{1}{2} \vec{E}_{0_1}  \vec{E}_{0_2} 
 	\left[
 	\cos 
@@ -84,7 +84,7 @@ where $ \langle \vec{E}_1^2 \rangle $ and  $\langle \vec{E}_2^2 \rangle$ are res
 As we average over time, the second cosine vanishes. Thus one has:
 
 \begin{equation}
-	\langle \vec{E}_1 \cdot \vec{E}_2 \rangle = \frac{1}{2} \langle  \vec{E}_{0_1}  \vec{E}_{0_2} \rangle
+	\left\langle \vec{E}_1 \cdot \vec{E}_2 \right\rangle = \frac{1}{2} \left\langle  \vec{E}_{0_1}  \vec{E}_{0_2}\right\rangle
 	\cos 
 	\left(
 	\vec{k}_1 \cdot \vec{r} - \vec{k}_2 \cdot \vec{r} + \phi 
@@ -118,7 +118,7 @@ So far we supposed that the reflection occurs at a unique point; however, we wou
 
 
 \begin{equation}
-	I(x) = A_0 + A_1 \mathrm{e}^{-b_1 x^2} + A_2^{-b_2 x^2} \cos \left[ \frac{4\pi n_m}{\lambda}\left( g(x) + z \right) + \phi \right] ~,
+	I(x) = A_0 + A_1 \mathrm{e}^{-b_1 x^2} + A_2\mathrm{e}^{-b_2 x^2} \cos \left[ \frac{4\pi n_m}{\lambda}\left( g(x) + z \right) + \phi \right] ~,
 	\label{Eq.RICM}
 \end{equation}
 
@@ -254,24 +254,24 @@ If a reader wants to evaluate a hologram given by the Lorenz-Mie theory for a pe
 	linenos
 	]
 	{python}
-	import holopy as hp
-	from holopy.scattering import calc_holo, Sphere
+import holopy as hp
+from holopy.scattering import calc_holo, Sphere
 	
-	sphere = Sphere(n=1.59, r=1.5, center=(4/0.1, 4/0.1, 10))
-	# n is the optical index of the particle, r its radius in microns
-	# center is its center position in microns.
+sphere = Sphere(n=1.59, r=1.5, center=(4/0.1, 4/0.1, 10))
+# n is the optical index of the particle, r its radius in microns
+# center is its center position in microns.
 	
-	medium_index = 1.33
-	illum_wavelen = 0.532
-	illum_polarization = (1, 0)
-	detector = hp.detector_grid(shape=100, spacing=0.1)
-	# shape is the size in pixels of the camera and the spacing is the pixel's size in microns.
+medium_index = 1.33
+illum_wavelen = 0.532
+illum_polarization = (1, 0)
+detector = hp.detector_grid(shape=100, spacing=0.1)
+# shape is the size in pixels of the camera and the spacing is the pixel's size in microns.
 	
-	holo = calc_holo(
-	detector, sphere, medium_index, illum_wavelen, illum_polarization, theory="auto"
-	)
-	#the hologram can directly be plotted using:
-	hp.show(holo)
+holo = calc_holo(
+  detector, sphere, medium_index, illum_wavelen, illum_polarization, theory="auto"
+)
+#the hologram can directly be plotted using:
+hp.show(holo)
 \end{minted}
 
 \begin{figure}[H]
@@ -440,6 +440,7 @@ The \mintinline{python}{holopy} Python module provides a set of methods that per
 
 \begin{minted}
 	[
+	autogobble,
 	frame=lines,
 	framesep=2mm,
 	baselinestretch=1.2,
@@ -447,11 +448,11 @@ The \mintinline{python}{holopy} Python module provides a set of methods that per
 	linenos
 	]
 	{python}
-	import holopy as hp
-	import numpy as np
+import holopy as hp
+import numpy as np
 	
-	zstack = np.linspace(0, 20, 11)
-	rec_vol = hp.propagate(holo, zstack)
+zstack = np.linspace(0, 20, 11)
+rec_vol = hp.propagate(holo, zstack)
 \end{minted}
 
 Note that using the \mintinline{python}{propagate} function, each propagation is done by performing a convolution of the reference hologram over the distance to be propagated. However, better reconstruction can be obtained iteratively  by propagating holograms over several short distances. The latter method is called Cascaded Free Space Propagation, and is particularly useful when the reconstructions have fine features or when propagating over large distances \cite{kreis_frequency_2002}. It can be done by specifying the argument \mintinline{python}{cfsp} to the  \mintinline{python}{propagate} method. For example, to change the source of the propagation every three steps, one can use \mintinline{python}{hp.propagate(holo, zstack, cfsp=3)}.
@@ -537,27 +538,27 @@ To compute the optical force I personally employ the \mintinline{python}{miepyth
 	linenos
 	]
 	{python}
-	import miepython as mp
-	import numpy as np
+import miepython as mp
+import numpy as np
 	
-	# Download the data on the refractiveindex.info website
-	poly = np.genfromtxt(
+# Download the data on the refractiveindex.info website
+poly = np.genfromtxt(
 	r"https://refractiveindex.info/tmp/data/organic/(C8H8)n%20-%20polystyren/Zhang.txt",
 	delimiter="\t",
-	)
-	N = len(poly) // 2
-	poly_lam = poly[1:N, 0]  # wavelength
-	poly_nre = poly[1:N, 1]  # real part
-	poly_nim = poly[N + 1 :, 1]  # imaginary part
-	
-	x = 2 * np.pi * a / poly_lam
-	n = poly_nre - 1.0j * poly_nim
-	qext, qsca, qback, g = mp.mie(n, x)  # compute the efficiencies
-	E0 = 4.5e-3 / (np.pi * 1.75e-3 ** 2)  # compute the irradience
-	c = 299792458 / 1.33  # light velocity in the  medium
-	
-	F = E0 * np.pi * r0 ** 2 * (qext - g * qsca) / c  # compute the optical force
-	
+)
+N = len(poly) // 2
+poly_lam = poly[1:N, 0]  # wavelength
+poly_nre = poly[1:N, 1]  # real part
+poly_nim = poly[N + 1 :, 1]  # imaginary part
+
+x = 2 * np.pi * a / poly_lam
+n = poly_nre - 1.0j * poly_nim
+qext, qsca, qback, g = mp.mie(n, x)  # compute the efficiencies
+E0 = 4.5e-3 / (np.pi * 1.75e-3 ** 2)  # compute the irradience
+c = 299792458 / 1.33  # light velocity in the  medium
+
+F = E0 * np.pi * r0 ** 2 * (qext - g * qsca) / c  # compute the optical force
+
 \end{minted}
 
 \begin{figure}[H]

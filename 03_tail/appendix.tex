@@ -62,4 +62,18 @@ addtotoc={1,subsection,1,Stochastic inference of surface-induced effects using B
 %% The pdf file itself
 {03_tail/PhysRevResearch.3.L032011.pdf}
 
+
+\includepdf[
+%% Include all pages of the PDF
+pages=-,
+%% make this page have the usual page style
+%% (you can change it to plain etc). By default pdfpages
+%% sets the pagecommand to \pagestyle{empty}
+pagecommand={\pagestyle{headings}},  
+%% Add a "section" entry to the ToC with the heading
+%% "Quilling Shapes" and the label "sec:shapes"
+addtotoc={1,subsection,1,Data Analysis procedure,app:dataanalysis}]
+%% The pdf file itself
+{03_tail/data_analyse.pdf}
+
 \end{appendix}
