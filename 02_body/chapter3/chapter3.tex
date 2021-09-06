@@ -2,43 +2,43 @@
 
 \subsection{Confined Brownian motion theory}
 
-By observing the experimental trajectory along the $z$-axis of a particle of $1.5 ~ \mathrm{\mu m} $ as shown in Fig.~\ref{Fig:exp_z_traj}, one can notice that the particle height does not get higher than $ \simeq 4 ~ \mathrm{\mu m}$. Indeed, due to the gravity, a colloid is confined near the surface. Brownian motion in confinement and at interfaces is a canonical situation, encountered from fundamental biophysics to nanoscale engineering. This confinement induces near-wall effects, such as hindered mobility and electrostatic interactions. 
+By observing the experimental trajectory along the $z$-axis of a particle of $1.5 ~ \mathrm{\mu m} $ radius as shown in Fig.~\ref{Fig:exp_z_traj}, one can notice that the particle's height does not get higher than approximately $4 ~ \mathrm{\mu m}$. Indeed, due to gravity, a colloid is confined near the surface. This confinement induces near-wall effects, such as hindered mobility and electrostatic interactions. 
 
-In the first part\footnote{To write this first part, I took some inspiration from the Matse's master thesis \cite{matse_state-dependent_nodate}.} of this chapter, I will detail the theory background of the confined Brownian motion and how to numerically simulate it. In a second part, I will present how to analyze experimental data. In particular, I will detail a multi-fitting procedure that allows a thermal-noise-limited inference of diffusion coefficients spatially resolved at the nanoscale, equilibrium potential, and forces at the femtomewton resolution.
+In the first part of this chapter, I will detail the theory of confined Brownian motion and how to numerically simulate it. In a second part, I will present how to analyze experimental data. In particular, I will detail a multi-fitting procedure that a enables thermal-noise-limited inference of diffusion coefficients spatially resolved at the nanoscale, equilibrium potentials, and forces at the femtonewton resolution.
 
 \begin{figure}[ht]
 	\centering
 	\includegraphics{02_body/chapter3/images/traj_z/traj_z.pdf}
-	\caption{Experimental trajectory of a polystyrene particle of radius $a = 1.5 ~ \mathrm{\mu m}$ near a wall ($z = 0$) along the $z$-axis --- perpendicular to the wall.}
+	\caption{Experimental trajectory of a polystyrene particle of radius $a = 1.5 ~ \mathrm{\mu m}$ in water near a glass wall ($z = 0$) along the $z$-axis --- \textit{i.e} perpendicular to the wall.}
 	\label{Fig:exp_z_traj}
 \end{figure}
 
-\subsubsection{Gravitational interactions}
+\subsubsection{Gravitational potential}
 
 
-The density $\rho_\mathrm{p}$ of an observed colloid is different from the medium density $\rho_\mathrm{m}$ --- in our experiment we used water which density is $\rho_\mathrm{m} = 1000 ~ \mathrm{kg.m^{-3}}$. Thus, particles are subject to gravity, and lies into a gravitational potential given by:
+The density $\rho_\mathrm{p}$ of an observed colloid is different from the medium density $\rho_\mathrm{m}$. In our experiment, we used water whose density is $\rho_\mathrm{m} = 1000 ~ \mathrm{kg.m^{-3}}$. Thus, the particles are subject to gravitational potential given by:
 
 \begin{equation}
 	U_\mathrm{g} (z) = \Delta m g z = \frac{4}{3}\pi a ^3 g \Delta \rho z ~,
 	\label{eq:ug_full}
 \end{equation}
 
-where $\Delta m$ is the mass difference of the particle and a fluid sphere of the same size, $\Delta \rho = \rho_\mathrm{m} - \rho_\mathrm{p}$ the corresponding density difference, and $g$ the gravitational acceleration. By invoking the definition of the Boltzmann length:
+where $\Delta m$ is the difference between the mass of the particle and that of a fluid sphere of the same size, $\Delta \rho = \rho_\mathrm{m} - \rho_\mathrm{p}$ is the corresponding density difference, and $g$ is the gravitational acceleration. By invoking the definition of the Boltzmann length:
 
 \begin{equation}
-	\ell _\mathrm{B} = \frac{k_\mathrm{B}T}{4/3 \pi a ^3 \Delta \rho g } ~,
+	\ell _\mathrm{B} = \frac{k_\mathrm{B}T}{(4/3) \pi a ^3 \Delta \rho g } ~,
 \end{equation}
 
-one can rewrite the gravitational potential Eq.~(\ref{eq:ug_full}) as:
+one can rewrite Eq.~(\ref{eq:ug_full}) as:
 
 \begin{equation}
 	U_\mathrm{g}(z) = \frac{k_\mathrm{B}T}{\ell _\mathrm{B}}z ~.
 	\label{eq:ug}
 \end{equation}
 
-The Boltzmann length $\ell_\mathrm{B}$ is the typical gravitational decay length, and represents the balance between the gravitational potential and thermal energy. This distance was first measured by Perrin \cite{perrin_les_2014}. To do so, using a microscope he counted the number of particles as a function of the sample's height. Then, he reconstructed the concentration of the colloidal suspension that exponentially decays as $e^{- z / \ell _\mathrm{B}}$. As an example, for a particle of radius $a  = 1.5 ~ \mathrm{\mu m}$ polystyrene, in water such as $\rho _\mathrm{p} = 1050 ~ \mathrm{kg.m^{-3}}$, one has $\ell _\mathrm{B} = 0.58 ~ \mathrm{\mu m}$.
+The Boltzmann length $\ell_\mathrm{B}$ corresponds to the spatial extent over which the change of gravitational energy equals thermal energy. This distance was first measured by Perrin \cite{perrin_les_2014}. To do so, using a microscope he counted the number of colloidal particles as a function of the height in the sample. Then, he reconstructed the concentration profile of the colloidal suspension that exponentially decays as $\mathrm{e}^{- z / \ell _\mathrm{B}}$. As an example, for a polystyrene particle of radius $a  = 1.5 ~ \mathrm{\mu m}$ in water, one has $\ell _\mathrm{B} = 580 ~ \mathrm{nm}$.
 
-For systems which $\ell _\mathrm{B} >> a $, one can consider that the particle does not feel the gravity. This is particularly the case when the density of the colloids and fluid matches, in this particular case $\ell _\mathrm{B} = 0$. Thus, density matching can be a way to do gravitation free experiments. In the case of our experiment, we want to measure confinement induced effects. Therefore, we need this gravitational interaction for particles to be near the surface. As particles get larger or denser, $\ell _\mathrm{B}$ decreases and particles is, on average, closer to the surface. 
+For systems with $\ell _\mathrm{B} >> h $, whiere $h$ is the vertical thickness of the sample, one can consider that the particle does not feel gravity. This is particularly the case when the densities of the colloids and the fluid are equal. In this particular case, one has $\ell _\mathrm{B} = \infty$. Thus, density matching can be a way to do gravitaty-free experiments. In our experiment, we want to measure confinement-induced effects. Therefore, we need gravity for particles to be driven towards the substrate. As particles get larger or denser, $\ell _\mathrm{B}$ decreases and particles are, on average, closer to the substrate. 
 
 
 \subsubsection{Sphere-wall interactions}
@@ -46,104 +46,104 @@ For systems which $\ell _\mathrm{B} >> a $, one can consider that the particle d
 
 
 
-As we have seen, external forces such as the gravity acts on the particles. However, it is not the only one. As Brownian particles are close to a wall, we can expect some interactions between the surfaces. In our case, we suppose that the Brownian particles do not interact between each other, which is the case for dilute solutions. Indeed, the studied particles are at a minimum $50 ~ \mathrm{\mu m}$ apart which correspond to 10 times their size for the larger beads. 
+As we have seen, external forces such as gravity act on the particles. As Brownian particles are close to a wall, we can also expect some interactions between the particles and the wall. In our case, we suppose that the Brownian particles do not interact with each other, as we consider dilute soultions only. Indeed, the studied particles are at least $50 ~ \mathrm{\mu m}$ apart from each other, which corresponds to 10 times their size for the largest beads. 
 
-To describe the interaction between the Brownian particle and the wall, we use the DLVO\footnote{The DLVO theory is named after Derjaguin, Landau, Verwey, and Overbeek \cite{israelachvili_intermolecular_2015}.} theory. This theory was first developed to describe the interactions between colloids, and explains the stability of colloidal suspensions. This theory describes the interactions using two forces components; the Van der Waals force which arises from the interactions between surface's molecules and electrostatic interactions due to a double layer formed with the ions present in the solution. 
+To describe the interaction between a Brownian particle and the wall, we use the DLVO theory, named after Derjaguin, Landau, Verwey, and Overbeek \cite{israelachvili_intermolecular_2015}. This theory was first developed to describe the interactions between colloids, and explains the stability of colloidal suspensions. It involves two force components; the Hamaker force which arises from van der Waals interactions between the molecules of the two surfaces and a screened electrostatic force due to a double layer of charges formed near each surface, and involving the ions present in the solution. 
 
 \paragraph{Double layer interactions}\mbox{}\\
 \vspace{0.10cm}
 
 
-When a surface is immersed in water, it usually charges \cite{israelachvili_intermolecular_2015} due to a high water dielectric constant $\epsilon \simeq 80$ that permits building up charges for low energetic price. Commonly, surface charging is done through the ionization of dissociated surface groups\footnote{For example, the dissociation of protons from surface carboxylic groups \cite{israelachvili_intermolecular_2015} ($-$COOH $\rightarrow$ -COO$^-$ + H$^+$) which charge negatively the surface.}, or from the binding of ions from the solution --- for example, adsorption of $-$OH$^-$ onto the water-air interface that charge it negatively. In the bulk, a fluid should be electrically neutral; thus the fluid contains as many ions of opposite charge. However, when a surface is charged negatively, negative ions are repelled from the surface, while positive ions are attracted towards the surface.  Therefore, a double-layer charge distribution is formed near the surface, as shown in Fig.~\ref{fig.taumax}-a). Experimentally, we use glass slides and polystyrene beads that are both negatively charged in water leading to repulsive double layer. This repulsive force prevents the colloids from sticking together, or to the substrate's surface.
+When a surface is immersed in water, it usually acquire charges \cite{israelachvili_intermolecular_2015} due to a high water dielectric constant $\epsilon = \epsilon_0 \epsilon_\mathrm{r}$, where $\epsilon_0$ is the vacuum permittivity and $\epsilon_\mathrm{r}$ the medium relative permittivity; for water $\epsilon_\mathrm{r} = 80$. Commonly, surface charging is done through the ionization of  surface groups\footnote{For example, the dissociation of protons from surface carboxylic groups \cite{israelachvili_intermolecular_2015} ($-$COOH $\rightarrow$ -COO$^-$ + H$^+$) which charges negatively the surface.}, or from the binding of ions from the solution --- for example, adsorption of $-$OH$^-$ onto the water-air interface that charges it negatively. In the bulk, a fluid is electrically neutral; thus the fluid contains as equal number of ions of opposite charges (including the proper stoichiometry due to ionic valencies). However, when a surface is negatively charged, the negative ions are repelled from it, while positive ions are attracted towards it.  Therefore, a double-layer charge distribution is formed near the surface, as shown in Fig.~\ref{Fig:double_layer}. Experimentally, we use glass slides and polystyrene beads that are both negatively charged in water leading to a repulsive interaction between them. This repulsive force prevents the colloids from sticking together, or to the substrate's surface.
 
-If the solution contains an electrolyte (ions of positive and negative charges), for example a salty solution containing Na$^+$ and Cl$^-$ ions. The DLVO theory tells that the electrostatic field $\Psi(\vec{r})$ generated by the double layer, satisfies the mean field Poisson's equation \cite{israelachvili_intermolecular_2015}:
+The DLVO theory state that the electrostatic potential $\Psi(\vec{r})$ generated by an ion of one given speicies $i$ at a distance $\vec{r}$ satisfies the Poisson equation \cite{israelachvili_intermolecular_2015}:
 
 \begin{equation}
-	\nabla ^2 \Psi(\vec{r}) = -\frac{1}{\epsilon_r \epsilon_0}  \rho_e(\vec{r})~,
+	\nabla ^2 \Psi(\vec{r}) = -\frac{1}{\epsilon_\mathrm{r} \epsilon_0}  \rho_\mathrm{e}(\vec{r})~,
 	\label{Eq:poisson}
 \end{equation}
 
-where $\epsilon_0$ is the vacuum permittivity, $\epsilon_r$ the relative permittivity of the fluid, and:
+with:
 
 \begin{equation}
-	\rho_e(\vec{r}) = e \sum _i z_i c_i (\vec{r}) ~,
+	\rho_\mathrm{e}(\vec{r}) = e \sum _i z_i c_i (\vec{r}) ~,
 	\label{Eq.3}
 \end{equation}
 
 \begin{figure}
 	\includegraphics{02_body/chapter3/images/double_layer.pdf}
-	\caption{A Brownian colloid diffusing near a wall. Both wall and colloid surface charge negatively. In consequence, a layer of positively charge ions are towards the surfaces, forming a double-layer charge distribution.}
+	\caption{A colloid diffusing near a wall. Both the wall and colloid surfaces charge negatively. As a consequence, a layer of positively-charged ions is attracted towards each surface, forming a double layer.}
 	\label{Fig:double_layer}
 \end{figure}
 
 
-the local charge density, where $e$ is the elementary charge, $i$ denotes an ionic species of valence $z_i$ and local ionic concentration $c_i$ (number density). If the solution is at the thermodynamic equilibrium, the local ion density is given by a Gibbs-Boltzmann distribution, as:
+the local charge density, where $e$ is the elementary charge, and where the index $i$ denotes an ionic species of valence $z_i$ and local ionic concentration $c_i$ (number density). If the solution is at thermodynamic equilibrium, the local ionnic density is given by a Gibbs-Boltzmann distribution, as:
 
 \begin{equation}
-	c_i(\vec{r}) = c_i ^0 \textnormal{exp}\left(\frac{z_i e \Psi(\vec{r})}{k_\mathrm{B} T }\right) ~,
+	c_i(\vec{r}) = c_i ^0 \textnormal{exp}\left(\frac{-z_i e \Psi(\vec{r})}{k_\mathrm{B} T }\right) ~,
 	\label{Eq.4}
 \end{equation}
 
 
-where $c_i ^0$ is the bulk concentration (number density) of the ionic species $i$. By combining Eqs.~(\ref{Eq:poisson}),~(\ref{Eq.3})~and~(\ref{Eq.4}), one can obtain the Poisson-Boltzmann equation:
+where $c_i ^0$ is the bulk concentration (number density) of the ionic species $i$. By combining Eqs.~(\ref{Eq:poisson}),~(\ref{Eq.3})~and~(\ref{Eq.4}), one obtains the Poisson-Boltzmann equation:
 
 \begin{equation}
-	\nabla ^2 \Psi (\vec{r}) = \sum_i \frac{z_i e c_i^0}{\epsilon_0 \epsilon_r} \exp \left( - \frac{z_i e \Psi (\vec{r})}{k_\mathrm{B}T} \right) ~.
+	\nabla ^2 \Psi (\vec{r}) + \sum_i \frac{z_i e c_i^0}{\epsilon_0 \epsilon_\mathrm{r}} \exp \left( - \frac{z_i e \Psi (\vec{r})}{k_\mathrm{B}T} \right) = 0 ~.
 	\label{Eq:Poisson-boltzmann}
 \end{equation}
 
-Since the Poisson-Boltzmann is nonlinear, it is most likely to be solved numerically. However, for simple geometry such as uniformly charged plane or spheres it can be solved analytically. To simplify, let us consider that we have a monovalent electrolyte, meaning that the electrolyte is composed of two ions of valence equal to 1 --- Na$^+$ Cl$^-$ for example --- and $c_i ^0$ is equal to the electrolyte solution concentration $c_s^0$. In such a case Eq.~(\ref{Eq:Poisson-boltzmann}) simplifies to:
+Since Eq.~(\ref{Eq:Poisson-boltzmann}) is nonlinear, it is typically solved numerically. However, for some simple configurations such as uniformly-charged plane or sphere it can be solved analytically. To simplify, let us consider that we have a monovalent electrolyte, meaning that the electrolyte is composed of two ions of valencies both equal to 1 --- Na$^+$ Cl$^-$ for example --- and $c_i ^0$ is equal to the bulk electrolytic concentration $c_s^0$. In such a case, Eq.~(\ref{Eq:Poisson-boltzmann}) simplifies and becomes:
 
 \begin{equation}
 	\begin{aligned}
-		\nabla ^2 \Psi (\vec{r}) &= \frac{e c_s ^0}{\epsilon_0 \epsilon_r} \left[ \exp \left( \frac{-e\Psi(\vec{r})}{k_\mathrm{B}T} \right) -  \exp \left( \frac{+e\Psi(\vec{r})}{k_\mathrm{B}T} \right) \right] \\
-		& = 2 \frac{e c_s ^0}{\epsilon_0 \epsilon_r} \mathrm{sinh}  \left( \frac{e\Psi(\vec{r})}{k_\mathrm{B}T} \right) ~.
+		&\nabla ^2 \Psi (\vec{r}) + \frac{e c_s ^0}{\epsilon_0 \epsilon_\mathrm{r}} \left[ \exp \left( \frac{-e\Psi(\vec{r})}{k_\mathrm{B}T} \right) -  \exp \left( \frac{+e\Psi(\vec{r})}{k_\mathrm{B}T} \right) \right] = 0 \\
+		&\nabla ^2 \Psi (\vec{r}) + 2 \frac{e c_s ^0}{\epsilon_0 \epsilon_\mathrm{r}} \mathrm{sinh}  \left( \frac{e\Psi(\vec{r})}{k_\mathrm{B}T} \right) = 0 ~.
 	\end{aligned}
 \end{equation}
 
-In the case where $\Psi$ is small enough everywhere such as $e\Psi \ll k_\mathrm{B} T$, which is generally the case when using salty solutions, it is possible, using a Taylor approximation at the second order to write:
+
+Another situation leading to analytical results, is when $\Psi$ is small enough such that $e\Psi \ll k_\mathrm{B} T$, which is generally the case when using dilute enough solutions, it is possible, through a Taylor expansion at first order to write:
 
 \begin{equation}
-	\exp \left( - \frac{z_i e \Psi(\vec{r})}{k_\mathrm{B}T} \right) \simeq 1 + \frac{z_i e \Psi (\vec{r})}{k_\mathrm{B}T} ~.
+	\exp \left( - \frac{z_i e \Psi(\vec{r})}{k_\mathrm{B}T} \right) \simeq 1 - \frac{z_i e \Psi (\vec{r})}{k_\mathrm{B}T} ~.
 \end{equation}
 
-Thus, the Poisson-Boltzmann equation Eq.~(\ref{Eq:Poisson-boltzmann}) becomes:
+In such case, Eq.~(\ref{Eq:Poisson-boltzmann}) becomes:
 
 \begin{equation}
-	\nabla ^2 \Psi (\vec{r}) = \sum_i \frac{z_i e c_i^0}{\epsilon_0 \epsilon_r}  \left( 1 + \frac{z_i e \Psi (\vec{r})}{k_\mathrm{B}T} \right) ~.
+	\nabla ^2 \Psi (\vec{r}) + \sum_i \frac{z_i e c_i^0}{\epsilon_0 \epsilon_\mathrm{r}}  \left( 1 - \frac{z_i e \Psi (\vec{r})}{k_\mathrm{B}T} \right)  = 0~.
+	\label{Eq:poisson_b_3}
 \end{equation}
 
-In the bulk, a fluid is electrically neutral. Therefore, the first term vanishes since $\sum_i z_i c_i^0 = 0$. Thus, one can linearize Eq.~(\ref{Eq:Poisson-boltzmann}) to write the Debye-Hünkel equation:
+In addition, a fluid is electrically neutral. Therefore, $\sum_i z_i c_i^0 = 0$. Thus, one can simplify Eq.~(\ref{Eq:poisson_b_3}) to get the Debye-Hückel equation:
 
 \begin{equation}
-	\nabla^2 \Psi (\vec{r}) = \left[  \sum_i \frac{z_i ^2 e^2 c_i^0}{\epsilon_0 \epsilon_r  k_\mathrm{B} T}    \right] \Psi (\vec{r}) ~.
+	\nabla^2 \Psi (\vec{r}) = \left[  \sum_i \frac{z_i ^2 e^2 c_i^0}{\epsilon_0 \epsilon_\mathrm{r}  k_\mathrm{B} T}    \right] \Psi (\vec{r}) ~.
 	\label{debh1}
 \end{equation}
 
-From this approximation, one can identify the term between brackets as the inverse of a distance squared. We thus define:
+One can identify the term between brackets as the inverse of a length squared. We thus define the Debye length as:
 
 \begin{equation}
-	\ell _\mathrm{D} =  \sqrt{ \sum_i\frac {\epsilon_0 \epsilon_r k_\mathrm{B} T} {z_i ^2 e^2 c_i^0}} ~,
+	\ell _\mathrm{D} =  \sqrt{ \sum_i\frac {\epsilon_0 \epsilon_\mathrm{r} k_\mathrm{B} T} {z_i ^2 e^2 c_i^0}} ~,
 	\label{ld1}
 \end{equation}
 
-the Debye length which is the characteristic length of the double layer, and hence, the electrostatic interactions. For a monovalent electrolyte,  at 25 \textdegree C (298 K), the Debye length of an aqueous solution is:
+which is the characteristic ion-induced screening length of the electrostatic interactions, as we will see below. For a monovalent electrolyte,  at 25 \textdegree C, the Debye length of an aqueous solution is:
 
 \begin{equation}
 	\begin{aligned}
-		\ell _\mathrm{D} &= \sqrt{\frac{\epsilon_0 \epsilon_r k_\mathrm{B}T}{2c_s^0 e^2}}
-		= \sqrt{\frac{8.854 \times 10^{-12} \times 78.4 \times 1.381 \times 10^{-23}  \times 298}{2 \times (1.602 \times 10^{-19})^2 \times 6.022 \times 10^{26} M}} \\
-		& = 0.304 \times 10^{-9} / \sqrt{M} ~ \mathrm{m} ~,
+		\ell _\mathrm{D} &= \sqrt{\frac{ 2 \epsilon_0 \epsilon_\mathrm{r} k_\mathrm{B}T}{c_s^0 e^2}}
+		& = \frac{0.304 }{ \sqrt{C} } ~\mathrm{nm} ~,
 	\end{aligned}
 \end{equation}
 
 
-with M the molar concentration ($1 ~ \mathrm{M} = 1 ~ \mathrm{mol.L^{-1}} $ corresponding to a number density of $c_s^0 = 6.022 \times 10 ^{26} ~ \mathrm{ m^{-3}}$). For a salty concentration we have:
+with $C$ the molar concentration in $\mathrm{mol.L^{-1}}$:
 
 \begin{equation}
-	\ell_\mathrm{D} = 0.304/ \sqrt{[\mathrm{NaCl}]} ~ \mathrm{nm}
+	C = \frac{c_\mathrm{s} ^0}{N_\mathrm{A}} 10^{-3} ~. 
 \end{equation}
-
 
 
 For example,  $\ell_\mathrm{D} = 100 ~ \mathrm{nm}$ for a concentration  $[\mathrm{NaCl}] = 9.2 ~ \mathrm{\mu M}$ and   $\ell_\mathrm{D} = 10 ~  \mathrm{nm}$ for a concentration  $[\mathrm{NaCl}] = 9.2 ~ \mathrm{mM}$.
@@ -179,19 +179,19 @@ For one sphere, the electrostatic field vanishes at infinity such as $C_1 = 0$, 
 Additionally, at the surface of a charged sphere, the electrostatic potential satisfies:
 
 \begin{equation}
-	\left. \frac{\partial{\Psi (r)}}{\partial r} \right|_{r=a} = \frac{Qe}{4 \pi \epsilon_0 \epsilon_r a^2}  = \frac{\sigma}{\epsilon_0 \epsilon_r} ~.
+	\left. \frac{\partial{\Psi (r)}}{\partial r} \right|_{r=a} = \frac{Qe}{4 \pi \epsilon_0 \epsilon_\mathrm{r} a^2}  = \frac{\sigma}{\epsilon_0 \epsilon_\mathrm{r}} ~.
 \end{equation}
 
 By applying the latter boundary condition to Eq.~(\ref{eq:yuka}) we find:
 
 \begin{equation}
-	\Psi (r) = \frac{\sigma a^2}{\epsilon_0 \epsilon_r} \frac{\exp (\kappa a)}{1 + \kappa a} \frac{\exp (-\kappa r)}{r} ~.
+	\Psi (r) = \frac{\sigma a^2}{\epsilon_0 \epsilon_\mathrm{r}} \frac{\exp (\kappa a)}{1 + \kappa a} \frac{\exp (-\kappa r)}{r} ~.
 \end{equation}
 
 This solution can be used to determine the electrostatic field between two spheres. Supposing that the presence of a second sphere does not interfere with the distribution of ions in the double layer of the other, one can use the superposition approximation to write the potential $\Psi _2 (z)$ between two spheres. For two spheres of charge $\sigma_1$ and $\sigma_2$, and radius $a_1$ and $a_2$, the potential writes \cite{bell_approximate_1970}:
 
 \begin{equation}
-	\Psi_2(z) = \frac{4\pi}{\epsilon_0 \epsilon_r} 
+	\Psi_2(z) = \frac{4\pi}{\epsilon_0 \epsilon_\mathrm{r}} 
 	\left(
 	\frac{\sigma_1 a_1 ^2}{1 + \kappa a_1}
 	\right)
@@ -211,13 +211,13 @@ From the latter equation, it is possible to write the electrostatic field betwee
 where $B$ is the constant that represents the surface charges, for a sphere of radius $a$ and charge $\sigma_1$ and a wall of charge $\sigma_2$, one has:
 
 \begin{equation}
-	B = \frac{4 \pi}{ k_\mathrm{B}T\epsilon_0 \epsilon_r} \left( \frac{\sigma_1 a^2 }{1 + \kappa a}  \right) \frac{\sigma_2}{\kappa} ~.
+	B = \frac{4 \pi}{ k_\mathrm{B}T\epsilon_0 \epsilon_\mathrm{r}} \left( \frac{\sigma_1 a^2 }{1 + \kappa a}  \right) \frac{\sigma_2}{\kappa} ~.
 \end{equation}
 
 Additionally, $B$ is often written as a function of the surfaces potential as \cite{behrens_charge_2001}:
 
 \begin{equation}
-	B = 16  \frac{\epsilon_r \epsilon_0}{k_\mathrm{B}T} \left(\frac{k_\mathrm{B}T}{e}\right) \tanh \left(\frac{e\phi_1}{4k_\mathrm{B}T}\right) \tanh \left(\frac{e\phi_2}{4k_\mathrm{B}T}\right) ~,
+	B = 16  \frac{\epsilon_\mathrm{r} \epsilon_0}{k_\mathrm{B}T} \left(\frac{k_\mathrm{B}T}{e}\right) \tanh \left(\frac{e\phi_1}{4k_\mathrm{B}T}\right) \tanh \left(\frac{e\phi_2}{4k_\mathrm{B}T}\right) ~,
 \end{equation}
 where $\phi_1$ and $\phi_2$ are the Stern potential of the sphere and the wall surfaces. Typical values for $B$ ranges from 1 to 50. In our study we will keep $B$  to describe the electrostatic energy potential as it complicated to decouple $\sigma_1$ and $\sigma_2$ when the colloid and wall's surface materials are different \cite{behrens_charge_2001}. However, this is not impossible and is the idea of future work.
 
