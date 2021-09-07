@@ -139,25 +139,25 @@ which is the characteristic ion-induced screening length of the electrostatic in
 \end{equation}
 
 
-with $C$ the molar concentration in $\mathrm{mol.L^{-1}}$:
+with $C$ the value of the molar concentration in $\mathrm{mol.L^{-1}}$:
 
 \begin{equation}
 	C = \frac{c_\mathrm{s} ^0}{N_\mathrm{A}} 10^{-3} ~. 
 \end{equation}
 
 
-For example,  $\ell_\mathrm{D} = 100 ~ \mathrm{nm}$ for a concentration  $[\mathrm{NaCl}] = 9.2 ~ \mathrm{\mu M}$ and   $\ell_\mathrm{D} = 10 ~  \mathrm{nm}$ for a concentration  $[\mathrm{NaCl}] = 9.2 ~ \mathrm{mM}$.
+For example, for NaCl salt in water,  $\ell_\mathrm{D} \approx 100 ~ \mathrm{nm}$ for a concentration  $C = [\mathrm{NaCl}] = 9.2 ~ \mathrm{\mu mol.L^{-1}}$ and   $\ell_\mathrm{D} \approx 10 ~  \mathrm{nm}$ for a concentration  $[\mathrm{NaCl}] = 9.2 ~ \mathrm{mmol.L^{-1}}$.
 
 
 
-Finally, combining Eqs.~(\ref{debh1})~and~(\ref{ld1}),  the Debye-Hünkel approximation writes:
+Finally, combining Eqs.~(\ref{debh1})~and~(\ref{ld1}),  the Debye-Hückel equation reads:
 
 \begin{equation}
 	\nabla^2 \Psi (\vec{r}) = \kappa^2  \Psi (\vec{r}) ~,
 	\label{Eq:Debye_hu}
 \end{equation}
 
-with $\kappa = 1/\ell _\mathrm{D}$. Using the latter approximation one can compute the electrostatic potential around a sphere. Let us consider a perfect sphere of radius $a$ and charge $Qe$ of charge density $\sigma = Qe/4\pi a^2$ ,with $Q$ being the number of charge on the surface. Since the system has a spherical symmetry, one has $\Psi (\vec{r}) = \Psi(r)$ with $r = |\vec{r}|$. Using the Laplacian operator $\nabla ^2$ in the spherical coordinates, Eq.~(\ref{Eq:Debye_hu}) writes:
+with $\kappa = 1/\ell _\mathrm{D}$. Using the latter, one can compute the electrostatic potential around a sphere immersed in an ionic solution. Let us consider a sphere of radius $a$ and charge $Qe$, \textit{i.e.} a charge density $\sigma = Qe/(4\pi a^2)$ , $Q$ being the number of charges on the surface. Since the system has a spherical symmetry, one has $\Psi (\vec{r}) = \Psi(r)$ with $r = |\vec{r}|$. Using the Laplacian operator $\nabla ^2$ in spherical coordinates, Eq.~(\ref{Eq:Debye_hu}) becomes:
 
 \begin{equation}
 	\frac{1}{r^2}\left[\frac{\partial}{\partial r} \left(r^2 \frac{\partial \Psi(r)}{\partial r}\right)\right] = \kappa^2  \Psi (r) ~,
@@ -166,32 +166,32 @@ with $\kappa = 1/\ell _\mathrm{D}$. Using the latter approximation one can compu
 which has a general solution:
 
 \begin{equation}
-	\Psi(r) = C_1 \frac{\exp(\kappa r)}{r} + C_2 \frac{-\exp(\kappa r)}{r}
+	\Psi(r) = C_1 \frac{\exp(\kappa r)}{r} + C_2 \frac{\exp(-\kappa r)}{r}~.
 \end{equation}
 
-For one sphere, the electrostatic field vanishes at infinity such as $C_1 = 0$, such it has the form of a Yukawa potential:
+The electrostatic potential vanishes at infinity such that $C_1 = 0$. Therfore, the electrostatic potential (and thus the electrostatic energy potential) takes the form of a Yukawa potential:
 
 \begin{equation}
-	\Psi (r) = C_2 \frac{-\exp(\kappa r)}{r} ~.
+	\Psi (r) = C_2 \frac{\exp(-\kappa r)}{r} ~.
 	\label{eq:yuka}
 \end{equation}
 
-Additionally, at the surface of a charged sphere, the electrostatic potential satisfies:
+Additionally, invoking the Gauss theorem, at the surface of the charged sphere, the electrostatic potential satisfies:
 
 \begin{equation}
-	\left. \frac{\partial{\Psi (r)}}{\partial r} \right|_{r=a} = \frac{Qe}{4 \pi \epsilon_0 \epsilon_\mathrm{r} a^2}  = \frac{\sigma}{\epsilon_0 \epsilon_\mathrm{r}} ~.
+	\left. \frac{\partial{\Psi (r)}}{\partial r} \right|_{r=a} = \frac{-Qe}{4 \pi \epsilon_0 \epsilon_\mathrm{r} a^2}  = \frac{-\sigma}{\epsilon_0 \epsilon_\mathrm{r}} ~,
 \end{equation}
 
-By applying the latter boundary condition to Eq.~(\ref{eq:yuka}) we find:
+where we introduced the surface density of charges $\sigma$. By applying the latter boundary condition to Eq.~(\ref{eq:yuka}), we find:
 
 \begin{equation}
 	\Psi (r) = \frac{\sigma a^2}{\epsilon_0 \epsilon_\mathrm{r}} \frac{\exp (\kappa a)}{1 + \kappa a} \frac{\exp (-\kappa r)}{r} ~.
 \end{equation}
 
-This solution can be used to determine the electrostatic field between two spheres. Supposing that the presence of a second sphere does not interfere with the distribution of ions in the double layer of the other, one can use the superposition approximation to write the potential $\Psi _2 (z)$ between two spheres. For two spheres of charge $\sigma_1$ and $\sigma_2$, and radius $a_1$ and $a_2$, the potential writes \cite{bell_approximate_1970}:
+This solution can be used to determine the electrostatic potential between two spheres of radii $a_1$ and $a_2$, and surface charge densities $\sigma_1$ and $\sigma_2$, respectively. Supposing that the presence of a second sphere does not modify the distribution of ions in the double layer of the other sphere, one can use the superposition approximation to obtain the potential $U_\textrm{elec} ^{ss} (z)$ between the two spheres \cite{bell_approximate_1970}:
 
 \begin{equation}
-	\Psi_2(z) = \frac{4\pi}{\epsilon_0 \epsilon_\mathrm{r}} 
+	U_\textrm{elec} ^{ss}(z) = \frac{4\pi}{\epsilon_0 \epsilon_\mathrm{r}} 
 	\left(
 	\frac{\sigma_1 a_1 ^2}{1 + \kappa a_1}
 	\right)
@@ -200,44 +200,44 @@ This solution can be used to determine the electrostatic field between two spher
 	\right)
 	\frac{\exp(-\kappa z)}{a_1 + a_2 + z} ~,
 \end{equation} 
-with $z$ the distance between the 2 colloids.
-From the latter equation, it is possible to write the electrostatic field between a wall and a spherical colloid, by setting one of the radii to infinity. Doing so and multiplying by $e$, one can have the electrostatic potential $U_\mathrm{elec}(z)$ between a Brownian particle and the wall:
+with $z$ the gap between the two colloids.
+From the latter equation, it is possible to write the electrostatic interaction energy $U_\textrm{elec}$ between a plannar wall of charge density $\sigma_\textrm{w}$ and a spherical colloid of radius $a$ and surface charge density $\sigma$, by setting one of the two radii to infinity. Doing so, one gets:
 
 \begin{equation}
-	\frac{U_{elec}(z)}{k_\mathrm{B}T}  = B \mathrm{e}^{-\frac{z}{\ell_\mathrm{D}}}~,
+	\frac{U_\textrm{elec}(z)}{k_\mathrm{B}T}  = B \mathrm{e}^{-\frac{z}{\ell_\mathrm{D}}}~,
 	\label{Eq:Uelec}
 \end{equation}
 
-where $B$ is the constant that represents the surface charges, for a sphere of radius $a$ and charge $\sigma_1$ and a wall of charge $\sigma_2$, one has:
+where:
 
 \begin{equation}
-	B = \frac{4 \pi}{ k_\mathrm{B}T\epsilon_0 \epsilon_\mathrm{r}} \left( \frac{\sigma_1 a^2 }{1 + \kappa a}  \right) \frac{\sigma_2}{\kappa} ~.
+	B = \frac{4 \pi}{ k_\mathrm{B}T\epsilon_0 \epsilon_\mathrm{r}} \left( \frac{\sigma a^2 }{1 + \kappa a}  \right) \frac{\sigma_\mathrm{w}}{\kappa} ~.
 \end{equation}
 
-Additionally, $B$ is often written as a function of the surfaces potential as \cite{behrens_charge_2001}:
+Let us note that, $B$ is often written as \cite{behrens_charge_2001}:
 
 \begin{equation}
-	B = 16  \frac{\epsilon_\mathrm{r} \epsilon_0}{k_\mathrm{B}T} \left(\frac{k_\mathrm{B}T}{e}\right) \tanh \left(\frac{e\phi_1}{4k_\mathrm{B}T}\right) \tanh \left(\frac{e\phi_2}{4k_\mathrm{B}T}\right) ~,
+	B = 16 \epsilon_\mathrm{r} \epsilon_0 a \frac{ k_\mathrm{B}T }{e^2} \tanh \left(\frac{e\phi}{4k_\mathrm{B}T}\right) \tanh \left(\frac{e\phi_\mathrm{w}}{4k_\mathrm{B}T}\right) ~,
 \end{equation}
-where $\phi_1$ and $\phi_2$ are the Stern potential of the sphere and the wall surfaces. Typical values for $B$ ranges from 1 to 50. In our study we will keep $B$  to describe the electrostatic energy potential as it complicated to decouple $\sigma_1$ and $\sigma_2$ when the colloid and wall's surface materials are different \cite{behrens_charge_2001}. However, this is not impossible and is the idea of future work.
+where $\phi$ and $\phi_\mathrm{w}$ are the Stern potentials of the sphere and wall surface, respectively. Typical values for $B$ range from 1 to 50. In our study, we will use $B$  to characterize the dimensionless magnitude of the electrostatic interaction. Indeed, it ois complicated to decouple $\sigma$ and $\sigma_\mathrm{w}$ when the colloid and wall materials are different \cite{behrens_charge_2001}.
 
-\paragraph{Van der Waals interactions}\mbox{}\\
+\paragraph{van der Waals interactions}\mbox{}\\
 \vspace{0.10cm}
 
 \begin{figure}[h]
 	\centering
 	\includegraphics{02_body/chapter3/images/vdw_scheme.pdf}
-	\caption{A colloid of radius $a$ at a distance $z$ from the wall. The colloid material has a static dielectric constant $\epsilon_1$, the wall $\epsilon_2$ and the solution $\epsilon_3$. }
+	\caption{A colloid of radius $a$ is located at a distance $z$ from the wall. The dielectric constants of the sphere, wall and liquid are respectively $\epsilon_1$, $\epsilon_2$, and $\epsilon_3$. }
 	\label{Fig:vdw}
 \end{figure}
 
-In the DLVO theory, the Van der Waals forces describes the interaction between colloids at very short range. This force is generally attractive, and in our case having Van der Waals interactions would lead to the particles stick to the wall. The Van der Waals potential energy for a spherical colloid of radius $a$, at a height $z$, is given as \cite{israelachvili_intermolecular_2015}:
+In the DLVO theory, van der Waals interactions, after integration over all surfaces contribute through a global Hamaker potential energy. This potential is short-ranged and attractive, in our case.The interaction potential reads: \cite{israelachvili_intermolecular_2015}:
 
 \begin{equation}
-	U_{VdW} = -\frac{A a}{6z} 
+	U_\mathrm{vdW} = -\frac{A a}{6z} 
 \end{equation}
 
-where $A$ is the retarded Hamaker constant. For our system, where the particle, medium and wall are different media as schematize in Fig.~\ref{Fig:vdw}, the Hamaker constant is given by \cite{israelachvili_intermolecular_2015}:
+where $A$ is the nonretarded Hamaker constant. For our system, where the particle, medium and wall are different media as schematize in Fig.~\ref{Fig:vdw}, the Hamaker constant is given by \cite{israelachvili_intermolecular_2015}:
 
 \begin{equation}
 	A = \frac{3}{4} k_\mathrm{B}T \left(
@@ -250,33 +250,15 @@ where $A$ is the retarded Hamaker constant. For our system, where the particle, 
 	\frac{3h}{4\pi}
 	\int_{\nu_1}^{\infty}
 	\left(
-	\frac{\epsilon_1 (i\nu) - \epsilon_3 (i\nu)}{\epsilon_1 (i\nu) + \epsilon_3 (i\nu)}
+	\frac{\epsilon_1 (j\nu) - \epsilon_3 (j\nu)}{\epsilon_1 (j\nu) + \epsilon_3 (i\nu)}
 	\right)
 	\left(
-	\frac{\epsilon_2 (i\nu) - \epsilon_3 (i\nu)}{\epsilon_2 (i\nu) + \epsilon_3 (i\nu)}
+	\frac{\epsilon_2 (j\nu) - \epsilon_3 (j\nu)}{\epsilon_2 (j\nu) + \epsilon_3 (i\nu)}
 	\right)
 	\textnormal{d}\nu ~,
 \end{equation}
 
-where $\epsilon_1$, $\epsilon_2$ and $\epsilon_3$ are the static dielectric constants of the three media, $\epsilon (i\nu)$ are the imaginary dielectric constant at a frequency $\nu$ and $\nu_n = (2 \pi k_\mathrm{B}Tn/h = 4 \times 10^{13} n s^{-1}$ at $300$ K, and $h$ the Plank's constant. The first term gives the zero-frequency energy of the Van der Waals interaction and the second term the dispersion energy.
-However, since the static dielectric of water is large compared to the other terms \cite{israelachvili_intermolecular_2015}, one can approximate the Hamaker constant of our system to only the zero-frequency term:
-
-\begin{equation}
-	A = \frac{3}{4} 1.381 \times 10^{-23} \times 298 
-	\left(
-	\frac{2.5 - 80}{2.5 + 80}
-	\right)
-	\left(
-	\frac{5 - 80}{5 + 80}
-	\right)
-	\simeq
-	2.48 \times 10^{-21} \mathrm{J} = 0.62 ~ k_\mathrm{B}T ~.
-\end{equation}
-
-Since $A$ is positive, we correctly have an attractive Van der Waals force. More over, the zero-frequency Van der Waals force is mainly due to electrostatic interaction and is screened by electrolytes. Thus one needs to add a factor $\approx e^{-z/\ell_D}$ to the Van der Waals forces. Also, it has been proposed \cite{gregory_approximate_1981} that to compute the force at higher distances, one should add a second factor, to account for the retarded Van der Waals force of $ \simeq (1  + 11z/100 \mathrm{nm})^{-1}$. 
-
-
-All the effects added together we can calculate that the Van der Waals forces will play a role only a few nanometers from the surface ($z < 10$ nm) as it is commonly observed \cite{prieve_measurement_1999}. In our experiments, the Debye length $\ell _\mathrm{D}$ ($>20$ nm) is large enough for the particle to avoid this region, in the following of this work the Van der Waals interactions are neglected. To study the Van der Waals interactions with Brownian motion, it is possible, if one adds enough salt to have $\ell_\mathrm{D} \simeq 1$ nm. However, with such a short Debye length, all the colloids would stick to the surface and between each other. Interestingly, we have experimentally observed some dynamics on stuck particles, further work on this movement could lead to interesting determination of the near-wall potential. 
+where $\epsilon_1$, $\epsilon_2$ and $\epsilon_3$ are the static dielectric constants of the three media, $\epsilon_{1,2,3} (j\nu)$ are the  dielectric constant at a imaginary frequency $ j \nu$. The first term gives the zero-frequency energy of the Van der Waals interaction and the second term the dispersion energy. In the litterature, we found for polystyrene colloids in water near a glass substrate $A\approx k_\mathrm{B}T$. Since $A$ is positive, the interaction is attractive, moreover, we estimate that the van der Waals forces play a role only within a few nanometers from the surface ($z < 10$ nm), as commonly observed \cite{prieve_measurement_1999}. In our experiments, the Debye length $\ell _\mathrm{D}$ ($>20$ nm) is large enough for the particles to avoid this region. Therefore, in the following, the van der Waals interactions are neglected. It is possible to study the van der Waals interactions with Brownian motion, provided that one adds enough salt to have $\ell_\mathrm{D} \simeq 1$ nm. However, with such a short Debye length, all the colloids would stick to the surface and with each others, as a result of van der Waals forces. Interestingly, we have experimentally observed stuck particles. Further work on these events may lead to interesting insights about of the near-wall interactions. 
 
 
 
@@ -284,22 +266,22 @@ All the effects added together we can calculate that the Van der Waals forces wi
 \label{test}
 \vspace{0.10cm}
 
-If we combine the gravitational and electrostatic interactions the particles lies into a total energy potential $U(z)$:
+If we combine the gravitational and electrostatic energy potentials the particles lie into a total energy potential $U(z)$, given by:
 
 \begin{equation}
-	U(z) = U_\mathrm{g} + U_\mathrm{elec}
+	U(z) = U_\mathrm{g} + U_\mathrm{elec}~.
 	\label{eq:uz}
 \end{equation}
 
-By combining Eqs.~(\ref{eq:ug}),~(\ref{Eq:Uelec})~and~(\ref{eq:uz}), and adding the condition that the particle cannot go inside the wall $U(z)$ finally writes:
+By combining Eqs.~(\ref{eq:ug}),~(\ref{Eq:Uelec})~and~(\ref{eq:uz}), and adding the condition that a particle cannot go inside the wall, one finally gets:
 
 \begin{equation}
 	\frac{U(z)}{k_\mathrm{B}T} =  \left\{
 	\begin{array}{l}
 		\displaystyle B\,\textrm{e}^{-\frac{z}{\ell_\mathrm{D}}} + \frac{z}{\ell_\mathrm{B}}\ ,\quad \text{ for } z>0 \\
-		+\infty\ ,\quad  \text{ for } z\leq 0
+		+\infty\ ,\quad  \text{ for } z < 0
 	\end{array}
-	\right. \ ,
+	\right. \ .
 	\label{Eq:PDF}
 \end{equation}
 
