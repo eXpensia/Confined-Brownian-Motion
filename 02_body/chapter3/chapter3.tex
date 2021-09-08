@@ -292,7 +292,7 @@ From this total potential energy, one can then construct the Gibbs-Boltzmann dis
 	\label{Eq.Peq}
 \end{equation} 
 
-where A is a normalization constant such that $\int_{0}^{\infty}P_\mathrm{eq}(z)\textnormal{d}z = 1$. Given an array of heights $z_i$, one can compute $P_\mathrm{eq}$ using the following Python snippet, where the $A$ is computed using the \mintinline{python}{np.trapz} function. An example of a theoretical energy potential and \gls{PDF} of position can be seen in Fig.~\ref{Fig:potential} for $\ell_\mathrm{B} = 500 ~ \mathrm{nm} $,  $B = 4$ and $\ell_\mathrm{D} = 50 ~ \mathrm{nm}$.
+where $A$ is a normalization constant such that $\int_{0}^{\infty}P_\mathrm{eq}(z)\textnormal{d}z = 1$. Given an ensemble of heights $z_i$, one can compute $P_\mathrm{eq}$ using the following Python function \mintinline{python}{Peq}, where the $A$ is computed using the \mintinline{python}{np.trapz} function. Examples of a theoretical energy potential and associated \gls{PDF} of position can be seen in Fig.~\ref{Fig:potential} for $\ell_\mathrm{B} = 500 ~ \mathrm{nm} $,  $B = 4$ and $\ell_\mathrm{D} = 50 ~ \mathrm{nm}$.
 
 \begin{minted}
 	[
@@ -306,7 +306,7 @@ where A is a normalization constant such that $\int_{0}^{\infty}P_\mathrm{eq}(z)
 	linenos
 	]
 	{python}
-	import numpy as np
+import numpy as np
 	
 def _Peq(z):
 	if z <= 0:
@@ -325,21 +325,23 @@ return P / np.trapz(P,z)
 \begin{figure}[h]
 	\centering
 	\includegraphics{02_body/chapter3/images/potential/potential_exemple.pdf}
-	\caption{ a) In orange gravity potential energy $E_\mathrm{g}$ (see Eq.~(\ref{eq:ug})) of a colloid with a Boltzmann length $\ell_\mathrm{B} = 500 ~ \mathrm{nm} $. In blue, the electrostatic potential $U_\mathrm{elec}$ (see Eq.~(\ref{Eq:Uelec})) is characterized by a surface charge constant $B = 4$ and a Debye length $\ell_\mathrm{D} = 50 ~ \mathrm{nm}$. The dashed line is the total potential, see Eq.~(\ref{eq:uz}) b) Corresponding Gibbs-Boltzmann equilibrium distribution of position calculated using Eq.~(\ref{Eq:PDF}).}
+	\caption{ a) In orange potential energy $U_\mathrm{g}$ (see Eq.~(\ref{eq:ug})) of a colloid with a Boltzmann length $\ell_\mathrm{B} = 500 ~ \mathrm{nm} $. In blue, the electrostatic potential energy $U_\mathrm{elec}$ (see Eq.~(\ref{Eq:Uelec})) is characterized by a dimensionless magnitude $B = 4$ and a Debye length $\ell_\mathrm{D} = 50 ~ \mathrm{nm}$. The dashed line corresponds to the total potential $U$, see Eq.~(\ref{eq:uz}). b) Corresponding Gibbs-Boltzmann equilibrium distribution of position calculated using the energy potential of panel a).}
 	\label{Fig:potential}
 \end{figure}
+
+\newpage
 
 \subsubsection{Local diffusion coefficient}
 
 \begin{figure}
 	\centering
 	\includegraphics{02_body/chapter1/image/libchaber.pdf}
-	\caption{Figure extracted from \cite{faucheux_confined_1994}, on the left is the experimental setup used. It is an inverted microscope used in order to track particles of size $2R$ inside a cell of thickness $t$. On the right is their final result, where they measure the diffusion parallel coefficient $D_\bot$ given by Eq.~(\ref{Eq:etax}), normalized by $D_0$ the bulk diffusion coefficient as a function of a confinement constant $\gamma = (\langle z \rangle_t -a)/a$. }
+	\caption{Figure extracted from \cite{faucheux_confined_1994}. On the left is the experimental setup. It is an inverted microscope used in order to track micrometric particles of diameter $2R$ inside a liquid cell of thickness $t$. On the right is the final result, where the authors measure the diffusion parallel (\textit{i.e.} along $x$ or $y$) coefficient $D_\parallel$ (see Eqs.~(\ref{Eq:etax})~and~(\ref{Eq.hindered})), normalized by the bulk diffusion coefficient $D_0$, as a function the confinement parameter $\gamma = \langle z \rangle_t/a$, with $\langle z \rangle_t$ time-averaged particle-wall distance.}
 	\label{fig:libchaber}
 \end{figure}
 
 
-As we have seen in Chapter~\ref{sec:chapter1} , for a freely diffusing colloid in bulk, the diffusion coefficient is given by Eq.~(\ref{Eq:D_einstein}) and is a constant. However, when a particle is confined, the diffusion is hindered, this means that the diffusion coefficient varies with the height of the particle and becomes anisotropic. One of the first measurements that has been done by Faucheux and Libchaber \cite{faucheux_confined_1994}. As we can see in Fig.~\ref{fig:libchaber}, using a microscope, they tracked Brownian colloids in two dimensions, and measured the average coefficient diffusion for different confinement constant $\gamma = (\langle z\rangle_t - a) / a$. Finally, in Fig.~\ref{fig:libchaber}, one can observe that the diffusion coefficient parallel to the surface decreases as the particle get closer to the wall, and seems to saturate around $0.3D_0$ for high confinement. 
+As we have seen in Chapter~\ref{sec:chapter1}, for a freely diffusing colloid in the bulk, the diffusion coefficient is given by Eq.~(\ref{Eq:D_einstein}) and is a constant. However, when a particle is confined by a rigid wall, the diffusion is hindered. This means that the diffusion coefficient varies with the particle-wall distance and becomes anisotropic.A seminal measurement of this effect was done by Faucheux and Libchaber \cite{faucheux_confined_1994}. As we can see in Fig.~\ref{fig:libchaber}, using a microscope, they tracked colloids within a parallelepipedic chamber, and measured the thickness-averaged diffusion coefficients for different value of the confinement parameter $\gamma = \langle z\rangle_t / a$, with $\langle z \rangle_t$ time-averaged particle-wall distance. As experiments reach equilibrium, $\langle z \rangle_t$ is given by the Gibbs-Boltamann distribution as $\langle z \rangle_t = \int \textnormal{d}zP_\mathrm{eq}(z))z$. We observe that the diffusion coefficient parallel to the surface decreases as the particle gets closer to the wall, and seems to saturate around $0.3D_0$ at low $\gamma$, with $D_0$ the diffusion coefficient in the bulk (see Eq.~\ref{Eq.D}). 
 \newpage
 
 To understand the reason for this hindered diffusion coefficient, let us start by writing the diffusion coefficient $D$ using the fluctuation dissipation theorem:
@@ -349,28 +351,28 @@ To understand the reason for this hindered diffusion coefficient, let us start b
 	\label{Eq.fluc}
 \end{equation}
 
-with:
+with the mobility defined as:
 
 \begin{equation}
-	\mu = \frac{v_\mathrm{sphere}}{F_\mathrm{drag}} ~,
+	\mu = \left| \frac{v_\mathrm{sphere}}{F_\mathrm{drag}} \right|~,
 	\label{Eq.mu}
 \end{equation}
 
-where $v_\mathrm{sphere}$ is the terminal velocity to an applied force $F_\mathrm{drag}$. For a spherical colloid of radius $R$ moving at a velocity $v_\mathrm{sphere}$, the drag force in bulk $F_{\mathrm{drag}} ^\mathrm{B}$ is given by the Stockes' law:
+where $v_\mathrm{sphere}$ is the terminal velocity to an applied force $F_\mathrm{drag}$. For a spherical colloid of radius $a$ moving at a velocity $v_\mathrm{sphere}$, the drag force $F_{\mathrm{drag}} ^\mathrm{B}$ is given by the Stokes' law:
 
 \begin{equation}
-	F_\mathrm{drag} ^\mathrm{B} = c \pi \eta a v_\mathrm{sphere} ~,
+	F_\mathrm{drag} ^\mathrm{B} = -c \pi \eta a v_\mathrm{sphere} ~,
 	\label{Eq.drag}
 \end{equation}
 
-where $c$ is a constant that depends on the boundary conditions imposed at the surface of the colloid, typically $c = 6$ for no-slip boundary conditions  and $c = 4$ (such as air bubbles for example) for slip boundary conditions. Combining Eqs.~(\ref{Eq.fluc}),~(\ref{Eq.mu})~and~(\ref{Eq.drag}) for a freely diffusing hard sphere in bulk we retrieve Eq.~(\ref{Eq:D_einstein}): 
+where $c$ is a constant that depends on the boundary conditions imposed at the surface of the colloid. Typically, one has $c = 6$ for a no-slip boundary conditions and $c = 4$ for a full-slip boundary conditions, such as for air bubbles for example. Combining Eqs.~(\ref{Eq.fluc}),~(\ref{Eq.mu})~and~(\ref{Eq.drag}) for a freely diffusing no-slip hard sphere in the bulk we retrieve Eq.~(\ref{Eq:D_einstein}): 
 
 \begin{equation}
-	D_0 = \frac{k_\mathrm{B}T}{6\pi \eta a} ~.
+	D = D_0 = \frac{k_\mathrm{B}T}{6\pi \eta a} ~.
 	\label{Eq.D}
 \end{equation}
 
-The Stocke's drag force can be computed by solving the Navier-Stokes equation:
+The Stokes' drag force can be computed by solving the Navier-Stokes equation:
 
 \begin{equation}
 	\rho \left[ \frac{\partial \vec{v}}{\partial t} + \left(\vec{v} \cdot \nabla \vec{v} \right) \right] + \nabla p = \eta \nabla ^2 \vec{v} ~,
@@ -380,45 +382,74 @@ The Stocke's drag force can be computed by solving the Navier-Stokes equation:
 and the continuity equation for incompressible fluids:
 
 \begin{equation}
-	\nabla \cdot \vec{v} = 0
+	\nabla \cdot \vec{v} = 0~,
 	\label{Eq.continuity}
 \end{equation}
 
-where $\vec{v}$ and $p$ are the velocity, and pressure fields, and $\rho$ is the fluid's density. When the Reynolds number $Re = \rho a v_\mathrm{sphere} / \eta \ll 1$,  the first two terms are inertial and are negligibly small compared to the viscous term $\eta \nabla ^2 \vec{v}$. In that case, the Navier-Stokes Eq.~(\ref{Eq.Navier}), is simplified to the Stockes flow formula:
+where $\vec{v}$ and $p$ are receptively the velocity and pressure fields, and where $\rho$ is the liquid density. When the Reynolds number $\textnormal{Re} = \rho a v_\mathrm{sphere} / \eta \ll 1$,  the second inertial term is negligibly small compared to the viscous term $\eta \nabla ^2 \vec{v}$. In that case, and at long-enough time for the first inertial term to be negligible, the Eq.~(\ref{Eq.Navier}) is simplified to the steady Stokes equation:
 
 \begin{equation}
-	\nabla p = \eta \nabla ^2 \vec{v}
+	\nabla p = \eta \nabla ^2 \vec{v}~.
 	\label{Eq.Stokesflow}
 \end{equation}
 
-The diffusion coefficient for a freely diffusing spherical colloid in bulk can thus be found by solving Eqs.~(\ref{Eq.Stokesflow})~and~(\ref{Eq.continuity}) by having a no-slip boundary condition on the particle surface and the velocity vanishing at infinity. However, in the case of a confined particle, there is an additional no-slip condition at the wall surface. Indeed, as shown in Fig.~\ref{fig.shear}, the fluid velocity drops to zero at the wall surface, with a shear rate:
+By solving Eqs.~(\ref{Eq.continuity})~and~(\ref{Eq.Stokesflow}) with a no-slip boundary condition on the particle surface and the field vanishing at infinity, one can calculate the velocity and the pressure fields in the fluid. By integration of the pressure and viscous stress on the particle surface, one eventually gets the Stokes mobility. However, in the case of a confined particle near a wall there is an additional no-slip condition at the wall surface. At the macro scale, this effect can be seen with a frisbee, indeed, as it gets closer to the ground, hydrodynamic pressure increases due to the increasing air velocity gradient in the gap and one can observe a slowing down of the free fall.
 
-\begin{equation}
-	\dot{\gamma} = \frac{\partial v}{\partial z}
-\end{equation} 
-
-This shear rate, due to the presence of the wall introduce a shear force $F(z) = \simeq \eta \dot{\gamma} (z) $ acting on the particle. Hence, the drag force acting on the particle will increase inversely with the distance to the wall, due to additional hydrodynamic pressure arising from velocity gradients. At the macro scale, this effect can be seen with a frisbee, indeed, as it gets closer to the grounds, hydrodynamic pressure increases due to air velocity gradient and one can observe that the frisbee seems to stop falling and continue to glide really near the ground's surface.
+To get some physical insight on this effect, one can use the lubrication theory to make a scaling of the drag force experience by a particle confined near a wall. As schematized in Fig.~\ref{fig.shear}, we consider a particle of radius $a$ moving at a velocity $V$. 
 
 \begin{figure}[ht]
 	\centering
 	\includegraphics{02_body/chapter3/images/draw_shear/shear.pdf}
-	\caption{Schematic representation of a spherical colloid moving near a wall and the induced shear rate $\dot{\gamma}$.} 
+	\caption{Schematic representation of a spherical object of radius $a$ moving near a wall at velocity $V$ and inducing a fluid velocity $v_x$ and $v_z$, along the $x$- and $z$-axis, respectively.} 
 	\label{fig.shear}
 \end{figure}
 
-A colloid diffusing near a wall thus experience a local drag force that depends on both its distance to the wall $z$ and the movement direction. Thanks to the linearity of the Stokes equation, one can separate this local drag force for motion parallel and perpendicular to the wall. As the presence of the wall correct the drag force from a multiplicative coefficient, the confinement effect often expressed as an effective viscosity:
+As we are using the lubrication theory, we suppose that the particle is close to the wall such that $z \ll a$. In that condition, one has the fluid velocity along the $x$-axis $v_x \approx V$, and along the $z$-axis, $v_z \approx Vz/L \ll v_x$. Moreover, the typical length scale along the $z$-axis is the particle-wall distance $z$; and the distance $L=\sqrt{az}$ (\textit{i.e.} Hertz contact), along the $x$-axis. In this approximation, the $v_z$ terms will be negligible in Eq.~(\ref{Eq.Stokesflow}), a projection along the $z$-axis thus gives:
+
+\begin{equation}
+	\frac{\partial p}{\partial z} = 0 ~.
+\end{equation}
+
+On the right-hand side of Eq.~\ref{Eq.Stokesflow}, the viscous term simplifies to $\eta \partial_z^2 v_x $ as:
+
+\begin{equation}
+	\frac{\partial^2 v_x}{\partial x^2} \approx \frac{V}{L} \ll \frac{V}{e} \approx \frac{\partial^2 v_x}{\partial z^2}~.
+\end{equation}
+
+In the lubrication theory, Eq.~(\ref{Eq.Stokesflow}) is finally simplified to:
+
+\begin{equation}
+	\frac{\partial p}{\partial x} = \eta \frac{\partial ^2 V}{\partial z^2}~.
+\end{equation}
+
+By replacing the partial derivative by the typical length leads to:
+
+\begin{equation}
+	p \sim \eta V \frac{L}{z^2}
+\end{equation}
+
+Integrating this pressure over the particle surface (\textit{i.e} over the typical length $L = \sqrt{az}$) leads a scaling of the drag force:
+
+\begin{equation}
+	F_\mathrm{drag} ^{z\ll a} \sim \eta V \frac{L^2}{z^2} = \eta V \frac{a}{z}
+\end{equation}
+
+The mobility (see Eq.~(\ref{Eq.mu})) thus scale as $z/a$. Therefore, the diffusion coefficient of a confined colloid near a wall in the lubrication approximation is hindered and inversely proportional to the particle-wall distance.
+
+To recap, a colloid diffusing near a wall thus experience a local drag force that depends on both its distance $z$ to the wall and direction of motion. Thanks to the linearity of the Stokes equation, one can decompose this local drag force in two contributions, for motions parallel and perpendicular to the wall. As the presence of the wall modifies the drag force with a space-dependent multiplicative factor, the confinement effect is often expressed in terms of effective viscosities:
 
 \begin{equation}
 	\eta _\bot (z) = {\eta}{\lambda _ \bot (z)}  ~ \text{, and } ~\eta _\parallel (z) =  {\eta}{\lambda _ \parallel (z)}~,
 \end{equation}
 
-where $\lambda _\bot$ and $\lambda _\parallel$ are respectively perpendicular and parallel correction factor to the drag force due to the presence of the wall. Taking into account this correction, the diffusion coefficient for parallel and perpendicular motion relative to the wall writes:
+where $\lambda _\bot$ and $\lambda _\parallel$ are respectively the perpendicular and parallel correction factors. Taking into account these corrections, the diffusion coefficients for perpendicular and parallel motions relative to the wall read:
 
 \begin{equation}
-	D_\bot (z) =  \frac{D_0}{\lambda _\bot (z)}  ~, \text{ and, } D_\parallel (z) = \frac{D_0}{ \lambda_\parallel (z)} ~.
+	D_\bot (z) =  \frac{D_0}{\lambda _\bot (z)}  ~, \text{ and } D_\parallel (z) = \frac{D_0}{ \lambda_\parallel (z)} ~.
+	\label{Eq.hindered}
 \end{equation}
 
-For a no-slip boundary conditions imposed at the wall and the surface of the colloid, Brenner \cite{brenner_slow_1961} obtained for perpendicular motion:
+For no-slip boundary conditions imposed at both the wall and the surface of the colloid, Brenner \cite{brenner_slow_1961} obtained for the perpendicular motion:
 
 
 \begin{equation}
@@ -436,7 +467,7 @@ For a no-slip boundary conditions imposed at the wall and the surface of the col
 	\label{Eq:etaz}
 \end{equation}
 
-where $\beta = \cosh ^{-1} ((z+a)/a)$. The solution for the diffusion parallel to the wall, Faxén found \cite{faxen_fredholm_1924}:
+where $\beta = \cosh ^{-1} ((z+a)/a)$. For the motion of a sphere parallel to a wall, Faxén found \cite{faxen_fredholm_1924}:
 
 \begin{equation}
 	\lambda_\parallel(z) = 
@@ -446,7 +477,7 @@ where $\beta = \cosh ^{-1} ((z+a)/a)$. The solution for the diffusion parallel t
 	\label{Eq:etax}
 \end{equation}
 
-where $\xi  = a / (z+a)$. Eqs.~(\ref{Eq:etaz})~and~(\ref{Eq:etax}) are precise for all $z$. However, the solution for the perpendicular motion can be quite complex to compute as it is an infinite series, to be computed numerically it requires a software that enables arbitrary-precision floating-point arithmetic\footnote{Arbitrary precision floating-point arithmetic enables to evaluate mathematical expressions with any precision, in other words, any number of digits.} --- such as Mathematica or the \mintinline{python}{mpmath} Python's module, for example. $D_\bot$ can be evaluated using the following Python snippet, where \mintinline{python}|nsum| function is used to compute the infinite sum:  
+where $\xi  = a / (z+a)$. Eqs.~(\ref{Eq:etaz})~and~(\ref{Eq:etax}) are exact for all $z$ and shown in Fig.~\ref{fig.etaz}-a). However, the solution for the perpendicular motion can be complex to compute as it is an infinite series. It requires a software that enables arbitrary-precision floating-point arithmetic\footnote{Arbitrary-precision floating-point arithmetic enables to evaluate mathematical expressions with any precision, \textit{i.e.} any number of digits.} --- such as Mathematica or the \mintinline{python}{mpmath} Python's module, for example. $D_\bot$ can be evaluated using the following Python snippet, where the \mintinline{python}|nsum| function is used to compute the summation:  
 
 
 \begin{minted}
@@ -489,10 +520,10 @@ To simplify the computation of $\lambda_\bot$, Goldman \textit{et al.} \cite{gol
 	\label{Eq:etaz_pade}
 \end{equation}
 
-In the near-wall regime, such that $z \ll a$, it is also possible to further approximate $\lambda_\bot$ to:
+In the near-wall regime, such that $z \ll a$, it is possible to further approximate $\lambda_\bot$ by its asymptotic expression:
 
 \begin{equation}
-	\lambda_\bot = \frac{a}{z} ~.
+	\lambda_\bot \simeq \frac{a}{z} ~.
 	\label{Eq:etaz_small}
 \end{equation}
 
@@ -500,24 +531,24 @@ In the near-wall regime, such that $z \ll a$, it is also possible to further app
 \begin{figure}[H]
 	\centering
 	\includegraphics{02_body/chapter3/images/theory_lambda/hindered_diffusion.pdf}
-	\caption{a)  Parallel and perpendicular hindered relative diffusion coefficient for a colloidal particle of radius $a = 1.5 ~ \mathrm{\mu m}$. b) Perpendicular hindered relative diffusion coefficient for a colloid particle of radius $a = 1.5 \mathrm{mu m}$. In black the exact solution given by the infinite sum Eq.~(\ref{Eq:etaz}). In green the Padé approximation, Eq.~(\ref{Eq:etaz_pade}) and in blue the near-wall regime Eq.~(\ref{Eq:etaz_small}). c) Relative error of the perpendicular hindered coefficient.}
+	\caption{a)  Parallel and perpendicular normalized diffusion coefficients for a colloidal particle of radius $a = 1.5 ~ \mathrm{\mu m}$. b) Perpendicular normalized diffusion coefficient at a distance $z$ from a wall. The solid black line is the exact solution given by the infinite sum of Eq.~(\ref{Eq:etaz}). The green dashed line is the Padé approximation od Eq.~(\ref{Eq:etaz_pade}). The blue dahed line is the near-wall asymptotic expression of Eq.~(\ref{Eq:etaz_small}). c) Relative errors between the two approximations (dashed lines of panel b), same color code) and the exact result (solid line of panel b)).}
 	\label{fig.etaz}
 \end{figure}
 
 
-The Padé approximation and the near-wall approximation for the hindered diffusion are plotted on Fig.~\ref{fig.etaz}-b). The Padé approximation fits really well with the exact solution given by the infinite sum Eq.~(\ref{Eq:etaz}), the near-wall approximation fits well when $z < a / 10$. To check how precise the approximation are, it is possible to plot the relative error as in the Fig.~\ref{fig.etaz}-c). The Padé approximation shows precision up to 1\%, thus, in the following of this work, when we refer to any evaluation of hindered perpendicular diffusion, the Padé approximation will be used. 
+The exact result, together with the Padé approximation and the near-wall asymptotic expression for the hindered vertical diffusion are plotted in Fig.~\ref{fig.etaz}-b). The Padé approximation fits well the exact solution, the near-wall asymptotic expression fits well when $z < a / 10$ typically. To check how precise both approximations are, we plot the relative error in Fig.~\ref{fig.etaz}-c). The Padé approximation shows precision up to 1\%. Thus, in the following, when evaluating perpendicular diffusion coefficients, or equivalently vertical effective viscosities, the Padé approximation will be used. 
 
 
-\subsubsection{Langevin equation for the confined Brownian motion}
+\subsubsection{Langevin equation for confined Brownian motion}
 
-Now that the external forces acting on the particle and hindered diffusion coefficient is known, we rewrite the overdamped Langevin Eq.~(\ref{Eq.overdamped_SDE}) as:
+Now that the external forces acting on the particle and hindered diffusion coefficients are known, we rewrite the overdamped Langevin (see Eq.~(\ref{Eq.overdamped_SDE})) as:
 
 \begin{equation}
-	V_t^i \textnormal{d}t  = -\frac{1}{\gamma(z)}\frac{\partial U(z)}{\partial x_i}  \textnormal{d}t + \sqrt{2D_i (z)}  \textnormal{d}B_t ~.
+	V_t^i \textnormal{d}t  = -\mu(z)\frac{\partial U(z)}{\partial x_i}  \textnormal{d}t + \sqrt{2D_i (z)}  \textnormal{d}B_t ~,
 	\label{Eq:langevin_z}
 \end{equation}
 
-where $\gamma(z) = 6 \pi \eta_i(z) a$ and $i$ denotes three spatial directions, $x,~ y$ and $z$\footnote{Where the previously determined $\eta_\parallel$ and $D_\parallel$ correspond to the $x$- and $y$-axis and $\eta_\bot$ and $D_\bot$ correspond to the $z$-axis.}, and  $ \textnormal{d}B_t$ is a Gaussian distribution satisfying $\langle \textnormal{d}B_t \rangle = 0$ and $\langle \textnormal{d}B_t ^2 \rangle = \textnormal{d}t$. As we have discussed previously, the potential $U$ only varies along the $z$-axis, thus, the external forces only acts on the particle on the $z$-axis while the particle diffuses freely along the $x$- and $y$-axis. 
+where $\mu(z) = 1/ (6 \pi \eta_i(z) a)$, and $i$ denotes one of the three spatial directions, $x,~ y$ and $z$, where the previously determined $\eta_\parallel$ or $D_\parallel$ correspond to the $x$- and $y$-axes and $\eta_\bot$ or $D_\bot$ corresponds to the $z$-axis., and  $ \textnormal{d}B_t$ is a Gaussian-distributed satisfying $\langle \textnormal{d}B_t \rangle = 0$ and $\langle \textnormal{d}B_t ^2 \rangle = \textnormal{d}t$. As we have discussed previously, the potential $U$ only varies along the $z$-axis, thus, the external forces only acts on the particle on the $z$-axis while the particle diffuses freely along the $x$- and $y$-axis. 
 
 \subsubsection{Spurious drift}
 
@@ -1139,9 +1170,11 @@ The latter equation corresponds to a linear regression of $\hat{d}_{\mu \nu} (t_
 	baselinestretch=1.2,
 	fontsize=\footnotesize,
 	linenos
-	]
-	{python}	
+	]{text}
+
+
 Dx, Dy, Dz, z_D = Compute_diffusion(pos)
+
 \end{minted}
 
 Where in the latter \mintinline{python}{pos}, is the 3D trajectory of a Brownian colloid. It allowed us to infer the local diffusion coefficients $D_i(z)$, down to $z=10$~nm, as shown in Fig.~\ref{fig.visco}. The results are in excellent agreement with the theoretical predictions, $D_{\parallel}(z)$ and $D_z(z)$, using  Eqs.~(\ref{Eq:etaz})~and~(\ref{Eq:etaz}), thus validating the method.
