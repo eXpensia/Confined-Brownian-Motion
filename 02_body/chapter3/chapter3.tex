@@ -250,10 +250,10 @@ where $A$ is the nonretarded Hamaker constant. For our system, where the particl
 	\frac{3h}{4\pi}
 	\int_{\nu_1}^{\infty}
 	\left(
-	\frac{\epsilon_1 (j\nu) - \epsilon_3 (j\nu)}{\epsilon_1 (j\nu) + \epsilon_3 (i\nu)}
+	\frac{\epsilon_1 (j\nu) - \epsilon_3 (j\nu)}{\epsilon_1 (j\nu) + \epsilon_3 (j\nu)}
 	\right)
 	\left(
-	\frac{\epsilon_2 (j\nu) - \epsilon_3 (j\nu)}{\epsilon_2 (j\nu) + \epsilon_3 (i\nu)}
+	\frac{\epsilon_2 (j\nu) - \epsilon_3 (j\nu)}{\epsilon_2 (j\nu) + \epsilon_3 (j\nu)}
 	\right)
 	\textnormal{d}\nu ~,
 \end{equation}
@@ -347,14 +347,14 @@ As we have seen in Chapter~\ref{sec:chapter1}, for a freely diffusing colloid in
 To understand the reason for this hindered diffusion coefficient, let us start by writing the diffusion coefficient $D$ using the fluctuation dissipation theorem:
 
 \begin{equation}
-	D = \mu k_\mathrm{B}T ~,
+	D = \frac{1}{\gamma} k_\mathrm{B}T ~,
 	\label{Eq.fluc}
 \end{equation}
 
 with the mobility defined as:
 
 \begin{equation}
-	\mu = \left| \frac{v_\mathrm{sphere}}{F_\mathrm{drag}} \right|~,
+	\frac{1}{\gamma} = \left| \frac{v_\mathrm{sphere}}{F_\mathrm{drag}} \right|~,
 	\label{Eq.mu}
 \end{equation}
 
@@ -400,41 +400,54 @@ To get some physical insight on this effect, one can use the lubrication theory 
 \begin{figure}[ht]
 	\centering
 	\includegraphics{02_body/chapter3/images/draw_shear/shear.pdf}
-	\caption{Schematic representation of a spherical object of radius $a$ moving near a wall at velocity $V$ and inducing a fluid velocity $v_x$ and $v_z$, along the $x$- and $z$-axis, respectively.} 
+	\caption{Schematic representation of a spherical object of radius $a$ moving towards a wall at velocity $V_\mathrm{sphere}$ and inducing a fluid velocity $V_\mathrm{fluid}$} 
 	\label{fig.shear}
 \end{figure}
 
-As we are using the lubrication theory, we suppose that the particle is close to the wall such that $z \ll a$. In that condition, one has the fluid velocity along the $x$-axis $v_x \approx V$, and along the $z$-axis, $v_z \approx Vz/L \ll v_x$. Moreover, the typical length scale along the $z$-axis is the particle-wall distance $z$; and the distance $L=\sqrt{az}$ (\textit{i.e.} Hertz contact), along the $x$-axis. In this approximation, the $v_z$ terms will be negligible in Eq.~(\ref{Eq.Stokesflow}), a projection along the $z$-axis thus gives:
+As we are using the lubrication theory, we suppose that the particle is close to the wall such that $h \ll a$. In that condition, we suppose that a particle moving towards a wall (\textit{along the $z$-axis}) at a velocity $V_\mathrm{sphere}$ induce a fluid velocity $V_\mathrm{fluid}$ along the $x$-axis, we further suppose that the induced velocity along the $z$-axis is negligible. Moreover, the typical length scale along the $z$-axis is the particle-wall distance $z$; and the distance $L=\sqrt{az}$ (\textit{i.e.} Hertz contact), along the $x$-axis. In this approximation, velocity terms along the $z$-axis will be negligible in Eq.~(\ref{Eq.Stokesflow}), a projection along the $z$-axis thus gives:
 
 \begin{equation}
 	\frac{\partial p}{\partial z} = 0 ~.
 \end{equation}
 
-On the right-hand side of Eq.~\ref{Eq.Stokesflow}, the viscous term simplifies to $\eta \partial_z^2 v_x $ as:
+On the right-hand side of Eq.~\ref{Eq.Stokesflow}, the viscous term simplifies to $\eta \partial_z^2 V_\mathrm{fluid} $ as:
 
 \begin{equation}
-	\frac{\partial^2 v_x}{\partial x^2} \approx \frac{V}{L} \ll \frac{V}{e} \approx \frac{\partial^2 v_x}{\partial z^2}~.
+	\frac{\partial^2 V_\mathrm{fluid}}{\partial x^2} \approx \frac{V_\mathrm{fluid}}{L^2} \ll \frac{V_\mathrm{fluid}}{h^2} \approx \frac{\partial^2 V_\mathrm{fluid}}{\partial z^2}~.
 \end{equation}
 
 In the lubrication theory, Eq.~(\ref{Eq.Stokesflow}) is finally simplified to:
 
 \begin{equation}
-	\frac{\partial p}{\partial x} = \eta \frac{\partial ^2 V}{\partial z^2}~.
+	\frac{\partial p}{\partial x} = \eta \frac{\partial ^2 V_\mathrm{fluid}}{\partial z^2}~.
 \end{equation}
 
 By replacing the partial derivative by the typical length leads to:
 
 \begin{equation}
-	p \sim \eta V \frac{L}{z^2}
+	p \sim \eta V_\mathrm{fluid} \frac{L}{z^2}
+	\label{pressure}
 \end{equation}
 
-Integrating this pressure over the particle surface (\textit{i.e} over the typical length $L = \sqrt{az}$) leads a scaling of the drag force:
+To compute the calculate the Stokes mobility, one needs to evaluate the viscous stress $\sigma$, in the lubrication theory, it reads:
 
 \begin{equation}
-	F_\mathrm{drag} ^{z\ll a} \sim \eta V \frac{L^2}{z^2} = \eta V \frac{a}{z}
+	\sigma = \eta \frac{\partial V_\mathrm{fluid}}{\partial z} \sim \eta \frac{V_\mathrm{fluid}}{h}
 \end{equation}
 
-The mobility (see Eq.~(\ref{Eq.mu})) thus scale as $z/a$. Therefore, the diffusion coefficient of a confined colloid near a wall in the lubrication approximation is hindered and inversely proportional to the particle-wall distance.
+When the particle is moving towards the wall we thus have $p\gg \sigma$, we thus only consider the pressure. To evaluate the mobility, we need to write Eq.~(\ref{pressure}) as a function of $V_\mathrm{sphere}$. Using Eq.~(\ref{Eq.continuity}) equation one has $V_\mathrm{fluid} / h \sim  V_\mathrm{sphere} / L$, Eq.~(\ref{pressure}) thus become:
+
+\begin{equation}
+	p \sim \eta  \frac{L^4}{h^2}
+\end{equation}
+
+ Integrating this pressure over the particle surface (\textit{i.e} over the typical length $L = \sqrt{az}$) leads a scaling of the drag force:
+
+\begin{equation}
+	F_\mathrm{drag} ^{z\ll a} \sim \eta V \frac{L^4}{h^2} = \eta V \frac{a^2}{z}
+\end{equation}
+
+The mobility (see Eq.~(\ref{Eq.mu})) of the displacement perpendicular to the wall  thus scale as $\gamma_0^{-1} h/a$, with $\gamma_0^{-1}$ the bulk mobility. Therefore, the diffusion coefficient of a confined colloid near a wall in the lubrication approximation is hindered and inversely proportional to the particle-wall distance. It is possible to same scaling for the parrallel mobility by supposing that the particle is moving along the $x$-axis. In that case, one can find that the viscous stress is greater than the pressure and finally find that along the $x$-axis, the parallel mobility follow the same scaling as in bulk and remain constant.
 
 To recap, a colloid diffusing near a wall thus experience a local drag force that depends on both its distance $z$ to the wall and direction of motion. Thanks to the linearity of the Stokes equation, one can decompose this local drag force in two contributions, for motions parallel and perpendicular to the wall. As the presence of the wall modifies the drag force with a space-dependent multiplicative factor, the confinement effect is often expressed in terms of effective viscosities:
 
@@ -513,7 +526,7 @@ def Dz(eta, z, a):
 
 \end{minted}
 
-To simplify the computation of $\lambda_\bot$, Goldman \textit{et al.} \cite{goldman_slow_1967} showed that Eq.~(\ref{Eq:etaz}) can be Padé approximated, giving:
+To simplify the computation of $\lambda_\bot$, Honig \cite{honig_effect_1971}, and Bevan and Prieve \cite{bevan_hindered_2000} showed that Eq.~(\ref{Eq:etaz}) can be Padé approximated\footnote{A Padé aproximant is the approximation of a power series by a rational fraction \cite{baker_pade_1996}.}, giving:
 
 \begin{equation}
 	\lambda_\bot =  \frac{6z^2 + 9az + 2a^2}{6z^2 + 2az}~.
@@ -531,7 +544,7 @@ In the near-wall regime, such that $z \ll a$, it is possible to further approxim
 \begin{figure}[H]
 	\centering
 	\includegraphics{02_body/chapter3/images/theory_lambda/hindered_diffusion.pdf}
-	\caption{a)  Parallel and perpendicular normalized diffusion coefficients for a colloidal particle of radius $a = 1.5 ~ \mathrm{\mu m}$. b) Perpendicular normalized diffusion coefficient at a distance $z$ from a wall. The solid black line is the exact solution given by the infinite sum of Eq.~(\ref{Eq:etaz}). The green dashed line is the Padé approximation od Eq.~(\ref{Eq:etaz_pade}). The blue dahed line is the near-wall asymptotic expression of Eq.~(\ref{Eq:etaz_small}). c) Relative errors between the two approximations (dashed lines of panel b), same color code) and the exact result (solid line of panel b)).}
+	\caption{a)  Parallel and perpendicular normalized diffusion coefficients for a colloidal particle of radius $a = 1.5 ~ \mathrm{\mu m}$. b) Perpendicular normalized diffusion coefficient at a distance $z$ from a wall. The solid black line is the exact solution given by the infinite sum of Eq.~(\ref{Eq:etaz}). The green dashed line is the Padé approximation of Eq.~(\ref{Eq:etaz_pade}). The blue dahed line is the near-wall asymptotic expression of Eq.~(\ref{Eq:etaz_small}). c) Relative errors between the two approximations (dashed lines of panel b), same color code) and the exact result (solid line of panel b)).}
 	\label{fig.etaz}
 \end{figure}
 
@@ -548,36 +561,36 @@ Now that the external forces acting on the particle and hindered diffusion coeff
 	\label{Eq:langevin_z}
 \end{equation}
 
-where $\mu(z) = 1/ (6 \pi \eta_i(z) a)$, and $i$ denotes one of the three spatial directions, $x,~ y$ and $z$, where the previously determined $\eta_\parallel$ or $D_\parallel$ correspond to the $x$- and $y$-axes and $\eta_\bot$ or $D_\bot$ corresponds to the $z$-axis., and  $ \textnormal{d}B_t$ is a Gaussian-distributed satisfying $\langle \textnormal{d}B_t \rangle = 0$ and $\langle \textnormal{d}B_t ^2 \rangle = \textnormal{d}t$. As we have discussed previously, the potential $U$ only varies along the $z$-axis, thus, the external forces only acts on the particle on the $z$-axis while the particle diffuses freely along the $x$- and $y$-axis. 
+where $\mu(z) = 1/ (6 \pi \eta_i(z) a)$, and $i$ denotes one of the three spatial directions, $x,~ y$ and $z$, where the previously determined $\eta_\parallel$ or $D_\parallel$ corresponds to the $x$- and $y$-axes, while $\eta_\bot$ or $D_\bot$ corresponds to the $z$-axis, and $ \textnormal{d}B_t$ is a Gaussian-distributed satisfying $\langle \textnormal{d}B_t \rangle = 0$ and $\langle \textnormal{d}B_t ^2 \rangle = \textnormal{d}t$. As discussed previously, the potential energy $U$ only varies along the $z$-axis, an thus, the external force only acts on the particle along the $z$-axis while the particle diffuses freely along the $x$- and $y$-axes. 
 
 \subsubsection{Spurious drift}
 
-It is interesting to observe that due to the hindered diffusion the magnitude of the Langevin force, $\sqrt{2D_i(z)}$, is not anymore constant, but varies with the height of the particle. This effect is called multiplicative noise and will have some interesting effects on the dynamic properties of the Brownian motion. To show the effects of the multiplicative noise, one can integrate over a time $\tau$ the Eq.~(\ref{Eq:langevin_z}), in the absence of the external force one as:
+A key observation is that due to the spatially-varying and direction-varying mobilities of the particle, the magnitude $\sqrt{2D_i(z)}$ of the Langevin forces, depend on the random position and direction of the particle. This is an example of a so-called multiplicative noise and will have some interesting consequences on the dynamical properties of the random motion. To illustrate the effect of the multiplicative noise, one can integrate Eq.~(\ref{Eq:langevin_z}) over a time $\tau$ in the absence of the external force, which leads to:
 
 \begin{equation}
-	\Delta x_i = \int_{t_0} ^{t_0 + \tau} \sqrt{2D_i(z)}\textnormal{d}B_t
+	\Delta x_i = \int_{t_0} ^{t_0 + \tau} \sqrt{2D_i(z)}\textnormal{d}B_t ~,
 	\label{int}
 \end{equation}
 
-where $\Delta x_i$ is a space increment. However, the noise term is not well defined and the time at which the magnitude of the force $\sqrt{2D_i(z)}$ in the integration Eq.~(\ref{int}) needs to be specified. It is thus necessary to determine where the diffusion coefficient $D(z)$ in Eq.~(\ref{int}) is evaluated in the time interval $[t_0, t_0 + \tau]$. In general, $D(z)$ is represented by $D(z + \alpha \Delta z)$, or in the same way $D(z(t_0 + \alpha \tau))$, with $\alpha \in [0,1]$. The value of $\alpha$ determines at which time in the interval   $[t_0, t_0 + \tau]$ the local diffusion is evaluated, hence, the magnitude of the random force. The physics will thus change on how the noise is calculated; however, the requirement is that the long-time thermal equilibrium must be consistent with the Boltzmann distribution and, hence, constrain the choice of $\alpha$. Taking into account $\alpha$, removing the external forces, the Langevin equation along the $z$-axis becomes:
+where $\Delta x_i$ is the spatial increment in the $i$ direction. However, the noise term the time (and consequently the position) at which the magnitude $\sqrt{2D_i(z)}$ of the Langevin force is evaluated in the integral of Eq.~(\ref{int}) needs to be specified. We write $D(z)$ as $D(z + \alpha \Delta x_z)$, with $\alpha \in [0,1]$. The value of $\alpha$ determines at which time in the interval   $[t_0, t_0 + \tau]$ the local diffusion is evaluated. However, $\alpha$ should be taken to have the long-time thermal equilibrium to be consistent with the Boltzmann distribution and. Taking into account $\alpha$, the Eq.\ref{int} in the $z$ direction becomes:
 
 \begin{equation}
-	\Delta z  = \sqrt{2D_\bot (z + \alpha \Delta z)} d B_t ~.
+	\Delta z  = \sqrt{2D_\bot (z + \alpha \Delta z)} \textnormal{d} B_t ~,
 	\label{int2}
 \end{equation}
 
-By Taylor expanding $D_ \bot$ to the first order, one has:
+where we write $\Delta x_z = \Delta z$ for simplicity, By Taylor-expanding $D_ \bot$ at the first order in $\Delta z /z$, one has:
 
 \begin{equation}
-	D_\bot (z + \alpha \Delta z) \simeq D_\bot (z)  + \alpha \frac{\textnormal{d} D_\bot(z)}{\textnormal{d}z} \Delta z ~.
+	D_\bot (z + \alpha \Delta z) \simeq D_\bot (z)  +  \alpha \frac{\textnormal{d} D_\bot(z)}{\textnormal{d}z} \Delta z ~.
 \end{equation}
 
-Substituting the later in Eq.~(\ref{int2}) leads to:
+Substituting the latter in Eq.~(\ref{int2}) leads to:
 
 \begin{equation}
 	\begin{aligned}
-		\Delta z &\simeq \sqrt{2D_\bot (z)  + \alpha \frac{\textnormal{d} D_\bot(z)}{\textnormal{d}z} \Delta z} d B_t  \\
-		& = \sqrt{2D_\bot (z)} \left[1 + \alpha \frac{\textnormal{d} D_\bot(z)}{\textnormal{d}z} \frac{\Delta z }{D_\bot(z)}\right] ^{-1/2} \textnormal{d} B_t  ~.
+		\Delta z &\simeq \sqrt{2D_\bot (z)  + 2\alpha \frac{\textnormal{d} D_\bot(z)}{\textnormal{d}z} \Delta z} \textnormal{d} B_t  \\
+		& = \sqrt{2D_\bot (z)} \left[1 + \alpha \frac{\textnormal{d} D_\bot(z)}{\textnormal{d}z} \frac{\Delta z }{D_\bot(z)}\right] ^{1/2} \textnormal{d} B_t  ~.
 	\end{aligned}
 	\label{int3}
 \end{equation}
@@ -585,33 +598,38 @@ Substituting the later in Eq.~(\ref{int2}) leads to:
 Additionally, since the last term satisfies:
 
 \begin{equation}
-	\alpha \frac{\textnormal{d} D_\bot(z)}{\textnormal{d}z} \frac{\Delta z }{D_\bot(z)} \ll 1 ~,
+	\left| \alpha \frac{\textnormal{d} D_\bot(z)}{\textnormal{d}z} \frac{\Delta z }{D_\bot(z)} \right| \ll 1 ~,
 \end{equation}
 
-one can thus Taylor expend at the first order the last term of Eq.~(\ref{int3}) as:
+one Taylor-expands at first order the right-hand side of Eq.~(\ref{int3}) as:
 
 \begin{equation}
-	\left[1 + \alpha \frac{\textnormal{d} D_\bot(z)}{\textnormal{d}z} \frac{\Delta z }{D_\bot(z)}\right] ^{-1/2} \simeq 1 + \frac{\alpha }{2}\frac{\textnormal{d} D_\bot(z)}{\textnormal{d}z} \frac{\Delta z }{D_\bot(z)} ~.
+	\left[1 + \alpha \frac{\textnormal{d} D_\bot(z)}{\textnormal{d}z} \frac{\Delta z }{D_\bot(z)}\right] ^{1/2} \simeq 1 + \frac{\alpha }{2}\frac{\textnormal{d} D_\bot(z)}{\textnormal{d}z} \frac{\Delta z }{D_\bot(z)} ~.
+	\label{int5}
 \end{equation}
 
-By finally substituting the first-order expansion of $\Delta z \simeq \sqrt{2D(z)} \textnormal{d}B_t$, we obtain:
+By inserting Eq.~(\ref{int5}) into Eq.~(\ref{int3}), and by using the lowest order of $\Delta z$ to evaluate the first-order term, we obtain:
 
 \begin{equation}
 	\begin{aligned}
-		\Delta z & \simeq \sqrt{2D_\bot (z)} \left[1 + \frac{\alpha }{2} \frac{\textnormal{d} D_\bot(z)}{\textnormal{d}z} \frac{\Delta z }{D_\bot(z)}\right]  \textnormal{d} B_t \\
-		& \simeq \sqrt{2D_\bot (z)} \left[1 + \frac{\alpha }{2} \frac{\textnormal{d} D_\bot(z)}{\textnormal{d}z} \frac{\sqrt{2D(z)} \textnormal{d}B_t }{D_\bot(z)}\right]  \textnormal{d} B_t \\
-		& =  \sqrt{2D_\bot (z)} \textnormal{d}B_t + \alpha  \frac{\textnormal{d} D_\bot(z)}{\textnormal{d}z} \textnormal{d} B_t ^2
+			\Delta z & \simeq \sqrt{2D_\bot (z)} \left[1 + \frac{\alpha }{2} \frac{\textnormal{d} D_\bot(z)}{\textnormal{d}z} \frac{\sqrt{2D(z)} \textnormal{d}B_t }{D_\bot(z)}\right]  \textnormal{d} B_t \\
+		& =  \sqrt{2D_\bot (z)} \textnormal{d}B_t + \alpha  \frac{\textnormal{d} D_\bot(z)}{\textnormal{d}z} [\textnormal{d} B_t ]^2
 	\end{aligned}
+	\label{int4}
 \end{equation}
 
+Taking the average value of Eq.~(\ref{int4}) by discretizing over a time $\tau \ll 1$ such that  $\langle [\textnormal{d}B_t] ^2 \rangle_t = \tau$, gives:
 
+\begin{equation}
+	\langle \Delta z \rangle _t = \alpha  \frac{\textnormal{d} D_\bot(z)}{\textnormal{d}z} \tau = v_\mathrm{noise} \tau, 
+\end{equation}
 
-Since for a short time $\textnormal{d}B_t \rightarrow 0$ it is possible to replace $\textnormal{d}B_t ^2$ by its average value  $\langle \textnormal{d}B_t ^2 \rangle _t = \tau$, the latter thus become \cite{ikeda_stochastic_2014}: 
+where $v_\mathrm{noise}$ represents a noise-induced spurious drift velocity. By putting back the interactions with the wall, the full expression of Eq.~\ref{int4} reads\cite{ikeda_stochastic_2014}: 
 
 \begin{equation}
 	\begin{aligned}
-		\Delta z &=   \alpha  \frac{\textnormal{d} D_\bot(z)}{\textnormal{d}z}  \tau - \frac{1}{\gamma(z)}\frac{\partial U(z)}{\partial z}  \tau + \sqrt{2D_\bot (z)} \textnormal{d}B_t \\
-		&=  \left( - \frac{1}{\gamma(z)}\frac{\partial U(z)}{\partial z} +  \alpha  \frac{\textnormal{d} D_\bot(z)}{\textnormal{d}z} \right) \tau + \sqrt{2D_\bot (z)} \textnormal{d}B_t \\
+		\Delta z &=   \alpha  \frac{\textnormal{d} D_\bot(z)}{\textnormal{d}z}  \tau - \frac{1}{\gamma(z)}\frac{\textnormal{d} U(z)}{\textnormal{d} z}  \tau + \sqrt{2D_\bot (z)} \textnormal{d}B_t \\
+		&=  \left( - \frac{1}{\gamma(z)}\frac{\textnormal{d} U(z)}{\textnormal{d} z} +  \alpha  \frac{\textnormal{d} D_\bot(z)}{\textnormal{d}z} \right) \tau + \sqrt{2D_\bot (z)} \textnormal{d}B_t \\
 		&= \bar{v}_\textnormal{d}\tau  + \sqrt{2D_\bot (z)} \textnormal{d}B_t ~,
 	\end{aligned}
 \end{equation}
@@ -623,64 +641,73 @@ where:
 	\label{Eq.total_drifts}
 \end{equation}
 
-are the total drifts acting on the particle. The first term $v_\textnormal{d}$ is the drift  due to ``real" deterministic forces due to the electrostatic double-layer and gravity interactions, while the second term $ v_\textnormal{noise}$ represents a noise-induced drift. This spurious drift does disappear when the diffusion coefficient is homogeneous, as for the $x$- and $y$-axis since the diffusion coefficient only depends on the colloid's height. Theoretically, $\alpha$ can take any value between 0 and 1. However, $\alpha$ generally takes 3 different values \cite{volpe_effective_2016}:  $\alpha = 0$, the Itô integral, corresponding to the use of the initial value of $D(z)$; $\alpha = 1/2$, the Stratonovich integral, corresponding to the mid-point value; and $\alpha = 1$ the anti-Itô or isothermal integral, corresponding to the use of the final value. 
+is the total drift velocity of the particle. The first term $v_\textnormal{d}$ is the drift velocity due to deterministic forces (electrostatic and gravitational interactions in our case). The spurious drift velocity $v_\mathrm{noise}$ disappears when the diffusion coefficient is homogeneous,and would also disappear along the $x$- and $y$-axes since the diffusion coefficients only depend on the colloid-wall distance $z$ (a derivative with respect to $x$ would replace the one in $z$ in the quivalent of Eq.~(\ref{Eq.total_drifts}) for the $x$ direction). Theoretically, $\alpha$ can take any value between 0 and 1. However, three canonical values are usually employed \cite{volpe_effective_2016}:  $\alpha = 0$, in the Itô convention, corresponding to the use of the initial value of $D(z)$; $\alpha = 1/2$, in the Stratonovich convention, corresponding to the mid-point value; and $\alpha = 1$  in the anti-Itô or isothermal convention, corresponding to the use of the final value. Using  Eqs.~(\ref{Eq.hindered})~(\ref{Eq:etaz_pade})~and~(\ref{Eq.total_drifts}), the deterministic drift velocity reads:
 
-In particular, the Itô integral $\alpha = 0$ is commonly used in economics and biology as integrals are approximated by a sum, the first point of the integral is chosen.  The Stratonovich integral $\alpha = 1/2$ arises in physical systems where noise correlation time $\tau _\mathrm{c} > 0$, and where the velocities are often computed at mid-points using three measurements. Finally, the isothermal integral $\alpha = 1$ is used in physical systems at equilibrium with a heat bath \cite{volpe_influence_2010} such as our case with Brownian motion. Using the Padé approximation Eq.~(\ref{Eq:etaz_pade}), the spurious drift $v_\textnormal{noise}$ writes:
+\begin{equation}
+	v_\textnormal{d} =- \frac{k_\mathrm{B}T}{\gamma(z)} \left[- \frac{1}{\ell_\mathrm{D}} B \exp \left(- \frac{z}{\ell_\mathrm{D}}\right) + \frac{1}{\ell_\mathrm{B}}\right] ~,
+\end{equation}
+
+and the spurious drift velocity reads:
 
 \begin{equation}
 	v_\textnormal{noise} (z)= 2 \alpha D_0 a\frac{2a^2 + 12 az + 21 z^2}{(2 a^2 + 9az + z^2) ^2} ~,
 	\label{Eq.spurious_drift}
 \end{equation}
 
-and the deterministic part of the drift writes:
+
+Finally, one can decompose the Langevin equation for a particle near a wall in two, one equation describing the motion perpendicular (\textit{i.e.} along the $z$-axis):
 
 \begin{equation}
-	v_\textnormal{d} =- \frac{k_\mathrm{B}T}{\gamma(z)} \left[- \frac{1}{\ell_\mathrm{D}} B \exp \left(- \frac{z}{\ell_\mathrm{D}}\right) + \frac{1}{\ell_\mathrm{B}}\right] ~.
-\end{equation}
-Finally, the Langevin equation for a confined colloid near a wall writes:
-
-\begin{equation}
-	V_t^i \textnormal{d}t  = \bar{v}_\mathrm{d} ^i \textnormal{d}t + \sqrt{2D_i (z)}  \textnormal{d}B_t ~,
+	V_t^z \textnormal{d}t  = \bar{v}_\mathrm{d} \textnormal{d}t + \sqrt{2D_\bot (z)}  \textnormal{d}B_t ~,
 	\label{Eq.langevin_confined}
 \end{equation}
 
-where the drifts $\bar{v}_\mathrm{d} ^i $ are non-zero only for the $z$-axis. A typical example of drift velocity for a colloidal particle of radius $a = 1.5 ~\mathrm{\mu m}$ in water, confined in interaction potential with a Debye length $\ell_\mathrm{D} = 50 ~ \mathrm{nm}$, $B = 4 ~k_\mathrm{B}T$ and a Boltzmann length $\ell_\mathrm{B} = 500 ~ \mathrm{nm}$, is plotted in Fig.~\ref{fig.spurious}. As one can observe, the spurious drift is not negligible.
+and one for the parallel motion (\textit{i.e.} along the $x$- and $y$)):
+
+\begin{equation}
+	V_t^\parallel \textnormal{d}t  = \sqrt{2D_\parallel (z)}  \textnormal{d}B_t ~,
+	\label{Eq.langevin_confinedx}
+\end{equation}
+
+
+ A typical example of drift velocity $\bar{v}$ for a colloidal particle of radius $a = 1.5 ~\mathrm{\mu m}$ in water, moving near a wall, and interacting with the latter though an electrostatic potential with a Debye length $\ell_\mathrm{D} = 50 ~ \mathrm{nm}$ and a dimensionless magnitude of the interaction $B = 4$, and evolving in a gravity field charaterized by a Boltzmann length $\ell_\mathrm{B} = 500 ~ \mathrm{nm}$, is plotted in Fig.~\ref{fig.spurious}. As one can observe, the spurious drift is not negligible.
+ 
 \begin{figure}[ht]
 	\centering
 	\includegraphics{02_body/chapter3/images/spurious_drift/spurious.pdf}
-	\caption{Typical drift velocity for a confined colloidal particle of radius $a = 1.5 ~\mathrm{\mu m}$ in water. The physical properties of the interaction are $\ell_\mathrm{D} = 50 ~ \mathrm{nm}$, $B = 4 ~k_\mathrm{B}T$ and $\ell_\mathrm{B} = 500 ~ \mathrm{nm}$.} 
+	\caption{Theoritical drift velocity for a colloidal particle of radius $a = 1.5 ~\mathrm{\mu m}$ in water and at a distance $z$ from the wall. The physical parameters $\ell_\mathrm{D} = 50 ~ \mathrm{nm}$, $B = 4 ~k_\mathrm{B}T$ and $\ell_\mathrm{B} = 500 ~ \mathrm{nm}$.} 
 	\label{fig.spurious}
 \end{figure}
 
 \subsubsection{Fokker-Plank equation}
 
-The Fokker-Plank equation is an alternative way to describe Brownian motion. Instead of explicitly calculating a Brownian trajectory by solving the Langevin equation, Fokker-Plank equation describes the particle distribution function $P(x, x_0; t)$ where $x$ denotes the particle position and $x_0$ its initial position. To derive the Fokker-Plank equation, let us start by taking generic Langevin equation:
+The Fokker-Plank equation is an alternative way to describe Brownian motion. Instead of explicitly calculating a Brownian trajectory by solving the Langevin equation, Fokker-Plank equation describes the Probability Density Function $P(X_t, X_0; t)$ inposition, where for simplicity we place ourselve in 1D, with $X_t$ denoting the particle position at a time $t$ and $X_0$ its initial ($t=0$) position. To derive the Fokker-Plank equation, let us start by taking a generic Langevin equation in 1D:
 
 \begin{equation}
-	\textnormal{d}X_t = u(X_t) \textnormal{d}t + a(X_t)\textnormal{d}B_t ~,
+	\textnormal{d}x = u(X_t) \textnormal{d}t + \zeta(X_t)\textnormal{d}B_t ~,
 	\label{SDE2}
 \end{equation}
 
-where $X_t$ is the particle position,  $u$ is the drift due to external forces and $a$ the magnitude of the random force. Let consider the average value of an arbitrary function $f(X_t)$ for a stochastic process obeying Eq.~(\ref{SDE2}), which started at position $x_0$ at time $t=0$, by definition \cite{le_bellac_equilibrium_2004}:
+where $u$ is the drift due to external forces and $\zeta$ is the magnitude of the random force. Let consider the average value of an arbitrary function $f(X_t)$ for a stochastic process obeying Eq.~(\ref{SDE2}), which started at position $x_0$ at time $t=0$. By definition, this ensemble average reads \cite{le_bellac_equilibrium_2004}:
 
 \begin{equation}
-	\langle f(X_t) \rangle = \int \textnormal{d}x ~ p(x, x_0 ; t) f(x) ~,
+	\langle f(x) \rangle = \int \textnormal{d}X_t ~ P(X_t, X_0 ; t) f(X_t) ~,
 	\label{fokker1}
 \end{equation}
 
-with the initial conditions that can be written as:
+with the initial condition that can be written as:
 
 \begin{equation}
-	p(x, x_0; 0) = \delta (x - x_0) ~.
+P(X_t, X_0; 0) = \delta (X_t - X_0) ~.
 \end{equation}
 
-We now take the time derivative of Eq.~(\ref{fokker1}), starting by expending $ f$ at the $\textnormal{d}t$ as:
+We now expand $f$ at the first order in the time increment $\textnormal{d}t$ as:
 
 \begin{equation}
 	\begin{aligned}
-		\left\langle \frac{\textnormal{d}f(X_t)}{\textnormal{d}t} \right\rangle  &\simeq \frac{\textnormal{d}}{\textnormal{dt}}\left\langle   \frac{\partial f(X_t)}{\partial x} u(X_t) \textnormal{d}t + \frac{1}{2} \frac{\partial^2 f(X_t)}{\partial x^2} a^2 (X_t) \textnormal{d}B_t^2   \right\rangle \\
-		& =  \frac{\textnormal{d}}{\textnormal{dt}} \left( \frac{\partial f(X_t)}{\partial x} u(X_t) \textnormal{d}t + \frac{1}{2} \frac{\partial^2 f(X_t)}{\partial x^2} a^2 (X_t) \textnormal{d}t \right) \\
-		& = \frac{\partial f(X_t)}{\partial x} u(X_t) + \frac{1}{2} \frac{\partial^2 f(X_t)}{\partial x^2} a^2 (X_t) ~.
+		\left\langle \frac{\textnormal{d}f(X_t)}{\textnormal{d}t} \right\rangle_t  &\simeq \frac{1}{\textnormal{dt}}\left\langle   \frac{\partial f(X_t)}{\partial X_t} u(X_t) \textnormal{d}t + \frac{\partial f(X_t)}{\partial X_t} \zeta(X_t) \textnormal{d}B_t + \frac{1}{2} \frac{\partial^2 f(X_t)}{\partial X_t^2} \zeta^2 (X_t) \textnormal{d}B_t^2   \right\rangle_t \\
+		& =  \frac{1}{\textnormal{dt}} \left( \frac{\partial f(X_t)}{\partial X_t} u(X_t) \textnormal{d}t + \frac{1}{2} \frac{\partial^2 f(X_t)}{\partial X_t^2} \zeta^2 (X_t) \textnormal{d}t \right) \\
+		& = \frac{\partial f(X_t)}{\partial X_t} u(X_t) + \frac{1}{2} \frac{\partial^2 f(X_t)}{\partial X_t^2} \zeta^2 (X_t) ~.
 	\end{aligned}
 	\label{fokker2}
 \end{equation}
@@ -689,79 +716,75 @@ By combining Eqs.~(\ref{fokker1})~and~(\ref{fokker2}), we get:
 
 \begin{equation}
 	\begin{aligned}
-		\left\langle \frac{\textnormal{d}f(X_t)}{\textnormal{d}t} \right\rangle &= \int \textnormal{d} x ~\frac{\partial p(x, x_0 ; t) }{\partial t} f(x) \\
-		& =  \frac{\partial f(X_t)}{\partial x} u(X_t) + \frac{1}{2} \frac{\partial^2 f(X_t)}{\partial x^2} a^2 (X_t) \\
-		& = \int \textnormal{d}x ~ p(x, x_0 ; t) G f(x) ~,
+		\int \textnormal{d} X_t ~\frac{\partial P(X_t, X_0 ; t) }{\partial t} f(X_t)
+		& =  \frac{\partial f(X_t)}{\partial X_t} u(X_t) + \frac{1}{2} \frac{\partial^2 f(X_t)}{\partial X_t^2} \zeta^2 (X_t) \\
+		& = \int \textnormal{d}X_t ~ P(X_t, X_0 ; t) G f(X_t) ~,
 	\end{aligned}
 \end{equation}
 
-where G is an operator called the generator and is defined by its action on a function $f$ as:
+where G is a differential operator called the generator and is defined by its action on a function $f$ as:
 
 \begin{equation}
-	Gf = \frac{1}{2} a^2 (x) \frac{\partial ^2 f(x)}{\partial x^2} + u(x) \frac{\partial f(x)}{\partial x} ~.
+	Gf = \frac{1}{2} \zeta^2 (X_t) \frac{\partial ^2 f(X_t)}{\partial X_t^2} + u(X_t) \frac{\partial f(X_t)}{\partial X_t} ~.
 \end{equation}
 
-Using the definition of the adjoint of $G$, denoted by $G ^\dagger$, one has:
+Using the definition of the adjoint of $G$, denoted $G ^\dagger$, one has:
 
 
 \begin{equation}
 	\begin{aligned}
-		\int \textnormal{d} x ~\frac{\partial p(x, x_0 ; t) }{\partial t} f(x) &= \int \textnormal{d}x ~ p(x, x_0 ; t) G f(x) \\
-		&= \int \textnormal{d}x ~  G ^\dagger p(x, x_0 ; t) f(x) ~.
+		\int \textnormal{d} X_t ~\frac{\partial P(X_t, X_0 ; t) }{\partial t} f(X_t) &= \int \textnormal{d}X_t ~ P(X_t, X_0 ; t) G f(X_t) \\
+		&= \int \textnormal{d}X_t ~  G ^\dagger P(X_t, X_0 ; t) f(X_t) ~.
 	\end{aligned}
 \end{equation}
 
 From the latter, we thus have:
 
 \begin{equation}
-	\frac{\partial p(x, x_0 ; t)}{\partial t} = G^\dagger p(x, x_0 ; t) ~,
+	\frac{\partial P(X_t, X_0 ; t)}{\partial t} = G^\dagger P(X_t, X_0 ; t) ~,
 	\label{fokker3}
 \end{equation}
 
-which leads to the Forward-Fokker-Planck equation:
+which leads to the Forward Fokker-Planck equation \cite{del_moral_introduction_2010}:
 
 \begin{equation}
-	\frac{\partial p(x, x_0 ; t)}{\partial t }= \frac{\partial ^2}{\partial x^2} \left[\frac{a^2 (x)}{2}p(x, x_0 ; t)\right] - \frac{\partial}{\partial x} \left[u(x) p(x, x_0 ; t)\right] ~.
+	\frac{\partial P(X_t, X_0 ; t)}{\partial t }= \frac{\partial ^2}{\partial X_t^2} \left[\frac{\zeta^2 (X_t)}{2}P(X_t, X_0 ; t)\right] - \frac{\partial}{\partial X_t} \left[u(X_t) P(X_t, X_0 ; t)\right] ~.
 	\label{Eq.Forward_Fokker_plank}
 \end{equation}
 
-The latter is called Forward because the partial differential equation is in terms of the variable $x$, the position of the particle at which the stochastic process ends up, at time $t$. For a confined Brownian motion near a wall, using the previously determined drifts $\bar{v}_\textnormal{d}$ Eq.~(\ref{Eq.total_drifts}), the Fokker-Plank equation for the movement along the $z$-axis, perpendicular to the wall writes:
+The latter is called Forward because the partial differential equation is written in terms of the variable $X_t$, \textit{i.e.} the position of the particle, at time $t$. For a Brownian motion near a wall, using the previously determined drifts velocity $\bar{v}_\textnormal{d}$ along $z$ of Eq.~(\ref{Eq.total_drifts}), the Fokker-Plank equation for the motion along the $z$-axis, perpendicular to the wall reads:
 
 \begin{equation}
-	\frac{\partial p(z, z_0 ; t)}{\partial t} = \frac{\partial ^2}{\partial z ^2} \left[ D(z)  p(z, z_0 ; t) \right]   -  \frac{\partial }{\partial z} \left[\bar{v}_\textnormal{d} p(z, z_0 ; t)\right] ~.
+	\frac{\partial P(z, z_0 ; t)}{\partial t} = \frac{\partial ^2}{\partial z ^2} \left[ D_\bot(z)  P(z, z_0 ; t) \right]   -  \frac{\partial }{\partial z} \left[\bar{v}_\textnormal{d} P(z, z_0 ; t)\right] ~,
+	\label{fp}
 \end{equation}
 
-As an example, the stationary solution of the latter, $\partial p / \partial t = 0$, is given by the Gibbs-Boltzmann distribution $P_\textnormal{eq}(z) $ (see Eq.~(\ref{Eq.Peq})). The solution for the Eq.~(\ref{fokker3}) with the particle starting at position $z_0$, at time $t_0 = 0$ writes:
+with $z$ the particle position along the $z$-axis. In particular, the stationary solution of Eq.~(\ref{fp}), \textit{i.e.} for $\partial p / \partial t = 0$, is given by the Gibbs-Boltzmann distribution $P_\textnormal{eq}(z) $ (see Eq.~(\ref{Eq.Peq})). The solution of Eq.~(\ref{fokker3}) with the particle starting at position $z_0$, at time $t = 0$ reads:
 
 \begin{equation}
 	\begin{aligned}
-		P(z, z_0; t) &= \exp (G^\dagger t) p(z, z_0, 0) \\
-		& = \exp \left( \frac{\partial ^2}{\partial z ^2}  D(z)  t   -  \frac{\partial }{\partial z} \bar{v}_\textnormal{d} t\right) \delta (z - z_0)
+		P(z, z_0; t) &= \exp\{G^\dagger t\} P(z, z_0; 0) \\
+		& = \exp \left\{ \frac{\partial ^2}{\partial z ^2}  D_\bot(z)  t   -  \frac{\partial }{\partial z} \bar{v}_\textnormal{d} t\right\} \delta (z - z_0) ~.
 	\end{aligned}
 	\label{Eq.solfokker}
 \end{equation} 
 
 \subsubsection{Numerical simulations of confined Brownian motion}
 
-We had previously determined that the simulation of a bulk Brownian motion without external forces can be simulated using Eq.~(\ref{Eq.shortnumlangevin}): 
-
-\begin{equation}
-	x_i = x_{i-1} + \sqrt{2D}w_i~.
-\end{equation}
-
-However, with the confined Brownian motion one needs to take into account the hindered diffusion, external forces due to gravity and double-layer interactions and the noise-induced drift. Putting all that together, leads to a new equation for $x_i$ which writes for the movement parallel to wall:
+We previously determined that the simulation of a bulk Brownian motion without external forces can be simulated using Eq.~(\ref{Eq.shortnumlangevin}).
+However, in the case of confined Brownian motion, and without density matching, one needs to take into account the hindered mobility, external forces due to gravity and the double-layer interaction, as well as the confinement-induced spurious drift. Putting all that together leads to a new equation for $x_i$ which reads for the motion parallel to wall (\textit{i.e.} along the $x$- and $y$-axes):
 
 \begin{equation}
 	x_i = x_{i-1} +  \sqrt{2D_\parallel}w_i ~,
 \end{equation}
 
-For the particle movement perpendicularly to the wall ($z$-axis), one needs to add the total drift $\bar{v}_\textnormal{d}$ Eq.~(\ref{Eq.total_drifts}), such that:
+where we recall that we approximate the continuous position $X_t$ of a particle at a time $t$ by a discrete-time sequence $x_i$, which is the solution of the equation at a time $t_i = i\tau$.$\tau$ being the numerical integration time increment, and $w_i$ is a Faussian-ditributed number of mean value $\langle w_i =0$ and variance $\langle w_i ^2\rangle = \tau$ . For the particle perpendicular motion (along the $z$-axis), one needs to add the total drift $\bar{v}_\textnormal{d}$ of Eq.~(\ref{Eq.total_drifts}), such that:
 
 \begin{equation}
 	z_i = z_{i-1} + \bar{v}_\mathrm{d}(z_{i-1}) \tau + \sqrt{2D_\bot}w_i ~,
 \end{equation}
 
-where $\tau$ is the simulation time step and $w_i$ being a Gaussian distributed number of mean value $\langle w_i \rangle = 0$ and variance $\langle w_i ^2\rangle = \tau$. Unlike the bulk Brownian motion where the time step $\tau$ can be chosen for the desired precision as shown previously on Fig.~\ref{fig:MSEwi}. For an accurate simulation, the time step should be short enough for the drifts $\bar{v}_\textnormal{d}$ and local diffusion coefficient to be relatively constant in the time period $t_{i+1} - t_i = \tau$ and in the displacement range $\Delta z = z_{i+1} - z_i$, such that:
+ where $z_i$ is the discrete-time position sequence of a particle along the $z$-axis. Compared to bulk Brownian motion where the time step $\tau$ can be chosen only according to the desired precision as shown previously on Fig.~\ref{fig:MSEwi}, confinement adds another constraint. Indeed, the time step should be short enough for the drift $\bar{v}_\textnormal{d}$ and local diffusion coefficients to be relatively constant (as detailed later) in the time period $t_{i+1} - t_i = \tau$ and in the displacement range $\Delta z = z_{i+1} - z_i$, such that:
 
 \begin{equation}
 	\bar{v}_\mathrm{d} (z \in [z_i, z_{i+1}]) \simeq \bar{v}_\mathrm{d} (z_i) ~,
@@ -774,88 +797,86 @@ and:
 	D_{\bot, \parallel}(z \in [z_i, z_{i+1}]) \simeq D_{\bot, \parallel}(z_i) ~.
 \end{equation}
 
-Since that the diffusion coefficient varies less for the movement parallel, one can only consider the perpendicular motion to determine the simulation time step. Also, as it can be seen in Fig.~\ref{fig.taumax} where the drift $v_\textnormal{d}$ and diffusivity gradient are plotted, the diffusion gradient is negligible compared to the drift gradient, we thus focus on the drifts condition Eq.~(\ref{driftc}). Moreover, the drifts vary more when the colloid is near the surface where one can approximate the diffusion coefficient $D_\bot$ using Eq.~(\ref{Eq:etaz_small}) such that:
+Since the diffusion coefficient does not vary for the parallel motion, one can consider only the perpendicular motion to determine the optimal simulation time step. Also, as it can be seen in Fig.~\ref{fig.taumax} the relative variation of the drift velocity $1/\bar{v}_\mathrm{d} \partial_z \bar{v}_\mathrm{d}$ reaches higher values than the relative variation of the diffusion coefficient $1/D_\bot \partial_z D_\bot$. Thus, finding $\tau$ that satisfies Eq.~(\ref{driftc}) is sufficient. Moreover, the vertical drift velocity varies more when the colloid is near the surface, \textit{i.e.} in the region where one can approximate the diffusion coefficient $D_\bot$ using Eqs.~(\ref{Eq.hindered})~and~(\ref{Eq:etaz_small}):
 
 \begin{equation}
 	\left.D_\bot  (z)\right|_{z\ll a} = D_ 0 \frac{z}{a} ~.
+	\label{Dsmall}
 \end{equation}
 
-Near the surface, the gravitational interaction can be neglected as it is smaller than the electrostatic interactions as shown in Fig.~\ref{Fig:potential}. In that case, by taking $\alpha = 1$, the total drifts Eq.~(\ref{Eq.total_drifts}) near the surface simplifies to:
+In that case, by choosing the isothermal convention ($\alpha = 1$), Eq.~(\ref{Eq.total_drifts}) near the surface simplifies to:
 
 \begin{equation}
 	\begin{aligned}
-		\bar{v}_\textnormal{d} &=  \frac{k_\mathrm{B}T}{\gamma_0} \frac{z}{a} \left[\frac{B}{\ell_\mathrm{D}} \exp \left(-\frac{z}{\ell_\mathrm{D}}\right)\right] + \frac{\partial}{\partial z} D_0 \frac{z}{a} \\
-		&= D_0 \frac{z}{a} \left[\frac{B}{\ell_\mathrm{D}} \exp \left(-\frac{z}{\ell_\mathrm{D}}\right)\right] + \frac{D_0}{a} \\
-		&= \frac{D_0}{a} \left[ 1 + \frac{Bz}{\ell_\mathrm{D}} \exp \left(-\frac{z}{\ell_\mathrm{D}}\right)\right]
+		\bar{v}_\textnormal{d} &\simeq  \frac{k_\mathrm{B}T}{\gamma_0} \frac{z}{a} \left[\frac{B}{\ell_\mathrm{D}} \exp \left(-\frac{z}{\ell_\mathrm{D}}\right) - \frac{1}{\ell_{\mathrm{B}}}  \right] + \frac{\partial}{\partial z} D_0 \frac{z}{a} \\
+		&= \frac{D_0}{a} \left[ 1 + \frac{Bz}{\ell_\mathrm{D}} \exp \left(-\frac{z}{\ell_\mathrm{D}}\right)- \frac{1}{\ell_{\mathrm{B}}}\right]
 	\end{aligned}
 \end{equation}
 
-By expending the exponential term to the order $z/\ell_\mathrm{D}$ order, we get:
+By expanding the exponential term at the first order in $z/\ell_\mathrm{D}$, we get:
 
 \begin{equation}
 	\begin{aligned}
-		\bar{v}_\textnormal{d} &= \frac{D_0}{a} \left[ 1 + \frac{Bz}{\ell_\mathrm{D}} \exp \left(-\frac{z}{\ell_\mathrm{D}}\right)\right]
-		=  \frac{D_0}{a} \left[ 1 + \frac{Bz}{\ell_\mathrm{D}}  \left(1 -\frac{z}{\ell_\mathrm{D}}\right)\right] \\
-		& = \frac{D_0}{a} \left( 1 + \frac{B z}{\ell_\mathrm{D}}\right)
+		\bar{v}_\textnormal{d}  = \frac{D_0}{a} \left( 1 + \frac{B z}{\ell_\mathrm{D}} - \frac{1}{\ell_{\mathrm{B}}}\right)
 	\end{aligned}
 	\label{drifts_short}
 \end{equation}
 
-To satisfy Eq.~(\ref{driftc}), we need to have small relative change of drifts in an interval $[z, z+\Delta z]$ which can be written as \cite{matse_state-dependent_nodate}:
+To satisfy Eq.~(\ref{driftc}), we need to have a small relative change of the vertical drift velocity in an interval $[z, z+\Delta z]$ \cite{matse_state-dependent_nodate}, \textit{i.e.}:
 
 \begin{equation}
-	\frac{|\bar{v}_\mathrm{d} (z + \Delta z) - \bar{v}_\mathrm{d} (z)|}{\bar{v}_\mathrm{d} (z)} \ll 1
+	\frac{|\bar{v}_\mathrm{d} (z + \Delta z) - \bar{v}_\mathrm{d} (z)|}{|\bar{v}_\mathrm{d} (z)|} \ll 1 ~.
 	\label{condition_drift}
 \end{equation}
 
 Combining Eqs.~(\ref{drifts_short})~and~(\ref{condition_drift}), we get:
 
 \begin{equation}
-	|\Delta| z \ll \frac{\ell_\mathrm{D}}{B} + z ~.
+	|\Delta z |\ll \left[\frac{B}{\ell_{\mathrm{D}}}\right]^{-1} + z ~.
 	\label{inegality}
 \end{equation}
 
 
-Using the \gls{MSD}, it is possible to link the latter to the simulation time step $\tau$ by using the average value of $\Delta z ^2 $, such that:
+Besides, invoking the vertical \gls{MSD} over the time step, as well as Eq.~(\ref{Dsmall}), one gets:
 
 \begin{equation}
-	\langle \Delta z ^2 \rangle (z) = 2 D_\bot (z) \tau = 2D_0 \frac{z}{a}\tau 
+	\langle \Delta z ^2 \rangle (z) = 2 D_\bot (z) \tau = 2D_0 \frac{z}{a}\tau ~.
 	\label{msdshort}
 \end{equation}
 
 Combining Eqs.~(\ref{inegality})~and~(\ref{msdshort}) thus leads to:
 
 \begin{equation}
-	\tau = \frac{a\langle \Delta z ^2 \rangle }{2 D_0 z} < \frac{a}{2 D_0 } \frac{(\frac{\ell_\mathrm{D}}{B} + z) ^2}{z} = \tau_\mathrm{max} (z)~,
+	\tau = \frac{a\langle \Delta z ^2 \rangle }{2 D_0 z} \ll \frac{a}{2 D_0 } \frac{\left[\left(\frac{B}{\ell_\mathrm{D}} - \frac{1}{\ell_{\mathrm{B}}}\right)^{-1} + z\right] ^2}{z} = \tau_\mathrm{max} (z)~.
 	\label{taumax}
 \end{equation}
 
-where $ \tau_\mathrm{max}$ is thus the maximal time step that satisfies Eq.~(\ref{inegality}). At this point, there are two different ways to do the simulation: the first one is to do an adaptive time step where $\tau_\mathrm{max}$ for each step of the simulation ; the second one is to find the smallest $\tau_\mathrm{max}(z)$ and use for all the simulation a time step $\tau$ satisfying $\tau < \mathrm{min}(\tau_\mathrm{max}) $. The latter can be evaluated by finding the height $z_\mathrm{min}$, at which the derivative of $ \tau_\mathrm{max}$ nullifies, such that:
+ At this point, there are two different options for the time step in the simulation: the first one is to do an adaptive time step using a local $\tau(z)$ that satisfies $\tau(z) \ll \tau_{\textrm{max}}(z)$ for each step of the simulation; the second one is to find the smallest $\tau_\mathrm{max}(z)$ and use for all the simulation a time step $\tau$ satisfying $\tau \ll \mathrm{min}(\tau_\mathrm{max}) $. The latter can be evaluated by finding the height $z_\mathrm{min}$, at which the derivative of $ \tau_\mathrm{max}$ nullifies, \textit{i.e.}:
 
 \begin{equation}
 	\left. \frac{\partial \tau_\mathrm{max}}{\partial z} \right| _{z_\mathrm{min} }= 0 ~.
 \end{equation} 
 
-Solving the latter gives:
+Solving the latter gives,
 
 \begin{equation}
-	z_\mathrm{min} = \frac{\ell_\mathrm{D}}{B} ~.
+	z_\mathrm{min} = \left| \left( \frac{B}{\ell_\mathrm{D}} - \frac{1}{\ell_{\mathrm{B}}}\right)^{-1} \right|~.
 \end{equation}
 
 
-which finally gives a maximal simulation time step, $\mathrm{min}(\tau_\mathrm{max})$:
+which finally gives:
 
 \begin{equation}
-	\mathrm{min}(\tau_\mathrm{max}) =  \frac{2 a}{D_0} \frac{\ell_\mathrm{D}}{B} ~,
+	\mathrm{min}(\tau_\mathrm{max}) =  \frac{2 a}{D_0} \frac{\ell_\mathrm{D}}{B} ~.
 \end{equation}
 
-this time should be the maximal time step $\tau$ used for a confined Brownian simulation near a wall to ensure an accurate simulation of the near-wall effects. In the Fig.~\ref{fig.taumax}-b) some typical $\tau_{\mathrm{max}}$ are plotted for a colloid of radius $a=1.5 ~\mathrm{\mu m}$, $B = 4$ and $\ell _\mathrm{D}$ varying between $20$ and $100$ nm. We can observe that for this range of values that well represents the experiments that I have done during my thesis, taking a simulation time step $\tau < 0.01 ~ \mathrm{s}$ can be used for all set of parameters.
+In Fig.~\ref{fig.taumax}-b) $\tau_{\mathrm{max}}$ is plotted as a function of $z$, for $a=1.5 ~\mathrm{\mu m}$, $B = 4$ and $\ell _\mathrm{D}$ varying between $20$ and $100$ nm. We observe that for this range of values that represents well the experiments that I have performed during my thesis, taking a constant simulation time step $\tau \approx 0.01 ~ \mathrm{s}$ is satisfactory.
 
 
 \begin{figure}[ht]
 	\centering
 	\includegraphics{02_body/chapter3/images/simulation_confined_Brownian_motion/maximal_tau.pdf}
-	\caption{a) Drift and diffusive gradients for a confined colloidal particle of radius $a = 1.5 ~\mathrm{\mu m}$ in water. The physical properties of the interaction are $\ell_\mathrm{D} = 50 ~ \mathrm{nm}$, $B = 4 ~k_\mathrm{B}T$ and $\ell_\mathrm{B} = 500 ~ \mathrm{nm}$. b) $\tau_\mathrm{max}$ for a particle of radius $a = 1.5 ~\mathrm{\mu m}$ and $B = 4$ for different Debye length. The black line represents the minimum value $\tau_\mathrm{max}$ for $\ell_\mathrm{D}$ varying between 20 nm and 100 nm, this minimal time represents the maximal simulation time step that should be used for an accurate simulation.} 
+	\caption{a) A réecrire. b) $\tau_\mathrm{max}$ for a particle of radius $a = 1.5 ~\mathrm{\mu m}$ and $B = 4$ for different Debye length. The black line represents the minimum value $\tau_\mathrm{max}$ for $\ell_\mathrm{D}$ varying between 20 nm and 100 nm, this minimal time represents the maximal simulation time step that should be used for an accurate simulation.} 
 	\label{fig.taumax}
 \end{figure}
 

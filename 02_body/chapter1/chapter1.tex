@@ -93,7 +93,7 @@ The solution Eq.~(\ref{Eq.HeatEquation}) is then the Green's function of the hea
 
 
 \begin{equation}
-	f(x,t) = \frac{1}{\sqrt{4\pi D}} \frac{\exp \left(\frac{-x^2}{4Dt} \right)}{\sqrt{t}} ~.
+f(x,t) = \frac{1}{\sqrt{4\pi D}} \frac{\exp \left(\frac{-x^2}{4Dt} \right)}{\sqrt{t}} ~.
 \end{equation}
 
 From this solution we can see that the mean value of the displacement along the $x$ axis is equal to $0$ and the square root of the arithmetic mean of the squares of displacements (that we commonly call the Root Mean Square Displacement (R\gls{MSD}))  is given by:
@@ -205,8 +205,8 @@ which has a familiar solution:
 with $V_0$ an initial velocity. This result shows that the average of the velocity should decay to zero with a characteristic time $\tau_\mathrm{B} = \frac{m}{\gamma}$. For instance, the polystyrene particles used during my experiments which are micrometric we have $\tau_\mathrm{B} \approx 10^{-7}$ s. This signifies that if we measure the displacements of a particle with a time interval $ \tau  >> \tau _\mathrm{B} $ the displacement can be taken as independent events as it was stated by Einstein. In physical terms, this means that we are in the over-damped regime, in this case the Langevin equation reads:
 
 \begin{equation}
-	-\gamma V_t \textnormal{d}t  + \alpha  \textnormal{d}B_t = 0~.
-	\label{Eq.overdamped_SDE}
+-\gamma V_t \textnormal{d}t  + \alpha  \textnormal{d}B_t = 0~.	
+\label{Eq.overdamped_SDE}
 \end{equation}
 
 The experiments done during my thesis used a video camera that can reach a maximum of hundreds frames per second (\gls{fps}) reaching time steps of $\approx 10^{-2}$ s. Therefore, all my work falls into the over-damped regime. Before focusing definitely on Eq.~(\ref{Eq.overdamped_SDE}), we can use Eq.~(\ref{Eq.langevinsd}) to characterize further the unknown coefficient $\alpha$. To do so we compute the mean square value of Eq.~(\ref{Eq.langevinsd}), starting by taking the second order Taylor expansion:
