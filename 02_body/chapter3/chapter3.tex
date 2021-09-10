@@ -14,6 +14,7 @@ In the first part of this chapter, I will detail the theory of confined Brownian
 \end{figure}
 
 \subsubsection{Gravitational potential}
+\label{sec:gravit}
 
 
 The density $\rho_\mathrm{p}$ of an observed colloid is different from the medium density $\rho_\mathrm{m}$. In our experiment, we used water whose density is $\rho_\mathrm{m} = 1000 ~ \mathrm{kg.m^{-3}}$. Thus, the particles are subject to gravitational potential given by:
@@ -51,6 +52,7 @@ As we have seen, external forces such as gravity act on the particles. As Browni
 To describe the interaction between a Brownian particle and the wall, we use the DLVO theory, named after Derjaguin, Landau, Verwey, and Overbeek \cite{israelachvili_intermolecular_2015}. This theory was first developed to describe the interactions between colloids, and explains the stability of colloidal suspensions. It involves two force components; the Hamaker force which arises from van der Waals interactions between the molecules of the two surfaces and a screened electrostatic force due to a double layer of charges formed near each surface, and involving the ions present in the solution. 
 
 \paragraph{Double layer interactions}\mbox{}\\
+\label{subsec:double}
 \vspace{0.10cm}
 
 
@@ -136,6 +138,7 @@ which is the characteristic ion-induced screening length of the electrostatic in
 		\ell _\mathrm{D} &= \sqrt{\frac{ 2 \epsilon_0 \epsilon_\mathrm{r} k_\mathrm{B}T}{c_s^0 e^2}}
 		& = \frac{0.304 }{ \sqrt{C} } ~\mathrm{nm} ~,
 	\end{aligned}
+\label{ldnacl}
 \end{equation}
 
 
@@ -332,7 +335,7 @@ return P / np.trapz(P,z)
 \newpage
 
 \subsubsection{Local diffusion coefficient}
-
+\label{sec:diff}
 \begin{figure}
 	\centering
 	\includegraphics{02_body/chapter1/image/libchaber.pdf}
@@ -564,6 +567,7 @@ Now that the external forces acting on the particle and hindered diffusion coeff
 where $\mu(z) = 1/ (6 \pi \eta_i(z) a)$, and $i$ denotes one of the three spatial directions, $x,~ y$ and $z$, where the previously determined $\eta_\parallel$ or $D_\parallel$ corresponds to the $x$- and $y$-axes, while $\eta_\bot$ or $D_\bot$ corresponds to the $z$-axis, and $ \textnormal{d}B_t$ is a Gaussian-distributed satisfying $\langle \textnormal{d}B_t \rangle = 0$ and $\langle \textnormal{d}B_t ^2 \rangle = \textnormal{d}t$. As discussed previously, the potential energy $U$ only varies along the $z$-axis, an thus, the external force only acts on the particle along the $z$-axis while the particle diffuses freely along the $x$- and $y$-axes. 
 
 \subsubsection{Spurious drift}
+\label{sec:spurious}
 
 A key observation is that due to the spatially-varying and direction-varying mobilities of the particle, the magnitude $\sqrt{2D_i(z)}$ of the Langevin forces, depend on the random position and direction of the particle. This is an example of a so-called multiplicative noise and will have some interesting consequences on the dynamical properties of the random motion. To illustrate the effect of the multiplicative noise, one can integrate Eq.~(\ref{Eq:langevin_z}) over a time $\tau$ in the absence of the external force, which leads to:
 
@@ -684,14 +688,14 @@ and one for the parallel motion (\textit{i.e.} along the $x$- and $y$)):
 The Fokker-Plank equation is an alternative way to describe Brownian motion. Instead of explicitly calculating a Brownian trajectory by solving the Langevin equation, Fokker-Plank equation describes the Probability Density Function $P(X_t, X_0; t)$ inposition, where for simplicity we place ourselve in 1D, with $X_t$ denoting the particle position at a time $t$ and $X_0$ its initial ($t=0$) position. To derive the Fokker-Plank equation, let us start by taking a generic Langevin equation in 1D:
 
 \begin{equation}
-	\textnormal{d}x = u(X_t) \textnormal{d}t + \zeta(X_t)\textnormal{d}B_t ~,
+	\textnormal{d}X_t = u(X_t) \textnormal{d}t + \zeta(X_t)\textnormal{d}B_t ~,
 	\label{SDE2}
 \end{equation}
 
 where $u$ is the drift due to external forces and $\zeta$ is the magnitude of the random force. Let consider the average value of an arbitrary function $f(X_t)$ for a stochastic process obeying Eq.~(\ref{SDE2}), which started at position $x_0$ at time $t=0$. By definition, this ensemble average reads \cite{le_bellac_equilibrium_2004}:
 
 \begin{equation}
-	\langle f(x) \rangle = \int \textnormal{d}X_t ~ P(X_t, X_0 ; t) f(X_t) ~,
+	\langle f(X_t) \rangle = \int \textnormal{d}X_t ~ P(X_t, X_0 ; t) f(X_t) ~,
 	\label{fokker1}
 \end{equation}
 
@@ -776,12 +780,14 @@ However, in the case of confined Brownian motion, and without density matching, 
 
 \begin{equation}
 	x_i = x_{i-1} +  \sqrt{2D_\parallel}w_i ~,
+	\label{eq.langevinnearx}
 \end{equation}
 
 where we recall that we approximate the continuous position $X_t$ of a particle at a time $t$ by a discrete-time sequence $x_i$, which is the solution of the equation at a time $t_i = i\tau$.$\tau$ being the numerical integration time increment, and $w_i$ is a Faussian-ditributed number of mean value $\langle w_i =0$ and variance $\langle w_i ^2\rangle = \tau$ . For the particle perpendicular motion (along the $z$-axis), one needs to add the total drift $\bar{v}_\textnormal{d}$ of Eq.~(\ref{Eq.total_drifts}), such that:
 
 \begin{equation}
 	z_i = z_{i-1} + \bar{v}_\mathrm{d}(z_{i-1}) \tau + \sqrt{2D_\bot}w_i ~,
+	\label{eq.langevinnearz}
 \end{equation}
 
  where $z_i$ is the discrete-time position sequence of a particle along the $z$-axis. Compared to bulk Brownian motion where the time step $\tau$ can be chosen only according to the desired precision as shown previously on Fig.~\ref{fig:MSEwi}, confinement adds another constraint. Indeed, the time step should be short enough for the drift $\bar{v}_\textnormal{d}$ and local diffusion coefficients to be relatively constant (as detailed later) in the time period $t_{i+1} - t_i = \tau$ and in the displacement range $\Delta z = z_{i+1} - z_i$, such that:
@@ -867,7 +873,7 @@ Solving the latter gives,
 which finally gives:
 
 \begin{equation}
-	\mathrm{min}(\tau_\mathrm{max}) =  \frac{2 a}{D_0} \frac{\ell_\mathrm{D}}{B} ~.
+	\mathrm{min}(\tau_\mathrm{max}) =  \frac{2 a}{D_0}  \left| \left( \frac{B}{\ell_\mathrm{D}} - \frac{1}{\ell_{\mathrm{B}}}\right)^{-1} \right| ~.
 \end{equation}
 
 In Fig.~\ref{fig.taumax}-b) $\tau_{\mathrm{max}}$ is plotted as a function of $z$, for $a=1.5 ~\mathrm{\mu m}$, $B = 4$ and $\ell _\mathrm{D}$ varying between $20$ and $100$ nm. We observe that for this range of values that represents well the experiments that I have performed during my thesis, taking a constant simulation time step $\tau \approx 0.01 ~ \mathrm{s}$ is satisfactory.
@@ -876,18 +882,18 @@ In Fig.~\ref{fig.taumax}-b) $\tau_{\mathrm{max}}$ is plotted as a function of $z
 \begin{figure}[ht]
 	\centering
 	\includegraphics{02_body/chapter3/images/simulation_confined_Brownian_motion/maximal_tau.pdf}
-	\caption{a) A réecrire. b) $\tau_\mathrm{max}$ for a particle of radius $a = 1.5 ~\mathrm{\mu m}$ and $B = 4$ for different Debye length. The black line represents the minimum value $\tau_\mathrm{max}$ for $\ell_\mathrm{D}$ varying between 20 nm and 100 nm, this minimal time represents the maximal simulation time step that should be used for an accurate simulation.} 
+	\caption{a) Theoretical computation of the relative variation of the drift velocity $\bar{v}_\mathrm{d}$ and perpendicular diffusion coefficient $D_\bot$ as a function particle-wall distance $z$. The parameters are $\ell_\mathrm{D}=50$, $B=4$ and $\ell_{\mathrm{B}} = 500$ nm b) Optimal numerical integration time step $\tau_\mathrm{max}$ as a function of the particle-wall distance $z$ for a particle of radius $a = 1.5 ~\mathrm{\mu m}$, with $\ell_{\textrm{B}}=500$~nm, $B = 4$, and for different Debye lengths as indicated. The black line connects the minima.} 
 	\label{fig.taumax}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
 	\includegraphics{02_body/chapter3/images/simulation_confined_Brownian_motion/z_traj_sim.pdf}
-	\caption{Simulated confined Brownian motion height trajectory of a colloidal particle of radius $a= 1.5  ~ \mathrm{\mu m}$ of density $\rho_\mathrm{p} = 1050  ~\mathrm{kg.m^{-3}}$, $\alpha = 1$ and  the potential is characterized by $\ell_\mathrm{D} = 50$ nm and $B=4$.} 
+	\caption{Simulated trajectory along the direction normal to the wall, using Eq.~(\ref{eq.langevinnearz}) with $\alpha = 1$ (isothermal convention), of radius $a= 1.5  ~ \mathrm{\mu m}$, density $\rho_\mathrm{p} = 1050  ~\mathrm{kg.m^{-3}}$, placed in water near a wall. The particle-wall interaction is characterized by $\ell_\mathrm{D} = 50$ nm and $B=4$.} 
 	\label{fig.z_traj_confined_simulated}
 \end{figure}
 
-We have developed the simulation of the Confined Brownian motion using Python, as part of the Master's internship of Élodie Millan, the interested reader will find more information on confined Brownian motion in more complex systems in her forthcoming thesis. A trajectory of a colloidal particle of radius $a= 1.5  ~ \mathrm{\mu m}$ of density $\rho_\mathrm{p} = 1050  ~\mathrm{kg.m^{-3}}$ and the potential characterized by $\ell_\mathrm{D} = 50$ nm and $B=4$,  is plotted in the Fig.~\ref{fig.z_traj_confined_simulated} which does look like the experimental trajectory that was shown in Fig.~\ref{Fig:exp_z_traj} as an introduction to the chapter. In this trajectory, the noise induced lift is taken into account by using the isothermal approach $\alpha =1 $. However, to check if it is the correct way to take into account the spurious drift, the constraint we have is that the long-time statistics should satisfy the Gibbs-Boltzmann equation Eq.~(\ref{Eq.Peq}). To compute an experimental probability density function from a set of points, one can use the following Python snippet.
+We have developed the numerical simulation of Eqs.~(\ref{eq.langevinnearx})~and~(\ref{eq.langevinnearz}) using Python, as part of the Master's internship of Élodie Millan. The interested reader will find more information on  the simulation of confined Brownian motion in complex systems in her forthcoming thesis. A typical trajectory of a water-immersed colloidal particle of radius $a= 1.5  ~ \mathrm{\mu m}$ and density $\rho_\mathrm{p} = 1050  ~\mathrm{kg.m^{-3}}$, near a wall with which the electrostatic interaction is characterized by $\ell_\mathrm{D} = 50$ nm and $B=4$, is plotted in Fig.~\ref{fig.z_traj_confined_simulated}.It qualitatively resembles experimental trajectory that was shown in Fig.~\ref{Fig:exp_z_traj} as an introduction to the chapter. In this trajectory, the noise-induced lift is taken into account by using the isothermal convention (\textit{i.e.} $\alpha =1 $). To check if the spurious drift is correctly implemented, the constraint we have is that the long-time statistics should satisfy Eq.~(\ref{Eq.Peq}). To compute an experimental probability density function from a set of points, one can use the following Python snippet.
 
 
 \begin{minted}
@@ -899,27 +905,27 @@ We have developed the simulation of the Confined Brownian motion using Python, a
 	linenos
 	]
 	{python}
-	def pdf(data, bins=10, density=True):
+def pdf(data, bins=10, density=True):
 	
-	pdf, bins_edge = np.histogram(data, bins=bins, density=density)
-	bins_center = (bins_edge[0:-1] + bins_edge[1:]) / 2
+  pdf, bins_edge = np.histogram(data, bins=bins, density=density)
+  bins_center = (bins_edge[0:-1] + bins_edge[1:]) / 2
 	
-	return pdf, bins_center
+  return pdf, bins_center
 \end{minted}
 
-The Gibbs-Boltzmann distribution for $\alpha = 0 , 0.5 \text{ and } 1 $ is shown in Fig.~\ref{fig.pdf_vs_alpha}. We see that the Isothermal integral of the noise gives the correct distribution, in the other two cases, we observe that the particle is more likely to be found nearer the surface, this is corrected by the additional spurious drift Eq.~(\ref{Eq.spurious_drift}).
+The long-time \gls{PDF} in position, for $\alpha = 0 , 0.5 \text{ and } 1 $ are shown in Fig.~\ref{fig.pdf_vs_alpha}. We see that the isothermal convention of the noise gives the correct distribution. In the other two cases, we observe that the particle is more likely to be found closer to the surface, as a result of the missing compensating spurious drift of Eq.~(\ref{Eq.spurious_drift}). However, defining derivative in other way (\textit{i.e.} Anti-itô or Stratonovich convention) would allow to employ any $\alpha$ values. 
 
 \begin{figure}[h!]
 	\centering
 	\includegraphics{02_body/chapter3/images/simulation_confined_Brownian_motion/Peq_vs_alpha.pdf}
-	\caption{Probability Density Function of the height of the particle for different computation of the spurious drift, Itô $\alpha = 0$, Stratonovich $\alpha = 0.5$ and Isothermal $\alpha = 1$. The plain black line represents the expected Gibbs-Boltzmann distribution. The simulation parameters : $a = 1.5 ~ \mathrm{\mu m}$, $\rho_\mathrm{p} = 1050 ~\mathrm{kg.m^{-3}}$, $\ell_\mathrm{D} = 50$ nm, $B = 4$ and $\ell_\mathrm{B} = 577$ nm. }
+	\caption{Simulated, Long-term Probability Density Function of the height of the particle for different convention as indicated. The solid black line represents the expected Gibbs-Boltzmann distribution. The physical parameters are: $a = 1.5 ~ \mathrm{\mu m}$, $\rho_\mathrm{p} = 1050 ~\mathrm{kg.m^{-3}}$, $\ell_\mathrm{D} = 50$ nm, $B = 4$ and $\ell_\mathrm{B} = 577$ nm. }
 	\label{fig.pdf_vs_alpha}
 \end{figure}
 
 
 \subsection{Experimental study}
 \label{section:expresults}
-Let us now analyze the experimental data obtain through the Mie tracking. In the theory, we wrote the height of the particle $z$ being the shortest distance between the wall and the colloidal particle surface. However, it is not the height measured by the Mie tracking, since it measures the distance between the objective lens focal plane and the particle center. To have the correct measured height, we suppose that the particle does approach very closely to the wall. From that assumption, we then a moving-minimum along the trajectory to set the minimal value of the trajectory to zero. The moving minimum can be calculated using the following Python function:
+Let us now analyze the experimental data obtain through the Mie tracking (see section \ref{chap:LM_fit}). In the theory, we considered distance $z$ between the wall and the colloidal particle surface. However, it is not the height measured by the Mie tracking, since the latter measures the distance between the objective-lens focal plane and the particle center. To have the correct measured height, we suppose that the particle does approach very closely to the wall. From that assumption, we then a moving-minimum along the trajectory to set the minimal value of the trajectory to zero. The moving minimum can be calculated using the following Python function:
 
 
 
@@ -948,7 +954,7 @@ def movmin(z, window):
 		result[i] = np.min(z[start_pt:end_pt])
 		start_pt += 1
 		end_pt += 1
-		return result
+	return result
 \end{minted}
 
 In the latter, \mintinline{python}{window} represent the number of points is used to compute the minimum. As an example, if one chose \mintinline{python}{window = 10000}, the first value of \mintinline{python}{result} is the minimum of the first 10000 points of \mintinline{python}{z}. If there is enough data around the point where the minimum is calculated, the ensemble is centered, with a window of 100, the minimal value at the 100th elements is between the 50th and 150th (\textit{e.g.} \mintinline{python}|result[100] = np.min(z[50:150])|. The raw and rescaled trajectory are shown Fig.~\ref{fig.rescaled_traj}. Of course, that technique is not perfect and we are working on a method that could directly measure the wanted wall-particle distance, also using Mie. However, subtract the moving minimum has a benefit, indeed it can remove some experimental drift that can be due to the physical movement of the optical pieces of the microscope. Moreover, as the exact location of the $z=0$ origin is thus \textit{a priori} undetermined we add to the physical parameters $B$, $\ell_\mathrm{D}$ and $\ell_\mathrm{B}$ a height offset $z_\mathrm{off}$ that accounts for the correction of the wall position.
@@ -962,11 +968,11 @@ In the latter, \mintinline{python}{window} represent the number of points is use
 
 \subsubsection{Equilibrium distribution}
 
-As we have done for the simulated trajectory, one can construct the equilibrium probability density function $P_\mathrm{eq}(z)$ of the position of the particle. As seen in Fig.~\ref{fig.pdf_exp}, and explain in the previous section, an exponential tail is observed at large distance, which is identified to the sedimentation contribution in Perrin's experiment~\cite{perrin_les_2014}, but here with the probability density function of a single particle instead of the concentration field. In contrast, near the wall, we observe an abrupt depletion, indicating a repulsive electrostatic contribution. Additionally, we see that the Gibbs-Boltzmann distribution Eq.~(\ref{Eq:PDF}) fits the data very well.
+As we have done for the simulated trajectory, one can construct the equilibrium probability density function $P_\mathrm{eq}(z)$ of the position of the particle. As seen in Fig.~\ref{fig.pdf_exp}, and explained in section \ref{sec:gravit}, an exponential tail is observed at large distance, which is identified to the sedimentation contribution in Perrin's experiment~\cite{perrin_les_2014}, but here with the probability density function of a single particle instead of the concentration field. In contrast, near the wall, we observe an abrupt depletion, indicating a repulsive electrostatic contribution. Additionally, we see that the Gibbs-Boltzmann distribution of Eq.~(\ref{Eq.Peq}) fits the data very well.
 
 
 
-Moreover, as shown in Fig.~\ref{fig.ld}, we verified that we recover the Debye relation $\ell_{\mathrm{D}}=0.304/\sqrt{\textrm{[Nacl]}}$, with $\ell_{\mathrm{D}}$ in nm, and where [NaCl] is the concentration of salt in mol/L, with a prefactor corresponding to a single monovalent salt in water at room temperature~\cite{israelachvili_intermolecular_2015}. Besides, we have verified, as shown in Fig.~\ref{fig.ld}, that the dimensionless parameter $B$ related to surface charges is constant in the studied salt-concentration range, thus excluding any nonlinear effect~\cite{wang_measurement_2011,oberholzer_grand_1997} in our case. 
+Moreover, as shown in Fig.~\ref{fig.ld}, we recover the Debye relation, \textit{i.e.} $\ell_{\mathrm{D}}=0.304/\sqrt{\textrm{[NaCl]}}$ (see Eq.~(\ref{ldnacl})), with $\ell_{\mathrm{D}}$ in nm, and where [NaCl] is the concentration of salt in mol/L , with a prefactor corresponding to a single monovalent salt in water at room temperature~\cite{israelachvili_intermolecular_2015}. Besides, we have verified, as shown in Fig.~\ref{fig.ld}, that the dimensionless parameter $B$ related to surface charges is constant in the studied salt-concentration range, thus excluding any nonlinear effect~\cite{wang_measurement_2011,oberholzer_grand_1997} in our case. 
 
 \begin{figure}[h!]
 	\centering
@@ -986,25 +992,26 @@ Moreover, as shown in Fig.~\ref{fig.ld}, we verified that we recover the Debye r
 
 \subsubsection{Mean Square Displacement}
 
-We now turn to dynamic aspects, by considering the mean-squared displacement (MSD). For the three spatial directions, indexed by $i=x$, $y$, and $z$, corresponding to the coordinates $r_x=x$, $r_y=y$, and $r_z=z$, of the position $\vec{r}$, and for a given time increment $\Delta t$, the MSD is defined as:
+We now turn to dynamical aspects, by considering the mean-squared displacement (MSD). We recall that, for the three spatial directions, indexed by $i=x$, $y$, and $z$, corresponding to the coordinates $r_x=x$, $r_y=y$, and $r_z=z$, of the position $\vec{r}$, and for a given time increment $\Delta t$, the MSD is defined as:
 \begin{equation}
 	\langle\Delta r_i(t)^2 \rangle_t = \langle[r_i(t+\Delta t) - r_i(t)]^2\rangle_t\ ,
 	\label{MSDdef}
 \end{equation}
-where the average $\langle\rangle_t$ is performed over time $t$. For a free Brownian motion in the bulk, and in the absence of other forces than the dissipative and random ones, the \gls{MSD} is linear in time, \textit{i.e.} $\langle\Delta r_i(t)^2 \rangle_t = 2 D_0 \Delta t$, where $D_0=k_\mathrm{B}T/(6\pi\eta a)$ is the bulk diffusion coefficient given by the Stokes-Einstein relation~\cite{einstein_uber_1905}, and $\eta$ is the liquid viscosity. Further including sedimentation restricts the validity of the previous result along $z$ to short times only, \textit{i.e.} for $\Delta t\ll\ell_{\textrm{B}}^2/D_0$ such that the vertical diffusion is not yet affected by the gravitational drift.
+where the average $\langle\rangle_t$ is performed over time $t$. For a free Brownian motion in the bulk, and in the absence of other forces than the dissipative and random ones, the \gls{MSD} is linear in time, \textit{i.e.} $\langle\Delta r_i(t)^2 \rangle_t = 2 D_0 \Delta t$, where is the bulk diffusion coefficient (see Eq.~(\ref{Eq.D})) given by the Stokes-Einstein relation~\cite{einstein_uber_1905}. Further including sedimentation restricts the validity of the linearity of the \gls{MSD} along the $z$-axis to short times only, \textit{i.e.} for $\Delta t\ll\ell_{\textrm{B}}^2/D_0$ such that the vertical diffusion is not yet affected by the gravitational drift.
 
-The presence of a rigid wall at $z=0$ adds a repulsive electrostatic force along $z$. It also decreases the mobilities nearby through hydrodynamic interactions, leading to effective viscosities $\eta_\parallel(z)=\eta_x(z)=\eta_y(z)$, and $\eta_\bot(z) = \eta_z(z)$. Interestingly, despite the previous modifications, the temporal linearity of the MSD is not altered by the presence of the wall~\cite{chubynsky_diffusing_2014,prieve_measurement_1999} for $x$ and $y$, as well as at short times for $z$. In such cases, the MSD reads:
+As explain in section \ref{subsec:double} The presence of a rigid wall at $z=0$ adds a repulsive electrostatic force along $z$. It also decreases the mobilities nearby through hydrodynamic interactions (see section \ref{sec:diff}), where we recall that it leads to effective viscosities $\eta_\parallel(z)=\eta_x(z)=\eta_y(z)$, and $\eta_\bot(z) = \eta_z(z)$ (see Eq.\ref{Eq.hindered}). Interestingly, despite the previous modifications, the temporal linearity of the MSD is not altered by the presence of the wall~\cite{chubynsky_diffusing_2014,prieve_measurement_1999} for $x$ and $y$, as well as at short times for $z$. In such cases, the MSD reads:
 \begin{equation}
 	\langle\Delta r_i(t)^2 \rangle_t = 2 \langle D_i \rangle \Delta t\ ,
 	\label{averagediff}
 \end{equation}
-where for each spatial direction we introduced the local diffusion coefficient $D_i(z)=D_0\eta /\eta _i(z)$, and its average 
+
+where we introduced and the average of the local diffusion coefficient:
 
 \begin{equation}
 	\langle D_i(z) \rangle = \int_0^{\infty} \textrm{d}z\, D_i(z)P_{\textrm{eq}}(z) ~,
 \end{equation}  
 
-against the Gibbs-Boltzmann distribution in position. As shown in Fig.~\ref{fig.MSD}, the MSD measured along $x$ or $y$ is indeed linear in time. By fitting the data to Eq.~(\ref{averagediff}), using Eqs.~(\ref{Eq:PDF})~and~(\ref{Eq:etax}), we extract an average transverse diffusion coefficient $\langle D_\parallel \rangle= \langle D_x\rangle=\langle D_y \rangle= 0.52\, D_0$. In contrast, along $z$, we identify two different regimes: one at short times, where the \gls{MSD} is still linear in time, with a similarly obtained best-fit value of $\langle D_z \rangle= 0.24\, D_0$; and one at long times, where the MSD saturates to a plateau. This latter behavior indicates that the equilibrium regime has been reached, with the particle having essentially explored all the relevant positions given by the Gibbs-Boltzmann distribution.
+against the Gibbs-Boltzmann distribution in position. As shown in Fig.~\ref{fig.MSD}, the MSD measured along $x$ or $y$ is indeed linear in time. By fitting the data to Eq.~(\ref{averagediff}), using Eqs.~(\ref{Eq:PDF})~and~(\ref{Eq:etax}), we extract an average transverse diffusion coefficient $\langle D_\parallel \rangle= \langle D_x\rangle=\langle D_y \rangle= 0.52\, D_0$. In contrast, along $z$, we identify two different regimes: one at short times, where the \gls{MSD} is still linear in time, with a similarly-obtained best-fit value of $\langle D_z \rangle= 0.24\, D_0$; and one at long times, where the MSD saturates to a plateau. This latter behavior indicates that the equilibrium regime has been reached, with the particle having essentially explored all the relevant positions given by the Gibbs-Boltzmann distribution.
 
 \begin{figure}[t!]
 	\centering
@@ -1015,43 +1022,37 @@ against the Gibbs-Boltzmann distribution in position. As shown in Fig.~\ref{fig.
 \end{figure}
 
 
-\subsubsection{Non-Gaussian dynamics - Displacement distribution}
+\subsubsection{Non-Gaussian dynamics - displacement distribution}
 
-Having focused on the \gls{MSD}, \textit{i.e.} on the second moment only, we now turn to the full probability density function $P_i$ of the displacement $\Delta r_i$. Since the diffusion coefficient $D_i(z)$ varies as a result of the variation of $z$ along the particle trajectory, $P_i$ exhibits a non-Gaussian behavior, as seen in Figs.~\ref{fig.displacement}-a,b,c,d). We even resolve the onset of a non-Gaussian behavior in $P_x$, by zooming on the large-$\lvert\Delta x\rvert$ wings. At short times, the diffusion coefficient $D_i$ and the drift velocity $\bar{v}_\mathrm{d}$, can be considered constant. By writing the initial condition $\delta(x_i - x_i ^0)$, the solution of the Forward Fokker-Plank Eq.~(\ref{Eq.solfokker}), becomes:
+Having focused on the \gls{MSD}, \textit{i.e.} on the second moment only, we now turn to the full Probability Density Function $P_i$ of the displacement $\Delta r_i$. Since the diffusion coefficient $D_i(z)$ varies as a result of the variation of $z$ along the particle trajectory, $P_i$ exhibits a non-Gaussian behavior, as seen in Figs.~\ref{fig.displacement}-a,b,c,d). We even resolve the onset of a non-Gaussian behavior in $P_x$, by zooming on the large-$\lvert\Delta x\rvert$ wings. At short times, the diffusion coefficient $D_i$ and the drift velocity $\bar{v}_\mathrm{d}$, can be considered constant. By writing the initial condition of the particle-wall distance $\delta(z - z_0)$, the solution of Eq.~(\ref{Eq.solfokker}) becomes:
 
 \begin{equation}
 	\begin{aligned}
-		P(x_i, z_0, \Delta t) &= \exp \left[  \frac{\partial ^2}{\partial z ^2} D_i(z_0) \Delta t - \frac{\partial}{\partial z} \bar{v}^i _\mathrm{d} (z_0) \Delta t \right] \frac{1}{2 \pi} \int _{-\infty} ^{\infty} ~ \textnormal{d}u \exp (ju(z-z_0))  \\
-		&= \frac{1}{2\pi} \int _{-\infty} ^{\infty} ~ \textnormal{d}u  \left[ D_i(z_0) \Delta t \frac{\partial ^2}{\partial z ^2} \exp (ju(z-z_0)) -  \bar{v}^i _\mathrm{d} (z_0) \Delta t \frac{\partial}{\partial z} \exp (ju(z-z_0)) \right] \\
-		& = \frac{1}{2\pi} \int_{-\infty}^{\infty} ~ \textnormal{d}u \exp \left[ -u^2 D(z_0)\Delta t + ju(z-z_0) - ju  \bar{v}^i _\mathrm{d} (z_0) \Delta t \right] ~,
+		P_z(z, z_0, \Delta t) &= \exp \left[  \frac{\partial ^2}{\partial z ^2} D_\bot(z_0) \Delta t - \frac{\partial}{\partial z} \bar{v} _\mathrm{d} (z_0) \Delta t \right] \frac{1}{2 \pi} \int _{-\infty} ^{\infty} ~ \textnormal{d}u \exp (ju(z-z_0))  \\
+		& = \frac{1}{2\pi} \int_{-\infty}^{\infty} ~ \textnormal{d}u \exp \left[ -u^2 D_\bot(z_0)\Delta t + ju(z-z_0) - ju  \bar{v} _\mathrm{d} (z_0) \Delta t \right] ~.
 	\end{aligned}
 \end{equation}
 
-where $ \bar{v}^i _\mathrm{d} (z_0)$ is non-zero only for the $z$-axis. The latter can be reduced to \cite{matse_state-dependent_nodate, risken_fokker-planck_2012}:
+The latter can be reduced to \cite{matse_state-dependent_nodate, risken_fokker-planck_2012}:
 
 \begin{equation}
-	P_i(\Delta r_i, z_0, \Delta t) =   \frac{1}{\sqrt{4 \pi D_i(z_0) \Delta t}} \exp \left[-\frac{(\Delta r_i - \bar{v}^i_\mathrm{d}\Delta t)^2}{4 D_i(z) \Delta t}   \right]\ .
+	P_z(\Delta z, z_0, \Delta t) =   \frac{1}{\sqrt{4 \pi D_i(z_0) \Delta t}} \exp \left[-\frac{(\Delta r_i - \bar{v}_\mathrm{d}\Delta t)^2}{4 D_i(z_0) \Delta t}   \right]\ ,
 	\label{Pdxshort}
 \end{equation}
-
-Which is a Gaussian distribution with a 0 mean value for the $x$- and $y$-axis and  
-\begin{equation}
-	\langle P_z(\Delta z, z_0, \Delta t) \rangle = \bar{v}_\mathrm{d} \Delta t ~,
-\end{equation}
-for the $z$-axis. Additionally, it has a variance $\sigma_i(z_0) = \sqrt{2D_i (z_0) \Delta t}$. From Eq.~(\ref{Pdxshort}), we can observe than the total drift $\bar{v}_\mathrm{d}$ induces an asymmetry on the displacement along the $z$-axis. However, in our experiment, as we have access to long enough trajectory, we are interested in the distribution which is not conditioned by the initial position but by the Gibbs-Boltzmann distribution Eq.~(\ref{Eq:PDF}). At short times, $P_i$ can thus be modeled by the averaged diffusion Green's function~\cite{matse_test_2017,hapca_anomalous_2009}:
+which is a Gaussian distribution with a mean value $\langle \Delta z \rangle =  \bar{v}_\mathrm{d}\Delta t$. The same calculus can be done for the $x$- and $y$-axes, by setting the drift velocity to zero and using $D_\bot$. Additionally, it has a standard deviation $\sigma_i(z_0) = \sqrt{2D_i (z_0) \Delta t}$. From Eq.~(\ref{Pdxshort}), we can observe than the total drift $\bar{v}_\mathrm{d}$ induces an asymmetry on the displacement along the $z$-axis. However, in our experiment, as we have access to long-enough trajectories to reach equilibrium, we are conditioned by the initial position but by the Gibbs-Boltzmann distribution of Eq.~(\ref{Eq.Peq}). At short times, $P_i$ can thus be modeled by the averaged diffusion Green's function~\cite{matse_test_2017,hapca_anomalous_2009}:
 \begin{equation}
 	\begin{aligned}
-		P_i(\Delta r_i, \Delta t) & = \int _{0} ^\infty ~\textnormal{d} z_0 P_\mathrm{eq}  P(x_i, z_0, \Delta t) \\
+		P_i(\Delta r_i, \Delta t) & = \int _{0} ^\infty ~\textnormal{d} z P_\mathrm{eq} (z) P(\Delta r_i, z, \Delta t) \\
 		&= \int ^\infty _0 \mathrm{d}z\, P_{\textrm{eq}}(z) \frac{1}{\sqrt{4 \pi D_i(z) \Delta t}} \textrm{e}^{-\frac{\Delta r_i^2}{4 D_i(z) \Delta t}     }\ ,
 	\end{aligned}
 	\label{Eq:PDzshort}
 \end{equation}
-against the Gibbs-Boltzmann distribution. Which can alternatively be written as an integral over the diffusion such that:
+against the Gibbs-Boltzmann distribution. Thee latter equation can alternatively be written as an integral over the diffusion coefficient such that:
 \begin{equation}
-	P(\Delta r_i , \Delta t) = \int_0 ^\infty dD_iP(D_i) \frac{1}{\sqrt{4 \pi D_i \Delta t}} \mathrm{e} ^{\frac{-\Delta r_i ^2}{4D_i\Delta t}} 
+	P_i(\Delta r_i , \Delta t) = \int_0 ^\infty \mathrm{d}D_iP(D_i) \frac{1}{\sqrt{4 \pi D_i \Delta t}} \mathrm{e} ^{\frac{-\Delta r_i ^2}{4D_i\Delta t}} 
 \end{equation}
 
-The latter can be evaluated using the following Python snippet.
+This equation can be evaluated using the following Python snippet.
 \begin{minted}
 	[
 	frame=lines,
@@ -1070,24 +1071,24 @@ def P_D(B, ld, lb):
 	
 	
 def _P_Dz_short_time(Dz, Dt, B, ld, lb):
-  # Using the D PDF to compute the P()
+  # Using the D PDF to compute P()
   D_z, P_D = P_D(B, ld, lb)
   P = P_D / np.sqrt(4 * np.pi * D_z * Dt) * np.exp(-(Dz ** 2) / (4 * D_z * Dt))
   P = np.trapz(P, D_z)
   return P
 	
 	
-	# Wrapping the previous function of easier use for Dz arrays.
+	# Creating a handy function for easier use with Dz numpy arrays
 def P_Dz_short_time(Dz, Dt, B, ld, lb):
   P = np.array([_P_Dz_short_time(i, Dt, B, ld, lb) for i in Dz])
   P = P / np.trapz(P, Dz) # extra step to ensure PDF normalization
   return P
 \end{minted}
 
-In the latter snippet, the evaluation is done for $\Delta z$, however, to compute $P_x(\Delta x)$ one should just change the \mintinline{python}{Dz(z)} function to compute the parallel diffusion coefficient $D_\parallel$. Since $P$ is a \gls{PDF}, it should be normalized such that $\int P = 1$, I added an extra step to ensure \gls{PDF} normalization along the evaluation.
-Since, we have reached equilibrium, the averaged particle's drift should be equal to 0 thus leading to a mean value of the distribution Eq.~(\ref{Eq:PDzshort}), $\langle  P_i(\Delta r_i, \Delta t) \rangle  = 0$. As shown in Figs.\ref{fig.displacement}-a,c,b,d) Eq.~(\ref{Eq:PDzshort}) captures the early data very well. At long times, Eq.~(\ref{Eq:PDzshort}) remains valid only for $P_x$ and $P_y$. Nevertheless, the equilibrium regime being reached, $P_z$ only depends on the Gibbs-Boltzmann distribution and can eventually be written as:
+In this snippet, the evaluation is done for $\Delta z$. However, when computing $P_x(\Delta x)$ one should just change the \mintinline{python}{Dz(z)} function to $D_\parallel$. Since $P$ is a \gls{PDF}, it should be normalized such that $\int P = 1$. We added an extra step to ensure \gls{PDF} normalization along the evaluation.
+At long time enough, since we have reached equilibrium, the averaged particle's drift should be equal to zero thus leading to a mean value $\langle \Delta r_i \rangle_t  = 0$. As shown in Figs.\ref{fig.displacement}-a,c,b,d) Eq.~(\ref{Eq:PDzshort}) captures the early data very well. At long times, Eq.~(\ref{Eq:PDzshort}) remains valid only for $P_x$ and $P_y$. Nevertheless, the equilibrium regime being reached, $P_z$ only depends on the Gibbs-Boltzmann distribution. Indeed, in this regime $P_z$ can be written as a convolution of two Gibbs-Boltzmann distribution as in a displacement $\Delta z = z(t+\Delta t) - z(t)$, $ z(t+\Delta t)$ and  $z(t)$ comes from independent draw from the Gibbs-Boltzmann distribution:
 \begin{equation}
-	\lim_{\Delta t\rightarrow\infty}P_z(\Delta z) = \int_0^{\infty}\textrm{d}z\,P_{\textrm{eq}}(z+\Delta z)P_{\textrm{eq}}(z)\ ,
+	\lim_{\Delta t\rightarrow\infty}P_z(\Delta z, \Delta t) = \int_0^{\infty}\textrm{d}z\,P_{\textrm{eq}}(z+\Delta z)P_{\textrm{eq}}(z)\ ,
 	\label{auxiliary}
 \end{equation}
 which contains in particular the second moment:
@@ -1096,7 +1097,7 @@ which contains in particular the second moment:
 	\label{Eq:plateau}
 \end{equation}
 
-As shown in Fig.~\ref{fig.displacement}-e), Eq.~(\ref{auxiliary}) captures the long-term data along $z$ very well. Additionally, Eq.~(\ref{Eq:plateau}) permits to fit the plateau of the \gls{MSD} as shown in the Fig.~\ref{fig.MSD}. Eq.~(\ref{auxiliary}) can be evaluated using the following Python function:
+As shown in Fig.~\ref{fig.displacement}-e), Eq.~(\ref{auxiliary}) captures the long-term data along $z$ very well. Additionally, Eq.~(\ref{Eq:plateau}) permits to fit the long-term plateau of the \gls{MSD} shown in Fig.~\ref{fig.MSD}. Eq.~(\ref{auxiliary}) can be evaluated using the following Python function:
 
 \begin{minted}
 	[
@@ -1120,13 +1121,13 @@ def Pdeltaz_long(DZ, B, ld, lb):
 	
 \end{minted}
 
-Where the \mintinline{python}{P_eq} function has been described in the section \ref{Section:sphere-wall}. 
+Wwere the \mintinline{python}{P_eq} function has been described in section \ref{Section:sphere-wall}. 
 
 
 \begin{figure}[H]
 	\centering
 	\includegraphics{02_body/chapter3/images/trajctory_analysis/P_displacement.pdf}
-	\caption{a, b) Probability density functions $P_i$ of the displacements $\Delta x$ and $\Delta z$, at short times. The solid lines are the best fits to Eq.~(\ref{Eq:PDzshort}), using Eqs.~(\ref{Eq:PDF}),~(\ref{Eq:etaz}),~and~(\ref{Eq:etax}), with $B = 4.8$, $\ell_\mathrm{D} = 21 ~ \mathrm{nm}$, and $\ell_\mathrm{B} = 530~\mathrm{nm}$. c,d) Normalized probability density functions $P_i\,\sigma$ of the normalized displacements $\Delta x/\sigma$ and $\Delta z/\sigma$, at short times, with $\sigma^2$ the corresponding MSD (see panel Fig.~\ref{fig.MSD}), for different time increments $\Delta t$ ranging from 0.0167~s to 0.083~s, as indicated with different colors. The solid lines are the best fits to Eq.~(\ref{Eq:PDzshort}), using Eqs.~(\ref{Eq:PDF}),~(\ref{Eq:etaz}),~and~(\ref{Eq:etax}), with $B = 4.8$, $\ell_\mathrm{D} = 21 ~ \mathrm{nm}$, and $\ell_\mathrm{B} = 530~\mathrm{nm}$. For comparison, the gray dashed lines are normalized Gaussian distributions, with zero means and unit variances. d) Probability density function $P_z$ of the displacement $\Delta z$, at long times, averaged over several values of $\Delta t$ ranging between 25 s and 30~s. The solid line is the best fit to Eq.~(\ref{auxiliary}), using Eq.~(\ref{Eq:PDF}), with $B = 4.8$, $\ell_\mathrm{D} = 21 ~ \mathrm{nm}$, and $\ell_\mathrm{B} = 530~\mathrm{nm}$.}
+	\caption{a, b) Probability density functions $P_i$ of the displacements $\Delta x$ and $\Delta z$, at short times. The solid lines are the best fits to Eq.~(\ref{Eq:PDzshort}), using Eqs.~(\ref{Eq.Peq}),~(\ref{Eq:etaz}),~and~(\ref{Eq:etax}), with $B = 4.8$, $\ell_\mathrm{D} = 21 ~ \mathrm{nm}$, and $\ell_\mathrm{B} = 530~\mathrm{nm}$. c,d) Normalized probability density functions $P_i\,\sigma$ of the normalized displacements $\Delta x/\sigma$ and $\Delta z/\sigma$, at short times, with $\sigma^2$ the corresponding MSD (see Fig.~\ref{fig.MSD}), for different time increments $\Delta t$ ranging from 0.0167~s to 0.083~s, as indicated with different colors. The solid lines are the best fits to Eq.~(\ref{Eq:PDzshort}), using Eqs.~(\ref{Eq:PDF}),~(\ref{Eq:etaz}),~and~(\ref{Eq:etax}), with $B = 4.8$, $\ell_\mathrm{D} = 21 ~ \mathrm{nm}$, and $\ell_\mathrm{B} = 530~\mathrm{nm}$. For comparison, the gray dashed lines are normalized Gaussian distributions, with zero means and unit variances. d) Probability density function $P_z$ of the displacement $\Delta z$, at long times, averaged over several values of $\Delta t$ ranging between 25 s and 30~s. The solid line is the best fit to Eq.~(\ref{auxiliary}), using Eq.~(\ref{Eq:PDF}), with $B = 4.8$, $\ell_\mathrm{D} = 21 ~ \mathrm{nm}$, and $\ell_\mathrm{B} = 530~\mathrm{nm}$.}
 	\label{fig.displacement}
 \end{figure}
 
@@ -1152,7 +1153,7 @@ In practice \gls{SFI} can reconstruct force and diffusion fields and measure ent
 	\dot{x}_\mu = F_\mu (x) + \partial_\nu D(x)_{\mu \nu} + \sqrt{2D(x)}_{\mu \nu} \textnormal{d}B_t~,
 \end{equation}
 
-where the Einstein summation is used over repeated indices, and the force field $F_\mu (x)$ and the diffusion tensor $D_{\mu \nu}$ are assumed to be time-independent. This method is built to measure the entire diffusion matrix, which for a particle diffusing above a wall has non-zero the diagonal term (\textit{i.e.} $D_{xx}$, $D_{yy}$ and $D_{zz}$). However, for more complex environment such as cellular environment as shown on Fig.~\ref{fig.ronceray}-a), non-diagonal terms exist leading to correlations between the displacement axis. As an example, it has been observed in elastohydrodynamics \cite{saintyves_self-sustained_2016} that the parallel movement near a soft wall can induce perpendicular forces, hence leading in that peculiar case, to correlation between the $x$ and $z$ movement. The \gls{SFI} idea is to approximate the diffusion field as a linear combination of a basis of $n_b$ known functions $b={b_\alpha (x)}_{\alpha = 1,...,n_b}$. For the diffusion of spherical spheres near a wall where the diffusion coefficient is given by the Eqs.~(\ref{Eq:etaz})~and~(\ref{Eq:etax}) we got robust results using their built-in polynomial basis:
+where the Einstein summation is used over repeated indices, and the force field $F_\mu (x)$ and the diffusion tensor $D_{\mu \nu}$ are assumed to be time-independent. This method is built to measure the entire diffusion matrix, which for a particle diffusing above a wall has non-zero the diagonal term (\textit{i.e.} $D_{xx}$, $D_{yy}$ and $D_{zz}$). However, for more complex environment such as cellular environment as shown in Fig.~\ref{fig.ronceray}-a), non-diagonal terms exist leading to correlations between the displacement axis. As an example, it has been observed in elastohydrodynamics \cite{saintyves_self-sustained_2016} that the parallel movement near a soft wall can induce perpendicular forces, hence leading in that peculiar case, to correlation between the $x$ and $z$ movement. The \gls{SFI} idea is to approximate the diffusion field as a linear combination of a basis of $n_b$ known functions $b={b_\alpha (x)}_{\alpha = 1,...,n_b}$. For the diffusion of spherical spheres near a wall where the diffusion coefficient is given by the Eqs.~(\ref{Eq:etaz})~and~(\ref{Eq:etax}) we got robust results using their built-in polynomial basis:
 
 \begin{equation}
 	b = \{b_\alpha (x)\}_{\alpha= 1,...,n_b} = \{1, x_\mu, x_\mu x_\nu, ...\} \text{ (up to the order } n_b \text{ )}.
@@ -1209,7 +1210,7 @@ Where in the latter \mintinline{python}{pos}, is the 3D trajectory of a Brownian
 \end{figure}
 
 \subsubsection{Precise potential inference using multi-fitting technique}
-So far, through Figs.\ref{fig.pdf_exp} to \ref{fig.visco}, we have successively presented the various measured statistical quantities of interest, as well as their fits to corresponding theoretical models. Therein, we have essentially three free physical parameters, $B$, $\ell_\mathrm{B}$, $\ell_\mathrm{D}$, describing the particle and its environment, as well as the \textit{a priori} undetermined location of the $z=0$ origin. These four parameters are actually redundant among the various theoretical models. Therefore, in order to measure them accurately, we in fact perform all the fits simultaneously,
+So far, through Figs.~\ref{fig.pdf_exp}-\ref{fig.visco}, we have successively presented the various measured statistical quantities of interest, as well as their fits to corresponding theoretical models. Therein, we have essentially three free physical parameters, $B$, $\ell_\mathrm{B}$, $\ell_\mathrm{D}$, describing the particle and its environment, as well as the \textit{a priori} undetermined location of the $z=0$ origin. These four parameters are actually redundant among the various theoretical models. Therefore, in order to measure them accurately, we in fact perform all the fits simultaneously,
 using a Broyden-Fletcher-Goldfarb-Shanno (BFGS) algorithm that is well suited for unconstrained
 nonlinear optimization~\cite{dai_convergence_2002}. To do so, we construct a global minimizer:
 \begin{equation}
@@ -1219,25 +1220,28 @@ where we introduce the minimizer $\chi _n ^2$ of each set $n$ among the $N$ sets
 \begin{equation}
 	\chi _n ^2 = \sum _{i=1} ^{M_n} \frac{[y_{ni} - f_n(x_{ni}, \mathbf{b})]^2 }{f_n(x_{ni}\ , \mathbf{b})^2}\ ,
 \end{equation}
-with $\{x_{ni},y_{ni}\}$ the experimental data of set $n$, $M_n$ the number of experimental data points for set $n$, $f_n$ the model for set $n$, and $\mathbf{b}=(b_1,b_2,...,b_p)$ the $p$ free parameters. In our case, $p=4$, and $\{x_{ni},y_{ni}\}$ represent all the experimental data shown in Figs.\ref{fig.pdf_exp} to \ref{fig.visco}. 
+with $\{x_{ni},y_{ni}\}$ the experimental data of set $n$, $M_n$ the number of experimental data points for set $n$, $f_n$ the model for set $n$, and $\mathbf{b}=(b_1,b_2,...,b_p)$ the $p$ free parameters. In our case, $p=4$, and $\{x_{ni},y_{ni}\}$ represent all the experimental data shown in Figs.\ref{fig.pdf_exp}-\ref{fig.visco}. 
 
-Due to strong dependence of the normal diffusion coefficient $D_z$ with $z$, it is possible to find the wall position with a 10 nm resolution, thus overcoming a drawback of the Lorenz-Mie technique which only provides the axial distance relative to the focus of the objective lens. Besides, the three physical parameters globally extracted from the multifitting procedure are: $B = 4.8 \pm 0.6$, $\ell_\mathrm{D} = 21 \pm 1~ \mathrm{nm} $, and $\ell_\mathrm{B} = 530 \pm 2~ \mathrm{nm}$. Using the particle radius $a = 1.518 \pm 0.006 ~ \mathrm{\mu m}$ calibrated from the preliminary fits of the interference patterns to the Lorenz-Mie scattering function (see section \ref{sec:radius_charac}), and the $1050 ~ \mathrm{kg.m^{-3}}$ tabulated bulk density of polystyrene, we would have expected $\ell_\mathrm{B}=559 ~ \mathrm{nm}$ instead, which corresponds to less than $2\,\%$ error, and might be attributed to nanometric offsets, such as \textit{e.g.} the particle and/or wall rugosity. 
+Due to strong dependence of the normal diffusion coefficient $D_z$ with $z$, it is possible to find the wall position with a 10 nm resolution, thus overcoming a drawback of the Lorenz-Mie technique which only provides the axial distance relative to the focus of the objective lens. Besides, the three physical parameters globally extracted from the multifitting procedure are: $B = 4.8 \pm 0.6$, $\ell_\mathrm{D} = 21 \pm 1~ \mathrm{nm} $, and $\ell_\mathrm{B} = 530 \pm 2~ \mathrm{nm}$. Using the particle radius $a = 1.518 \pm 0.006 ~ \mathrm{\mu m}$ calibrated from the preliminary fits of the interference patterns to the Lorenz-Mie scattering function (see section \ref{sec:radius_charac}), and the $\rho_\mathrm{p} = 1050 ~ \mathrm{kg.m^{-3}}$ tabulated bulk density of polystyrene, we would have expected $\ell_\mathrm{B}=559 ~ \mathrm{nm}$ instead, which corresponds to less than $2\,\%$ error, and might be attributed to nanometric offsets, such as \textit{e.g.} the particle and/or wall rugosity. 
 
 \subsubsection{Measuring external forces using the local drifts}
-Finally, we investigate the total conservative force $F_z(z)$ acting on the particle along $z$. The first method way to measure it is to calculate the gradient of the potential $U$ which is experimentally measured from the position \gls{PDF} giving:
+Finally, we investigate the total conservative force $F_z(z)$ acting on the particle along $z$. The first way to measure it is to calculate the gradient of the potential $U$ which is experimentally measured from the position \gls{PDF} giving:
 
 
 \begin{equation}
-	F_z^\mathrm{eq} = -\nabla U = k_\mathrm{B}T \frac{\partial}{\partial z} \ln (P_\mathrm{eq}) ~,
+	F_z^\mathrm{eq} = -\nabla U = k_\mathrm{B}T \frac{\mathrm{d}}{\mathrm{d} z} \ln (P_\mathrm{eq}) ~,
 	\label{Eq.conservative_force}
 \end{equation}
 
-where one can use the experimentally measured $P_\mathrm{eq}$ (see Fig.~\ref{fig.pdf_exp}) the results of this method is shown in fig.\ref{fig.figure_force_total}. However, it can be interesting to measure the forces using the local drifts as for more complex systems, some non-conservative forces could arise. As the Eq.~(\ref{Eq.conservative_force}) only take into account to the potential $U$, only conservative forces can be extracted from the measurement of $P_\mathrm{eq}$. For more complex system, non-conservative forces could be measured by the difference between forces obtained through $P_\mathrm{eq}$ and the local drifts.  By averaging the overdamped Langevin equation over a fine-enough $z$-binning grid and short enough time interval $\Delta t$, one gets in the Itô convention (corresponding to our definition of $\Delta z$):
+where one can use the experimentally measured $P_\mathrm{eq}$ (see Fig.~\ref{fig.pdf_exp}). The results of this method are shown in Fig.~\ref{fig.figure_force_total}. However, it can be interesting to measure the forces using the local drifts as for more complex systems, some non-conservative forces could arise. As the Eq.~(\ref{Eq.conservative_force}) takes only into account to the potential $U$, only conservative forces can be extracted from the measurement of $P_\mathrm{eq}$. Non-conservative forces could be measured by the difference between forces obtained through $P_\mathrm{eq}$ and the local drifts.  
+
+
+Let us now explain the force measurement from dirfts. By averaging the overdamped Langevin of Eq.~(\ref{Eq.langevin_confined}) over a fine-enough $z$-binning grid and a short-enough time interval $\Delta t$, one gets in the Itô convention (corresponding to our definition of $\Delta z$):
 \begin{equation}
 	F_z (z) = 6 \pi \eta_z (z ) a \frac{\langle\Delta z\rangle}{\Delta t} - k_\mathrm{B}T \frac{D_z'(z)}{D_z(z)} \ ,
 	\label{stokes}
 \end{equation}
-where the last term corresponds to the additional contribution due to the non-trivial integration of the multiplicative noise~\cite{volpe_influence_2010,mannella_comment_2011,mannella_ito_2012, sancho_brownian_2011}, with the prime denoting the derivative with respect to $z$. From the averaged measured vertical drifts $\langle\Delta z\rangle$, and invoking Eq.~(\ref{Eq:etaz_pade}), one can reconstruct $F_z(z)$ from Eq.~(\ref{stokes}), as shown in Fig.~\ref{fig.figure_force_total}. We stress that the statistical error on the force measurement is comparable to the thermal-noise limit~\cite{liu_subfemtonewton_2016}: 
+where the last term corresponds to the additional contribution due to the non-trivial integration of the multiplicative noise~\cite{volpe_influence_2010,mannella_comment_2011,mannella_ito_2012, sancho_brownian_2011} (see section \ref{sec:spurious}), with the prime denoting the derivative with respect to $z$. From the averaged measured vertical drifts $\langle\Delta z\rangle$, and invoking Eqs.~(\ref{Eq.hindered})~and~(\ref{Eq:etaz_pade}), one can reconstruct $F_z(z)$ from Eq.~(\ref{stokes}), as shown in Fig.~\ref{fig.figure_force_total}. We stress that the statistical error on the force measurement is comparable to the thermal-noise limit~\cite{liu_subfemtonewton_2016}: 
 \begin{equation}
 	\label{tnl}
 	\Delta F=\sqrt{24\pi k_{\mathrm{B}}T \eta_z(z) a/ \tau_{\textrm{box}}(z)}\ ,
@@ -1251,7 +1255,7 @@ Using the physical parameters extracted from the above multifitting procedure, w
 \begin{figure}[H]
 	\centering
 	\includegraphics{02_body/chapter3/images/trajctory_analysis/figure_force_total.pdf}
-	\caption{Total normal conservative force $F_z$ exerted on the particle as a function of the distance $z$ to the wall, reconstructed from Eq.~(\ref{stokes}), using Eq.~(\ref{Eq:etaz_pade}) in circles and using Eq.~(\ref{Eq.conservative_force}) in squares. The solid line corresponds to Eq.~(\ref{Eq:Force}), with $B=4.8$, $\ell_{\mathrm{D}}=21\,\mathrm{nm}$ and $\ell_{\mathrm{B}}=530\,\mathrm{nm}$. The black dashed lines and gray area indicate the amplitude of the thermal noise computed from Eq.~(\ref{tnl}). The horizontal red dashed line indicates the buoyant weight $F_{\textrm{g}}=-7$~fN of the particle.}
+	\caption{Total normal conservative force $F_z$ exerted on the particle as a function of the distance $z$ to the wall, reconstructed from Eq.~(\ref{stokes}), using Eq.~(\ref{Eq:etaz_pade}) for the circles and Eq.~(\ref{Eq.conservative_force}) for the squares. The solid line corresponds to Eq.~(\ref{Eq:Force}), with $B=4.8$, $\ell_{\mathrm{D}}=21\,\mathrm{nm}$ and $\ell_{\mathrm{B}}=530\,\mathrm{nm}$. The black dashed lines and gray area indicate the amplitude of the thermal noise computed from Eq.~(\ref{tnl}). The horizontal red dashed line indicates the buoyant weight $F_{\textrm{g}}=-7$~fN of the particle.}
 	\label{fig.figure_force_total}
 \end{figure}
 
