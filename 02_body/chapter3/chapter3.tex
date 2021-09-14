@@ -1,7 +1,7 @@
 \section{Stochastic Inference of Surface-Induced Effects Using Brownian Motion}
 
 \subsection{Confined Brownian motion theory}
-
+\label{sec:confined}
 By observing the experimental trajectory along the $z$-axis of a particle of $1.5 ~ \mathrm{\mu m} $ radius as shown in Fig.~\ref{Fig:exp_z_traj}, one can notice that the particle's height does not get higher than approximately $4 ~ \mathrm{\mu m}$. Indeed, due to gravity, a colloid is confined near the surface. This confinement induces near-wall effects, such as hindered mobility and electrostatic interactions. 
 
 In the first part of this chapter, I will detail the theory of confined Brownian motion and how to numerically simulate it. In a second part, I will present how to analyze experimental data. In particular, I will detail a multi-fitting procedure that a enables thermal-noise-limited inference of diffusion coefficients spatially resolved at the nanoscale, equilibrium potentials, and forces at the femtonewton resolution.
@@ -688,11 +688,11 @@ and one for the parallel motion (\textit{i.e.} along the $x$- and $y$)):
 The Fokker-Plank equation is an alternative way to describe Brownian motion. Instead of explicitly calculating a Brownian trajectory by solving the Langevin equation, Fokker-Plank equation describes the Probability Density Function $P(X_t, X_0; t)$ inposition, where for simplicity we place ourselve in 1D, with $X_t$ denoting the particle position at a time $t$ and $X_0$ its initial ($t=0$) position. To derive the Fokker-Plank equation, let us start by taking a generic Langevin equation in 1D:
 
 \begin{equation}
-	\textnormal{d}X_t = u(X_t) \textnormal{d}t + \zeta(X_t)\textnormal{d}B_t ~,
+	\textnormal{d}X_t = u(X_t) + g\textnormal{d}B_t ~,
 	\label{SDE2}
 \end{equation}
 
-where $u$ is the drift due to external forces and $\zeta$ is the magnitude of the random force. Let consider the average value of an arbitrary function $f(X_t)$ for a stochastic process obeying Eq.~(\ref{SDE2}), which started at position $x_0$ at time $t=0$. By definition, this ensemble average reads \cite{le_bellac_equilibrium_2004}:
+where $u$ is the drift due to external forces and $g$ is the magnitude of the random force. Let consider the average value of an arbitrary function $f(X_t)$ for a stochastic process obeying Eq.~(\ref{SDE2}), which started at position $x_0$ at time $t=0$. By definition, this ensemble average reads \cite{le_bellac_equilibrium_2004}:
 
 \begin{equation}
 	\langle f(X_t) \rangle = \int \textnormal{d}X_t ~ P(X_t, X_0 ; t) f(X_t) ~,
@@ -709,9 +709,9 @@ We now expand $f$ at the first order in the time increment $\textnormal{d}t$ as:
 
 \begin{equation}
 	\begin{aligned}
-		\left\langle \frac{\textnormal{d}f(X_t)}{\textnormal{d}t} \right\rangle_t  &\simeq \frac{1}{\textnormal{dt}}\left\langle   \frac{\partial f(X_t)}{\partial X_t} u(X_t) \textnormal{d}t + \frac{\partial f(X_t)}{\partial X_t} \zeta(X_t) \textnormal{d}B_t + \frac{1}{2} \frac{\partial^2 f(X_t)}{\partial X_t^2} \zeta^2 (X_t) \textnormal{d}B_t^2   \right\rangle_t \\
-		& =  \frac{1}{\textnormal{dt}} \left( \frac{\partial f(X_t)}{\partial X_t} u(X_t) \textnormal{d}t + \frac{1}{2} \frac{\partial^2 f(X_t)}{\partial X_t^2} \zeta^2 (X_t) \textnormal{d}t \right) \\
-		& = \frac{\partial f(X_t)}{\partial X_t} u(X_t) + \frac{1}{2} \frac{\partial^2 f(X_t)}{\partial X_t^2} \zeta^2 (X_t) ~.
+		\left\langle \frac{\textnormal{d}f(X_t)}{\textnormal{d}t} \right\rangle_t  &\simeq \frac{1}{\textnormal{dt}}\left\langle   \frac{\partial f(X_t)}{\partial X_t} u(X_t) \textnormal{d}t + \frac{\partial f(X_t)}{\partial X_t} g(X_t) \textnormal{d}B_t + \frac{1}{2} \frac{\partial^2 f(X_t)}{\partial X_t^2} g^2 (X_t) \textnormal{d}B_t^2   \right\rangle_t \\
+		& =  \frac{1}{\textnormal{dt}} \left( \frac{\partial f(X_t)}{\partial X_t} u(X_t) \textnormal{d}t + \frac{1}{2} \frac{\partial^2 f(X_t)}{\partial X_t^2} g^2 (X_t) \textnormal{d}t \right) \\
+		& = \frac{\partial f(X_t)}{\partial X_t} u(X_t) + \frac{1}{2} \frac{\partial^2 f(X_t)}{\partial X_t^2} g^2 (X_t) ~.
 	\end{aligned}
 	\label{fokker2}
 \end{equation}
@@ -721,7 +721,7 @@ By combining Eqs.~(\ref{fokker1})~and~(\ref{fokker2}), we get:
 \begin{equation}
 	\begin{aligned}
 		\int \textnormal{d} X_t ~\frac{\partial P(X_t, X_0 ; t) }{\partial t} f(X_t)
-		& =  \frac{\partial f(X_t)}{\partial X_t} u(X_t) + \frac{1}{2} \frac{\partial^2 f(X_t)}{\partial X_t^2} \zeta^2 (X_t) \\
+		& =  \frac{\partial f(X_t)}{\partial X_t} u(X_t) + \frac{1}{2} \frac{\partial^2 f(X_t)}{\partial X_t^2} g^2 (X_t) \\
 		& = \int \textnormal{d}X_t ~ P(X_t, X_0 ; t) G f(X_t) ~,
 	\end{aligned}
 \end{equation}
@@ -729,7 +729,7 @@ By combining Eqs.~(\ref{fokker1})~and~(\ref{fokker2}), we get:
 where G is a differential operator called the generator and is defined by its action on a function $f$ as:
 
 \begin{equation}
-	Gf = \frac{1}{2} \zeta^2 (X_t) \frac{\partial ^2 f(X_t)}{\partial X_t^2} + u(X_t) \frac{\partial f(X_t)}{\partial X_t} ~.
+	Gf = \frac{1}{2} g^2 (X_t) \frac{\partial ^2 f(X_t)}{\partial X_t^2} + u(X_t) \frac{\partial f(X_t)}{\partial X_t} ~.
 \end{equation}
 
 Using the definition of the adjoint of $G$, denoted $G ^\dagger$, one has:
@@ -752,7 +752,7 @@ From the latter, we thus have:
 which leads to the Forward Fokker-Planck equation \cite{del_moral_introduction_2010}:
 
 \begin{equation}
-	\frac{\partial P(X_t, X_0 ; t)}{\partial t }= \frac{\partial ^2}{\partial X_t^2} \left[\frac{\zeta^2 (X_t)}{2}P(X_t, X_0 ; t)\right] - \frac{\partial}{\partial X_t} \left[u(X_t) P(X_t, X_0 ; t)\right] ~.
+	\frac{\partial P(X_t, X_0 ; t)}{\partial t }= \frac{\partial ^2}{\partial X_t^2} \left[\frac{g^2 (X_t)}{2}P(X_t, X_0 ; t)\right] - \frac{\partial}{\partial X_t} \left[u(X_t) P(X_t, X_0 ; t)\right] ~.
 	\label{Eq.Forward_Fokker_plank}
 \end{equation}
 
@@ -772,6 +772,87 @@ with $z$ the particle position along the $z$-axis. In particular, the stationary
 	\end{aligned}
 	\label{Eq.solfokker}
 \end{equation} 
+
+\subsubsection{Fokker-Plank and multiplicative noise}
+
+Due to the hindered diffusion coefficient the magnitude of the random force $g$ now depends on the particle position $X_t$. Therefore, for a displacement between a time $t$ and $t+\tau$, the integration of the noise term $\int_t ^{t+\tau}g(X_t)\mathrm{d}B_t$ is not trivial and the time at which the random force magnitude $g(X_t)$ is evaluated needs to be answered. In this part we derive the Fokker-Plank equation when the system is subjected to multiplicative noise. Let us write a generic Langevin equation for a near-wall confined particle:
+
+\begin{equation}
+	\mathrm{d}X_t = u(X_t) + g(X_t)\mathrm{d}B_t~.
+	\label{sde.multipl}
+\end{equation}
+
+We start by deriving Eq.~(\ref{sde.multipl}) for a time step $\tau$ such that:
+
+\begin{equation}
+	X_{t+\tau} = X_t + \int_{t}^{t+\tau} u(X_{t'})dt' + \int_{t}^{t+\tau} g(X_{t'})\textnormal{d}B_{t'}\textnormal{d}t'
+	\label{sde.multipl2}
+\end{equation}
+
+The expension of first term gives $u(X_t)\tau$. However, for the second term, the position at which $g(X_t)$ is evaluated needs to be addressed. The second integral of Eq.~{\ref{sde.multipl2}} is not unequivocally defined as \cite{sancho_brownian_2011}:
+
+\begin{equation}
+	\int_{t}^{t+\tau}g(X_{t'})\textnormal{d}B_{t'}\textnormal{d}t' \equiv B([1 - \alpha] X_t + \alpha X_{t+\tau}) \Delta W(t),
+	\label{sde.alpha}
+\end{equation}
+
+where $\Delta W (t)$ the the Wiener increment:
+
+\begin{equation}
+	\Delta W(t) = \int_{t}^{t+\tau} \textnormal{d} B_{t'} \textnormal{dt'},
+\end{equation}
+
+which is au Gaussian process with zero mean and variance $\langle \Delta W(t)^2 \rangle = \Delta t $. The parameter $\alpha$ in Eq.~{\ref{sde.alpha}} corresponds to stochastic interpretation of the Langevin equation, and at which point in the interval $[t, t+\tau]$ the Lanvin force magnitude $g$ is evaluated. Theoretically, $\alpha$ can take any value between 0 and 1. However, two canonical values are usually employed :  $\alpha = 0$, in the Itô convention \cite{ito_stochastic_1944}, corresponding to the use of the initial value of $g(X_t))$; $\alpha = 1/2$, in the Stratonovich convention \cite{stratonovich_new_1966}, corresponding to the mid-point value $g(X_{t + 1/2\tau}))$. 
+
+To derive the Fokker-Plank equation we now need to expand Eq.~(\ref{sde.multipl2}) to first order in $\tau $. Combining Eqs.~(\ref{sde.multipl2})~and~(\ref{sde.alpha}), at the first order in $\tau^{1/2}$, Eq~.(\ref{sde.alpha}) can be approximated by:
+
+\begin{equation}
+	X_{t+\tau} = X_t + g(X_t)\Delta W(t)~.
+	\label{sde.firsttaylor}
+\end{equation}
+
+By combining Eqs.~(\ref{sde.multipl2})~and~(\ref{sde.firsttaylor}) one has:
+
+\begin{equation}
+	\begin{aligned}
+	\int_{t}^{t+\tau} g(X_{t'}) \textnormal{d}B_{t'}\textnormal{d}t' &= g(X_t + \alpha[X_{t + \tau} - X_t])\Delta W(t) \\
+	&\simeq g(X_t + \alpha g(X_t)\Delta W(t))\Delta W(t)\\
+	&\simeq g(X_t) \Delta W(t) + \alpha g(X_t)g'(X_t)[\Delta W(t)]^2,
+	\end{aligned}
+	\label{sde.taylorend}
+\end{equation}
+
+where $g'(X_t) = \partial_{X_t} g(X_t) $. By finally combining Eqs.~(\ref{sde.multipl2})~and~(\ref{sde.taylorend}), one can expend Eq.~(\ref{sde.multipl2}) to the first order in $\tau$:
+
+\begin{equation}
+	X_{t+\tau } \simeq X_t + u(X_t) \Delta W(t) + \alpha g(X_t)g'(X_t)[\Delta W(t)]^2 ~.
+\end{equation}
+
+Finally, by writing the Fokker-Plank equation by its standard form:
+
+\begin{equation}
+	\frac{\partial P(X_t, t)}{\partial t} = -\frac{\partial}{\partial X_t} K_1 (X_t) P(X_t, t) + \frac{1}{2}\frac{\partial^2}{\partial X_t^2} K_2P(X_t, t),
+\end{equation}
+
+where $K_1$ and $K_2$ are the first two differential moments, and invoking the Kramers-Moyal expansion \cite{sancho_brownian_2011, stratonovich_new_1966}, $K_1$ and $K_2$ are obtained by:
+
+\begin{equation}
+	K_1(X_t) = \lim\limits_{\tau \rightarrow 0} \frac{\langle \Delta X_t \rangle}{\tau}  = u(X_t) + \alpha g(X_t)g'(X_t)~,
+\end{equation}
+
+and:
+
+\begin{equation}
+	K_2(X_t) = \lim\limits_{\tau \rightarrow 0} \frac{\langle [\Delta z]^2\rangle}{\tau} = g^2(X_t) ~.
+\end{equation}
+
+The Fokker-Plank equation with multiplicative noise finally writes:
+
+\begin{equation}
+	\frac{\partial P(X_t, t)}{\partial t} = -\frac{\partial}{\partial X_t} \{u(X_t) + \alpha g(X_t)g'(X_t)\} P(X_t, t) + \frac{1}{2}\frac{\partial^2}{\partial X_t^2} \{g^2(X_t) \} P(X_t, t)~.
+\end{equation} 
+
+\subsubsection{Spurious drift}
 
 \subsubsection{Numerical simulations of confined Brownian motion}
 
@@ -915,7 +996,7 @@ def pdf(data, bins=10, density=True):
 
 The long-time \gls{PDF} in position, for $\alpha = 0 , 0.5 \text{ and } 1 $ are shown in Fig.~\ref{fig.pdf_vs_alpha}. We see that the isothermal convention of the noise gives the correct distribution. In the other two cases, we observe that the particle is more likely to be found closer to the surface, as a result of the missing compensating spurious drift of Eq.~(\ref{Eq.spurious_drift}). However, defining derivative in other way (\textit{i.e.} Anti-itô or Stratonovich convention) would allow to employ any $\alpha$ values. 
 
-\begin{figure}[h!]
+\begin{figure}[H]
 	\centering
 	\includegraphics{02_body/chapter3/images/simulation_confined_Brownian_motion/Peq_vs_alpha.pdf}
 	\caption{Simulated, Long-term Probability Density Function of the height of the particle for different convention as indicated. The solid black line represents the expected Gibbs-Boltzmann distribution. The physical parameters are: $a = 1.5 ~ \mathrm{\mu m}$, $\rho_\mathrm{p} = 1050 ~\mathrm{kg.m^{-3}}$, $\ell_\mathrm{D} = 50$ nm, $B = 4$ and $\ell_\mathrm{B} = 577$ nm. }
@@ -925,7 +1006,7 @@ The long-time \gls{PDF} in position, for $\alpha = 0 , 0.5 \text{ and } 1 $ are 
 
 \subsection{Experimental study}
 \label{section:expresults}
-Let us now analyze the experimental data obtain through the Mie tracking (see section \ref{chap:LM_fit}). In the theory, we considered distance $z$ between the wall and the colloidal particle surface. However, it is not the height measured by the Mie tracking, since the latter measures the distance between the objective-lens focal plane and the particle center. To have the correct measured height, we suppose that the particle does approach very closely to the wall. From that assumption, we then a moving-minimum along the trajectory to set the minimal value of the trajectory to zero. The moving minimum can be calculated using the following Python function:
+Let us now analyze the experimental data obtain through the Mie tracking (see section \ref{chap:LM_fit}). In the near-wall Brownian dynamics theory presented section~\ref{sec:confined}, we considered distance $z$ between the wall and the colloidal particle surface. However, it is not the height measured by the Mie tracking, since the latter measures the distance between the objective-lens focal plane and the particle center. Therefore, we measure the trajectory up to an offset, \textit{i.e.} the ojective-lens focal plane to wall distance. To have the correct measured height, we suppose that the particle does approach very closely to the wall, such that the minimal measured distance is the focal plane to the wall distance. From that assumption, we then a moving-minimum along the trajectory to set the minimal value of the trajectory to zero. The moving minimum can be calculated using the following Python function:
 
 
 

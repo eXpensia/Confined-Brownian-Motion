@@ -137,15 +137,15 @@ Furthermore, measuring $N_\mathrm{A}$ also gives us the mass of atoms and molecu
 in physics we generally describe Brownian motion through a particular Stochastic Differential Equations (\gls{SDE}). This model was introduced in 1908 by Langevin \cite{langevin_sur_1908}, this model is now used by the major part of physicists working on random processes. The Langevin equation for a free colloid reads:
 
 \begin{equation}
-	m \textnormal{d}V_t  = - \gamma V_t \textnormal{d}t + \alpha \textnormal{d}B_t ~,
+	m \textnormal{d}V_t  = - \gamma V_t \textnormal{d}t + g \textnormal{d}B_t ~,
 	\label{Eq.langevinEquation}
 \end{equation}
 
 \nomenclature{$V_t$}{Velocity of a particle}
-\nomenclature{$\alpha$}{Noise amplitude}
+\nomenclature{$g$}{Noise amplitude}
 \nomenclature{$T$}{Temperature}
 
-with $m$ the mass and $V_t$ the velocity of the particle. This \gls{SDE} is the Newton's second law, relating the particle momentum change on the left-hand side of the equation to forces on the right-hand side. We see that the total force applied on the particle is given by two terms: a friction term, with a Stokes-like fluid friction coefficient $\gamma$, a random force with $\alpha$ that we will detail for a spherical particle, $\mathrm{d}Bt$ a random noise which has a Gaussian distribution of zero mean thus:
+with $m$ the mass and $V_t$ the velocity of the particle. This \gls{SDE} is the Newton's second law, relating the particle momentum change on the left-hand side of the equation to forces on the right-hand side. We see that the total force applied on the particle is given by two terms: a friction term, with a Stokes-like fluid friction coefficient $\gamma$, a random force with $g$ that we will detail for a spherical particle, $\mathrm{d}Bt$ a random noise which has a Gaussian distribution of zero mean thus:
 
 \begin{equation}
 	\langle \textnormal{d}B_t \rangle  = 0~,
@@ -159,13 +159,13 @@ and variance equal to:
 	\label{Eq.meandbt2}
 \end{equation}
 
-For a spherical particle, the friction term is given by the Stoke's formula: $\gamma = 6\pi \eta a$ with $\eta$ the fluid viscosity and $\alpha$ the particle radius. Thus, we can derive the mean value of the particle velocity as:
+For a spherical particle, the friction term is given by the Stoke's formula: $\gamma = 6\pi \eta a$ with $\eta$ the fluid viscosity and $g$ the particle radius. Thus, we can derive the mean value of the particle velocity as:
 
 \nomenclature{$\eta$}{Fluid viscosity}
 \nomenclature{$\gamma$}{Friction coefficient}
 
 \begin{equation}
-	\left\langle  \frac{ \textnormal{d}V_t}{\textnormal{d}t} \right\rangle = - \frac{\gamma}{m} \langle V_t \rangle \textnormal{d}t  + \frac{\alpha}{m} \langle  \textnormal{d}B_t \rangle ~,
+	\left\langle  \frac{ \textnormal{d}V_t}{\textnormal{d}t} \right\rangle = - \frac{\gamma}{m} \langle V_t \rangle \textnormal{d}t  + \frac{g}{m} \langle  \textnormal{d}B_t \rangle ~,
 	\label{Eq.langevinsd}
 \end{equation}
 
@@ -205,11 +205,11 @@ which has a familiar solution:
 with $V_0$ an initial velocity. This result shows that the average of the velocity should decay to zero with a characteristic time $\tau_\mathrm{B} = \frac{m}{\gamma}$. For instance, the polystyrene particles used during my experiments which are micrometric we have $\tau_\mathrm{B} \approx 10^{-7}$ s. This signifies that if we measure the displacements of a particle with a time interval $ \tau  >> \tau _\mathrm{B} $ the displacement can be taken as independent events as it was stated by Einstein. In physical terms, this means that we are in the over-damped regime, in this case the Langevin equation reads:
 
 \begin{equation}
--\gamma V_t \textnormal{d}t  + \alpha  \textnormal{d}B_t = 0~.	
+-\gamma V_t \textnormal{d}t  + g  \textnormal{d}B_t = 0~.	
 \label{Eq.overdamped_SDE}
 \end{equation}
 
-The experiments done during my thesis used a video camera that can reach a maximum of hundreds frames per second (\gls{fps}) reaching time steps of $\approx 10^{-2}$ s. Therefore, all my work falls into the over-damped regime. Before focusing definitely on Eq.~(\ref{Eq.overdamped_SDE}), we can use Eq.~(\ref{Eq.langevinsd}) to characterize further the unknown coefficient $\alpha$. To do so we compute the mean square value of Eq.~(\ref{Eq.langevinsd}), starting by taking the second order Taylor expansion:
+The experiments done during my thesis used a video camera that can reach a maximum of hundreds frames per second (\gls{fps}) reaching time steps of $\approx 10^{-2}$ s. Therefore, all my work falls into the over-damped regime. Before focusing definitely on Eq.~(\ref{Eq.overdamped_SDE}), we can use Eq.~(\ref{Eq.langevinsd}) to characterize further the unknown coefficient $g$. To do so we compute the mean square value of Eq.~(\ref{Eq.langevinsd}), starting by taking the second order Taylor expansion:
 
 
 \begin{equation}
@@ -223,26 +223,26 @@ The experiments done during my thesis used a video camera that can reach a maxim
 combining Eqs.~(\ref{Eq.langevinEquation})~and~(\ref{Eq.compute1}), we obtain by only keeping  the terms of order $\textnormal{d}t$:
 
 \begin{equation}
-	\textnormal{d}\left(V_t^2\right) = 2V_t\left( -\frac{\gamma}{m}V_t\textnormal{d}t + \frac{\alpha}{m}\textnormal{d}B_t  \right) + \frac{\alpha^2}{m^2}\textnormal{d}B_t ^2 ~. 
+	\textnormal{d}\left(V_t^2\right) = 2V_t\left( -\frac{\gamma}{m}V_t\textnormal{d}t + \frac{g}{m}\textnormal{d}B_t  \right) + \frac{g^2}{m^2}\textnormal{d}B_t ^2 ~. 
 \end{equation}
 
 Thus, the average value of $ \textnormal{d}(V_t ^2)$ reads:
 
 \begin{equation}
-	\langle \textnormal{d}(V_t ^2)\rangle = -2 \frac{\gamma}{m} \langle V_t ^2 \rangle \textnormal dt + 2 \frac{\alpha}{m} \langle V_t \textnormal{d}B_t \rangle + \frac{\alpha^2}{m^2} \langle \textnormal{d}B_t ^2 \rangle~.
+	\langle \textnormal{d}(V_t ^2)\rangle = -2 \frac{\gamma}{m} \langle V_t ^2 \rangle \textnormal dt + 2 \frac{g}{m} \langle V_t \textnormal{d}B_t \rangle + \frac{g^2}{m^2} \langle \textnormal{d}B_t ^2 \rangle~.
 	\label{Eq.dvt2}
 \end{equation} 
 
 Moreover, since $\textnormal{d}B_t$ is chosen independently of the velocity $V_t$, one can write $\langle V_t \textnormal{d}B_t \rangle $ = $\langle V_t \rangle \langle \textnormal{d}B_t \rangle  =0 $. Taking the latter remark into account and the fact that $\langle \textnormal{d}B_t ^2\rangle = \textnormal{d}t $, Eq.~(\ref{Eq.dvt2}) becomes:
 
 \begin{equation}
-	\langle d(V_t^2) \rangle = \left[-2 \frac{\gamma}{m} \langle V_t ^2 \rangle + \frac{\alpha^2}{m^2}\right]\textnormal{d}t~.
+	\langle d(V_t^2) \rangle = \left[-2 \frac{\gamma}{m} \langle V_t ^2 \rangle + \frac{g^2}{m^2}\right]\textnormal{d}t~.
 \end{equation}
 
 Since equilibrium averages in thermodynamics must become time independent, we have $\langle d(V_t^2) \rangle = 0$, thus:
 
 \begin{equation}
-	\langle V_t ^2\rangle = \frac{\alpha ^2}{2 \gamma m}~. 
+	\langle V_t ^2\rangle = \frac{g ^2}{2 \gamma m}~. 
 \end{equation}
 
 Besides, from the equipartition of energy we also know that:
@@ -251,10 +251,10 @@ Besides, from the equipartition of energy we also know that:
 	\langle \frac{1}{2} m V_t ^2 \rangle  = \frac{1}{2} k_\mathrm{B} T~.
 \end{equation}
 
-The latter equation permits a direct determination of the amplitude of the noise $\alpha$: 
+The latter equation permits a direct determination of the amplitude of the noise $g$: 
 
 \begin{equation}
-	\alpha = \sqrt{2k_\mathrm{B}T \gamma}~.
+	g = \sqrt{2k_\mathrm{B}T \gamma}~.
 \end{equation}
 
 The latter result permits computing the amplitude of the random force in the Langevin equation. Taking the over-damped Langevin equation, it reads:
