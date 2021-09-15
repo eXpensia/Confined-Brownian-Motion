@@ -555,144 +555,28 @@ In the near-wall regime, such that $z \ll a$, it is possible to further approxim
 The exact result, together with the Padé approximation and the near-wall asymptotic expression for the hindered vertical diffusion are plotted in Fig.~\ref{fig.etaz}-b). The Padé approximation fits well the exact solution, the near-wall asymptotic expression fits well when $z < a / 10$ typically. To check how precise both approximations are, we plot the relative error in Fig.~\ref{fig.etaz}-c). The Padé approximation shows precision up to 1\%. Thus, in the following, when evaluating perpendicular diffusion coefficients, or equivalently vertical effective viscosities, the Padé approximation will be used. 
 
 
-\subsubsection{Langevin equation for confined Brownian motion}
+%\subsubsection{Langevin equation for confined Brownian motion}
+%
+%Now that the external forces acting on the particle and hindered diffusion coefficients are known, we rewrite the overdamped Langevin (see Eq.~(\ref{Eq.overdamped_SDE})) as:
+%
+%\begin{equation}
+%	V_t^i \textnormal{d}t  = -\mu(z)\frac{\partial U(z)}{\partial x_i}  \textnormal{d}t + \sqrt{2D_i (z)}  \textnormal{d}B_t ~,
+%	\label{Eq:langevin_z}
+%\end{equation}
+%
+%where $\mu(z) = 1/ (6 \pi \eta_i(z) a)$, and $i$ denotes one of the three spatial directions, $x,~ y$ and $z$, where the previously determined $\eta_\parallel$ or $D_\parallel$ corresponds to the $x$- and $y$-axes, while $\eta_\bot$ or $D_\bot$ corresponds to the $z$-axis, and $ \textnormal{d}B_t$ is a Gaussian-distributed satisfying $\langle \textnormal{d}B_t \rangle = 0$ and $\langle \textnormal{d}B_t ^2 \rangle = \textnormal{d}t$. As discussed previously, the potential energy $U$ only varies along the $z$-axis, an thus, the external force only acts on the particle along the $z$-axis while the particle diffuses freely along the $x$- and $y$-axes. 
 
-Now that the external forces acting on the particle and hindered diffusion coefficients are known, we rewrite the overdamped Langevin (see Eq.~(\ref{Eq.overdamped_SDE})) as:
-
-\begin{equation}
-	V_t^i \textnormal{d}t  = -\mu(z)\frac{\partial U(z)}{\partial x_i}  \textnormal{d}t + \sqrt{2D_i (z)}  \textnormal{d}B_t ~,
-	\label{Eq:langevin_z}
-\end{equation}
-
-where $\mu(z) = 1/ (6 \pi \eta_i(z) a)$, and $i$ denotes one of the three spatial directions, $x,~ y$ and $z$, where the previously determined $\eta_\parallel$ or $D_\parallel$ corresponds to the $x$- and $y$-axes, while $\eta_\bot$ or $D_\bot$ corresponds to the $z$-axis, and $ \textnormal{d}B_t$ is a Gaussian-distributed satisfying $\langle \textnormal{d}B_t \rangle = 0$ and $\langle \textnormal{d}B_t ^2 \rangle = \textnormal{d}t$. As discussed previously, the potential energy $U$ only varies along the $z$-axis, an thus, the external force only acts on the particle along the $z$-axis while the particle diffuses freely along the $x$- and $y$-axes. 
-
-\subsubsection{Spurious drift}
-\label{sec:spurious}
-
-A key observation is that due to the spatially-varying and direction-varying mobilities of the particle, the magnitude $\sqrt{2D_i(z)}$ of the Langevin forces, depend on the random position and direction of the particle. This is an example of a so-called multiplicative noise and will have some interesting consequences on the dynamical properties of the random motion. To illustrate the effect of the multiplicative noise, one can integrate Eq.~(\ref{Eq:langevin_z}) over a time $\tau$ in the absence of the external force, which leads to:
-
-\begin{equation}
-	\Delta x_i = \int_{t_0} ^{t_0 + \tau} \sqrt{2D_i(z)}\textnormal{d}B_t ~,
-	\label{int}
-\end{equation}
-
-where $\Delta x_i$ is the spatial increment in the $i$ direction. However, the noise term the time (and consequently the position) at which the magnitude $\sqrt{2D_i(z)}$ of the Langevin force is evaluated in the integral of Eq.~(\ref{int}) needs to be specified. We write $D(z)$ as $D(z + \alpha \Delta x_z)$, with $\alpha \in [0,1]$. The value of $\alpha$ determines at which time in the interval   $[t_0, t_0 + \tau]$ the local diffusion is evaluated. However, $\alpha$ should be taken to have the long-time thermal equilibrium to be consistent with the Boltzmann distribution and. Taking into account $\alpha$, the Eq.\ref{int} in the $z$ direction becomes:
-
-\begin{equation}
-	\Delta z  = \sqrt{2D_\bot (z + \alpha \Delta z)} \textnormal{d} B_t ~,
-	\label{int2}
-\end{equation}
-
-where we write $\Delta x_z = \Delta z$ for simplicity, By Taylor-expanding $D_ \bot$ at the first order in $\Delta z /z$, one has:
-
-\begin{equation}
-	D_\bot (z + \alpha \Delta z) \simeq D_\bot (z)  +  \alpha \frac{\textnormal{d} D_\bot(z)}{\textnormal{d}z} \Delta z ~.
-\end{equation}
-
-Substituting the latter in Eq.~(\ref{int2}) leads to:
-
-\begin{equation}
-	\begin{aligned}
-		\Delta z &\simeq \sqrt{2D_\bot (z)  + 2\alpha \frac{\textnormal{d} D_\bot(z)}{\textnormal{d}z} \Delta z} \textnormal{d} B_t  \\
-		& = \sqrt{2D_\bot (z)} \left[1 + \alpha \frac{\textnormal{d} D_\bot(z)}{\textnormal{d}z} \frac{\Delta z }{D_\bot(z)}\right] ^{1/2} \textnormal{d} B_t  ~.
-	\end{aligned}
-	\label{int3}
-\end{equation}
-
-Additionally, since the last term satisfies:
-
-\begin{equation}
-	\left| \alpha \frac{\textnormal{d} D_\bot(z)}{\textnormal{d}z} \frac{\Delta z }{D_\bot(z)} \right| \ll 1 ~,
-\end{equation}
-
-one Taylor-expands at first order the right-hand side of Eq.~(\ref{int3}) as:
-
-\begin{equation}
-	\left[1 + \alpha \frac{\textnormal{d} D_\bot(z)}{\textnormal{d}z} \frac{\Delta z }{D_\bot(z)}\right] ^{1/2} \simeq 1 + \frac{\alpha }{2}\frac{\textnormal{d} D_\bot(z)}{\textnormal{d}z} \frac{\Delta z }{D_\bot(z)} ~.
-	\label{int5}
-\end{equation}
-
-By inserting Eq.~(\ref{int5}) into Eq.~(\ref{int3}), and by using the lowest order of $\Delta z$ to evaluate the first-order term, we obtain:
-
-\begin{equation}
-	\begin{aligned}
-			\Delta z & \simeq \sqrt{2D_\bot (z)} \left[1 + \frac{\alpha }{2} \frac{\textnormal{d} D_\bot(z)}{\textnormal{d}z} \frac{\sqrt{2D(z)} \textnormal{d}B_t }{D_\bot(z)}\right]  \textnormal{d} B_t \\
-		& =  \sqrt{2D_\bot (z)} \textnormal{d}B_t + \alpha  \frac{\textnormal{d} D_\bot(z)}{\textnormal{d}z} [\textnormal{d} B_t ]^2
-	\end{aligned}
-	\label{int4}
-\end{equation}
-
-Taking the average value of Eq.~(\ref{int4}) by discretizing over a time $\tau \ll 1$ such that  $\langle [\textnormal{d}B_t] ^2 \rangle_t = \tau$, gives:
-
-\begin{equation}
-	\langle \Delta z \rangle _t = \alpha  \frac{\textnormal{d} D_\bot(z)}{\textnormal{d}z} \tau = v_\mathrm{noise} \tau, 
-\end{equation}
-
-where $v_\mathrm{noise}$ represents a noise-induced spurious drift velocity. By putting back the interactions with the wall, the full expression of Eq.~\ref{int4} reads\cite{ikeda_stochastic_2014}: 
-
-\begin{equation}
-	\begin{aligned}
-		\Delta z &=   \alpha  \frac{\textnormal{d} D_\bot(z)}{\textnormal{d}z}  \tau - \frac{1}{\gamma(z)}\frac{\textnormal{d} U(z)}{\textnormal{d} z}  \tau + \sqrt{2D_\bot (z)} \textnormal{d}B_t \\
-		&=  \left( - \frac{1}{\gamma(z)}\frac{\textnormal{d} U(z)}{\textnormal{d} z} +  \alpha  \frac{\textnormal{d} D_\bot(z)}{\textnormal{d}z} \right) \tau + \sqrt{2D_\bot (z)} \textnormal{d}B_t \\
-		&= \bar{v}_\textnormal{d}\tau  + \sqrt{2D_\bot (z)} \textnormal{d}B_t ~,
-	\end{aligned}
-\end{equation}
-
-where:
-
-\begin{equation}
-	\bar{v}_\textnormal{d} = - \frac{1}{\gamma(z)}\frac{\partial U(z)}{\partial z} +  \alpha  \frac{\textnormal{d} D_\bot(z)}{\textnormal{d}z}  = v_\textnormal{d} + v_\textnormal{noise}~,
-	\label{Eq.total_drifts}
-\end{equation}
-
-is the total drift velocity of the particle. The first term $v_\textnormal{d}$ is the drift velocity due to deterministic forces (electrostatic and gravitational interactions in our case). The spurious drift velocity $v_\mathrm{noise}$ disappears when the diffusion coefficient is homogeneous,and would also disappear along the $x$- and $y$-axes since the diffusion coefficients only depend on the colloid-wall distance $z$ (a derivative with respect to $x$ would replace the one in $z$ in the quivalent of Eq.~(\ref{Eq.total_drifts}) for the $x$ direction). Theoretically, $\alpha$ can take any value between 0 and 1. However, three canonical values are usually employed \cite{volpe_effective_2016}:  $\alpha = 0$, in the Itô convention, corresponding to the use of the initial value of $D(z)$; $\alpha = 1/2$, in the Stratonovich convention, corresponding to the mid-point value; and $\alpha = 1$  in the anti-Itô or isothermal convention, corresponding to the use of the final value. Using  Eqs.~(\ref{Eq.hindered})~(\ref{Eq:etaz_pade})~and~(\ref{Eq.total_drifts}), the deterministic drift velocity reads:
-
-\begin{equation}
-	v_\textnormal{d} =- \frac{k_\mathrm{B}T}{\gamma(z)} \left[- \frac{1}{\ell_\mathrm{D}} B \exp \left(- \frac{z}{\ell_\mathrm{D}}\right) + \frac{1}{\ell_\mathrm{B}}\right] ~,
-\end{equation}
-
-and the spurious drift velocity reads:
-
-\begin{equation}
-	v_\textnormal{noise} (z)= 2 \alpha D_0 a\frac{2a^2 + 12 az + 21 z^2}{(2 a^2 + 9az + z^2) ^2} ~,
-	\label{Eq.spurious_drift}
-\end{equation}
-
-
-Finally, one can decompose the Langevin equation for a particle near a wall in two, one equation describing the motion perpendicular (\textit{i.e.} along the $z$-axis):
-
-\begin{equation}
-	V_t^z \textnormal{d}t  = \bar{v}_\mathrm{d} \textnormal{d}t + \sqrt{2D_\bot (z)}  \textnormal{d}B_t ~,
-	\label{Eq.langevin_confined}
-\end{equation}
-
-and one for the parallel motion (\textit{i.e.} along the $x$- and $y$)):
-
-\begin{equation}
-	V_t^\parallel \textnormal{d}t  = \sqrt{2D_\parallel (z)}  \textnormal{d}B_t ~,
-	\label{Eq.langevin_confinedx}
-\end{equation}
-
-
- A typical example of drift velocity $\bar{v}$ for a colloidal particle of radius $a = 1.5 ~\mathrm{\mu m}$ in water, moving near a wall, and interacting with the latter though an electrostatic potential with a Debye length $\ell_\mathrm{D} = 50 ~ \mathrm{nm}$ and a dimensionless magnitude of the interaction $B = 4$, and evolving in a gravity field charaterized by a Boltzmann length $\ell_\mathrm{B} = 500 ~ \mathrm{nm}$, is plotted in Fig.~\ref{fig.spurious}. As one can observe, the spurious drift is not negligible.
- 
-\begin{figure}[ht]
-	\centering
-	\includegraphics{02_body/chapter3/images/spurious_drift/spurious.pdf}
-	\caption{Theoritical drift velocity for a colloidal particle of radius $a = 1.5 ~\mathrm{\mu m}$ in water and at a distance $z$ from the wall. The physical parameters $\ell_\mathrm{D} = 50 ~ \mathrm{nm}$, $B = 4 ~k_\mathrm{B}T$ and $\ell_\mathrm{B} = 500 ~ \mathrm{nm}$.} 
-	\label{fig.spurious}
-\end{figure}
 
 \subsubsection{Fokker-Plank equation}
 
-The Fokker-Plank equation is an alternative way to describe Brownian motion. Instead of explicitly calculating a Brownian trajectory by solving the Langevin equation, Fokker-Plank equation describes the Probability Density Function $P(X_t, X_0; t)$ inposition, where for simplicity we place ourselve in 1D, with $X_t$ denoting the particle position at a time $t$ and $X_0$ its initial ($t=0$) position. To derive the Fokker-Plank equation, let us start by taking a generic Langevin equation in 1D:
+The Fokker-Plank equation is an alternative way to describe Brownian motion. Instead of explicitly calculating a Brownian trajectory by solving the Langevin equation, Fokker-Plank equation describes the Probability Density Function $P(X_t, X_0; t)$ in position. Where for simplicity we place ourselve in 1D, with $X_t$ denoting the particle position at a time $t$ and $X_0$ its initial ($t=0$) position. To derive the Fokker-Plank equation, let us start by taking a generic Langevin equation in 1D:
 
 \begin{equation}
-	\textnormal{d}X_t = u(X_t) + g\textnormal{d}B_t ~,
+	\textnormal{d}X_t = u(X_t) \mathrm{d}t + g\textnormal{d}B_t ~,
 	\label{SDE2}
 \end{equation}
 
-where $u$ is the drift due to external forces and $g$ is the magnitude of the random force. Let consider the average value of an arbitrary function $f(X_t)$ for a stochastic process obeying Eq.~(\ref{SDE2}), which started at position $x_0$ at time $t=0$. By definition, this ensemble average reads \cite{le_bellac_equilibrium_2004}:
+where $u(X_t)$ is the drift velocity due to external forces and $g$ is the magnitude of the random force. Let consider the average value of an arbitrary function $f(X_t)$ for a stochastic process obeying Eq.~(\ref{SDE2}), which started at position $x_0$ at time $t=0$. By definition, this ensemble average reads \cite{le_bellac_equilibrium_2004}:
 
 \begin{equation}
 	\langle f(X_t) \rangle = \int \textnormal{d}X_t ~ P(X_t, X_0 ; t) f(X_t) ~,
@@ -709,9 +593,9 @@ We now expand $f$ at the first order in the time increment $\textnormal{d}t$ as:
 
 \begin{equation}
 	\begin{aligned}
-		\left\langle \frac{\textnormal{d}f(X_t)}{\textnormal{d}t} \right\rangle_t  &\simeq \frac{1}{\textnormal{dt}}\left\langle   \frac{\partial f(X_t)}{\partial X_t} u(X_t) \textnormal{d}t + \frac{\partial f(X_t)}{\partial X_t} g(X_t) \textnormal{d}B_t + \frac{1}{2} \frac{\partial^2 f(X_t)}{\partial X_t^2} g^2 (X_t) \textnormal{d}B_t^2   \right\rangle_t \\
-		& =  \frac{1}{\textnormal{dt}} \left( \frac{\partial f(X_t)}{\partial X_t} u(X_t) \textnormal{d}t + \frac{1}{2} \frac{\partial^2 f(X_t)}{\partial X_t^2} g^2 (X_t) \textnormal{d}t \right) \\
-		& = \frac{\partial f(X_t)}{\partial X_t} u(X_t) + \frac{1}{2} \frac{\partial^2 f(X_t)}{\partial X_t^2} g^2 (X_t) ~.
+		\left\langle \frac{\textnormal{d}f(X_t)}{\textnormal{d}t} \right\rangle_t  &\simeq \left\langle \frac{1}{\textnormal{d}t} \left( \frac{\partial f(X_t)}{\partial X_t} u(X_t) \textnormal{d}t + \frac{\partial f(X_t)}{\partial X_t} g \textnormal{d}B_t + \frac{1}{2} \frac{\partial^2 f(X_t)}{\partial X_t^2} g^2  \textnormal{d}B_t^2   \right) \right\rangle_t \\
+		& =  \frac{1}{\textnormal{d}t} \left( \frac{\partial f(X_t)}{\partial X_t} u(X_t) \textnormal{d}t + \frac{1}{2} \frac{\partial^2 f(X_t)}{\partial X_t^2} g^2 \textnormal{d}t \right) \\
+		& = \frac{\partial f(X_t)}{\partial X_t} u(X_t) + \frac{1}{2} g^2 \frac{\partial^2 f(X_t)}{\partial X_t^2}   ~.
 	\end{aligned}
 	\label{fokker2}
 \end{equation}
@@ -721,7 +605,7 @@ By combining Eqs.~(\ref{fokker1})~and~(\ref{fokker2}), we get:
 \begin{equation}
 	\begin{aligned}
 		\int \textnormal{d} X_t ~\frac{\partial P(X_t, X_0 ; t) }{\partial t} f(X_t)
-		& =  \frac{\partial f(X_t)}{\partial X_t} u(X_t) + \frac{1}{2} \frac{\partial^2 f(X_t)}{\partial X_t^2} g^2 (X_t) \\
+		& =  \frac{\partial f(X_t)}{\partial X_t} u(X_t) + \frac{1}{2} \frac{\partial^2 f(X_t)}{\partial X_t^2} g^2 \\
 		& = \int \textnormal{d}X_t ~ P(X_t, X_0 ; t) G f(X_t) ~,
 	\end{aligned}
 \end{equation}
@@ -729,7 +613,7 @@ By combining Eqs.~(\ref{fokker1})~and~(\ref{fokker2}), we get:
 where G is a differential operator called the generator and is defined by its action on a function $f$ as:
 
 \begin{equation}
-	Gf = \frac{1}{2} g^2 (X_t) \frac{\partial ^2 f(X_t)}{\partial X_t^2} + u(X_t) \frac{\partial f(X_t)}{\partial X_t} ~.
+	Gf = \frac{1}{2} g^2 \frac{\partial ^2 f(X_t)}{\partial X_t^2} + u(X_t) \frac{\partial f(X_t)}{\partial X_t} ~.
 \end{equation}
 
 Using the definition of the adjoint of $G$, denoted $G ^\dagger$, one has:
@@ -752,33 +636,24 @@ From the latter, we thus have:
 which leads to the Forward Fokker-Planck equation \cite{del_moral_introduction_2010}:
 
 \begin{equation}
-	\frac{\partial P(X_t, X_0 ; t)}{\partial t }= \frac{\partial ^2}{\partial X_t^2} \left[\frac{g^2 (X_t)}{2}P(X_t, X_0 ; t)\right] - \frac{\partial}{\partial X_t} \left[u(X_t) P(X_t, X_0 ; t)\right] ~.
+	\frac{\partial P(X_t, X_0 ; t)}{\partial t }= \frac{\partial ^2}{\partial X_t^2} \left[\frac{g^2 }{2}P(X_t, X_0 ; t)\right] - \frac{\partial}{\partial X_t} \left[u(X_t) P(X_t, X_0 ; t)\right] ~.
 	\label{Eq.Forward_Fokker_plank}
 \end{equation}
 
-The latter is called Forward because the partial differential equation is written in terms of the variable $X_t$, \textit{i.e.} the position of the particle, at time $t$. For a Brownian motion near a wall, using the previously determined drifts velocity $\bar{v}_\textnormal{d}$ along $z$ of Eq.~(\ref{Eq.total_drifts}), the Fokker-Plank equation for the motion along the $z$-axis, perpendicular to the wall reads:
+The latter is called Forward because the partial differential equation is written in terms of the variable $X_t$, \textit{i.e.} the position of the particle, at time $t$. For a  free Brownian motion in bulk, the Fokker-Plank equation reads:
 
 \begin{equation}
-	\frac{\partial P(z, z_0 ; t)}{\partial t} = \frac{\partial ^2}{\partial z ^2} \left[ D_\bot(z)  P(z, z_0 ; t) \right]   -  \frac{\partial }{\partial z} \left[\bar{v}_\textnormal{d} P(z, z_0 ; t)\right] ~,
+	\frac{\partial P(X_t, X_0 ; t)}{\partial t} = D_0 \frac{\partial ^2}{\partial X_t ^2}P(X_t, X_0 ; t) ~.
 	\label{fp}
 \end{equation}
 
-with $z$ the particle position along the $z$-axis. In particular, the stationary solution of Eq.~(\ref{fp}), \textit{i.e.} for $\partial p / \partial t = 0$, is given by the Gibbs-Boltzmann distribution $P_\textnormal{eq}(z) $ (see Eq.~(\ref{Eq.Peq})). The solution of Eq.~(\ref{fokker3}) with the particle starting at position $z_0$, at time $t = 0$ reads:
+
+\subsubsection{Fokker-Planck and multiplicative noise}
+
+Due to the hindered diffusion coefficient the magnitude of the random force $g$ now depends on the particle position $X_t$. Therefore, for a displacement between a time $t$ and $t+\tau$, the integration of the noise term $\int_t ^{t+\tau}g(X_t)\mathrm{d}B_t$ is not trivial and the time at which the random force magnitude $g(X_t)$ is evaluated needs to be answered. In this part we derive the Fokker-Plank equation when the system is subjected to multiplicative noise. Let us write a generic Langevin equation with multiplicative noise:
 
 \begin{equation}
-	\begin{aligned}
-		P(z, z_0; t) &= \exp\{G^\dagger t\} P(z, z_0; 0) \\
-		& = \exp \left\{ \frac{\partial ^2}{\partial z ^2}  D_\bot(z)  t   -  \frac{\partial }{\partial z} \bar{v}_\textnormal{d} t\right\} \delta (z - z_0) ~.
-	\end{aligned}
-	\label{Eq.solfokker}
-\end{equation} 
-
-\subsubsection{Fokker-Plank and multiplicative noise}
-
-Due to the hindered diffusion coefficient the magnitude of the random force $g$ now depends on the particle position $X_t$. Therefore, for a displacement between a time $t$ and $t+\tau$, the integration of the noise term $\int_t ^{t+\tau}g(X_t)\mathrm{d}B_t$ is not trivial and the time at which the random force magnitude $g(X_t)$ is evaluated needs to be answered. In this part we derive the Fokker-Plank equation when the system is subjected to multiplicative noise. Let us write a generic Langevin equation for a near-wall confined particle:
-
-\begin{equation}
-	\mathrm{d}X_t = u(X_t) + g(X_t)\mathrm{d}B_t~.
+	\mathrm{d}X_t = u(X_t)\mathrm{d}t + g(X_t)\mathrm{d}B_t~.
 	\label{sde.multipl}
 \end{equation}
 
@@ -789,7 +664,7 @@ We start by deriving Eq.~(\ref{sde.multipl}) for a time step $\tau$ such that:
 	\label{sde.multipl2}
 \end{equation}
 
-The expension of first term gives $u(X_t)\tau$. However, for the second term, the position at which $g(X_t)$ is evaluated needs to be addressed. The second integral of Eq.~{\ref{sde.multipl2}} is not unequivocally defined as \cite{sancho_brownian_2011}:
+The expansion of first term gives $u(X_t)\tau$ at the first order in $\tau$. However, for the second term, the position at which $g(X_t)$ is evaluated needs to be addressed. The second integral of Eq.~{(\ref{sde.multipl2})} is not unequivocally defined as \cite{sancho_brownian_2011}:
 
 \begin{equation}
 	\int_{t}^{t+\tau}g(X_{t'})\textnormal{d}B_{t'}\textnormal{d}t' \equiv B([1 - \alpha] X_t + \alpha X_{t+\tau}) \Delta W(t),
@@ -802,9 +677,9 @@ where $\Delta W (t)$ the the Wiener increment:
 	\Delta W(t) = \int_{t}^{t+\tau} \textnormal{d} B_{t'} \textnormal{dt'},
 \end{equation}
 
-which is au Gaussian process with zero mean and variance $\langle \Delta W(t)^2 \rangle = \Delta t $. The parameter $\alpha$ in Eq.~{\ref{sde.alpha}} corresponds to stochastic interpretation of the Langevin equation, and at which point in the interval $[t, t+\tau]$ the Lanvin force magnitude $g$ is evaluated. Theoretically, $\alpha$ can take any value between 0 and 1. However, two canonical values are usually employed :  $\alpha = 0$, in the Itô convention \cite{ito_stochastic_1944}, corresponding to the use of the initial value of $g(X_t))$; $\alpha = 1/2$, in the Stratonovich convention \cite{stratonovich_new_1966}, corresponding to the mid-point value $g(X_{t + 1/2\tau}))$. 
+which is a Gaussian process with zero mean and variance $\langle \Delta W(t)^2 \rangle = \Delta t $. The parameter $\alpha$ in Eq.~{(\ref{sde.alpha)}} corresponds to stochastic interpretation of the Langevin equation, and at which point in the interval $[t, t+\tau]$ the Langevin force magnitude $g$ is evaluated. Theoretically, $\alpha$ can take any value between 0 and 1. However, two canonical values are usually employed :  $\alpha = 0$, in the Itô convention \cite{ito_stochastic_1944}, corresponding to the use of the initial value of $g(X_t)$; $\alpha = 1/2$, in the Stratonovich convention \cite{stratonovich_new_1966}, corresponding to the mid-point value $g(X_{t + 1/2\tau})$. 
 
-To derive the Fokker-Plank equation we now need to expand Eq.~(\ref{sde.multipl2}) to first order in $\tau $. Combining Eqs.~(\ref{sde.multipl2})~and~(\ref{sde.alpha}), at the first order in $\tau^{1/2}$, Eq~.(\ref{sde.alpha}) can be approximated by:
+To derive the Fokker-Plank equation we now need to expand Eq.~(\ref{sde.multipl2}) to first order in $\tau $. Combining Eqs.~(\ref{sde.multipl2})~and~(\ref{sde.alpha}), at the order $\tau^{1/2}$, Eq~.(\ref{sde.alpha}) can be approximated by \cite{sancho_brownian_2011}:
 
 \begin{equation}
 	X_{t+\tau} = X_t + g(X_t)\Delta W(t)~.
@@ -815,17 +690,17 @@ By combining Eqs.~(\ref{sde.multipl2})~and~(\ref{sde.firsttaylor}) one has:
 
 \begin{equation}
 	\begin{aligned}
-	\int_{t}^{t+\tau} g(X_{t'}) \textnormal{d}B_{t'}\textnormal{d}t' &= g(X_t + \alpha[X_{t + \tau} - X_t])\Delta W(t) \\
-	&\simeq g(X_t + \alpha g(X_t)\Delta W(t))\Delta W(t)\\
-	&\simeq g(X_t) \Delta W(t) + \alpha g(X_t)g'(X_t)[\Delta W(t)]^2,
+		\int_{t}^{t+\tau} g(X_{t'}) \textnormal{d}B_{t'}\textnormal{d}t' &= g(X_t + \alpha[X_{t + \tau} - X_t])\Delta W(t) \\
+		&\simeq g(X_t + \alpha g(X_t)\Delta W(t))\Delta W(t)\\
+		&\simeq g(X_t) \Delta W(t) + \alpha g(X_t)g'(X_t)[\Delta W(t)]^2,
 	\end{aligned}
 	\label{sde.taylorend}
 \end{equation}
 
-where $g'(X_t) = \partial_{X_t} g(X_t) $. By finally combining Eqs.~(\ref{sde.multipl2})~and~(\ref{sde.taylorend}), one can expend Eq.~(\ref{sde.multipl2}) to the first order in $\tau$:
+where $g'(X_t) = \frac{\textnormal{d}}{\textnormal{d} X_t} g(X_t) $. By finally combining Eqs.~(\ref{sde.multipl2})~and~(\ref{sde.taylorend}), one can expand Eq.~(\ref{sde.multipl2}) to the first order in $\tau$:
 
 \begin{equation}
-	X_{t+\tau } \simeq X_t + u(X_t) \Delta W(t) + \alpha g(X_t)g'(X_t)[\Delta W(t)]^2 ~.
+	X_{t+\tau } \simeq X_t + u(X_t)\Delta t + g(X_t) \Delta W(t) + \alpha g(X_t)g'(X_t)[\Delta W(t)]^2 ~.
 \end{equation}
 
 Finally, by writing the Fokker-Plank equation by its standard form:
@@ -834,7 +709,7 @@ Finally, by writing the Fokker-Plank equation by its standard form:
 	\frac{\partial P(X_t, t)}{\partial t} = -\frac{\partial}{\partial X_t} K_1 (X_t) P(X_t, t) + \frac{1}{2}\frac{\partial^2}{\partial X_t^2} K_2P(X_t, t),
 \end{equation}
 
-where $K_1$ and $K_2$ are the first two differential moments, and invoking the Kramers-Moyal expansion \cite{sancho_brownian_2011, stratonovich_new_1966}, $K_1$ and $K_2$ are obtained by:
+where $K_1$ and $K_2$ are the first two different moments, and invoking the Kramers-Moyal expansion \cite{sancho_brownian_2011, stratonovich_new_1966}, $K_1$ and $K_2$ are obtained by:
 
 \begin{equation}
 	K_1(X_t) = \lim\limits_{\tau \rightarrow 0} \frac{\langle \Delta X_t \rangle}{\tau}  = u(X_t) + \alpha g(X_t)g'(X_t)~,
@@ -850,9 +725,116 @@ The Fokker-Plank equation with multiplicative noise finally writes:
 
 \begin{equation}
 	\frac{\partial P(X_t, t)}{\partial t} = -\frac{\partial}{\partial X_t} \{u(X_t) + \alpha g(X_t)g'(X_t)\} P(X_t, t) + \frac{1}{2}\frac{\partial^2}{\partial X_t^2} \{g^2(X_t) \} P(X_t, t)~.
+	\label{final_fokker}
 \end{equation} 
 
+due to the presence of multiplicative noise, we now have a new drift velocity term that depends on the stochastic interpretation of the Langevin equation.
+
 \subsubsection{Spurious drift}
+
+Now that we derived the Fokker-Planck equation for multiplicative noise, we can inspect how the new drift velocity term $\alpha g(X_t)g'(X_t)$ plays a role, in the case where one wants to simulate near-wall confined Brownian motion, or, infer forces from a measured trajectory. Let first rewrite Eq.~(\ref{sde.multipl}) along the $z$-axis for a particle confined near a wall:
+
+\begin{equation}
+	\mathrm{d}z = \frac{F(z)}{\gamma_\bot (z)} \mathrm{d}t + \sqrt{2 D_\bot(z)}\mathrm{d}B_t ~,
+\end{equation}
+
+where $F(x)=-k_\mathrm{B}T \ln (U(z))$ is the force (due to the DLVO interaction and gravity) exerted on the particle if the system was deterministic. Using Eq.~(\ref{final_fokker}), the average velocity writes:
+
+\begin{equation}
+	\left\langle \frac{\Delta z}{ \tau} \right\rangle  \equiv \bar{v}_\mathrm{d}
+	=\left\langle \frac{\mathrm{d}z}{\mathrm{d}t} \right\rangle = \frac{F(z)}{\gamma_\bot (z)} + \alpha \frac{\mathrm{d} D_\bot(z)}{\mathrm{d}z} ~. 
+	\label{drift_alpha}
+\end{equation}
+
+However, one needs to take into account that at long time, the steady-state solution of the Fokker-Plank equation should be given by the Gibbs-Boltzmann equilibrium distribution $P_\mathrm{eq}(z)$. Different choice of $\alpha$ gives different drift velocity $\bar{v}_\mathrm{d}$ of Eq.~(\ref{drift_alpha}), nevertheless that would mean that only one value of $\alpha$ permits recovering the equilibrium distribution. Yet, to my knowledge, the Itô and Stratonovich conventions permit retrieving the correct distribution. 
+
+Due to this ambiguity, it is often observed in the literature that $\alpha$ is numerically inferred to retrieve the correct distribution and forces. Doing so, we find in the literature some $\alpha =1$, corresponding to an anti-Itô convention, meaning an anticipation of the Langevin equation. However, this is due to a misuse of Eq.~(\ref{drift_alpha}) since the calculus are done using the Itô or Stratonovich convention.   
+
+To solve this situation, one needs to take into account that it is not the deterministic force $F(x)$ that should be used in Eq.~(\ref{drift_alpha}) but the force:
+
+\begin{equation}
+	F_\mathrm{eq} = - \frac{\mathrm{d}U_\mathrm{ss}(z)}{\mathrm{d}z}
+	\label{Feq}
+\end{equation}
+which is computed through the steady-state solution of the Fokker-Planck equation for multiplicative noise, such that:
+
+\begin{equation}
+	U_\mathrm{ss} (z) = - k_\mathrm{B}T \ln (P_\mathrm{ss}(z)),
+	\label{Uss}
+\end{equation}
+
+
+with $P_\mathrm{ss}(z)$ the steady-state solution of Eq.~(\ref{final_fokker}), that can be obtain as follows. Let us start by setting the time derivative $\partial P_\mathrm{ss} / \partial t$ to zero in Eq.~(\ref{final_fokker}), along the $z$-axis, writes:
+
+\begin{equation}
+	\frac{\textnormal{d}}{\textnormal{d} z} \left\{ -u(z) - \alpha g(z)g'(z) + \frac{1}{2}\frac{\textnormal{d} }{\textnormal{d} z} g^2(z)  \right\} P_\mathrm{ss}(z)= \frac{\textnormal{d} J}{\textnormal{d} z} = 0~,
+	\label{-alpha.1}
+\end{equation}
+
+where $J$ is a probability flux, $u(z) = F/\gamma_\bot$, and $g(z)g'(z) = \mathrm{d}D_\bot / \mathrm{d}z $. As $\partial _z J =0$, $J$ needs to be a constant. Moreover, we need $P_\mathrm{ss}$ and the moments of $P_\mathrm{ss}$ to be finite, therefore we require $P_\mathrm{ss}$ to decay to zero at infinity\footnote{Using the Riemann integrals, $P_\mathrm{ss}$ should decay faster than $|z|^{-n-1}$ to have the $n$-th first moment to be finite.}, and in particular $P_\mathrm{ss}$ and $\partial_z P_\mathrm{ss}$ are zero at infinity, and therefore $J=0$ and Eq.~(\ref{-alpha.1}) becomes:
+
+\begin{equation}
+	\left(-u(z) - \alpha g(z)g'(z)\right)P_\mathrm{ss}(z) + \frac{1}{2}\frac{\partial}{\partial z} \left\{ g^2(z) P_\mathrm{ss}(z) \right\} =0~.
+	\label{-alpha.2}
+\end{equation}
+
+By invoking $Y=g^2(z)P_\mathrm{ss}$, Eq.~(\ref{-alpha.2}) becomes:
+
+\begin{equation}
+	-\frac{u(z) + \alpha g(z)g'(z)}{g^2(z) / 2} Y(z) + \frac{\textnormal{d} }{\textnormal{d} z} Y(z)=0~,
+\end{equation}
+
+which leads to:
+
+\begin{equation}
+	P_\mathrm{ss}(z) = \frac{1}{g^2(z)} \exp \left[ \int^{z} \frac{u(z') + \alpha g(z')g'(z')}{g^2(z') / 2} \mathrm{d}z \right] ~.
+	\label{-alpha.3}
+\end{equation}
+
+Using the fact that $-\ln(g^2(z))$ can be written as $-\int^{z} 2 g(z')g'(z') / g^2(z') \mathrm{d}z$, Eq.~(\ref{Uss}) becomes:
+
+\begin{equation}
+	U_\mathrm{ss} = -k_\mathrm{B}T \int^{z} \frac{u(z') + (\alpha - 1) g(z')g'(z')}{g^2(z') / 2} \mathrm{d}z~.
+\end{equation}
+
+
+
+By combining Eqs.~(\ref{Feq})~and~(\ref{Uss}), one has:
+
+\begin{equation}
+	\frac{F_\mathrm{eq}(z)}{\gamma_\bot(z)} = \frac{F(x)}{\gamma_\bot(z)} + (\alpha - 1)g(z)g'(z)~.
+	\label{alpha-1}
+\end{equation}
+
+The difference between Eqs.~(\ref{drift_alpha}) and (\ref{alpha-1}) gives $g(x)g'(x) = \mathrm{d}D_\bot/ \mathrm{dz}$, and does not depend on the interpretation of the Langevin equation. Finally, we write the overall drift as:
+
+\begin{equation}
+	\bar{v}_\mathrm{d} = -\frac{1}{\gamma_\bot(z)} \frac{\textnormal{d} U(z)}{\textnormal{d} z} + \frac{\mathrm{d} D_\bot(z)}{\mathrm{d}z}  = v_\mathrm{d} + v_\mathrm{noise}~,
+	\label{Eq.total_drifts}
+\end{equation}
+
+where, to recap, the first term $v_\textnormal{d}$ is the drift velocity due to deterministic forces (electrostatic and gravitational interactions in our case). The spurious drift velocity $v_\mathrm{noise}$ disappears when the diffusion coefficient is homogeneous,and would also disappear along the $x$- and $y$-axes since the diffusion coefficients only depend on the colloid-wall distance $z$ (a derivative with respect to $x$ would replace the one in $z$ in the equivalent of Eq.~(\ref{Eq.total_drifts}) for the $x$-direction). Using  Eqs.~(\ref{Eq.hindered})~(\ref{Eq:etaz_pade})~and~(\ref{Eq.total_drifts}), the deterministic drift velocity reads:
+
+\begin{equation}
+	v_\textnormal{d} =- \frac{k_\mathrm{B}T}{\gamma_\bot(z)} \left[- \frac{1}{\ell_\mathrm{D}} B \exp \left(- \frac{z}{\ell_\mathrm{D}}\right) + \frac{1}{\ell_\mathrm{B}}\right] ~,
+\end{equation}
+
+and the spurious drift velocity reads:
+
+\begin{equation}
+	v_\textnormal{noise} (z)= 2 \alpha D_0 a\frac{2a^2 + 12 az + 21 z^2}{(2 a^2 + 9az + z^2) ^2} ~,
+	\label{Eq.spurious_drift}
+\end{equation}
+
+A typical example of drift velocity $\bar{v}$ for a colloidal particle of radius $a = 1.5 ~\mathrm{\mu m}$ in water, moving near a wall, and interacting with the latter through an electrostatic potential with a Debye length $\ell_\mathrm{D} = 50 ~ \mathrm{nm}$ and a dimensionless magnitude of the interaction $B = 4$, and evolving in a gravity field characterized by a Boltzmann length $\ell_\mathrm{B} = 500 ~ \mathrm{nm}$, is plotted in Fig.~\ref{fig.spurious}. As one can observe, the spurious drift is not negligible.
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics{02_body/chapter3/images/spurious_drift/spurious.pdf}
+	\caption{Theoretical drift velocity for a colloidal particle of radius $a = 1.5 ~\mathrm{\mu m}$ in water and at a distance $z$ from the wall. The physical parameters $\ell_\mathrm{D} = 50 ~ \mathrm{nm}$, $B = 4 $ and $\ell_\mathrm{B} = 500 ~ \mathrm{nm}$.} 
+	\label{fig.spurious}
+\end{figure}
+
 
 \subsubsection{Numerical simulations of confined Brownian motion}
 
@@ -1006,7 +988,7 @@ The long-time \gls{PDF} in position, for $\alpha = 0 , 0.5 \text{ and } 1 $ are 
 
 \subsection{Experimental study}
 \label{section:expresults}
-Let us now analyze the experimental data obtain through the Mie tracking (see section \ref{chap:LM_fit}). In the near-wall Brownian dynamics theory presented section~\ref{sec:confined}, we considered distance $z$ between the wall and the colloidal particle surface. However, it is not the height measured by the Mie tracking, since the latter measures the distance between the objective-lens focal plane and the particle center. Therefore, we measure the trajectory up to an offset, \textit{i.e.} the ojective-lens focal plane to wall distance. To have the correct measured height, we suppose that the particle does approach very closely to the wall, such that the minimal measured distance is the focal plane to the wall distance. From that assumption, we then a moving-minimum along the trajectory to set the minimal value of the trajectory to zero. The moving minimum can be calculated using the following Python function:
+Let us now analyze the experimental data obtain through the Mie tracking (see section \ref{chap:LM_fit}). In the near-wall Brownian dynamics theory presented section~\ref{sec:confined}, we considered distance $z$ between the wall and the colloidal particle surface. However, it is not the height measured by the Mie tracking, since the latter measures the distance between the objective-lens focal plane and the particle center. Therefore, we measure the trajectory up to an offset, \textit{i.e.} the ojective-lens focal plane to wall distance. To have the correct measured height, we suppose that the particle does approach very closely to the wall, such that the minimal measured distance is the focal plane to the wall distance. From that assumption, we set the minimal value of $z$ in the trajectory to zero. This is repeated periodically and thus termed the moving-minimum method, and can be calculated using the following Python function.
 
 
 
@@ -1038,12 +1020,12 @@ def movmin(z, window):
 	return result
 \end{minted}
 
-In the latter, \mintinline{python}{window} represent the number of points is used to compute the minimum. As an example, if one chose \mintinline{python}{window = 10000}, the first value of \mintinline{python}{result} is the minimum of the first 10000 points of \mintinline{python}{z}. If there is enough data around the point where the minimum is calculated, the ensemble is centered, with a window of 100, the minimal value at the 100th elements is between the 50th and 150th (\textit{e.g.} \mintinline{python}|result[100] = np.min(z[50:150])|. The raw and rescaled trajectory are shown Fig.~\ref{fig.rescaled_traj}. Of course, that technique is not perfect and we are working on a method that could directly measure the wanted wall-particle distance, also using Mie. However, subtract the moving minimum has a benefit, indeed it can remove some experimental drift that can be due to the physical movement of the optical pieces of the microscope. Moreover, as the exact location of the $z=0$ origin is thus \textit{a priori} undetermined we add to the physical parameters $B$, $\ell_\mathrm{D}$ and $\ell_\mathrm{B}$ a height offset $z_\mathrm{off}$ that accounts for the correction of the wall position.
+In the above snippet, \mintinline{python}{window} represents the number of points used to compute the minimum. As an example, if one chooses \mintinline{python}{window = 100}, the first value of \mintinline{python}{result} is the minimum of the first 100 points of \mintinline{python}{z}. If there is enough data around the point where the minimum is calculated, the ensemble is centered, with a new window of size 100 (\textit{i.e.} \mintinline{python}|result[100] = np.min(z[50:150])|. If there is not enough point around the $n$-th point, we then take the average value of the first (or the last) $n$ points. The raw and shifted trajectories are shown  in Fig.~\ref{fig.rescaled_traj}. Moreover, subtracting the moving minimum has a benefit. Indeed, it can remove some experimental drift due to the mechanical movement of the optical pieces of the microscope. Also, due to the approximation made to use the moving-minimum method, the exact location of the $z=0$ origin is \textit{a priori} undetermined we need to add to the physical parameters $B$, $\ell_\mathrm{D}$ and $\ell_\mathrm{B}$ a forth parameter: the height offset $z_\mathrm{off}$ that accounts for the correction of the wall position.
 
 \begin{figure}[ht]
 	\centering
 	\includegraphics{02_body/chapter3/images/trajctory_analysis/traj_rescaled.pdf}
-	\caption{Raw trajectory measured using the Mie tracking technique, and it's rescaled value using moving minimum algorithm with a window of $10000$ points.} 
+	\caption{Raw trajectories measured using the Mie-tracking technique, and it shifted version (bottom, orange) using the moving-minimum method with a window of $10000$ points.} 
 	\label{fig.rescaled_traj}
 \end{figure}
 
@@ -1202,7 +1184,7 @@ def Pdeltaz_long(DZ, B, ld, lb):
 	
 \end{minted}
 
-Wwere the \mintinline{python}{P_eq} function has been described in section \ref{Section:sphere-wall}. 
+where the \mintinline{python}{P_eq} function has been described in section \ref{Section:sphere-wall}. 
 
 
 \begin{figure}[H]
@@ -1214,10 +1196,40 @@ Wwere the \mintinline{python}{P_eq} function has been described in section \ref{
 
 
 
-\subsubsection{Local diffusion coefficient inference}
+\subsubsection{Local diffusion coefficient}
 
-We now wish to go beyond the previous average $\langle D_i\rangle$ of Eq.~(\ref{averagediff}), and resolve the local diffusion coefficient $D_i(z)$. To measure local viscosity from experimental trajectories, a binning method is generally employed~\cite{friedrich_approaching_2011}. This method consists of constructing the displacement \gls{PDF} conditioned on the particle height, a measure the distribution's variance $\sigma_i(z_0) = \sqrt{2D_i (z_0) \Delta t}$ as in Eq.~(\ref{Pdxshort}). 
+We now wish to go beyond the previous average $\langle D_i\rangle$ of Eq.~(\ref{averagediff}), and resolve the local diffusion coefficient $D_i(z)$. To measure local viscosities from experimental trajectories, a binning method is generally employed~\cite{friedrich_approaching_2011}. This method computing the average $\langle ( \Delta r_i^2 ) (z)$ locally in vertical bins, such that the local diffusion coefficient writes:
 
+\begin{equation}
+	D_i(z) = \frac{\langle  \Delta r_i^2  \rangle _t (z)}{\Delta t} ~.
+	\label{binning}
+\end{equation}
+
+Using this method, Vestergard \textit{et al.} \cite{vestergaard_estimation_2015} discovered that the obturation time of the camera and the localisation error $\sigma_{\mathrm{r}_i}$ plays an important role in the determination of the local diffusion coefficient, such that Eq.~\ref{binning} shoud be rewritten as:
+
+\begin{equation}
+	D_i(z) = \frac{\langle  \Delta r_i^2 \rangle _t (z) - 2 \sigma_{\mathrm{r}_i}^2}{2(1 - R)\Delta t}~.
+	\label{binning_vestergaard}
+\end{equation}
+
+where $R$ is a motion blur coefficient that depends on the apperture time of the camera. Let us write $\tau$ the time lapse between the capture of two images, and $\zeta(t)$ the state of the camera shutter during this time lapse. $\zeta(t) > 0$ indicates that an open shutter while  $\zeta(t) = 0$ indicates a close shutter. The scale $\zeta(t)$ is fixed by the normalization condition $\int_{0}^{\tau} \zeta(t)\textnormal{d}t$. The motion blur coefficient is given by:
+
+\begin{equation}
+	R = \frac{1}{\tau} \int_{0}^{\tau} S(t)[1 - S(t)] \textnormal{d}t,
+\end{equation}
+
+where $S(t) = \int_{0}^{t}\zeta(t') \textnormal{d}t'$. If the shutter is kept open for the whole duration of the time lapse, one has $R = 1/6$. The localisation error $\sigma_{\mathrm{r}_i}$ can be determined from a measured trajectory. Taking into account that Brownian motion should not be correlated, one can measure $\sigma_{\mathrm{r}_i}$ by calculated the autocorrelation $x_i(n)$ as a function of the number of time-step $n$ of the particle position $r_i$, which we defined as:
+
+\begin{equation}
+	x(n) =  \langle (r_i(t) - \langle r_i(t) \rangle_t  ) (r_i(t + n\Delta t) - \langle r_i(t) \rangle_t) \rangle_t ~.
+\end{equation}
+
+In \cite{vestergaard_estimation_2015} the localisation error (also called Vestergaard error) is written as:
+
+\begin{equation}
+	\sigma_{\mathrm{r}_i} = \sqrt{x(1) - \frac{2 \langle \Delta r_i^2 \rangle_t }{1-R}}
+\end{equation}
+ Moreover,  mechanical drifts (or evaporation driven-flow in the sample) can lead to correlation in the position time-series, such that $\sigma_{\mathrm{r}_i}$ increases in the presence of unwanted drifts. In our experiment we had $\sigma_{\mathrm{r}_x} = \sigma_{\mathrm{r}_y} = 12$~nm and $\sigma_{\mathrm{r}_z} = 6$~nm. 
 
 \begin{figure}[h!]
 	\centering
@@ -1226,46 +1238,15 @@ We now wish to go beyond the previous average $\langle D_i\rangle$ of Eq.~(\ref{
 	\label{fig.ronceray}
 \end{figure}
 
-Although the binning method is well suited for drift measurements, it suffers from a lack of convergence and precision when second moments or local diffusion coefficients have to be extracted. In particular, the binning method did not allow us to measure specifically the local diffusion coefficient in the key interfacial region corresponding to $z<100$~nm. Indeed, as we can observe in the Fig.~\ref{fig.ronceray}-f) the diffusion error on noisy (such as experimental) data does saturate of the binning method is outperformed by a robust developed method  recently developed by Frishman and Ronceray \cite{frishman_learning_2020}. This method uses Stochastic Force Inference (\gls{SFI}), in order to evaluate spatially varying force fields and diffusion coefficients, from the information contained within the trajectories. 
+Although the binning method is well suited for drift measurements, it suffers from a lack of convergence and precision when second moments or local diffusion coefficients have to be extracted. In particular, the binning method did not allow us to measure specifically the local diffusion coefficient in the key interfacial region corresponding to $z<100$~nm. Indeed, as we can observe in Fig.~\ref{fig.ronceray}-f) the diffusion error on noisy (such as experimental) data does saturate, and the binning method is outperformed by a robust method  recently developed by Frishman and Ronceray \cite{frishman_learning_2020}. This method uses Stochastic Force Inference (\gls{SFI}), in order to evaluate spatially varying force fields and diffusion coefficients, from the information contained within the trajectories. 
 
-In practice \gls{SFI} can reconstruct force and diffusion fields and measure entropy production from Brownian trajectories. \gls{SFI} is based on the communication-theory notion of capacity which is an information-theoretic bound, when the system is viewed as a communication channel, that limit at which rate information about the fields can be extracted from a Brownian trajectory. To explain the method, let us consider a Brownian particle that obey to the equation similar to Eq.~(\ref{Eq.langevin_confined}), using $\mu$ to denotes the $x$-, $y$- and $z$-axis:
+In practice the \gls{SFI} method compute a local diffusion estimator:
 
 \begin{equation}
-	\dot{x}_\mu = F_\mu (x) + \partial_\nu D(x)_{\mu \nu} + \sqrt{2D(x)}_{\mu \nu} \textnormal{d}B_t~,
+	\hat{d}(t_i) = \frac{[\Delta r_i (t_{i-1}) +\Delta r_i (t_{i}) ]^2}{4 \Delta t} + \frac{\Delta r_i (t_{i})\Delta r_i (t_{i-1})}{2\Delta t},
 \end{equation}
 
-where the Einstein summation is used over repeated indices, and the force field $F_\mu (x)$ and the diffusion tensor $D_{\mu \nu}$ are assumed to be time-independent. This method is built to measure the entire diffusion matrix, which for a particle diffusing above a wall has non-zero the diagonal term (\textit{i.e.} $D_{xx}$, $D_{yy}$ and $D_{zz}$). However, for more complex environment such as cellular environment as shown in Fig.~\ref{fig.ronceray}-a), non-diagonal terms exist leading to correlations between the displacement axis. As an example, it has been observed in elastohydrodynamics \cite{saintyves_self-sustained_2016} that the parallel movement near a soft wall can induce perpendicular forces, hence leading in that peculiar case, to correlation between the $x$ and $z$ movement. The \gls{SFI} idea is to approximate the diffusion field as a linear combination of a basis of $n_b$ known functions $b={b_\alpha (x)}_{\alpha = 1,...,n_b}$. For the diffusion of spherical spheres near a wall where the diffusion coefficient is given by the Eqs.~(\ref{Eq:etaz})~and~(\ref{Eq:etax}) we got robust results using their built-in polynomial basis:
-
-\begin{equation}
-	b = \{b_\alpha (x)\}_{\alpha= 1,...,n_b} = \{1, x_\mu, x_\mu x_\nu, ...\} \text{ (up to the order } n_b \text{ )}.
-\end{equation} 
-
-They perform this approximation by projecting the diffusion field onto the space spanned by $b_\alpha (x)$ using the position \gls{PDF}, $P_\mathrm{eq}$ (see Eq.~(\ref{Eq:PDF})) as a measure. This corresponds to a least-squares fit of the diffusion field by linear combinations of the $b_\alpha$'s. To do this fit, they define a projector:
-
-\begin{equation}
-	c_\alpha (x) = B^{1/2}_{\alpha \beta} b_\beta (x) ~,
-\end{equation}
-
-where $ B^{1/2}_{\alpha \beta}$ is an orthonormalization matrix such that $\int c_\alpha c_\beta P_\mathrm{eq}(x)\mathrm{d}x = \delta _{\alpha \beta}$. They then approximate $D_{\mu \nu}$ by its projection as a linear combination of known functions:
-
-\begin{equation}
-	D_{\mu \nu} (x) \simeq D_{\mu \nu \alpha} c_\alpha (x) ~,
-\end{equation}  
-
-with,
-
-\begin{equation}
-	D_{\mu \nu \alpha} = \int D_{\mu \nu}(x) c_\alpha (x) P_\mathrm{eq} \mathrm{d}x ~.
-\end{equation}
-
-As the equation here are over a whole trajectory which is long enough to satisfy $P_\mathrm{eq}$, the empirical projector $\hat{c}_\alpha$ can be approximated using the trajectory averages. To measure the local diffusion they construct a local estimator $\hat{d}_{\mu \nu} = \Delta x_\mu (t_i) \Delta x_\nu (t_i) / 2\Delta t$, so that $D_{\mu \nu \alpha}$ now reads:
-
-\begin{equation}
-	\hat{D}_{\mu \nu \alpha} = \frac{1}{\tau} \sum _i \hat{d}_{\mu \nu} (t_i) \hat{c}_\alpha (x (t_i)) \Delta t).
-\end{equation}
-
-The latter equation corresponds to a linear regression of $\hat{d}_{\mu \nu} (t_i)$, and permits to project the diffusion tensor onto a finite set of basis functions. We implemented this method, using fourth-order polynomials in our case. to simplify the use of their method with our data, I developed a simple Python function around their method \href{https://github.com/eXpensia/StochasticForceInference/blob/master/fun_SFI.py}{\faGithub} which can infer the local diffusion coefficient by only one function call: 
-
+where the second term correspond to Vestergaard error. Then, by approximating locally the Diffusion coeffcient by a polynomial function basis (such as $\sum_0 ^n a_n z^n$). One can use then use the latter defined estimator in order to fit locally the polynomial coefficient. Once the coefficients estimated, one can compute the the diffusion coefficient for any height $z$ in the range of the provided data $r_i$ (\textit{i.e.} in the range [min($r_i$), max($r_i$)]. Although, the mathematical details of the \gls{SFI} method are beyond the scope of the presented work as it requires a great knowledge of information theory, we used the \gls{SFI} method as a tool. We implemented this method, using a forth-order polynomial base. To simplify the use of the method with our data, we developed a simple Python function \href{https://github.com/eXpensia/StochasticForceInference/blob/master/fun_SFI.py}{\faGithub} which can infer the local diffusion coefficient by only one function call.
 \begin{minted}
 	[
 	frame=lines,
@@ -1280,7 +1261,7 @@ Dx, Dy, Dz, z_D = Compute_diffusion(pos)
 
 \end{minted}
 
-Where in the latter \mintinline{python}{pos}, is the 3D trajectory of a Brownian colloid. It allowed us to infer the local diffusion coefficients $D_i(z)$, down to $z=10$~nm, as shown in Fig.~\ref{fig.visco}. The results are in excellent agreement with the theoretical predictions, $D_{\parallel}(z)$ and $D_z(z)$, using  Eqs.~(\ref{Eq:etaz})~and~(\ref{Eq:etaz}), thus validating the method.
+where \mintinline{python}{pos}, is the 3D trajectory of a Brownian colloid. It allowed us to infer the local diffusion coefficients $D_i(z)$, down to $z=10$~nm, as shown in Fig.~\ref{fig.visco}. The results are in excellent agreement with the theoretical predictions, $D_{\parallel}(z)$ and $D_z(z)$, using  Eqs.~(\ref{Eq:etaz})~and~(\ref{Eq:etaz}), thus validating the method.
 
 
 \begin{figure}[H]
