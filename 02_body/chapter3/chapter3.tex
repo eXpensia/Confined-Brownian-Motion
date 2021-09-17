@@ -4,7 +4,7 @@
 \label{sec:confined}
 By observing the experimental trajectory along the $z$-axis of a particle of $1.5 ~ \mathrm{\mu m} $ radius as shown in Fig.~\ref{Fig:exp_z_traj}, one can notice that the particle's height does not get higher than approximately $4 ~ \mathrm{\mu m}$. Indeed, due to gravity, a colloid is confined near the surface. This confinement induces near-wall effects, such as hindered mobility and electrostatic interactions. 
 
-In the first part of this chapter, I will detail the theory of confined Brownian motion and how to numerically simulate it. In a second part, I will present how to analyze experimental data. In particular, I will detail a multi-fitting procedure that a enables thermal-noise-limited inference of diffusion coefficients spatially resolved at the nanoscale, equilibrium potentials, and forces at the femtonewton resolution.
+In the first part of this chapter, I will detail the theory of confined Brownian motion and how to numerically simulate it. In a second part, I will present how to analyze experimental data. In particular, I will detail a multi-fitting procedure that enables thermal-noise-limited inference of diffusion coefficients spatially resolved at the nanoscale, equilibrium potentials, and forces at the femtonewton resolution.
 
 \begin{figure}[ht]
 	\centering
@@ -39,7 +39,7 @@ one can rewrite Eq.~(\ref{eq:ug_full}) as:
 
 The Boltzmann length $\ell_\mathrm{B}$ corresponds to the spatial extent over which the change of gravitational energy equals thermal energy. This distance was first measured by Perrin \cite{perrin_les_2014}. To do so, using a microscope he counted the number of colloidal particles as a function of the height in the sample. Then, he reconstructed the concentration profile of the colloidal suspension that exponentially decays as $\mathrm{e}^{- z / \ell _\mathrm{B}}$. As an example, for a polystyrene particle of radius $a  = 1.5 ~ \mathrm{\mu m}$ in water, one has $\ell _\mathrm{B} = 580 ~ \mathrm{nm}$.
 
-For systems with $\ell _\mathrm{B} >> h $, whiere $h$ is the vertical thickness of the sample, one can consider that the particle does not feel gravity. This is particularly the case when the densities of the colloids and the fluid are equal. In this particular case, one has $\ell _\mathrm{B} = \infty$. Thus, density matching can be a way to do gravitaty-free experiments. In our experiment, we want to measure confinement-induced effects. Therefore, we need gravity for particles to be driven towards the substrate. As particles get larger or denser, $\ell _\mathrm{B}$ decreases and particles are, on average, closer to the substrate. 
+For systems with $\ell _\mathrm{B} >> h $, where $h$ is the vertical thickness of the sample, one can consider that the particle does not feel gravity. This is particularly the case when the densities of the colloids and the fluid are equal. In this particular case, one has $\ell _\mathrm{B} = \infty$. Thus, density matching can be a way to do gravity-free experiments. In our experiment, we want to measure confinement-induced effects. Therefore, we need gravity for particles to be driven towards the substrate. As particles get larger or denser, $\ell _\mathrm{B}$ decreases and particles are, on average, closer to the substrate. 
 
 
 \subsubsection{Sphere-wall interactions}
@@ -47,7 +47,7 @@ For systems with $\ell _\mathrm{B} >> h $, whiere $h$ is the vertical thickness 
 
 
 
-As we have seen, external forces such as gravity act on the particles. As Brownian particles are close to a wall, we can also expect some interactions between the particles and the wall. In our case, we suppose that the Brownian particles do not interact with each other, as we consider dilute soultions only. Indeed, the studied particles are at least $50 ~ \mathrm{\mu m}$ apart from each other, which corresponds to 10 times their size for the largest beads. 
+As we have seen, external forces such as gravity act on the particles. As Brownian particles are close to a wall, we can also expect some interactions between the particles and the wall. In our case, we suppose that the Brownian particles do not interact with each other, as we consider dilute solutions only. Indeed, the studied particles are at least $50 ~ \mathrm{\mu m}$ apart from each other, which corresponds to 10 times their size for the largest beads. 
 
 To describe the interaction between a Brownian particle and the wall, we use the DLVO theory, named after Derjaguin, Landau, Verwey, and Overbeek \cite{israelachvili_intermolecular_2015}. This theory was first developed to describe the interactions between colloids, and explains the stability of colloidal suspensions. It involves two force components; the Hamaker force which arises from van der Waals interactions between the molecules of the two surfaces and a screened electrostatic force due to a double layer of charges formed near each surface, and involving the ions present in the solution. 
 
@@ -58,7 +58,7 @@ To describe the interaction between a Brownian particle and the wall, we use the
 
 When a surface is immersed in water, it usually acquire charges \cite{israelachvili_intermolecular_2015} due to a high water dielectric constant $\epsilon = \epsilon_0 \epsilon_\mathrm{r}$, where $\epsilon_0$ is the vacuum permittivity and $\epsilon_\mathrm{r}$ the medium relative permittivity; for water $\epsilon_\mathrm{r} = 80$. Commonly, surface charging is done through the ionization of  surface groups\footnote{For example, the dissociation of protons from surface carboxylic groups \cite{israelachvili_intermolecular_2015} ($-$COOH $\rightarrow$ -COO$^-$ + H$^+$) which charges negatively the surface.}, or from the binding of ions from the solution --- for example, adsorption of $-$OH$^-$ onto the water-air interface that charges it negatively. In the bulk, a fluid is electrically neutral; thus the fluid contains as equal number of ions of opposite charges (including the proper stoichiometry due to ionic valencies). However, when a surface is negatively charged, the negative ions are repelled from it, while positive ions are attracted towards it.  Therefore, a double-layer charge distribution is formed near the surface, as shown in Fig.~\ref{Fig:double_layer}. Experimentally, we use glass slides and polystyrene beads that are both negatively charged in water leading to a repulsive interaction between them. This repulsive force prevents the colloids from sticking together, or to the substrate's surface.
 
-The DLVO theory state that the electrostatic potential $\Psi(\vec{r})$ generated by an ion of one given speicies $i$ at a distance $\vec{r}$ satisfies the Poisson equation \cite{israelachvili_intermolecular_2015}:
+The DLVO theory states that the electrostatic potential $\Psi(\vec{r})$ generated by an ion of one given species $i$ at a distance $\vec{r}$ satisfies the Poisson equation \cite{israelachvili_intermolecular_2015}:
 
 \begin{equation}
 	\nabla ^2 \Psi(\vec{r}) = -\frac{1}{\epsilon_\mathrm{r} \epsilon_0}  \rho_\mathrm{e}(\vec{r})~,
@@ -79,7 +79,7 @@ with:
 \end{figure}
 
 
-the local charge density, where $e$ is the elementary charge, and where the index $i$ denotes an ionic species of valence $z_i$ and local ionic concentration $c_i$ (number density). If the solution is at thermodynamic equilibrium, the local ionnic density is given by a Gibbs-Boltzmann distribution, as:
+the local charge density, where $e$ is the elementary charge, and where the index $i$ denotes an ionic species of valence $z_i$ and local ionic concentration $c_i$ (number density). If the solution is at thermodynamic equilibrium, the local ionic density is given by a Gibbs-Boltzmann distribution, as:
 
 \begin{equation}
 	c_i(\vec{r}) = c_i ^0 \textnormal{exp}\left(\frac{-z_i e \Psi(\vec{r})}{k_\mathrm{B} T }\right) ~,
@@ -138,7 +138,7 @@ which is the characteristic ion-induced screening length of the electrostatic in
 		\ell _\mathrm{D} &= \sqrt{\frac{ 2 \epsilon_0 \epsilon_\mathrm{r} k_\mathrm{B}T}{c_s^0 e^2}}
 		& = \frac{0.304 }{ \sqrt{C} } ~\mathrm{nm} ~,
 	\end{aligned}
-\label{ldnacl}
+	\label{ldnacl}
 \end{equation}
 
 
@@ -172,7 +172,7 @@ which has a general solution:
 	\Psi(r) = C_1 \frac{\exp(\kappa r)}{r} + C_2 \frac{\exp(-\kappa r)}{r}~.
 \end{equation}
 
-The electrostatic potential vanishes at infinity such that $C_1 = 0$. Therfore, the electrostatic potential (and thus the electrostatic energy potential) takes the form of a Yukawa potential:
+The electrostatic potential vanishes at infinity such that $C_1 = 0$. Therefore, the electrostatic potential (and thus the electrostatic energy potential) takes the form of a Yukawa potential:
 
 \begin{equation}
 	\Psi (r) = C_2 \frac{\exp(-\kappa r)}{r} ~.
@@ -204,7 +204,7 @@ This solution can be used to determine the electrostatic potential between two s
 	\frac{\exp(-\kappa z)}{a_1 + a_2 + z} ~,
 \end{equation} 
 with $z$ the gap between the two colloids.
-From the latter equation, it is possible to write the electrostatic interaction energy $U_\textrm{elec}$ between a plannar wall of charge density $\sigma_\textrm{w}$ and a spherical colloid of radius $a$ and surface charge density $\sigma$, by setting one of the two radii to infinity. Doing so, one gets:
+From the latter equation, it is possible to write the electrostatic interaction energy $U_\textrm{elec}$ between a planar wall of charge density $\sigma_\textrm{w}$ and a spherical colloid of radius $a$ and surface charge density $\sigma$, by setting one of the two radii to infinity. Doing so, one gets:
 
 \begin{equation}
 	\frac{U_\textrm{elec}(z)}{k_\mathrm{B}T}  = B \mathrm{e}^{-\frac{z}{\ell_\mathrm{D}}}~,
@@ -261,7 +261,7 @@ where $A$ is the nonretarded Hamaker constant. For our system, where the particl
 	\textnormal{d}\nu ~,
 \end{equation}
 
-where $\epsilon_1$, $\epsilon_2$ and $\epsilon_3$ are the static dielectric constants of the three media, $\epsilon_{1,2,3} (j\nu)$ are the  dielectric constant at a imaginary frequency $ j \nu$. The first term gives the zero-frequency energy of the Van der Waals interaction and the second term the dispersion energy. In the litterature, we found for polystyrene colloids in water near a glass substrate $A\approx k_\mathrm{B}T$. Since $A$ is positive, the interaction is attractive, moreover, we estimate that the van der Waals forces play a role only within a few nanometers from the surface ($z < 10$ nm), as commonly observed \cite{prieve_measurement_1999}. In our experiments, the Debye length $\ell _\mathrm{D}$ ($>20$ nm) is large enough for the particles to avoid this region. Therefore, in the following, the van der Waals interactions are neglected. It is possible to study the van der Waals interactions with Brownian motion, provided that one adds enough salt to have $\ell_\mathrm{D} \simeq 1$ nm. However, with such a short Debye length, all the colloids would stick to the surface and with each others, as a result of van der Waals forces. Interestingly, we have experimentally observed stuck particles. Further work on these events may lead to interesting insights about of the near-wall interactions. 
+where $\epsilon_1$, $\epsilon_2$ and $\epsilon_3$ are the static dielectric constants of the three media, $\epsilon_{1,2,3} (j\nu)$ are the  dielectric constant at a imaginary frequency $ j \nu$. The first term gives the zero-frequency energy of the Van der Waals interaction and the second term the dispersion energy. In the literature, we found for polystyrene colloids in water near a glass substrate $A\approx k_\mathrm{B}T$. Since $A$ is positive, the interaction is attractive, moreover, we estimate that the van der Waals forces play a role only within a few nanometers from the surface ($z < 10$ nm), as commonly observed \cite{prieve_measurement_1999}. In our experiments, the Debye length $\ell _\mathrm{D}$ ($>20$ nm) is large enough for the particles to avoid this region. Therefore, in the following, the van der Waals interactions are neglected. It is possible to study the van der Waals interactions with Brownian motion, provided that one adds enough salt to have $\ell_\mathrm{D} \simeq 1$ nm. However, with such a short Debye length, all the colloids would stick to the surface and with each other, as a result of van der Waals forces. Interestingly, we have experimentally observed stuck particles. Further work on these events may lead to interesting insights about of the near-wall interactions. 
 
 
 
@@ -297,6 +297,7 @@ From this total potential energy, one can then construct the Gibbs-Boltzmann dis
 
 where $A$ is a normalization constant such that $\int_{0}^{\infty}P_\mathrm{eq}(z)\textnormal{d}z = 1$. Given an ensemble of heights $z_i$, one can compute $P_\mathrm{eq}$ using the following Python function \mintinline{python}{Peq}, where the $A$ is computed using the \mintinline{python}{np.trapz} function. Examples of a theoretical energy potential and associated \gls{PDF} of position can be seen in Fig.~\ref{Fig:potential} for $\ell_\mathrm{B} = 500 ~ \mathrm{nm} $,  $B = 4$ and $\ell_\mathrm{D} = 50 ~ \mathrm{nm}$.
 
+
 \begin{minted}
 	[
 	autogobble,
@@ -323,8 +324,6 @@ def Peq(z):
 return P / np.trapz(P,z)
 \end{minted}
 
-
-
 \begin{figure}[h]
 	\centering
 	\includegraphics{02_body/chapter3/images/potential/potential_exemple.pdf}
@@ -344,7 +343,7 @@ return P / np.trapz(P,z)
 \end{figure}
 
 
-As we have seen in Chapter~\ref{sec:chapter1}, for a freely diffusing colloid in the bulk, the diffusion coefficient is given by Eq.~(\ref{Eq:D_einstein}) and is a constant. However, when a particle is confined by a rigid wall, the diffusion is hindered. This means that the diffusion coefficient varies with the particle-wall distance and becomes anisotropic.A seminal measurement of this effect was done by Faucheux and Libchaber \cite{faucheux_confined_1994}. As we can see in Fig.~\ref{fig:libchaber}, using a microscope, they tracked colloids within a parallelepipedic chamber, and measured the thickness-averaged diffusion coefficients for different value of the confinement parameter $\gamma = \langle z\rangle_t / a$, with $\langle z \rangle_t$ time-averaged particle-wall distance. As experiments reach equilibrium, $\langle z \rangle_t$ is given by the Gibbs-Boltamann distribution as $\langle z \rangle_t = \int \textnormal{d}zP_\mathrm{eq}(z))z$. We observe that the diffusion coefficient parallel to the surface decreases as the particle gets closer to the wall, and seems to saturate around $0.3D_0$ at low $\gamma$, with $D_0$ the diffusion coefficient in the bulk (see Eq.~\ref{Eq.D}). 
+As we have seen in Chapter~\ref{sec:chapter1}, for a freely diffusing colloid in the bulk, the diffusion coefficient is given by Eq.~(\ref{Eq:D_einstein}) and is a constant. However, when a particle is confined by a rigid wall, the diffusion is hindered. This means that the diffusion coefficient varies with the particle-wall distance and becomes anisotropic.A seminal measurement of this effect was done by Faucheux and Libchaber \cite{faucheux_confined_1994}. As we can see in Fig.~\ref{fig:libchaber}, using a microscope, they tracked colloids within a parallelepipedic chamber, and measured the thickness-averaged diffusion coefficients for different values of the confinement parameter $\gamma = \langle z\rangle_t / a$, with $\langle z \rangle_t$ time-averaged particle-wall distance. As experiments reach equilibrium, $\langle z \rangle_t$ is given by the Gibbs-Boltzmann distribution as $\langle z \rangle_t = \int \textnormal{d}zP_\mathrm{eq}(z))z$. We observe that the diffusion coefficient parallel to the surface decreases as the particle gets closer to the wall, and seems to saturate around $0.3D_0$ at low $\gamma$, with $D_0$ the diffusion coefficient in the bulk (see Eq.~\ref{Eq.D}). 
 \newpage
 
 To understand the reason for this hindered diffusion coefficient, let us start by writing the diffusion coefficient $D$ using the fluctuation dissipation theorem:
@@ -368,7 +367,7 @@ where $v_\mathrm{sphere}$ is the terminal velocity to an applied force $F_\mathr
 	\label{Eq.drag}
 \end{equation}
 
-where $c$ is a constant that depends on the boundary conditions imposed at the surface of the colloid. Typically, one has $c = 6$ for a no-slip boundary conditions and $c = 4$ for a full-slip boundary conditions, such as for air bubbles for example. Combining Eqs.~(\ref{Eq.fluc}),~(\ref{Eq.mu})~and~(\ref{Eq.drag}) for a freely diffusing no-slip hard sphere in the bulk we retrieve Eq.~(\ref{Eq:D_einstein}): 
+where $c$ is a constant that depends on the boundary conditions imposed at the surface of the colloid. Typically, one has $c = 6$ for a no-slip boundary conditions and $c = 4$ for a full-slip boundary conditions, such as for air bubbles, for example. Combining Eqs.~(\ref{Eq.fluc}),~(\ref{Eq.mu})~and~(\ref{Eq.drag}) for a freely diffusing no-slip hard sphere in the bulk we retrieve Eq.~(\ref{Eq:D_einstein}): 
 
 \begin{equation}
 	D = D_0 = \frac{k_\mathrm{B}T}{6\pi \eta a} ~.
@@ -444,13 +443,13 @@ When the particle is moving towards the wall we thus have $p\gg \sigma$, we thus
 	p \sim \eta  \frac{L^4}{h^2}
 \end{equation}
 
- Integrating this pressure over the particle surface (\textit{i.e} over the typical length $L = \sqrt{az}$) leads a scaling of the drag force:
+Integrating this pressure over the particle surface (\textit{i.e} over the typical length $L = \sqrt{az}$) leads a scaling of the drag force:
 
 \begin{equation}
 	F_\mathrm{drag} ^{z\ll a} \sim \eta V \frac{L^4}{h^2} = \eta V \frac{a^2}{z}
 \end{equation}
 
-The mobility (see Eq.~(\ref{Eq.mu})) of the displacement perpendicular to the wall  thus scale as $\gamma_0^{-1} h/a$, with $\gamma_0^{-1}$ the bulk mobility. Therefore, the diffusion coefficient of a confined colloid near a wall in the lubrication approximation is hindered and inversely proportional to the particle-wall distance. It is possible to same scaling for the parrallel mobility by supposing that the particle is moving along the $x$-axis. In that case, one can find that the viscous stress is greater than the pressure and finally find that along the $x$-axis, the parallel mobility follow the same scaling as in bulk and remain constant.
+The mobility (see Eq.~(\ref{Eq.mu})) of the displacement perpendicular to the wall  thus scale as $\gamma_0^{-1} h/a$, with $\gamma_0^{-1}$ the bulk mobility. Therefore, the diffusion coefficient of a confined colloid near a wall in the lubrication approximation is hindered and inversely proportional to the particle-wall distance. It is possible to same scaling for the parallel mobility by supposing that the particle is moving along the $x$-axis. In that case, one can find that the viscous stress is greater than the pressure and finally find that along the $x$-axis, the parallel mobility follows the same scaling as in bulk and remain constant.
 
 To recap, a colloid diffusing near a wall thus experience a local drag force that depends on both its distance $z$ to the wall and direction of motion. Thanks to the linearity of the Stokes equation, one can decompose this local drag force in two contributions, for motions parallel and perpendicular to the wall. As the presence of the wall modifies the drag force with a space-dependent multiplicative factor, the confinement effect is often expressed in terms of effective viscosities:
 
@@ -494,6 +493,8 @@ where $\beta = \cosh ^{-1} ((z+a)/a)$. For the motion of a sphere parallel to a 
 \end{equation}
 
 where $\xi  = a / (z+a)$. Eqs.~(\ref{Eq:etaz})~and~(\ref{Eq:etax}) are exact for all $z$ and shown in Fig.~\ref{fig.etaz}-a). However, the solution for the perpendicular motion can be complex to compute as it is an infinite series. It requires a software that enables arbitrary-precision floating-point arithmetic\footnote{Arbitrary-precision floating-point arithmetic enables to evaluate mathematical expressions with any precision, \textit{i.e.} any number of digits.} --- such as Mathematica or the \mintinline{python}{mpmath} Python's module, for example. $D_\bot$ can be evaluated using the following Python snippet, where the \mintinline{python}|nsum| function is used to compute the summation:  
+ 
+ \newpage
 
 
 \begin{minted}
@@ -731,6 +732,7 @@ The Fokker-Plank equation with multiplicative noise finally writes:
 due to the presence of multiplicative noise, we now have a new drift velocity term that depends on the stochastic interpretation of the Langevin equation.
 
 \subsubsection{Spurious drift}
+\label{sec:spurious}
 
 Now that we derived the Fokker-Planck equation for multiplicative noise, we can inspect how the new drift velocity term $\alpha g(X_t)g'(X_t)$ plays a role, in the case where one wants to simulate near-wall confined Brownian motion, or, infer forces from a measured trajectory. Let first rewrite Eq.~(\ref{sde.multipl}) along the $z$-axis for a particle confined near a wall:
 
@@ -809,11 +811,13 @@ By combining Eqs.~(\ref{Feq})~and~(\ref{Uss}), one has:
 The difference between Eqs.~(\ref{drift_alpha}) and (\ref{alpha-1}) gives $g(x)g'(x) = \mathrm{d}D_\bot/ \mathrm{dz}$, and does not depend on the interpretation of the Langevin equation. Finally, we write the overall drift as:
 
 \begin{equation}
-	\bar{v}_\mathrm{d} = -\frac{1}{\gamma_\bot(z)} \frac{\textnormal{d} U(z)}{\textnormal{d} z} + \frac{\mathrm{d} D_\bot(z)}{\mathrm{d}z}  = v_\mathrm{d} + v_\mathrm{noise}~,
+	\bar{v}_\mathrm{d} = -\frac{1}{\gamma_\bot(z)} \frac{\textnormal{d} U(z)}{\textnormal{d} z} + \frac{\mathrm{d} D_\bot(z)}{\mathrm{d}z}  = v_\mathrm{d} + v_\mathrm{spurious}~,
 	\label{Eq.total_drifts}
 \end{equation}
 
-where, to recap, the first term $v_\textnormal{d}$ is the drift velocity due to deterministic forces (electrostatic and gravitational interactions in our case). The spurious drift velocity $v_\mathrm{noise}$ disappears when the diffusion coefficient is homogeneous,and would also disappear along the $x$- and $y$-axes since the diffusion coefficients only depend on the colloid-wall distance $z$ (a derivative with respect to $x$ would replace the one in $z$ in the equivalent of Eq.~(\ref{Eq.total_drifts}) for the $x$-direction). Using  Eqs.~(\ref{Eq.hindered})~(\ref{Eq:etaz_pade})~and~(\ref{Eq.total_drifts}), the deterministic drift velocity reads:
+where, to recap, the first term $v_\textnormal{d}$ is the drift velocity due to deterministic forces (electrostatic and gravitational interactions in our case). The spurious drift velocity $v_\mathrm{spurious}$ disappears when the diffusion coefficient is homogeneous,and would also disappear along the $x$- and $y$-axes since the diffusion coefficients only depend on the colloid-wall distance $z$ (a derivative with respect to $x$ would replace the one in $z$ in the equivalent of Eq.~(\ref{Eq.total_drifts}) for the $x$-direction). To conclude on that subject, and as pointed out by Mennella \textit{et al.} \cite{mannella_ito_2012}, this derivation is not formal as it requires several approximations. However, the result is still correct. A formal derivation has already been done \cite{sancho_adiabatic_1982} and is done by taking the Fokker-Planck of the underdamped Langevin equation. Then they formally compute the limit of the underdamped Fokker-Planck equation when the mass of the particle tends to zero, using a mathematical method called adiabatic reduction.
+
+Finally, Using  Eqs.~(\ref{Eq.hindered})~(\ref{Eq:etaz_pade})~and~(\ref{Eq.total_drifts}), the deterministic drift velocity reads:
 
 \begin{equation}
 	v_\textnormal{d} =- \frac{k_\mathrm{B}T}{\gamma_\bot(z)} \left[- \frac{1}{\ell_\mathrm{D}} B \exp \left(- \frac{z}{\ell_\mathrm{D}}\right) + \frac{1}{\ell_\mathrm{B}}\right] ~,
@@ -846,7 +850,7 @@ However, in the case of confined Brownian motion, and without density matching, 
 	\label{eq.langevinnearx}
 \end{equation}
 
-where we recall that we approximate the continuous position $X_t$ of a particle at a time $t$ by a discrete-time sequence $x_i$, which is the solution of the equation at a time $t_i = i\tau$.$\tau$ being the numerical integration time increment, and $w_i$ is a Faussian-ditributed number of mean value $\langle w_i =0$ and variance $\langle w_i ^2\rangle = \tau$ . For the particle perpendicular motion (along the $z$-axis), one needs to add the total drift $\bar{v}_\textnormal{d}$ of Eq.~(\ref{Eq.total_drifts}), such that:
+where we recall that we approximate the continuous position $X_t$ of a particle at a time $t$ by a discrete-time sequence $x_i$, which is the solution of the equation at a time $t_i = i\tau$. $\tau$ being the numerical integration time increment, and $w_i$ is a Faussian-ditributed number of mean value $\langle w_i \rangle =0$ and variance $\langle w_i ^2\rangle = \tau$. For the particle perpendicular motion (along the $z$-axis), one needs to add the total drift $\bar{v}_\textnormal{d}$ of Eq.~(\ref{Eq.total_drifts}), such that:
 
 \begin{equation}
 	z_i = z_{i-1} + \bar{v}_\mathrm{d}(z_{i-1}) \tau + \sqrt{2D_\bot}w_i ~,
@@ -873,7 +877,7 @@ Since the diffusion coefficient does not vary for the parallel motion, one can c
 	\label{Dsmall}
 \end{equation}
 
-In that case, by choosing the isothermal convention ($\alpha = 1$), Eq.~(\ref{Eq.total_drifts}) near the surface simplifies to:
+In that case, Eq.~(\ref{Eq.total_drifts}) near the surface simplifies to:
 
 \begin{equation}
 	\begin{aligned}
@@ -976,21 +980,22 @@ def pdf(data, bins=10, density=True):
   return pdf, bins_center
 \end{minted}
 
-The long-time \gls{PDF} in position, for $\alpha = 0 , 0.5 \text{ and } 1 $ are shown in Fig.~\ref{fig.pdf_vs_alpha}. We see that the isothermal convention of the noise gives the correct distribution. In the other two cases, we observe that the particle is more likely to be found closer to the surface, as a result of the missing compensating spurious drift of Eq.~(\ref{Eq.spurious_drift}). However, defining derivative in other way (\textit{i.e.} Anti-itô or Stratonovich convention) would allow to employ any $\alpha$ values. 
+The long-time \gls{PDF} in position, for with and without the spurious drift $v_\mathrm{spurious}$ are shown in Fig.~\ref{fig.pdf_vs_alpha}. We see that the spurious drift velocity $v_\mathrm{spurious}$ permits retrieving the correct distribution. In the case ($v_\mathrm{spurious} = 0$), we observe that the particle is more likely to be found closer to the surface, as a result of the missing compensating spurious drift of Eq.~(\ref{Eq.spurious_drift}).
 
 \begin{figure}[H]
 	\centering
 	\includegraphics{02_body/chapter3/images/simulation_confined_Brownian_motion/Peq_vs_alpha.pdf}
-	\caption{Simulated, Long-term Probability Density Function of the height of the particle for different convention as indicated. The solid black line represents the expected Gibbs-Boltzmann distribution. The physical parameters are: $a = 1.5 ~ \mathrm{\mu m}$, $\rho_\mathrm{p} = 1050 ~\mathrm{kg.m^{-3}}$, $\ell_\mathrm{D} = 50$ nm, $B = 4$ and $\ell_\mathrm{B} = 577$ nm. }
+	\caption{Simulated, Long-term Probability Density Function of the height of the particle with or without the spurious drift, as indicated. The solid black line represents the expected Gibbs-Boltzmann distribution. The physical parameters are: $a = 1.5 ~ \mathrm{\mu m}$, $\rho_\mathrm{p} = 1050 ~\mathrm{kg.m^{-3}}$, $\ell_\mathrm{D} = 50$ nm, $B = 4$ and $\ell_\mathrm{B} = 577$ nm. }
 	\label{fig.pdf_vs_alpha}
 \end{figure}
 
 
 \subsection{Experimental study}
 \label{section:expresults}
-Let us now analyze the experimental data obtain through the Mie tracking (see section \ref{chap:LM_fit}). In the near-wall Brownian dynamics theory presented section~\ref{sec:confined}, we considered distance $z$ between the wall and the colloidal particle surface. However, it is not the height measured by the Mie tracking, since the latter measures the distance between the objective-lens focal plane and the particle center. Therefore, we measure the trajectory up to an offset, \textit{i.e.} the ojective-lens focal plane to wall distance. To have the correct measured height, we suppose that the particle does approach very closely to the wall, such that the minimal measured distance is the focal plane to the wall distance. From that assumption, we set the minimal value of $z$ in the trajectory to zero. This is repeated periodically and thus termed the moving-minimum method, and can be calculated using the following Python function.
+Let us now analyze the experimental data acquired through the Mie tracking (see section \ref{chap:LM_fit}). In the near-wall Brownian dynamic theory presented section~\ref{sec:confined}, we considered distance $z$ between the wall and the colloidal particle surface. However, it is not the height measured by the Mie tracking, since the latter measures the distance between the objective-lens focal plane and the particle center. Therefore, we measure the trajectory up to an offset, \textit{i.e.} the objective-lens focal plane to wall distance. To have the correct measured height, we suppose that the particle does approach very closely to the wall, such that the minimal measured distance is the focal plane to the wall distance. From that assumption, we set the minimal value of $z$ in the trajectory to zero. This is repeated periodically and thus termed the moving-minimum method, and can be calculated using the following Python function.
 
 
+\newpage
 
 \begin{minted}
 	[
@@ -1087,7 +1092,7 @@ against the Gibbs-Boltzmann distribution in position. As shown in Fig.~\ref{fig.
 
 \subsubsection{Non-Gaussian dynamics - displacement distribution}
 
-Having focused on the \gls{MSD}, \textit{i.e.} on the second moment only, we now turn to the full Probability Density Function $P_i$ of the displacement $\Delta r_i$. Since the diffusion coefficient $D_i(z)$ varies as a result of the variation of $z$ along the particle trajectory, $P_i$ exhibits a non-Gaussian behavior, as seen in Figs.~\ref{fig.displacement}-a,b,c,d). We even resolve the onset of a non-Gaussian behavior in $P_x$, by zooming on the large-$\lvert\Delta x\rvert$ wings. At short times, the diffusion coefficient $D_i$ and the drift velocity $\bar{v}_\mathrm{d}$, can be considered constant. By writing the initial condition of the particle-wall distance $\delta(z - z_0)$, the solution of Eq.~(\ref{Eq.solfokker}) becomes:
+Having focused on the \gls{MSD}, \textit{i.e.} on the second moment only, we now turn to the full-Probability Density Function $P_i$ of the displacement $\Delta r_i$. Since the diffusion coefficient $D_i(z)$ varies as a result of the variation of $z$ along the particle trajectory, $P_i$ exhibits a non-Gaussian behavior, as seen in Figs.~\ref{fig.displacement}-a,b,c,d). We even resolve the onset of a non-Gaussian behavior in $P_x$, by zooming on the large-$\lvert\Delta x\rvert$ wings. At short times, the diffusion coefficient $D_i$ and the drift velocity $\bar{v}_\mathrm{d}$, can be considered constant. By writing the initial condition of the particle-wall distance $\delta(z - z_0)$, the solution of Eq.~(\ref{final_fokker}) becomes:
 
 \begin{equation}
 	\begin{aligned}
@@ -1110,12 +1115,13 @@ which is a Gaussian distribution with a mean value $\langle \Delta z \rangle =  
 	\end{aligned}
 	\label{Eq:PDzshort}
 \end{equation}
-against the Gibbs-Boltzmann distribution. Thee latter equation can alternatively be written as an integral over the diffusion coefficient such that:
+against the Gibbs-Boltzmann distribution. The latter equation can alternatively be written as an integral over the diffusion coefficient such that:
 \begin{equation}
 	P_i(\Delta r_i , \Delta t) = \int_0 ^\infty \mathrm{d}D_iP(D_i) \frac{1}{\sqrt{4 \pi D_i \Delta t}} \mathrm{e} ^{\frac{-\Delta r_i ^2}{4D_i\Delta t}} 
 \end{equation}
 
 This equation can be evaluated using the following Python snippet.
+
 \begin{minted}
 	[
 	frame=lines,
@@ -1162,6 +1168,7 @@ which contains in particular the second moment:
 
 As shown in Fig.~\ref{fig.displacement}-e), Eq.~(\ref{auxiliary}) captures the long-term data along $z$ very well. Additionally, Eq.~(\ref{Eq:plateau}) permits to fit the long-term plateau of the \gls{MSD} shown in Fig.~\ref{fig.MSD}. Eq.~(\ref{auxiliary}) can be evaluated using the following Python function:
 
+
 \begin{minted}
 	[
 	frame=lines,
@@ -1198,55 +1205,58 @@ where the \mintinline{python}{P_eq} function has been described in section \ref{
 
 \subsubsection{Local diffusion coefficient}
 
-We now wish to go beyond the previous average $\langle D_i\rangle$ of Eq.~(\ref{averagediff}), and resolve the local diffusion coefficient $D_i(z)$. To measure local viscosities from experimental trajectories, a binning method is generally employed~\cite{friedrich_approaching_2011}. This method computing the average $\langle ( \Delta r_i^2 ) (z)$ locally in vertical bins, such that the local diffusion coefficient writes:
+We now wish to go beyond the previous average $\langle D_i\rangle$ of Eq.~(\ref{averagediff}), and resolve the local diffusion coefficient $D_i(z)$. To measure local viscosities from experimental trajectories, a binning method is generally employed~\cite{friedrich_approaching_2011}. This method computes the average $\langle ( \Delta r_i^2 ) (z)$ locally over a $z$-binning grid such that the local diffusion coefficient writes:
 
 \begin{equation}
 	D_i(z) = \frac{\langle  \Delta r_i^2  \rangle _t (z)}{\Delta t} ~.
 	\label{binning}
 \end{equation}
 
-Using this method, Vestergard \textit{et al.} \cite{vestergaard_estimation_2015} discovered that the obturation time of the camera and the localisation error $\sigma_{\mathrm{r}_i}$ plays an important role in the determination of the local diffusion coefficient, such that Eq.~\ref{binning} shoud be rewritten as:
+Using this method, Vestergard \textit{et al.} \cite{vestergaard_estimation_2015} discovered that the obturation time of the camera and the localization error $\sigma_{\mathrm{r}_i}$ plays an important role in the determination of the local diffusion coefficient such that Eq.~\ref{binning} should be rewritten as:
 
 \begin{equation}
 	D_i(z) = \frac{\langle  \Delta r_i^2 \rangle _t (z) - 2 \sigma_{\mathrm{r}_i}^2}{2(1 - R)\Delta t}~.
 	\label{binning_vestergaard}
 \end{equation}
 
-where $R$ is a motion blur coefficient that depends on the apperture time of the camera. Let us write $\tau$ the time lapse between the capture of two images, and $\zeta(t)$ the state of the camera shutter during this time lapse. $\zeta(t) > 0$ indicates that an open shutter while  $\zeta(t) = 0$ indicates a close shutter. The scale $\zeta(t)$ is fixed by the normalization condition $\int_{0}^{\tau} \zeta(t)\textnormal{d}t$. The motion blur coefficient is given by:
+where $R$ is a motion blur coefficient that depends on the aperture time of the camera. Let us write $\tau$ the time lapse between the capture of two images, and $\zeta(t)$ the state of the camera shutter during this time-lapse. $\zeta(t) > 0$ indicates that an open shutter while  $\zeta(t) = 0$ indicates a close shutter. The scale $\zeta(t)$ is fixed by the normalization condition $\int_{0}^{\tau} \zeta(t)\textnormal{d}t$. The motion blur coefficient is given by:
 
 \begin{equation}
 	R = \frac{1}{\tau} \int_{0}^{\tau} S(t)[1 - S(t)] \textnormal{d}t,
 \end{equation}
 
-where $S(t) = \int_{0}^{t}\zeta(t') \textnormal{d}t'$. If the shutter is kept open for the whole duration of the time lapse, one has $R = 1/6$. The localisation error $\sigma_{\mathrm{r}_i}$ can be determined from a measured trajectory. Taking into account that Brownian motion should not be correlated, one can measure $\sigma_{\mathrm{r}_i}$ by calculated the autocorrelation $x_i(n)$ as a function of the number of time-step $n$ of the particle position $r_i$, which we defined as:
+where $S(t) = \int_{0}^{t}\zeta(t') \textnormal{d}t'$. If the shutter is kept open for the whole duration of the time-lapse, one has $R = 1/6$. The localization error $\sigma_{\mathrm{r}_i}$ can be determined from a measured trajectory. Taking into account that Brownian motion should not be correlated, one can measure $\sigma_{\mathrm{r}_i}$ by calculated the autocorrelation $x_i(n)$ as a function of the number of time steps $n$ of the particle position $r_i$, which we defined as:
 
 \begin{equation}
 	x(n) =  \langle (r_i(t) - \langle r_i(t) \rangle_t  ) (r_i(t + n\Delta t) - \langle r_i(t) \rangle_t) \rangle_t ~.
 \end{equation}
 
-In \cite{vestergaard_estimation_2015} the localisation error (also called Vestergaard error) is written as:
+In \cite{vestergaard_estimation_2015} the localization error (also called Vestergaard error) is written as:
 
 \begin{equation}
 	\sigma_{\mathrm{r}_i} = \sqrt{x(1) - \frac{2 \langle \Delta r_i^2 \rangle_t }{1-R}}
 \end{equation}
- Moreover,  mechanical drifts (or evaporation driven-flow in the sample) can lead to correlation in the position time-series, such that $\sigma_{\mathrm{r}_i}$ increases in the presence of unwanted drifts. In our experiment we had $\sigma_{\mathrm{r}_x} = \sigma_{\mathrm{r}_y} = 12$~nm and $\sigma_{\mathrm{r}_z} = 6$~nm. 
+Moreover,  mechanical drifts (or evaporation driven-flow in the sample) can lead to correlation in the position time-series, such that $\sigma_{\mathrm{r}_i}$ increases in the presence of unwanted drifts. In our experience we had $\sigma_{\mathrm{r}_x} = \sigma_{\mathrm{r}_y} = 12$~nm and $\sigma_{\mathrm{r}_z} = 6$~nm. 
+
+
 
 \begin{figure}[h!]
 	\centering
 	\includegraphics[scale=0.6]{02_body/chapter3/images/diffusion_coefficient/figure_Ronceray.png}
-	\caption{Figure from \cite{frishman_learning_2020}. Quantitative comparison of Surface Force Inference (\gls{SFI} with other methods on a simulated system mimicking 2D single-molecule trajectories in a complex environment with space-dependent isotropic diffusion. a) The diffusion field (blue gradient) and drift field (white arrows). b) The steady-state distribution function (\gls{PDF}) of the process. The traces are representative trajectories of $100$ time steps. c-f) Comparison of the performance of \gls{SFI} and two widely used inference methods: InferenceMAP, a method for single-molecule inference (blue triangles)  \cite{beheiry_inferencemap_2015}, and grid-based binning with maximum-likelihood estimation \cite{hoze_heterogeneity_2012, friedrich_approaching_2011} (orange squares). They evaluated the performance of these methods on the approximation of the drift field (c),e)) and diffusion field (d)f)) as a function of the number $N$ of single-molecule trajectories (similar to the ones in panel b)) used. With ideal data (c),d)) and in the presence of measurement noise(e),f)). The performance is evaluated as the average mean-squared error on the reconstructed field along trajectories. \gls{SFI} outperforms both other methods in all cases. More information about the parameters of their simulation and analysis can be found in their work \cite{frishman_learning_2020}.}
+	\caption{Figure from \cite{frishman_learning_2020}. Quantitative comparison of Surface Force Inference (\gls{SFI} with other methods on a simulated system mimicking 2D single-molecule trajectories in a complex environment with space-dependent isotropic diffusion. a) The diffusion field (blue gradient) and drift field (white arrows). b) The steady-state distribution function (\gls{PDF}) of the process. The traces are representative trajectories of $100$ time steps. c-f) Comparison of the performance of \gls{SFI} and two widely used inference methods: InferenceMAP, a method for single-molecule inference (blue triangles)  \cite{beheiry_inferencemap_2015}, and grid-based binning with maximum-likelihood estimation \cite{hoze_heterogeneity_2012, friedrich_approaching_2011} (orange squares). They evaluated the performance of these methods on the approximation of the drift field (c),e)) and diffusion field (d)f)) as a function of the number $N$ of single-molecule trajectories (similar to the ones in panel b)) used. With ideal data (c),d)) and in the presence of measurement noise(e),f)). The performance is evaluated as the average mean-squared error on the reconstructed field along trajectories.  More information about the parameters of their simulation and analysis can be found in their work \cite{frishman_learning_2020}.}
 	\label{fig.ronceray}
 \end{figure}
 
 Although the binning method is well suited for drift measurements, it suffers from a lack of convergence and precision when second moments or local diffusion coefficients have to be extracted. In particular, the binning method did not allow us to measure specifically the local diffusion coefficient in the key interfacial region corresponding to $z<100$~nm. Indeed, as we can observe in Fig.~\ref{fig.ronceray}-f) the diffusion error on noisy (such as experimental) data does saturate, and the binning method is outperformed by a robust method  recently developed by Frishman and Ronceray \cite{frishman_learning_2020}. This method uses Stochastic Force Inference (\gls{SFI}), in order to evaluate spatially varying force fields and diffusion coefficients, from the information contained within the trajectories. 
 
-In practice the \gls{SFI} method compute a local diffusion estimator:
+In practice the \gls{SFI} method computes a local diffusion estimator:
 
 \begin{equation}
 	\hat{d}(t_i) = \frac{[\Delta r_i (t_{i-1}) +\Delta r_i (t_{i}) ]^2}{4 \Delta t} + \frac{\Delta r_i (t_{i})\Delta r_i (t_{i-1})}{2\Delta t},
 \end{equation}
 
-where the second term correspond to Vestergaard error. Then, by approximating locally the Diffusion coeffcient by a polynomial function basis (such as $\sum_0 ^n a_n z^n$). One can use then use the latter defined estimator in order to fit locally the polynomial coefficient. Once the coefficients estimated, one can compute the the diffusion coefficient for any height $z$ in the range of the provided data $r_i$ (\textit{i.e.} in the range [min($r_i$), max($r_i$)]. Although, the mathematical details of the \gls{SFI} method are beyond the scope of the presented work as it requires a great knowledge of information theory, we used the \gls{SFI} method as a tool. We implemented this method, using a forth-order polynomial base. To simplify the use of the method with our data, we developed a simple Python function \href{https://github.com/eXpensia/StochasticForceInference/blob/master/fun_SFI.py}{\faGithub} which can infer the local diffusion coefficient by only one function call.
+where the second term corresponds to Vestergaard error. Then, by approximating locally the diffusion coefficient by a polynomial function basis (such as $\sum_0 ^n a_n z^n$). One can use then use the latter defined estimator in order to fit locally the polynomial coefficient. Once the coefficients estimated, one can compute the diffusion coefficient for any height $z$ in the range of the provided data $r_i$ (\textit{i.e.} in the range [min($r_i$), max($r_i$)]. Although, the mathematical details of the \gls{SFI} method are beyond the scope of the presented work as it requires a great knowledge of information theory, we used the \gls{SFI} method as a tool. We implemented this method, using a fourth-order polynomial base. To simplify the use of the method with our data, we developed a simple Python function \href{https://github.com/eXpensia/StochasticForceInference/blob/master/fun_SFI.py}{\faGithub} which can infer the local diffusion coefficient by only one function call.
+
 \begin{minted}
 	[
 	frame=lines,
@@ -1260,6 +1270,8 @@ where the second term correspond to Vestergaard error. Then, by approximating lo
 Dx, Dy, Dz, z_D = Compute_diffusion(pos)
 
 \end{minted}
+
+
 
 where \mintinline{python}{pos}, is the 3D trajectory of a Brownian colloid. It allowed us to infer the local diffusion coefficients $D_i(z)$, down to $z=10$~nm, as shown in Fig.~\ref{fig.visco}. The results are in excellent agreement with the theoretical predictions, $D_{\parallel}(z)$ and $D_z(z)$, using  Eqs.~(\ref{Eq:etaz})~and~(\ref{Eq:etaz}), thus validating the method.
 
@@ -1298,7 +1310,7 @@ Finally, we investigate the total conservative force $F_z(z)$ acting on the part
 where one can use the experimentally measured $P_\mathrm{eq}$ (see Fig.~\ref{fig.pdf_exp}). The results of this method are shown in Fig.~\ref{fig.figure_force_total}. However, it can be interesting to measure the forces using the local drifts as for more complex systems, some non-conservative forces could arise. As the Eq.~(\ref{Eq.conservative_force}) takes only into account to the potential $U$, only conservative forces can be extracted from the measurement of $P_\mathrm{eq}$. Non-conservative forces could be measured by the difference between forces obtained through $P_\mathrm{eq}$ and the local drifts.  
 
 
-Let us now explain the force measurement from dirfts. By averaging the overdamped Langevin of Eq.~(\ref{Eq.langevin_confined}) over a fine-enough $z$-binning grid and a short-enough time interval $\Delta t$, one gets in the Itô convention (corresponding to our definition of $\Delta z$):
+Let us now explain the force measurement from drifts. By averaging the overdamped Langevin of Eq.~(\ref{sde.multipl}) over a fine-enough $z$-binning grid and a short-enough time interval $\Delta t$, one gets in the Itô convention (corresponding to our definition of $\Delta z$):
 \begin{equation}
 	F_z (z) = 6 \pi \eta_z (z ) a \frac{\langle\Delta z\rangle}{\Delta t} - k_\mathrm{B}T \frac{D_z'(z)}{D_z(z)} \ ,
 	\label{stokes}
@@ -1322,5 +1334,10 @@ Using the physical parameters extracted from the above multifitting procedure, w
 \end{figure}
 
 \subsection{Conclusion}
-To conclude, we have successfully built a multi-scale statistical analysis for the problem of freely diffusing individual colloids near a rigid wall. Combining the equilibrium distribution in position, time-dependent non-Gaussian statistics for the spatial displacements, a novel method to infer local diffusion coefficients, and a multifitting procedure, allowed us to reduce drastically the measurement uncertainties and reach the nanoscale and thermal-noise-limited femtoNewton spatial and force resolutions, respectively. The ability to measure tiny surface forces, locally, and at equilibrium, as well the possible extension of the method to non-conservative forces and out-of-equilibrium settings~\cite{amarouchene_nonequilibrium_2019, mangeat_role_2019}, opens fascinating perspectives for nanophysics and biophysics.
+
+In this section we have covered the physics we need to take into account when considering confined Brownian motion. We first detailed the gravitational and DLVO interactions to detail the Gibbs-Boltzmann distribution. Then, we detail the space-varying damping due to the hydrodynamic interactions between the wall and the particle. The damping which is now space-varying in the Langevin induces a non-trivial integration of the Langevin force, which induces the appearance of a spurious drift term in the Fokker-Planck equation. We then present a method that permits to estimate how the simulation time-step should be selected, then we show that the spurious drift term is needed to be taken into account to recover the correct equilibrium distribution.
+
+In a second part, we present a multi-scale statistical analysis for the problem of freely diffusing individual colloids near a rigid wall. Combining the equilibrium distribution in position, time-dependent non-Gaussian statistics for the spatial displacements, a novel method to infer local diffusion coefficients, and a multifitting procedure, allowed us to reduce drastically the measurement uncertainties and reach the nanoscale and thermal-noise-limited femtoNewton spatial and force resolutions, respectively.
+
+
 
