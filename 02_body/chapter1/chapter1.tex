@@ -128,7 +128,7 @@ Furthermore, measuring $N_\mathrm{A}$ also gives us the mass of atoms and molecu
 \begin{figure}[!h]
 	\centering
 	\includegraphics{02_body/chapter1/image/brown_exemple.pdf}
-	\caption{Simulation of over-damped Brownian motion in the bulk (see Eq.~(\ref{Eq.shortnumlangevin})) of $1 ~ \mathrm{\mu m}$ particles in water. On the top each line represents the trajectory of a Brownian particle over 100 seconds. A total of 100 trajectories are shown. On the bottom, bullets represent the Mean Square Displacement (\gls{MSD}) computed from the simulated trajectories. The plain black line represents Einstein's theory, which is computed from the square of Eq.~(\ref{Eq:MSD_ein}).\href{https://github.com/eXpensia/Ma-these/blob/main/02_body/chapter1/image/Simple_theory.ipynb}{\faGithub}}
+	\caption{Simulation of over-damped Brownian motion in the bulk (see Eq.~(\ref{Eq.shortnumlangevin})) of $1 ~ \mathrm{\mu m}$ particles in water. On the top each line represents the trajectory of a Brownian particle over 100 seconds. A total of 100 trajectories are shown. On the bottom, bullets represent the Mean Square Displacement (\gls{MSD}) computed from the simulated trajectories. The plain black line represents Einstein's theory, which is computed from the square of Eq.~(\ref{Eq:MSD_ein}).\href{https://github.com/eXpensia/Confined-Brownian-Motion/blob/main/02_body/chapter1/image/simple_Brownian.ipynb}{\faGithub}}
 	\label{fig:bulkbrown}
 \end{figure}
 
@@ -343,7 +343,7 @@ This is the diffusive regime where the \gls{MSD}, as found earlier, Eq.~(\ref{Eq
 \begin{figure}[!hb]
 	\centering
 	\includegraphics{02_body/chapter1/image/noise_simulation/exemple.pdf}
-	\caption{Bullets represents the probability density function of $w_i$, a Gaussian-distributed number with a mean value $\langle w_i \rangle$ and a variance $\langle w_i ^2 \rangle  = \tau$. The plain black line is a Gaussian distribution of zero mean and a $\tau$ variance (see Eq.~(\ref{eq.pwi})). On the first line, the simulation is done with $\tau = 10^{-3}$ s and $\tau = 1$ s on the second one. Each column corresponds to a number $N$ of draws. From the left to the right: $N=10^2, ~10^3 \text{ and } 10^4$. }
+	\caption{Bullets represents the probability density function of $w_i$, a Gaussian-distributed number with a mean value $\langle w_i \rangle$ and a variance $\langle w_i ^2 \rangle  = \tau$. The plain black line is a Gaussian distribution of zero mean and a $\tau$ variance (see Eq.~(\ref{eq.pwi})). On the first line, the simulation is done with $\tau = 10^{-3}$ s and $\tau = 1$ s on the second one. Each column corresponds to a number $N$ of draws. From the left to the right: $N=10^2, ~10^3 \text{ and } 10^4$.\href{https://github.com/eXpensia/Confined-Brownian-Motion/blob/main/02_body/chapter1/image/noise_simulation/noise_simulation.ipynb}{\faGithub}}
 	\label{fig:exempleprecisionwi}
 \end{figure}
 
@@ -425,7 +425,7 @@ where we can observe that two initial conditions are needed, the first two posit
 \begin{figure}[h]
 	\centering
 	\includegraphics{02_body/chapter1/image/noise_simulation/MSE.pdf}
-	\caption{Mean Relative Squared Error (\gls{MRSE}) of the Probability Density Function \gls{PDF} measured from a generation of $N$ Gaussian random numbers $w_i$ and the actual Gaussian (see Eq.~(\ref{eq.pwi})) from which the generation is done. The generation is done over a Gaussian which has a mean value $\langle w_i \rangle =0$ and variance $\langle w_i^2 \rangle = \tau$. We explore parameter ranges from $N = 10$ to $10^7$ and $\tau = 10^{-2}$ to $10$ s.}  
+	\caption{Mean Relative Squared Error (\gls{MRSE}) of the Probability Density Function \gls{PDF} measured from a generation of $N$ Gaussian random numbers $w_i$ and the actual Gaussian (see Eq.~(\ref{eq.pwi})) from which the generation is done. The generation is done over a Gaussian which has a mean value $\langle w_i \rangle =0$ and variance $\langle w_i^2 \rangle = \tau$. We explore parameter ranges from $N = 10$ to $10^7$ and $\tau = 10^{-2}$ to $10$ s. \href{https://github.com/eXpensia/Confined-Brownian-Motion/blob/main/02_body/chapter1/image/noise_simulation/noise_simulation.ipynb}{\faGithub}}  
 	\label{fig:MSEwi}
 \end{figure}
 
@@ -522,7 +522,7 @@ def msd(x, Dt):
 \begin{figure}[h]
 	\centering
 	\includegraphics{02_body/chapter1/image/simulation_full_langevin/intertial_langevin.pdf}
-	\caption{a) Set of $100$ trajectories simulated using the full-Langevin equation (see Eq.~(\ref{Eq.numfulllangevin})) for particles of a radius  $a = 1 ~\mathrm{\mu m}$ and mass $m = 10 ~\mathrm{\mu g}$ in water, with viscosity $\eta = 0.001 ~\mathrm{Pa.s}$. The simulations are done with a time step $\tau = 0.01~ \mathrm{s}$. b) Bullets represent the measured Mean Squared Displacements (\gls{MSD}) of the simulated trajectories. The plain black line represents the characteristic inertial timescale, $\tau_\mathrm{B} = m / \gamma = 0.53 ~\mathrm{s}$. The dotted line represents the \gls{MSD} in the ballistic regime (see Eq.~(\ref{Eq.shorttimemsd})), when $t << \tau _\mathrm{B}$. The dashed line represents the \gls{MSD} in the diffusive regime (see Eq.~(\ref{eq:longtimemsd})), when $t >> \tau _\mathrm{B}$, $\mathrm{MSD} = 2D\tau$. A detailed explanation of the simulation process can be found in appendix.\ref{app:simfulllangevin}.  }
+	\caption{a) Set of $100$ trajectories simulated using the full-Langevin equation (see Eq.~(\ref{Eq.numfulllangevin})) for particles of a radius  $a = 1 ~\mathrm{\mu m}$ and mass $m = 10 ~\mathrm{\mu g}$ in water, with viscosity $\eta = 0.001 ~\mathrm{Pa.s}$. The simulations are done with a time step $\tau = 0.01~ \mathrm{s}$. b) Bullets represent the measured Mean Squared Displacements (\gls{MSD}) of the simulated trajectories. The plain black line represents the characteristic inertial timescale, $\tau_\mathrm{B} = m / \gamma = 0.53 ~\mathrm{s}$. The dotted line represents the \gls{MSD} in the ballistic regime (see Eq.~(\ref{Eq.shorttimemsd})), when $t << \tau _\mathrm{B}$. The dashed line represents the \gls{MSD} in the diffusive regime (see Eq.~(\ref{eq:longtimemsd})), when $t >> \tau _\mathrm{B}$, $\mathrm{MSD} = 2D\tau$. A detailed explanation of the simulation process can be found in appendix.\ref{app:simfulllangevin}.\href{https://github.com/eXpensia/Confined-Brownian-Motion/blob/main/02_body/chapter1/image/simulation_full_langevin/inertial_Brownian_motion.ipynb}{\faGithub}}
 	\label{fig:inertial_langevin}
 \end{figure}
 
