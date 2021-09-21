@@ -549,7 +549,7 @@ In the near-wall regime, such that $z \ll a$, it is possible to further approxim
 \begin{figure}[H]
 	\centering
 	\includegraphics{02_body/chapter3/images/theory_lambda/hindered_diffusion.pdf}
-	\caption{a)  Parallel and perpendicular normalized diffusion coefficients for a colloidal particle of radius $a = 1.5 ~ \mathrm{\mu m}$. b) Perpendicular normalized diffusion coefficient at a distance $z$ from a wall. The solid black line is the exact solution given by the infinite sum of Eq.~(\ref{Eq:etaz}). The green dashed line is the Padé approximation of Eq.~(\ref{Eq:etaz_pade}). The blue dahed line is the near-wall asymptotic expression of Eq.~(\ref{Eq:etaz_small}). c) Relative errors between the two approximations (dashed lines of panel b), same color code) and the exact result (solid line of panel b)).}
+	\caption{a)  Parallel and perpendicular normalized diffusion coefficients for a colloidal particle of radius $a = 1.5 ~ \mathrm{\mu m}$. b) Perpendicular normalized diffusion coefficient at a distance $z$ from a wall. The solid black line is the exact solution given by the infinite sum of Eq.~(\ref{Eq:etaz}). The green dashed line is the Padé approximation of Eq.~(\ref{Eq:etaz_pade}). The blue dahed line is the near-wall asymptotic expression of Eq.~(\ref{Eq:etaz_small}). c) Relative errors between the two approximations (dashed lines of panel b), same color code) and the exact result (solid line of panel b)).\href{https://github.com/eXpensia/Confined-Brownian-Motion/blob/main/02_body/chapter3/images/theory_lambda/Hindered_diffusion.ipynb}{\faGithub}}
 	\label{fig.etaz}
 \end{figure}
 
@@ -836,7 +836,7 @@ A typical example of drift velocity $\bar{v}$ for a colloidal particle of radius
 \begin{figure}[ht]
 	\centering
 	\includegraphics{02_body/chapter3/images/spurious_drift/spurious.pdf}
-	\caption{Theoretical drift velocity for a colloidal particle of radius $a = 1.5 ~\mathrm{\mu m}$ in water and at a distance $z$ from the wall. The physical parameters $\ell_\mathrm{D} = 50 ~ \mathrm{nm}$, $B = 4 $ and $\ell_\mathrm{B} = 500 ~ \mathrm{nm}$.} 
+	\caption{Theoretical drift velocity for a colloidal particle of radius $a = 1.5 ~\mathrm{\mu m}$ in water and at a distance $z$ from the wall. The physical parameters $\ell_\mathrm{D} = 50 ~ \mathrm{nm}$, $B = 4 $ and $\ell_\mathrm{B} = 500 ~ \mathrm{nm}$. \href{https://github.com/eXpensia/Confined-Brownian-Motion/blob/main/02_body/chapter3/images/spurious_drift/spurious_drift.ipynb}{\faGithub}} 
 	\label{fig.spurious}
 \end{figure}
 
@@ -946,24 +946,24 @@ which finally gives:
 
 In Fig.~\ref{fig.taumax}-b) $\tau_{\mathrm{max}}$ is plotted as a function of $z$, for $a=1.5 ~\mathrm{\mu m}$, $B = 4$ and $\ell _\mathrm{D}$ varying between $20$ and $100$ nm. We observe that for this range of values that represents well the experiments that I have performed during my thesis, taking a constant simulation time step $\tau \approx 0.01 ~ \mathrm{s}$ is satisfactory.
 
-
-\begin{figure}[ht]
+\begin{figure}[H]
 	\centering
-	\includegraphics{02_body/chapter3/images/simulation_confined_Brownian_motion/maximal_tau.pdf}
-	\caption{a) Theoretical computation of the relative variation of the drift velocity $\bar{v}_\mathrm{d}$ and perpendicular diffusion coefficient $D_\bot$ as a function particle-wall distance $z$. The parameters are $\ell_\mathrm{D}=50$, $B=4$ and $\ell_{\mathrm{B}} = 500$ nm b) Optimal numerical integration time step $\tau_\mathrm{max}$ as a function of the particle-wall distance $z$ for a particle of radius $a = 1.5 ~\mathrm{\mu m}$, with $\ell_{\textrm{B}}=500$~nm, $B = 4$, and for different Debye lengths as indicated. The black line connects the minima.} 
-	\label{fig.taumax}
+	\includegraphics{02_body/chapter3/images/simulation_confined_Brownian_motion/z_traj_sim.pdf}
+	\caption{Simulated trajectory along the direction normal to the wall, using Eq.~(\ref{eq.langevinnearz}) with $\alpha = 1$ (isothermal convention), of radius $a= 1.5  ~ \mathrm{\mu m}$, density $\rho_\mathrm{p} = 1050  ~\mathrm{kg.m^{-3}}$, placed in water near a wall. The particle-wall interaction is characterized by $\ell_\mathrm{D} = 50$ nm and $B=4$. \href{https://github.com/eXpensia/Confined-Brownian-Motion/blob/main/02_body/chapter3/images/simulation_confined_Brownian_motion/Overdamped_confined_simulation.ipynb}{\faGithub}} 
+	\label{fig.z_traj_confined_simulated}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
-	\includegraphics{02_body/chapter3/images/simulation_confined_Brownian_motion/z_traj_sim.pdf}
-	\caption{Simulated trajectory along the direction normal to the wall, using Eq.~(\ref{eq.langevinnearz}) with $\alpha = 1$ (isothermal convention), of radius $a= 1.5  ~ \mathrm{\mu m}$, density $\rho_\mathrm{p} = 1050  ~\mathrm{kg.m^{-3}}$, placed in water near a wall. The particle-wall interaction is characterized by $\ell_\mathrm{D} = 50$ nm and $B=4$.} 
-	\label{fig.z_traj_confined_simulated}
+	\includegraphics{02_body/chapter3/images/simulation_confined_Brownian_motion/maximal_tau.pdf}
+	\caption{a) Theoretical computation of the relative variation of the drift velocity $\bar{v}_\mathrm{d}$ and perpendicular diffusion coefficient $D_\bot$ as a function particle-wall distance $z$. The parameters are $\ell_\mathrm{D}=50$, $B=4$ and $\ell_{\mathrm{B}} = 500$ nm b) Optimal numerical integration time step $\tau_\mathrm{max}$ as a function of the particle-wall distance $z$ for a particle of radius $a = 1.5 ~\mathrm{\mu m}$, with $\ell_{\textrm{B}}=500$~nm, $B = 4$, and for different Debye lengths as indicated. The black line connects the minima.\href{https://github.com/eXpensia/Confined-Brownian-Motion/blob/main/02_body/chapter3/images/simulation_confined_Brownian_motion/maximal_tau.ipynb}{\faGithub}} 
+	\label{fig.taumax}
 \end{figure}
+
 
 We have developed the numerical simulation of Eqs.~(\ref{eq.langevinnearx})~and~(\ref{eq.langevinnearz}) using Python, as part of the Master's internship of Élodie Millan. The interested reader will find more information on  the simulation of confined Brownian motion in complex systems in her forthcoming thesis. A typical trajectory of a water-immersed colloidal particle of radius $a= 1.5  ~ \mathrm{\mu m}$ and density $\rho_\mathrm{p} = 1050  ~\mathrm{kg.m^{-3}}$, near a wall with which the electrostatic interaction is characterized by $\ell_\mathrm{D} = 50$ nm and $B=4$, is plotted in Fig.~\ref{fig.z_traj_confined_simulated}.It qualitatively resembles experimental trajectory that was shown in Fig.~\ref{Fig:exp_z_traj} as an introduction to the chapter. In this trajectory, the noise-induced lift is taken into account by using the isothermal convention (\textit{i.e.} $\alpha =1 $). To check if the spurious drift is correctly implemented, the constraint we have is that the long-time statistics should satisfy Eq.~(\ref{Eq.Peq}). To compute an experimental probability density function from a set of points, one can use the following Python snippet.
 
-
+\newpage
 \begin{minted}
 	[
 	frame=lines,
@@ -986,7 +986,7 @@ The long-time \gls{PDF} in position, for with and without the spurious drift $v_
 \begin{figure}[H]
 	\centering
 	\includegraphics{02_body/chapter3/images/simulation_confined_Brownian_motion/Peq_vs_alpha.pdf}
-	\caption{Simulated, Long-term Probability Density Function of the height of the particle with or without the spurious drift, as indicated. The solid black line represents the expected Gibbs-Boltzmann distribution. The physical parameters are: $a = 1.5 ~ \mathrm{\mu m}$, $\rho_\mathrm{p} = 1050 ~\mathrm{kg.m^{-3}}$, $\ell_\mathrm{D} = 50$ nm, $B = 4$ and $\ell_\mathrm{B} = 577$ nm. }
+	\caption{Simulated, Long-term Probability Density Function of the height of the particle with or without the spurious drift, as indicated. The solid black line represents the expected Gibbs-Boltzmann distribution. The physical parameters are: $a = 1.5 ~ \mathrm{\mu m}$, $\rho_\mathrm{p} = 1050 ~\mathrm{kg.m^{-3}}$, $\ell_\mathrm{D} = 50$ nm, $B = 4$ and $\ell_\mathrm{B} = 577$ nm. \href{https://github.com/eXpensia/Confined-Brownian-Motion/blob/main/02_body/chapter3/images/simulation_confined_Brownian_motion/Overdamped_confined_simulation.ipynb}{\faGithub}}
 	\label{fig.pdf_vs_alpha}
 \end{figure}
 
@@ -996,7 +996,6 @@ The long-time \gls{PDF} in position, for with and without the spurious drift $v_
 Let us now analyze the experimental data acquired through the Mie tracking (see section \ref{chap:LM_fit}). In the near-wall Brownian dynamic theory presented section~\ref{sec:confined}, we considered distance $z$ between the wall and the colloidal particle surface. However, it is not the height measured by the Mie tracking, since the latter measures the distance between the objective-lens focal plane and the particle center. Therefore, we measure the trajectory up to an offset, \textit{i.e.} the objective-lens focal plane to wall distance. To have the correct measured height, we suppose that the particle does approach very closely to the wall, such that the minimal measured distance is the focal plane to the wall distance. From that assumption, we set the minimal value of $z$ in the trajectory to zero. This is repeated periodically and thus termed the moving-minimum method, and can be calculated using the following Python function.
 
 
-\newpage
 
 \begin{minted}
 	[
@@ -1031,7 +1030,7 @@ In the above snippet, \mintinline{python}{window} represents the number of point
 \begin{figure}[ht]
 	\centering
 	\includegraphics{02_body/chapter3/images/trajctory_analysis/traj_rescaled.pdf}
-	\caption{Raw trajectories measured using the Mie-tracking technique, and it shifted version (bottom, orange) using the moving-minimum method with a window of $10000$ points.} 
+	\caption{Raw trajectories measured using the Mie-tracking technique, and it shifted version (bottom, orange) using the moving-minimum method with a window of $10000$ points.~\href{https://github.com/eXpensia/Confined-Brownian-Motion/blob/main/02_body/chapter3/images/trajctory_analysis/graph_ploting.ipynb}{\faGithub}} 
 	\label{fig.rescaled_traj}
 \end{figure}
 
@@ -1047,7 +1046,7 @@ Moreover, as shown in Fig.~\ref{fig.ld}, we recover the Debye relation, \textit{
 \begin{figure}[h!]
 	\centering
 	\includegraphics{02_body/chapter3/images/trajctory_analysis/pdf_exp.pdf}
-	\caption{Measured equilibrium probability density function $P_{\textrm{eq}}$ of the distance $z$ between the particle and the wall. The solid line represents the best fit to the normalized Gibbs-Boltzmann distribution in position, using the total potential energy $U(z)$ of Eq.~(\ref{Eq:PDF}), with $B = 4.8$, $\ell_\mathrm{D} = 21 ~ \mathrm{nm}$, and $\ell_\mathrm{B} = 530~ \mathrm{nm}$.}
+	\caption{Measured equilibrium probability density function $P_{\textrm{eq}}$ of the distance $z$ between the particle and the wall. The solid line represents the best fit to the normalized Gibbs-Boltzmann distribution in position, using the total potential energy $U(z)$ of Eq.~(\ref{Eq:PDF}), with $B = 4.8$, $\ell_\mathrm{D} = 21 ~ \mathrm{nm}$, and $\ell_\mathrm{B} = 530~ \mathrm{nm}$.~\href{https://github.com/eXpensia/Confined-Brownian-Motion/blob/main/02_body/chapter3/images/trajctory_analysis/graph_ploting.ipynb}{\faGithub}}
 	\label{fig.pdf_exp}
 \end{figure}
 
@@ -1055,7 +1054,7 @@ Moreover, as shown in Fig.~\ref{fig.ld}, we recover the Debye relation, \textit{
 \begin{figure}[H]
 	\centering
 	\includegraphics{02_body/chapter3/images/trajctory_analysis/ld.pdf}
-	\caption{In blue, left axis, measured Debye length $\ell_\mathrm{D}$ as a function of salt concentration [NaCl]. The solid line is the expected Debye relation $\ell_\mathrm{D}=0.304/\sqrt{\textrm{[Nacl]}}$, for a single monovalent salt in water at room temperature. In green, right axis, measured $B$ as a function of salt  concentration [NaCl]. The dashed line represents the mean value of the measured $B$ values.}
+	\caption{In blue, left axis, measured Debye length $\ell_\mathrm{D}$ as a function of salt concentration [NaCl]. The solid line is the expected Debye relation $\ell_\mathrm{D}=0.304/\sqrt{\textrm{[Nacl]}}$, for a single monovalent salt in water at room temperature. In green, right axis, measured $B$ as a function of salt  concentration [NaCl]. The dashed line represents the mean value of the measured $B$ values.~\href{https://github.com/eXpensia/Confined-Brownian-Motion/blob/main/02_body/chapter3/images/trajctory_analysis/resume_ld_measures.ipynb}{\faGithub}}
 	\label{fig.ld}
 \end{figure}
 
@@ -1087,7 +1086,7 @@ against the Gibbs-Boltzmann distribution in position. As shown in Fig.~\ref{fig.
 	\centering
 	\includegraphics{02_body/chapter3/images/trajctory_analysis/msd.pdf}
 	\caption{Measured mean-squared displacements (MSD, see Eq.~(\ref{MSDdef})) as functions of the time increment $\Delta t$, for the three spatial directions, $x$, $y$, and $z$. The solid lines are best fits to Eq.~(\ref{averagediff}), using Eqs.~(\ref{Eq:PDF}),~(\ref{Eq:etaz})~and~(\ref{Eq:etax}), with $B = 4.8$, $\ell_\mathrm{D} = 21 ~ \mathrm{nm}$, and $\ell_\mathrm{B} = 530~\mathrm{nm}$,
-		providing the average diffusion coefficients $\langle{D_\parallel}\rangle= \langle D_x\rangle=\langle D_y \rangle =0.52\,D_0$ and $\langle D_z \rangle =0.24\, D_0$. The dashed line is the best fit to Eq.~(\ref{Eq:plateau}), using Eq.~(\ref{Eq:PDF}), with $B = 4.8$, $\ell_\mathrm{D} = 21 ~ \mathrm{nm}$, and $\ell_\mathrm{B} = 530~\mathrm{nm}$.}
+		providing the average diffusion coefficients $\langle{D_\parallel}\rangle= \langle D_x\rangle=\langle D_y \rangle =0.52\,D_0$ and $\langle D_z \rangle =0.24\, D_0$. The dashed line is the best fit to Eq.~(\ref{Eq:plateau}), using Eq.~(\ref{Eq:PDF}), with $B = 4.8$, $\ell_\mathrm{D} = 21 ~ \mathrm{nm}$, and $\ell_\mathrm{B} = 530~\mathrm{nm}$.~\href{https://github.com/eXpensia/Confined-Brownian-Motion/blob/main/02_body/chapter3/images/trajctory_analysis/graph_ploting.ipynb}{\faGithub}}
 	\label{fig.MSD}
 \end{figure}
 
@@ -1281,7 +1280,7 @@ where \mintinline{python}{pos}, is the 3D trajectory of a Brownian colloid. It a
 \begin{figure}[H]
 	\centering
 	\includegraphics{02_body/chapter3/images/trajctory_analysis/visco.pdf}
-	\caption{ Measured local short-term diffusion coefficients $D_i$ of the microparticle, normalized by the bulk value $D_0$, as functions of the distance $z$ to the wall, along both a transverse direction $x$ or $y$ ($D_i=D_\parallel=D_x=D_y$, blue) and the normal direction $z$ ($D_i=D_z$, green) to the wall. The solid lines are the theoretical predictions, $D_{\parallel}(z)=D_0\eta/\eta_{\parallel}(z)$ and $D_z(z)=D_0\eta/\eta_z(z)$, using the local effective viscosities $\eta_{\bot}(z)$ and $\eta_\parallel(z)$ of Eqs.~(\ref{Eq:etaz})~and~(\ref{Eq:etaz}), respectively.}
+	\caption{ Measured local short-term diffusion coefficients $D_i$ of the microparticle, normalized by the bulk value $D_0$, as functions of the distance $z$ to the wall, along both a transverse direction $x$ or $y$ ($D_i=D_\parallel=D_x=D_y$, blue) and the normal direction $z$ ($D_i=D_z$, green) to the wall. The solid lines are the theoretical predictions, $D_{\parallel}(z)=D_0\eta/\eta_{\parallel}(z)$ and $D_z(z)=D_0\eta/\eta_z(z)$, using the local effective viscosities $\eta_{\bot}(z)$ and $\eta_\parallel(z)$ of Eqs.~(\ref{Eq:etaz})~and~(\ref{Eq:etaz}), respectively.~\href{https://github.com/eXpensia/Confined-Brownian-Motion/blob/main/02_body/chapter3/images/trajctory_analysis/graph_ploting.ipynb}{\faGithub}}
 	\label{fig.visco}
 \end{figure}
 
@@ -1331,7 +1330,7 @@ Using the physical parameters extracted from the above multifitting procedure, w
 \begin{figure}[H]
 	\centering
 	\includegraphics{02_body/chapter3/images/trajctory_analysis/figure_force_total.pdf}
-	\caption{Total normal conservative force $F_z$ exerted on the particle as a function of the distance $z$ to the wall, reconstructed from Eq.~(\ref{stokes}), using Eq.~(\ref{Eq:etaz_pade}) for the circles and Eq.~(\ref{Eq.conservative_force}) for the squares. The solid line corresponds to Eq.~(\ref{Eq:Force}), with $B=4.8$, $\ell_{\mathrm{D}}=21\,\mathrm{nm}$ and $\ell_{\mathrm{B}}=530\,\mathrm{nm}$. The black dashed lines and gray area indicate the amplitude of the thermal noise computed from Eq.~(\ref{tnl}). The horizontal red dashed line indicates the buoyant weight $F_{\textrm{g}}=-7$~fN of the particle.}
+	\caption{Total normal conservative force $F_z$ exerted on the particle as a function of the distance $z$ to the wall, reconstructed from Eq.~(\ref{stokes}), using Eq.~(\ref{Eq:etaz_pade}) for the circles and Eq.~(\ref{Eq.conservative_force}) for the squares. The solid line corresponds to Eq.~(\ref{Eq:Force}), with $B=4.8$, $\ell_{\mathrm{D}}=21\,\mathrm{nm}$ and $\ell_{\mathrm{B}}=530\,\mathrm{nm}$. The black dashed lines and gray area indicate the amplitude of the thermal noise computed from Eq.~(\ref{tnl}). The horizontal red dashed line indicates the buoyant weight $F_{\textrm{g}}=-7$~fN of the particle.~\href{https://github.com/eXpensia/Confined-Brownian-Motion/blob/main/02_body/chapter3/images/trajctory_analysis/measure_force_experimental.ipynb}{\faGithub}}
 	\label{fig.figure_force_total}
 \end{figure}
 
