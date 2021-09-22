@@ -114,6 +114,14 @@
 \renewcommand{\glsnamefont}[1]{\textbf{#1}}
 \renewcommand*{\glsgroupskip}{} %activate for smaller linespacing
 
+\usepackage{afterpage}
+
+\newcommand\blankpage{%
+	\null
+	\thispagestyle{empty}%
+	\addtocounter{page}{-1}%
+	\newpage}
+
 \usepackage{nomencl}
 \makenomenclature
 

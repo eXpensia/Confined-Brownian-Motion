@@ -1,4 +1,3 @@
-\newpage
 \section{Particle Characterization and Tracking Using Optical Interferences}
 \label{sec:chapter2}
 
@@ -477,7 +476,7 @@ A sample consists of a parallelepipedic chamber ($1.5 ~ \text{cm} ~ \times ~ 1.5
 
 We used 3 different colloidal sizes, of nominal radii $0.56 ~ \mathrm{\mu m}, ~ 1.5 ~ \mathrm{\mu m} \text{ and } 2.5 ~ \mathrm{\mu m} $, at room temperature $T$, in distilled water (type 1, MilliQ device) of dynamic shear viscosity $\eta = 1 ~ \mathrm{mPa.s}$. The particles are made of polystyrene of density $\rho = 1050  ~\mathrm{kg.m^{-3}}$ and optical index $n_\mathrm{p} = 1.598$ at a wavelength of $532$ nm.
 
-The sample is illuminated by a collimated laser beam with a $532$ nm wavelength. The laser used delivers a power of 4 W and has a centimetric waist. Since the laser is collimated, it has a near-zero exentricity so that it can be seen as a plane wave. As presented in the section \ref{chap:LM_fit}, the light scattered, by one colloidal particle at a given time $t$, interferes with the incident beam. 
+The sample is illuminated by a collimated laser beam with a $532$ nm wavelength. The laser used delivers a power of 4 mW and has a waist of $3.5$ mm. Since the laser is collimated, it has a near-zero exentricity so that it can be seen as a plane wave. As presented in the section \ref{chap:LM_fit}, the light scattered, by one colloidal particle at a given time $t$, interferes with the incident beam. 
 
 An oil-immersion objective lens (x60 magnification, $1.30$ numerical aperture) collects the resulting instantaneous interference pattern, and relays it to a camera (Basler acA1920-155um) with a $51.6$ nm/pixel resolution (see Fig.\ref{fig.Lorenz_mie_demo}-a)). The exposure time of the camera is set to $\tau_{\mathrm{expo}} = 3$ ms to avoid motion-induced blurring of the image. As a general rule, the particle should not diffuse more than the pixel size during that time, such that $\sqrt{2D\tau_{\mathrm{expo}} }< 51.6$ nm.
 
@@ -505,7 +504,7 @@ As we illuminate particles with a laser, it is important to know if the optical 
 	\label{Eq.Fopt}
 \end{equation}
 
-where $I_r$ is the irradiance in $\mathrm{W.m^{-2}}$ on the sphere,  $c$ is the speed of light in vacuum, $g=\pi r^2$ the sphere cross section and  $Q_\mathrm{ext}$ and $Q_\mathrm{sca}$ being respectively the extinction and scattering efficiency given by:
+where $I_r$ is the irradiance in $\mathrm{W.m^{-2}}$ on the sphere,  $c$ is the speed of light in vacuum, $g=\pi a^2$ the sphere cross section and  $Q_\mathrm{ext}$ and $Q_\mathrm{sca}$ being respectively the extinction and scattering efficiency given by:
 
 \begin{equation}
 	Q_\mathrm{ext} = \frac{2}{k^2 a^2} = \sum _{n=1} ^\infty (2n + 1 ) (|a_n|^2 + |b_n|^2) ~,
@@ -564,17 +563,17 @@ F = E0 * np.pi * r0 ** 2 * (qext - g * qsca) / c  # compute the optical force
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.9]{02_body/chapter2/images/Calcul_force_optique/optical_force.pdf}
-	\caption{Optical force $F_\mathrm{opt}$ (see Eq.~(\ref{Eq.Fopt})) exerted on a spherical particle of radius $a$ by a plane wave of wavelength $\lambda = 532$ nm, and of irradiance $I_\mathrm{r} = 467.7 ~ \mathrm{W.m^{-2}}$. The force is calculated employing the \mintinline{python}{miepython} python's module \href{https://github.com/scottprahl/miepython/}{\faGithub} and the refractive index of polystyrene \cite{zhang_complex_2020}.~\href{https://github.com/eXpensia/Confined-Brownian-Motion/blob/main/02_body/chapter2/images/Calcul_force_optique/Calcul\%20optical\%20force.ipynb}{\faGithub}}
+	\caption{Optical force $F_\mathrm{opt}$ (see Eq.~(\ref{Eq.Fopt})) exerted on a spherical particle of radius $a$ by a plane wave of wavelength $\lambda = 532$ nm, and of irradiance $I_\mathrm{r} = 467.7 ~ \mathrm{W.m^{-2}}$. The optical force is calculated employing the \mintinline{python}{miepython} python's module \href{https://github.com/scottprahl/miepython/}{\faGithub} and the refractive index of polystyrene \cite{zhang_complex_2020}.~\href{https://github.com/eXpensia/Confined-Brownian-Motion/blob/main/02_body/chapter2/images/Calcul_force_optique/Calcul\%20optical\%20force.ipynb}{\faGithub}}
 	\label{fig:optical_force}
 \end{figure}
 
-Using Python, one can thus compute the optical force $F_\mathrm{opt}$ as a function of the particle radius. As shown in Fig.\ref{fig:optical_force}  $F_\mathrm{opt}$ is of the order of $10^{-2}$ fN. By comparing this result with the gravitational force:
+Using Python, one can thus compute the optical force $F_\mathrm{opt}$ as a function of the particle radius. As shown in Fig.~\ref{fig:optical_force}  $F_\mathrm{opt}$ is of the order of $10^{-2}$ fN. By comparing this result with the gravitational force:
 
 \begin{equation}
 	F_\mathrm{g} =  \frac{4}{3} \pi (\rho_\mathrm{m} - \rho_\mathrm{p}) g ~,
 \end{equation}
 
-we found that for a particle of radius $a = 0.5 ~\mathrm{\mu m}$, $F_\mathrm{g} = -0.3 $ fN, while for $a = 1.5 ~\mathrm{\mu m}$, $F_\mathrm{g} = -7 $ fN. Thus, we can conclude that $F_\mathrm{opt} \ll F_\mathrm{g}$. Hence, in the following of the manuscript we neglect the optical force as it is lower than the other external forces acting on the colloids. However,  experiments with a controlled irradiance (up to $10^6 ~\mathrm{W.cm^{-2}}$ )  were conducted in \cite{prieve_measurement_1999} and the authors were able to measure the optical forces from the motion statistics.
+we found that for a particle of radius $a = 0.5 ~\mathrm{\mu m}$, $F_\mathrm{g} = -0.3 $ fN, while for $a = 1.5 ~\mathrm{\mu m}$, $F_\mathrm{g} = -7 $ fN. Thus, we can conclude that $F_\mathrm{opt} \ll F_\mathrm{g}$ for the range of radii we used. Hence, in the following we neglect the optical forces as they are lower than the other external forces acting on the colloids. However,  experiments with a controlled irradiance (up to $10^6 ~\mathrm{W.cm^{-2}}$ ) were conducted in \cite{prieve_measurement_1999} and the authors were able to measure the optical forces from the motion statistics.
 
 
 

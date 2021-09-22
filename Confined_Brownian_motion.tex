@@ -49,10 +49,12 @@
 
 	\newpage
 	\printglossary[title = List of Abbreviations]\thispagestyle{fancy}
+	\afterpage{\blankpage}
 	\phantomsection
 	\addcontentsline{toc}{section}{List of Abbreviations}
+	\clearpage
+	
 
-	\newpage
 	\setcounter{savepage}{\arabic{page}}
 	\pagenumbering{arabic}
 
