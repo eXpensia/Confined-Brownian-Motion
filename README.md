@@ -13,7 +13,7 @@ Along the manuscript, you will find some Github logos, these are mainly hyperlin
 
 ## Installing Python
 
-If you do not have python installed and want to follow along, I advise you to install it using mini-Conda.
+If you do not have Python installed and want to follow along, I advise you to install it using mini-Conda.
 The easiest way to install it is detailed on their [website](https://conda.io/projects/conda/en/latest/user-guide/install/index.html)
 
 Any missing package can then be installed in one command line:
