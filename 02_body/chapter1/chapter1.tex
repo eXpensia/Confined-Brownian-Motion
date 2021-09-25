@@ -30,7 +30,7 @@ For simplicity, we will here look only at the Brownian motion of $n$ particles i
 	\textnormal{d}n = n\varphi(\Delta)\textnormal{d}\Delta ~,
 \end{equation}
 
-where
+where:
 
 \begin{equation}
 	\int_{-\infty} ^{\infty} \varphi (\Delta)\textnormal{d} \Delta = 1 ~,
@@ -522,7 +522,7 @@ def msd(x, Dt):
 \begin{figure}[h]
 	\centering
 	\includegraphics{02_body/chapter1/image/simulation_full_langevin/intertial_langevin.pdf}
-	\caption{a) Set of $100$ trajectories simulated using the full-Langevin equation (see Eq.~(\ref{Eq.numfulllangevin})) for particles of a radius  $a = 1 ~\mathrm{\mu m}$ and mass $m = 10 ~\mathrm{\mu g}$ in water, with viscosity $\eta = 0.001 ~\mathrm{Pa.s}$. The simulations are done with a time step $\tau = 0.01~ \mathrm{s}$. b) Bullets represent the measured Mean Squared Displacements (\gls{MSD}) of the simulated trajectories. The plain black line represents the characteristic inertial timescale, $\tau_\mathrm{B} = m / \gamma = 0.53 ~\mathrm{s}$. The dotted line represents the \gls{MSD} in the ballistic regime (see Eq.~(\ref{Eq.shorttimemsd})), when $t << \tau _\mathrm{B}$. The dashed line represents the \gls{MSD} in the diffusive regime (see Eq.~(\ref{eq:longtimemsd})), when $t >> \tau _\mathrm{B}$, $\mathrm{MSD} = 2D\tau$. A detailed explanation of the simulation process can be found in appendix.\ref{app:simfulllangevin}.\href{https://github.com/eXpensia/Confined-Brownian-Motion/blob/main/02_body/chapter1/image/simulation_full_langevin/inertial_Brownian_motion.ipynb}{\faGithub}}
+	\caption{a) Set of $100$ trajectories simulated using the full-Langevin equation (see Eq.~(\ref{Eq.numfulllangevin})) for particles of a radius  $a = 1 ~\mathrm{\mu m}$ and mass $m = 10 ~\mathrm{\mu g}$ in water, with viscosity $\eta = 0.001 ~\mathrm{Pa.s}$. The simulations are done with a time step $\tau = 0.01~ \mathrm{s}$. b) Bullets represent the measured Mean Squared Displacements (\gls{MSD}) of the simulated trajectories. The plain black line represents the characteristic inertial timescale, $\tau_\mathrm{B} = m / \gamma = 0.53 ~\mathrm{s}$. The dotted line represents the \gls{MSD} in the ballistic regime (see Eq.~(\ref{Eq.shorttimemsd})), when $\Delta \ll \tau _\mathrm{B}$. The dashed line represents the \gls{MSD} in the diffusive regime (see Eq.~(\ref{eq:longtimemsd})), when $\Delta t \gg \tau _\mathrm{B}$, $\mathrm{MSD} = 2D\Delta t$. A detailed explanation of the simulation process can be found in appendix ~\ref{app:simfulllangevin}.\href{https://github.com/eXpensia/Confined-Brownian-Motion/blob/main/02_body/chapter1/image/simulation_full_langevin/inertial_Brownian_motion.ipynb}{\faGithub}}
 	\label{fig:inertial_langevin}
 \end{figure}
 

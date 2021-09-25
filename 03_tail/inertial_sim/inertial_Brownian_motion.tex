@@ -374,21 +374,24 @@
 
 \begin{document}
     
+    \maketitle
     
     
 
     
-    \hypertarget{intertial-brownian-motion-simulation}{%
-\section{Intertial Brownian motion
-simulation}\label{intertial-brownian-motion-simulation}}
+    \hypertarget{inertial-brownian-motion-simulation}{%
+\section{Inertial Brownian motion
+simulation}\label{inertial-brownian-motion-simulation}}
 
-One can write the Langevin equation as:
+The Inertial Langevin equation for a particle of mass \(m\) and some
+damping \(\gamma\) writes:
 
 \begin{equation}
 m\ddot{x} = -\gamma \dot{x} + \sqrt{2k_\mathrm{B}T \gamma} \mathrm{d}B_t
 \end{equation}
 
-By replacing with the Euler method \(\dot{x}\) by:
+Integrating the latter equation using the Euler method, one can replace
+\(\dot{x}\) by:
 
 \begin{equation}
 \dot{x} \simeq \frac{x_i - x_{i-1}}{\tau} ~,
@@ -418,10 +421,10 @@ a zero mean value and a \(\tau\) variance, on can write \(x_i\) as:
     + \frac{\sqrt{2k_\mathrm{B}T\gamma}}{m(1 + \tau/\tau_\mathrm{B})} \tau w_i ~,
 \end{equation}
 
-We will in the following use Python to simulate such a movement and
-check the properties of the mean squared displacement. In the end I will
-propose a Cython implementation that permits a 1000x speed improvement
-on the simulation.
+In the following, we use Python to simulate such a movement and check
+the properties of the mean squared displacement. Then, I propose a
+Cython implementation that permits a \(200\)x speed improvement on the
+simulation.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
 \prompt{In}{incolor}{1}{\boxspacing}
@@ -460,7 +463,7 @@ on the simulation.
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
 \prompt{In}{incolor}{3}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
-\PY{n}{N} \PY{o}{=} \PY{l+m+mi}{1000000}  \PY{c+c1}{\PYZsh{} length of the simulation}
+\PY{n}{N} \PY{o}{=} \PY{l+m+mi}{1000000}  \PY{c+c1}{\PYZsh{} number of time steps}
 \PY{n}{tau} \PY{o}{=} \PY{l+m+mf}{0.01}  \PY{c+c1}{\PYZsh{} simulation time step}
 \PY{n}{m} \PY{o}{=} \PY{l+m+mf}{1e\PYZhy{}8}  \PY{c+c1}{\PYZsh{} particle mass}
 \PY{n}{a} \PY{o}{=} \PY{l+m+mf}{1e\PYZhy{}6}  \PY{c+c1}{\PYZsh{} radius of the particle}
@@ -471,23 +474,11 @@ on the simulation.
 \end{Verbatim}
 \end{tcolorbox}
 
+    With such properties we have a characteristic diffusion time
+\(\tau_\mathrm{B} =0.53\) s.
+
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
 \prompt{In}{incolor}{4}{\boxspacing}
-\begin{Verbatim}[commandchars=\\\{\}]
-\PY{n+nb}{print}\PY{p}{(}
-    \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{With such properties we have a characteristic diffusion time of }\PY{l+s+si}{\PYZob{}:.2f\PYZcb{}}\PY{l+s+s2}{ s}\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}
-        \PY{n}{tauB}
-    \PY{p}{)}
-\PY{p}{)}
-\end{Verbatim}
-\end{tcolorbox}
-
-    \begin{Verbatim}[commandchars=\\\{\}]
-With such properties we have a characteristic diffusion time of 0.53 s
-    \end{Verbatim}
-
-    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{5}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{k}{def} \PY{n+nf}{xi}\PY{p}{(}\PY{n}{xi1}\PY{p}{,} \PY{n}{xi2}\PY{p}{)}\PY{p}{:}
     \PY{l+s+sd}{\PYZdq{}\PYZdq{}\PYZdq{}}
@@ -504,9 +495,12 @@ With such properties we have a characteristic diffusion time of 0.53 s
 \end{tcolorbox}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{6}{\boxspacing}
+\prompt{In}{incolor}{5}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{k}{def} \PY{n+nf}{trajectory}\PY{p}{(}\PY{n}{N}\PY{p}{)}\PY{p}{:}
+    \PY{l+s+sd}{\PYZdq{}\PYZdq{}\PYZdq{}}
+\PY{l+s+sd}{    Function generating a trajectory of length N.}
+\PY{l+s+sd}{    \PYZdq{}\PYZdq{}\PYZdq{}}
     \PY{n}{x} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{n}{N}\PY{p}{)}
     \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,} \PY{n+nb}{len}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{)}\PY{p}{:}
         \PY{n}{x}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{=} \PY{n}{xi}\PY{p}{(}\PY{n}{x}\PY{p}{[}\PY{n}{i} \PY{o}{\PYZhy{}} \PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{n}{x}\PY{p}{[}\PY{n}{i} \PY{o}{\PYZhy{}} \PY{l+m+mi}{2}\PY{p}{]}\PY{p}{)}
@@ -519,7 +513,7 @@ With such properties we have a characteristic diffusion time of 0.53 s
 length \(N\) by simply calling the the function \texttt{trajectory()}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{7}{\boxspacing}
+\prompt{In}{incolor}{6}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} Generate a trajectory of 10e6 points.}
 \PY{n}{x} \PY{o}{=} \PY{n}{trajectory}\PY{p}{(}\PY{l+m+mi}{1000000}\PY{p}{)}
@@ -527,54 +521,53 @@ length \(N\) by simply calling the the function \texttt{trajectory()}
 \end{tcolorbox}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{8}{\boxspacing}
+\prompt{In}{incolor}{7}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{arange}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{)}\PY{o}{*}\PY{n}{tau}\PY{p}{,} \PY{n}{x}\PY{p}{)}
 \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Intertial Brownian trajectory}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
 \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZdl{}x\PYZdl{} (m)}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
-\PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{time (s)}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZdl{}t\PYZdl{} (s)}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
 \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
 \end{Verbatim}
 \end{tcolorbox}
 
     \begin{center}
-    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_9_0.png}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{inertial_Brownian_motion_files/inertial_Brownian_motion_9_0.png}
     \end{center}
     { \hspace*{\fill} \\}
     
     \hypertarget{cross-checking}{%
 \subsection{Cross checking}\label{cross-checking}}
 
-As we are dealing with intertial Brownian motion, the later is
-characterize by a characteristic time \(\tau_\mathrm{B} = m/\gamma\). We
-will check that the simulated trajectory gives us the correct MSD
+We now check that the simulated trajectory gives us the correct MSD
 properties to ensure the simulation si done properly. The MSD given by:
 
 \begin{equation}
-\mathrm{MSD}(\tau) = \left. \langle \left( x(t) - x(t+\tau \right)^2 \rangle \right|_t ~,
+\mathrm{MSD}(\Delta t) = \left. \langle \left( x(t) - x(t+\Delta t \right)^2 \rangle \right|_t ~,
 \end{equation}
 
 with \(\Delta t\) a lag time. The MSD, can be computed using the
-function defined in the cell below. For times \(\tau << \tau_B\) we
-should have:
+function defined in the cell below. For a lag time
+\(\Delta t \ll \tau_B\) we should have:
 
 \begin{equation}
-\mathrm{MSD}(\tau) = \frac{k_\mathrm{B}T}{m} \tau ^2 ~,
+\mathrm{MSD}(\Delta t) = \frac{k_\mathrm{B}T}{m} \Delta t ^2 ~,
 \end{equation}
 
-and for \(\tau >> \tau_B\):
+and for \(\Delta t \gg \tau_B\):
 
 \begin{equation}
-\mathrm{MSD}(\tau) = 2 D \tau ~,
+\mathrm{MSD}(\tau) = 2 D \Delta t~,
 \end{equation}
 
 with \(D = k_\mathrm{B}T / (6 \pi \eta a)\).
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{9}{\boxspacing}
+\prompt{In}{incolor}{8}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
-\PY{n}{t} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{o}{*}\PY{n}{np}\PY{o}{.}\PY{n}{arange}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{10}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{,} \PY{o}{*}\PY{n}{np}\PY{o}{.}\PY{n}{arange}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{,}\PY{l+m+mi}{100}\PY{p}{,}\PY{l+m+mi}{10}\PY{p}{)}\PY{p}{,} \PY{o}{*}\PY{n}{np}\PY{o}{.}\PY{n}{arange}\PY{p}{(}\PY{l+m+mi}{100}\PY{p}{,}\PY{l+m+mi}{1000}\PY{p}{,}\PY{l+m+mi}{100}\PY{p}{)}\PY{p}{,} \PY{o}{*}\PY{n}{np}\PY{o}{.}\PY{n}{arange}\PY{p}{(}\PY{l+m+mi}{1000}\PY{p}{,}\PY{l+m+mi}{10000}\PY{p}{,}\PY{l+m+mi}{1000}\PY{p}{)}\PY{p}{]}\PY{p}{)}
-\PY{k}{def} \PY{n+nf}{msd}\PY{p}{(}\PY{n}{x}\PY{p}{,}\PY{n}{t}\PY{p}{)}\PY{p}{:}
+\PY{n}{t} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{o}{*}\PY{n}{np}\PY{o}{.}\PY{n}{arange}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{10}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{,} \PY{o}{*}\PY{n}{np}\PY{o}{.}\PY{n}{arange}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{,}\PY{l+m+mi}{100}\PY{p}{,}\PY{l+m+mi}{10}\PY{p}{)}\PY{p}{,} \PY{o}{*}\PY{n}{np}\PY{o}{.}\PY{n}{arange}\PY{p}{(}\PY{l+m+mi}{100}\PY{p}{,}\PY{l+m+mi}{1000}\PY{p}{,}\PY{l+m+mi}{100}\PY{p}{)}\PY{p}{,} \PY{o}{*}\PY{n}{np}\PY{o}{.}\PY{n}{arange}\PY{p}{(}\PY{l+m+mi}{1000}\PY{p}{,}\PY{l+m+mi}{8000}\PY{p}{,}\PY{l+m+mi}{1000}\PY{p}{)}\PY{p}{]}\PY{p}{)}
+\PY{k}{def} \PY{n+nf}{msd}\PY{p}{(}\PY{n}{x}\PY{p}{,}\PY{n}{Dt}\PY{p}{)}\PY{p}{:}
+    \PY{l+s+sd}{\PYZdq{}\PYZdq{}\PYZdq{}Function that return the MSD for a list of time index t for a trajectory x\PYZdq{}\PYZdq{}\PYZdq{}}
     \PY{n}{\PYZus{}msd} \PY{o}{=} \PY{k}{lambda} \PY{n}{x}\PY{p}{,} \PY{n}{t} \PY{p}{:} \PY{n}{np}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{p}{(}\PY{n}{x}\PY{p}{[}\PY{p}{:}\PY{o}{\PYZhy{}}\PY{n}{t}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{x}\PY{p}{[}\PY{n}{t}\PY{p}{:}\PY{p}{]}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)}
     \PY{k}{return} \PY{p}{[}\PY{n}{\PYZus{}msd}\PY{p}{(}\PY{n}{x}\PY{p}{,}\PY{n}{i}\PY{p}{)} \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n}{t}\PY{p}{]}
 \PY{n}{MSD} \PY{o}{=} \PY{n}{msd}\PY{p}{(}\PY{n}{x}\PY{p}{,}\PY{n}{t}\PY{p}{)}
@@ -582,14 +575,15 @@ with \(D = k_\mathrm{B}T / (6 \pi \eta a)\).
 \end{tcolorbox}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{10}{\boxspacing}
+\prompt{In}{incolor}{9}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{D} \PY{o}{=} \PY{n}{kbT}\PY{o}{/}\PY{p}{(}\PY{l+m+mi}{6}\PY{o}{*}\PY{n}{np}\PY{o}{.}\PY{n}{pi}\PY{o}{*}\PY{n}{eta}\PY{o}{*}\PY{n}{a}\PY{p}{)}
 \PY{n}{t\PYZus{}plot} \PY{o}{=} \PY{n}{t}\PY{o}{*}\PY{n}{tau}
 \PY{n}{plt}\PY{o}{.}\PY{n}{loglog}\PY{p}{(}\PY{n}{t}\PY{o}{*}\PY{n}{tau}\PY{p}{,}\PY{n}{MSD}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{o}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
 \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{t}\PY{o}{*}\PY{n}{tau}\PY{p}{,} \PY{p}{(}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{D}\PY{o}{*}\PY{n}{t\PYZus{}plot}\PY{p}{)}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZhy{}\PYZhy{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{color} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{k}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{long time theory}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
 \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{t}\PY{o}{*}\PY{n}{tau}\PY{p}{,} \PY{n}{kbT}\PY{o}{/}\PY{n}{m} \PY{o}{*} \PY{n}{t\PYZus{}plot}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{color} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{k}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{short time theory}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
-
+\PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{MSD (m\PYZdl{}\PYZca{}2\PYZdl{})}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZdl{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{Delta t\PYZdl{} (s)}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
 \PY{n}{horiz\PYZus{}data} \PY{o}{=} \PY{p}{[}\PY{l+m+mf}{1e\PYZhy{}8}\PY{p}{,} \PY{l+m+mf}{1e\PYZhy{}17}\PY{p}{]}
 \PY{n}{t\PYZus{}horiz} \PY{o}{=} \PY{p}{[}\PY{n}{tauB}\PY{p}{,} \PY{n}{tauB}\PY{p}{]}
 \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{t\PYZus{}horiz}\PY{p}{,} \PY{n}{horiz\PYZus{}data}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{k}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZdl{}}\PY{l+s+se}{\PYZbs{}\PYZbs{}}\PY{l+s+s2}{tau\PYZus{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{mathrm}\PY{l+s+si}{\PYZob{}B\PYZcb{}}\PY{l+s+s2}{\PYZdl{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
@@ -599,43 +593,35 @@ with \(D = k_\mathrm{B}T / (6 \pi \eta a)\).
 \end{tcolorbox}
 
     \begin{center}
-    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_12_0.png}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{inertial_Brownian_motion_files/inertial_Brownian_motion_12_0.png}
     \end{center}
     { \hspace*{\fill} \\}
     
-    Our simulation is giving the expeted results but how much time do we
-need to generate this trajectory of 1000000 points
-
-    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{11}{\boxspacing}
-\begin{Verbatim}[commandchars=\\\{\}]
-\PY{o}{\PYZpc{}}\PY{k}{timeit} trajectory(1000000)
-\end{Verbatim}
-\end{tcolorbox}
-
-    \begin{Verbatim}[commandchars=\\\{\}]
-6.32 s ± 101 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
-    \end{Verbatim}
-
-    So we need about 6 seconds to generate this trajectory, which is in the
-cases of someone who want to look at fine effects and need to generate
-millions of trajectories is too much, in order to fasten the process i
-will in the following use Cython to generate the trajectory using C.
+    The simulations gives expected results. However, with the computer used,
+6 seconds are needed to generate this trajectory. If someone wants to
+look at fine effects and need to generate millions of trajectories it is
+too long. In order to fasten the process, in the following I use Cython
+to generate the trajectory using C language.
 
     \hypertarget{cython-acceleration}{%
 \subsection{Cython acceleration}\label{cython-acceleration}}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{12}{\boxspacing}
+\prompt{In}{incolor}{10}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} Loading Cython library}
 \PY{o}{\PYZpc{}}\PY{k}{load\PYZus{}ext} Cython
 \end{Verbatim}
 \end{tcolorbox}
 
+    We now write the same functions as in the first part of the appendix.
+However, we now indicate the type of each variable.
+
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{13}{\boxspacing}
+\prompt{In}{incolor}{11}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{o}{\PYZpc{}\PYZpc{}}\PY{k}{cython}
+
 import cython
 cimport numpy as np
 import numpy as np
@@ -687,20 +673,32 @@ def trajectory\PYZus{}cython():
 \end{tcolorbox}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{14}{\boxspacing}
+\prompt{In}{incolor}{12}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{o}{\PYZpc{}}\PY{k}{timeit} trajectory(1000000)
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+6.79 s ± 92.2 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
+    \end{Verbatim}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{13}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{o}{\PYZpc{}}\PY{k}{timeit} trajectory\PYZus{}cython()
 \end{Verbatim}
 \end{tcolorbox}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-28.9 ms ± 416 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)
+30.6 ms ± 495 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)
     \end{Verbatim}
 
-    Rapid check if the Cython code properly works.
+    Again, we check that the results given through the use of Cython gives
+the correct MSD
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{15}{\boxspacing}
+\prompt{In}{incolor}{14}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{x}\PY{o}{=}\PY{n}{np}\PY{o}{.}\PY{n}{asarray}\PY{p}{(}\PY{n}{trajectory\PYZus{}cython}\PY{p}{(}\PY{p}{)}\PY{p}{)}
 \PY{n}{D} \PY{o}{=} \PY{n}{kbT}\PY{o}{/}\PY{p}{(}\PY{l+m+mi}{6}\PY{o}{*}\PY{n}{np}\PY{o}{.}\PY{n}{pi}\PY{o}{*}\PY{n}{eta}\PY{o}{*}\PY{n}{a}\PY{p}{)}
@@ -712,31 +710,36 @@ def trajectory\PYZus{}cython():
 \PY{n}{horiz\PYZus{}data} \PY{o}{=} \PY{p}{[}\PY{l+m+mf}{1e\PYZhy{}8}\PY{p}{,} \PY{l+m+mf}{1e\PYZhy{}17}\PY{p}{]}
 \PY{n}{t\PYZus{}horiz} \PY{o}{=} \PY{p}{[}\PY{n}{tauB}\PY{p}{,} \PY{n}{tauB}\PY{p}{]}
 \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{t\PYZus{}horiz}\PY{p}{,} \PY{n}{horiz\PYZus{}data}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{k}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZdl{}}\PY{l+s+se}{\PYZbs{}\PYZbs{}}\PY{l+s+s2}{tau\PYZus{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{mathrm}\PY{l+s+si}{\PYZob{}B\PYZcb{}}\PY{l+s+s2}{\PYZdl{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZdl{}}\PY{l+s+se}{\PYZbs{}\PYZbs{}}\PY{l+s+s2}{Delta t\PYZdl{} (s)}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{MSD (m\PYZdl{}\PYZca{}2\PYZdl{})}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
 \PY{n}{plt}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{p}{)}
 \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
 \end{Verbatim}
 \end{tcolorbox}
 
     \begin{center}
-    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_21_0.png}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{inertial_Brownian_motion_files/inertial_Brownian_motion_21_0.png}
     \end{center}
     { \hspace*{\fill} \\}
     
     \hypertarget{conclusion}{%
 \subsubsection{Conclusion}\label{conclusion}}
 
-We finally only need \(\simeq 6\) ms to generate the trajectory instead
-of \(\simeq 6s\) which is a \(\simeq 1000\times\) improvement speed. The
-simulation si here bound to the time needed to generate the array of
-random numbers which is still done using numpy function. After further
-checking, Numpy random generation si as optimize as one could do so
-there is no benefit on cythonizing the random generation. For the sake
-of completness one could fine a Cython version to generate random
-numbers. Found thanks to Senderle:
-https://stackoverflow.com/questions/42767816/what-is-the-most-efficient-and-portable-way-to-generate-gaussian-random-numbers
+Finally, one only needs \(\simeq 30\) ms to generate the trajectory
+instead of \(\simeq 7\) s which is a \(\simeq 250\times\) improvement
+speed. The simulation si here bound to the time needed to generate the
+array of random numbers which is still done using numpy function. After
+further checking, Numpy random generation si as optimize as one could do
+so there is no benefit on cythonizing the random generation. For the
+sake of completness one could fine a Cython version to generate random
+numbers. Found thanks to Senderle on
+\href{https://stackoverflow.com/questions/42767816/what-is-the-most-efficient-and-portable-way-to-generate-gaussian-random-numbers}{Stackoverflow}.
+Tacking into account that, the time improvment on the actual computation
+of the trajectory \textbf{without} the random number generation is done
+with an \(\simeq 1100\times\) improvement speed.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{16}{\boxspacing}
+\prompt{In}{incolor}{15}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{o}{\PYZpc{}\PYZpc{}}\PY{k}{cython}
 from libc.stdlib cimport rand, RAND\PYZus{}MAX
@@ -804,37 +807,81 @@ def my\PYZus{}gaussian\PYZus{}fast(int n):
 \end{tcolorbox}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{17}{\boxspacing}
+\prompt{In}{incolor}{16}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{o}{\PYZpc{}}\PY{k}{timeit} my\PYZus{}gaussian\PYZus{}fast(1000000)
 \end{Verbatim}
 \end{tcolorbox}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-28.7 ms ± 963 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)
+30.9 ms ± 941 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)
     \end{Verbatim}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{18}{\boxspacing}
+\prompt{In}{incolor}{17}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{o}{\PYZpc{}}\PY{k}{timeit} np.random.normal(0,1,1000000)
 \end{Verbatim}
 \end{tcolorbox}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-24 ms ± 768 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)
+26.4 ms ± 1.87 ms per loop (mean ± std. dev. of 7 runs, 10 loops each)
     \end{Verbatim}
 
     One can thus see, that even a pure C implementation can be slower than
-the Numpy one, thanks to impressive optimization.
+the Numpy one, thanks to a great optimization.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{ }{\boxspacing}
+\prompt{In}{incolor}{18}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{fig} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize} \PY{o}{=} \PY{p}{(}\PY{n}{cm2inch}\PY{p}{(}\PY{l+m+mi}{16}\PY{p}{)}\PY{p}{,} \PY{n}{cm2inch}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+\PY{n}{gs} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{add\PYZus{}gridspec}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)}
+\PY{n}{f\PYZus{}ax1} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{add\PYZus{}subplot}\PY{p}{(}\PY{n}{gs}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
+\PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{100}\PY{p}{)}\PY{p}{:}
+    \PY{n}{x} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{asarray}\PY{p}{(}\PY{n}{trajectory\PYZus{}cython}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{o}{*} \PY{l+m+mf}{1e6}
+    \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{arange}\PY{p}{(}\PY{n}{N}\PY{p}{)}\PY{o}{*}\PY{n}{tau} \PY{o}{/} \PY{l+m+mi}{60}\PY{p}{,} \PY{n}{x}\PY{p}{)}
 
+\PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZdl{}x\PYZdl{} (\PYZdl{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{mathrm}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{mu m\PYZcb{}\PYZdl{})}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZdl{}t\PYZdl{} (min)}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{text}\PY{p}{(}\PY{l+m+mi}{5}\PY{p}{,}\PY{l+m+mi}{100}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{a)}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{xlim}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{160}\PY{p}{]}\PY{p}{)}
+\PY{n}{f\PYZus{}ax1} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{add\PYZus{}subplot}\PY{p}{(}\PY{n}{gs}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
+                 
+\PY{n}{x}\PY{o}{=}\PY{n}{np}\PY{o}{.}\PY{n}{asarray}\PY{p}{(}\PY{n}{trajectory\PYZus{}cython}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+\PY{n}{D} \PY{o}{=} \PY{n}{kbT}\PY{o}{/}\PY{p}{(}\PY{l+m+mi}{6}\PY{o}{*}\PY{n}{np}\PY{o}{.}\PY{n}{pi}\PY{o}{*}\PY{n}{eta}\PY{o}{*}\PY{n}{a}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{loglog}\PY{p}{(}\PY{n}{t}\PY{o}{*}\PY{n}{tau}\PY{p}{,}\PY{n}{MSD}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{o}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{t\PYZus{}plot} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{linspace}\PY{p}{(}\PY{l+m+mf}{0.5e\PYZhy{}2}\PY{p}{,}\PY{l+m+mf}{5e3}\PY{p}{,}\PY{l+m+mi}{1000}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{t\PYZus{}plot}\PY{p}{,} \PY{p}{(}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{D}\PY{o}{*}\PY{n}{t\PYZus{}plot}\PY{p}{)}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZhy{}\PYZhy{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{color} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{k}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{long time theory}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{t\PYZus{}plot}\PY{p}{,} \PY{n}{kbT}\PY{o}{/}\PY{n}{m} \PY{o}{*} \PY{n}{t\PYZus{}plot}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{color} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{k}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{short time theory}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+
+\PY{n}{horiz\PYZus{}data} \PY{o}{=} \PY{p}{[}\PY{l+m+mf}{1e\PYZhy{}7}\PY{p}{,} \PY{l+m+mf}{1e\PYZhy{}18}\PY{p}{]}
+\PY{n}{t\PYZus{}horiz} \PY{o}{=} \PY{p}{[}\PY{n}{tauB}\PY{p}{,} \PY{n}{tauB}\PY{p}{]}
+\PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{t\PYZus{}horiz}\PY{p}{,} \PY{n}{horiz\PYZus{}data}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{k}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZdl{}}\PY{l+s+se}{\PYZbs{}\PYZbs{}}\PY{l+s+s2}{tau\PYZus{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{mathrm}\PY{l+s+si}{\PYZob{}B\PYZcb{}}\PY{l+s+s2}{\PYZdl{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{MSD (m\PYZdl{}\PYZca{}2\PYZdl{})}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZdl{}}\PY{l+s+se}{\PYZbs{}\PYZbs{}}\PY{l+s+s2}{Delta t\PYZdl{} (s)}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{ax} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{gca}\PY{p}{(}\PY{p}{)}
+\PY{n}{locmaj} \PY{o}{=} \PY{n}{mpl}\PY{o}{.}\PY{n}{ticker}\PY{o}{.}\PY{n}{LogLocator}\PY{p}{(}\PY{n}{base}\PY{o}{=}\PY{l+m+mf}{10.0}\PY{p}{,} \PY{n}{subs}\PY{o}{=}\PY{p}{(}\PY{l+m+mf}{1.0}\PY{p}{,} \PY{p}{)}\PY{p}{,} \PY{n}{numticks}\PY{o}{=}\PY{l+m+mi}{100}\PY{p}{)}
+\PY{n}{ax}\PY{o}{.}\PY{n}{yaxis}\PY{o}{.}\PY{n}{set\PYZus{}major\PYZus{}locator}\PY{p}{(}\PY{n}{locmaj}\PY{p}{)}
+\PY{n}{locmin} \PY{o}{=} \PY{n}{mpl}\PY{o}{.}\PY{n}{ticker}\PY{o}{.}\PY{n}{LogLocator}\PY{p}{(}\PY{n}{base}\PY{o}{=}\PY{l+m+mf}{10.0}\PY{p}{,} \PY{n}{subs}\PY{o}{=}\PY{n}{np}\PY{o}{.}\PY{n}{arange}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{)} \PY{o}{*} \PY{l+m+mf}{.1}\PY{p}{,}
+                                      \PY{n}{numticks}\PY{o}{=}\PY{l+m+mi}{100}\PY{p}{)}
+\PY{n}{ax}\PY{o}{.}\PY{n}{yaxis}\PY{o}{.}\PY{n}{set\PYZus{}minor\PYZus{}locator}\PY{p}{(}\PY{n}{locmin}\PY{p}{)}
+\PY{n}{ax}\PY{o}{.}\PY{n}{yaxis}\PY{o}{.}\PY{n}{set\PYZus{}minor\PYZus{}formatter}\PY{p}{(}\PY{n}{mpl}\PY{o}{.}\PY{n}{ticker}\PY{o}{.}\PY{n}{NullFormatter}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{n}{frameon}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{text}\PY{p}{(}\PY{l+m+mf}{0.7e2}\PY{p}{,}\PY{l+m+mf}{1e\PYZhy{}15}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{b)}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{xlim}\PY{p}{(}\PY{p}{[}\PY{l+m+mf}{0.8e\PYZhy{}2}\PY{p}{,}\PY{l+m+mf}{1e2}\PY{p}{]}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{ylim}\PY{p}{(}\PY{p}{[}\PY{l+m+mf}{1e\PYZhy{}16}\PY{p}{,}\PY{l+m+mf}{1e\PYZhy{}10}\PY{p}{]}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{tight\PYZus{}layout}\PY{p}{(}\PY{n}{pad}\PY{o}{=}\PY{l+m+mf}{0.4}\PY{p}{,} \PY{n}{w\PYZus{}pad}\PY{o}{=}\PY{l+m+mf}{0.5}\PY{p}{,} \PY{n}{h\PYZus{}pad}\PY{o}{=}\PY{l+m+mf}{1.0}\PY{p}{)}
+
+\PY{n}{plt}\PY{o}{.}\PY{n}{savefig}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{intertial\PYZus{}langevin.pdf}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
 \end{Verbatim}
 \end{tcolorbox}
 
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{inertial_Brownian_motion_files/inertial_Brownian_motion_27_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
 
     % Add a bibliography block to the postdoc
     
