@@ -422,32 +422,32 @@ On the right-hand side of Eq.~\ref{Eq.Stokesflow}, the viscous term simplifies t
 In the lubrication theory, Eq.~(\ref{Eq.Stokesflow}) is finally simplified to:
 
 \begin{equation}
-	\frac{\partial p}{\partial x} = \eta \frac{\partial ^2 V_\mathrm{fluid}}{\partial z^2}~.
+	\frac{\partial p}{\partial x} = \eta \frac{\partial ^2 V_\mathrm{fluid}}{\partial z^2}~,
 \end{equation}
 
-By replacing the partial derivative by the typical length leads to:
+which scales as:
 
 \begin{equation}
-	p \sim \eta V_\mathrm{fluid} \frac{L}{z^2}
+	p \sim \eta V_\mathrm{fluid} \frac{L}{h^2}~.
 	\label{pressure}
 \end{equation}
 
-To compute the calculate the Stokes mobility, one needs to evaluate the viscous stress $\sigma$, in the lubrication theory, it reads:
+To compute the Stokes mobility, one needs to evaluate the viscous stress $\sigma$, in the lubrication theory, it reads:
 
 \begin{equation}
-	\sigma = \eta \frac{\partial V_\mathrm{fluid}}{\partial z} \sim \eta \frac{V_\mathrm{fluid}}{h}
+	\sigma = \eta \frac{\partial V_\mathrm{fluid}}{\partial z} \sim \eta \frac{V_\mathrm{fluid}}{h} ~.
 \end{equation}
 
-When the particle is moving towards the wall we thus have $p\gg \sigma$, we thus only consider the pressure. To evaluate the mobility, we need to write Eq.~(\ref{pressure}) as a function of $V_\mathrm{sphere}$. Using Eq.~(\ref{Eq.continuity}) equation one has $V_\mathrm{fluid} / h \sim  V_\mathrm{sphere} / L$, Eq.~(\ref{pressure}) thus become:
+When the particle is moving towards the wall we thus have $p\gg \sigma$, we thus only consider the pressure. To evaluate the mobility, we need to write Eq.~(\ref{pressure}) as a function of $V_\mathrm{sphere}$. Using Eq.~(\ref{Eq.continuity}) one has $V_\mathrm{fluid} / L \sim  V_\mathrm{sphere} / h$, Eq.~(\ref{pressure}) thus become:
 
 \begin{equation}
-	p \sim \eta  \frac{L^4}{h^2}
+	p \sim \eta  \frac{L^4}{h^3}
 \end{equation}
 
-Integrating this pressure over the particle surface (\textit{i.e} over the typical length $L = \sqrt{az}$) leads a scaling of the drag force:
+Integrating this pressure over the particle surface (\textit{i.e} over the typical surface $L^2 = ah$) leads a scaling of the drag force:
 
 \begin{equation}
-	F_\mathrm{drag} ^{z\ll a} \sim \eta V \frac{L^4}{h^2} = \eta V \frac{a^2}{z}
+	F_\mathrm{drag} ^{z\ll a} \sim \eta V \frac{L^4}{h^3} = \eta V \frac{a^2}{z}
 \end{equation}
 
 The mobility (see Eq.~(\ref{Eq.mu})) of the displacement perpendicular to the wall  thus scale as $\gamma_0^{-1} h/a$, with $\gamma_0^{-1}$ the bulk mobility. Therefore, the diffusion coefficient of a confined colloid near a wall in the lubrication approximation is hindered and inversely proportional to the particle-wall distance. It is possible to same scaling for the parallel mobility by supposing that the particle is moving along the $x$-axis. In that case, one can find that the viscous stress is greater than the pressure and finally find that along the $x$-axis, the parallel mobility follows the same scaling as in bulk and remain constant.
