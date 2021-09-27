@@ -515,7 +515,7 @@ where the average $ \left. \langle \rangle \right|_t $ is performed over time $t
 	{python}
 def msd(x, Dt):
 	"""Function that returns the MSD for a list of time indices Dt for a trajectory x"""
-	_msd = lambda x, t: np.mean((x[:-Dt] - x[Dt:]) ** 2)
+	_msd = lambda x, Dt: np.mean((x[:-Dt] - x[Dt:]) ** 2)
 	return [_msd(x, i) for i in t]
 \end{minted}
 
