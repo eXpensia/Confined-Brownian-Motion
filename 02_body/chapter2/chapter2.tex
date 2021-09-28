@@ -344,7 +344,7 @@ Finally, one can check how the holograms are varying with the optical index of a
 
 
 
-\subsubsection{Summary on the Lorenz-Mie method} \newline
+\subsubsection{Summary on the Lorenz-Mie method}\mbox{} \newline
 
 A given set of height, optical index and radius of a colloid thus gives unique holograms. Conversely, this uniqueness of the holograms permits precise extraction of the position, optical index and radius of a colloid. Holograms for different sets of parameters are shown in Figs.~\ref{fig:holo_fix_z}~and~\ref{fig:holo_fix_n}. Additionally, the interested reader can use  the Jupyter Notebook on my Github repository in order to plot any hologram \href{https://github.com/eXpensia/Ma-these/blob/main/02_body/chapter2/images/holo_size_exemple/holosize_variation.ipynb}{\faGithub}.  
 
@@ -656,21 +656,22 @@ The terminal sedimentation velocity can be found by equaling the drag force (\te
 
 \begin{equation}
 	v_\mathrm{sed} = \frac{2}{9} \frac{\Delta \rho a^2 g}{\eta} ~,
+	\label{vsed}
 \end{equation}
 
-where $\Delta \rho$ is the difference between the fluid and colloid density, and $g$ the gravitational acceleration. For the tracked particle, we calculate $v_\mathrm{sed} = 218 ~\mathrm{nm.s^{-1}}$. To measure the latter velocity, we use the \gls{MSD} which writes by taking into account the sedimentation:
+where $\Delta \rho$ is the density difference between the fluid and colloid density, and $g$ the gravitational acceleration. For the tracked particle, we calculate $v_\mathrm{sed} = 229 ~\mathrm{nm.s^{-1}}$ using the radius measured from the holograms and tabulated $\Delta \rho = 50$ for polystyrene in water. To measure the latter velocity from the trajectory, we use the \gls{MSD} which writes by taking into account the sedimentation:
 
 \begin{equation}
-	\langle \Delta z ^2 \rangle = 2D_0 \Delta t + v_\mathrm{sed} \Delta t^2 ~,
+	\langle \Delta z ^2 \rangle = 2D_0 \Delta t + v_\mathrm{sed}^2 \Delta t^2 + (2\xi)^2 ~,
 	\label{Eq.sedmsd}
 \end{equation}
 
-where $D_0$ is the bulk diffusion coefficient (see Eq.~(\ref{Eq:D_einstein})). For the tracked colloid, using the radius measured from the Lorenz-Mie method, we find $D_0 = 146 ~\mathrm{\mu m ^2 . ms^{-1}}$. The experimental \gls{MSD} of the sedimenting colloid is shown in Fig.~\ref{fig:msdsed}. Once the \gls{MSD} computed, we measure both the diffusion coefficient $D_0$ and the terminal sedimentation velocity $v_\mathrm{sed}$ by fitting the experimental \gls{MSD} to Eq.~\ref{Eq.sedmsd}. Doing so, we experimentally measure $D_0 = 149 \pm 1 ~ \mathrm{\mu m ^2 . ms^{-1}}$ and $v_\mathrm{sed} = 218 \pm 1 ~ \mathrm{nm.s^{-1}}$, corresponding to errors of $2\%$ and $5\%$, respectively. These latter errors might be attributed to particle rugosity. With this experiment, we validated the use of the Lorenz-Mie framework in order to track micron-sized colloids.
+where $D_0$ is the bulk diffusion coefficient (see Eq.~(\ref{Eq:D_einstein})) and $\xi$ being the noise-level due to the statistical uncertainty on the position measurement. Using the radius measured from the Lorenz-Mie method, we find for the observed colloid $D_0 = 146 ~\mathrm{\mu m ^2 . ms^{-1}}$. The experimental \gls{MSD} of the sedimenting colloid is shown in Fig.~\ref{fig:msdsed}. Once the \gls{MSD} computed, we measure both the diffusion coefficient $D_0$ and the terminal sedimentation velocity $v_\mathrm{sed}$ by fitting the experimental \gls{MSD} to Eq.~\ref{Eq.sedmsd}. Doing so, we experimentally measure $D_0 = 144 \pm 1 ~ \mathrm{\mu m ^2 . ms^{-1}}$ and $v_\mathrm{sed} = 222 \pm 1 ~ \mathrm{nm.s^{-1}}$, corresponding to errors of $1\%$ and $3\%$, respectively. From the MSD we also evaluate the statistical error on the particle position measurement along the $z$-axis to $\xi = 25$ nm. This uncertainty can be reduced by using a larger images and more sensitive cameras. However, for the study of confined particle where the range of motion is smaller, we optimized the position of the focal plane to reduce the uncertainty on the position measurement. Finally, using Eq.~\ref{vsed} we can calculate the density difference $\Delta \rho = 48.4 \pm 0.2~ \mathrm{kg.m^{-3}}$. The discrepancy from the tabulated $\Delta \rho = 50~ \mathrm{kg.m^{-3}}$ for polystyrene in water might be attributed to rugosities and/or porosity. Nonetheless, with the small measured deviations from the theory, we correctly showed the viability of the Lorenz-Mie framework to study Brownian dynamics.  
 
 \begin{figure}[H]
 	\centering
 	\includegraphics{02_body/chapter2/images/sedimenting/msd_sedimentation.pdf}
-	\caption{Measured mean-squared displacement as function of the time increment $\Delta t$, along the $z$-axis. The solid line is the best fit to Eq.~(\ref{Eq.sedmsd}), with $D_0 = 149 \pm 1 ~ \mathrm{\mu m ^2 . ms^{-1}}$ and $v_\mathrm{sed} = 218 \pm 1 ~ \mathrm{nm.s^{-1}}$.}
+	\caption{Measured mean-squared displacement as function of the time increment $\Delta t$, along the $z$-axis. The solid line is the best fit to Eq.~(\ref{Eq.sedmsd}), with $D_0 = 144 \pm 1 ~ \mathrm{\mu m ^2 . ms^{-1}}$, $v_\mathrm{sed} = 222 \pm 1 ~ \mathrm{nm.s^{-1}}$ and $xi = 25 $ nm.}
 	\label{fig:msdsed}
 \end{figure}
 
