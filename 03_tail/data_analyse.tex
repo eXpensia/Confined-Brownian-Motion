@@ -1,0 +1,1905 @@
+\documentclass[11pt]{article}
+
+    \usepackage[breakable]{tcolorbox}
+    \usepackage{parskip} % Stop auto-indenting (to mimic markdown behaviour)
+    
+    \usepackage{iftex}
+    \ifPDFTeX
+    	\usepackage[T1]{fontenc}
+    	\usepackage{mathpazo}
+    \else
+    	\usepackage{fontspec}
+    \fi
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % Maintain compatibility with old templates. Remove in nbconvert 6.0
+    \let\Oldincludegraphics\includegraphics
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionFormat{nocaption}{}
+    \captionsetup{format=nocaption,aboveskip=0pt,belowskip=0pt}
+
+    \usepackage{float}
+    \floatplacement{figure}{H} % forces figures to be placed at the correct location
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range
+    \makeatletter % fix for old versions of grffile with XeLaTeX
+    \@ifpackagelater{grffile}{2019/11/01}
+    {
+      % Do nothing on new versions
+    }
+    {
+      \def\Gread@@xetex#1{%
+        \IfFileExists{"\Gin@base".bb}%
+        {\Gread@eps{\Gin@base.bb}}%
+        {\Gread@@xetex@aux#1}%
+      }
+    }
+    \makeatother
+    \usepackage[Export]{adjustbox} % Used to constrain images to a maximum size
+    \adjustboxset{max size={0.9\linewidth}{0.9\paperheight}}
+
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    % The default LaTeX title has an obnoxious amount of whitespace. By default,
+    % titling removes some of it. It also provides customization options.
+    \usepackage{titling}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    \usepackage{mathrsfs}
+    
+
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+    \definecolor{ansi-default-inverse-fg}{HTML}{FFFFFF}
+    \definecolor{ansi-default-inverse-bg}{HTML}{000000}
+
+    % common color for the border for error outputs.
+    \definecolor{outerrorbackground}{HTML}{FFDFDF}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatibility definitions
+    \def\gt{>}
+    \def\lt{<}
+    \let\Oldtex\TeX
+    \let\Oldlatex\LaTeX
+    \renewcommand{\TeX}{\textrm{\Oldtex}}
+    \renewcommand{\LaTeX}{\textrm{\Oldlatex}}
+    % Document parameters
+    % Document title
+    \title{Data Analysis procedure}
+    \date{}
+    
+    
+    
+    
+% Pygments definitions
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\@namedef{PY@tok@w}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\@namedef{PY@tok@c}{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\@namedef{PY@tok@cp}{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\@namedef{PY@tok@k}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@kp}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@kt}{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\@namedef{PY@tok@o}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@ow}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\@namedef{PY@tok@nb}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@nf}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\@namedef{PY@tok@nc}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\@namedef{PY@tok@nn}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\@namedef{PY@tok@ne}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\@namedef{PY@tok@nv}{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\@namedef{PY@tok@no}{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\@namedef{PY@tok@nl}{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\@namedef{PY@tok@ni}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\@namedef{PY@tok@na}{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\@namedef{PY@tok@nt}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@nd}{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\@namedef{PY@tok@s}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@sd}{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@si}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\@namedef{PY@tok@se}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\@namedef{PY@tok@sr}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\@namedef{PY@tok@ss}{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\@namedef{PY@tok@sx}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@m}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@gh}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\@namedef{PY@tok@gu}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\@namedef{PY@tok@gd}{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\@namedef{PY@tok@gi}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\@namedef{PY@tok@gr}{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\@namedef{PY@tok@ge}{\let\PY@it=\textit}
+\@namedef{PY@tok@gs}{\let\PY@bf=\textbf}
+\@namedef{PY@tok@gp}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\@namedef{PY@tok@go}{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\@namedef{PY@tok@gt}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\@namedef{PY@tok@err}{\def\PY@bc##1{{\setlength{\fboxsep}{-\fboxrule}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}}
+\@namedef{PY@tok@kc}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@kd}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@kn}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@kr}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@bp}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@fm}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\@namedef{PY@tok@vc}{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\@namedef{PY@tok@vg}{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\@namedef{PY@tok@vi}{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\@namedef{PY@tok@vm}{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\@namedef{PY@tok@sa}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@sb}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@sc}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@dl}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@s2}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@sh}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@s1}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@mb}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@mf}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@mh}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@mi}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@il}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@mo}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@ch}{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\@namedef{PY@tok@cm}{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\@namedef{PY@tok@cpf}{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\@namedef{PY@tok@c1}{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\@namedef{PY@tok@cs}{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % For linebreaks inside Verbatim environment from package fancyvrb. 
+    \makeatletter
+        \newbox\Wrappedcontinuationbox 
+        \newbox\Wrappedvisiblespacebox 
+        \newcommand*\Wrappedvisiblespace {\textcolor{red}{\textvisiblespace}} 
+        \newcommand*\Wrappedcontinuationsymbol {\textcolor{red}{\llap{\tiny$\m@th\hookrightarrow$}}} 
+        \newcommand*\Wrappedcontinuationindent {3ex } 
+        \newcommand*\Wrappedafterbreak {\kern\Wrappedcontinuationindent\copy\Wrappedcontinuationbox} 
+        % Take advantage of the already applied Pygments mark-up to insert 
+        % potential linebreaks for TeX processing. 
+        %        {, <, #, %, $, ' and ": go to next line. 
+        %        _, }, ^, &, >, - and ~: stay at end of broken line. 
+        % Use of \textquotesingle for straight quote. 
+        \newcommand*\Wrappedbreaksatspecials {% 
+            \def\PYGZus{\discretionary{\char`\_}{\Wrappedafterbreak}{\char`\_}}% 
+            \def\PYGZob{\discretionary{}{\Wrappedafterbreak\char`\{}{\char`\{}}% 
+            \def\PYGZcb{\discretionary{\char`\}}{\Wrappedafterbreak}{\char`\}}}% 
+            \def\PYGZca{\discretionary{\char`\^}{\Wrappedafterbreak}{\char`\^}}% 
+            \def\PYGZam{\discretionary{\char`\&}{\Wrappedafterbreak}{\char`\&}}% 
+            \def\PYGZlt{\discretionary{}{\Wrappedafterbreak\char`\<}{\char`\<}}% 
+            \def\PYGZgt{\discretionary{\char`\>}{\Wrappedafterbreak}{\char`\>}}% 
+            \def\PYGZsh{\discretionary{}{\Wrappedafterbreak\char`\#}{\char`\#}}% 
+            \def\PYGZpc{\discretionary{}{\Wrappedafterbreak\char`\%}{\char`\%}}% 
+            \def\PYGZdl{\discretionary{}{\Wrappedafterbreak\char`\$}{\char`\$}}% 
+            \def\PYGZhy{\discretionary{\char`\-}{\Wrappedafterbreak}{\char`\-}}% 
+            \def\PYGZsq{\discretionary{}{\Wrappedafterbreak\textquotesingle}{\textquotesingle}}% 
+            \def\PYGZdq{\discretionary{}{\Wrappedafterbreak\char`\"}{\char`\"}}% 
+            \def\PYGZti{\discretionary{\char`\~}{\Wrappedafterbreak}{\char`\~}}% 
+        } 
+        % Some characters . , ; ? ! / are not pygmentized. 
+        % This macro makes them "active" and they will insert potential linebreaks 
+        \newcommand*\Wrappedbreaksatpunct {% 
+            \lccode`\~`\.\lowercase{\def~}{\discretionary{\hbox{\char`\.}}{\Wrappedafterbreak}{\hbox{\char`\.}}}% 
+            \lccode`\~`\,\lowercase{\def~}{\discretionary{\hbox{\char`\,}}{\Wrappedafterbreak}{\hbox{\char`\,}}}% 
+            \lccode`\~`\;\lowercase{\def~}{\discretionary{\hbox{\char`\;}}{\Wrappedafterbreak}{\hbox{\char`\;}}}% 
+            \lccode`\~`\:\lowercase{\def~}{\discretionary{\hbox{\char`\:}}{\Wrappedafterbreak}{\hbox{\char`\:}}}% 
+            \lccode`\~`\?\lowercase{\def~}{\discretionary{\hbox{\char`\?}}{\Wrappedafterbreak}{\hbox{\char`\?}}}% 
+            \lccode`\~`\!\lowercase{\def~}{\discretionary{\hbox{\char`\!}}{\Wrappedafterbreak}{\hbox{\char`\!}}}% 
+            \lccode`\~`\/\lowercase{\def~}{\discretionary{\hbox{\char`\/}}{\Wrappedafterbreak}{\hbox{\char`\/}}}% 
+            \catcode`\.\active
+            \catcode`\,\active 
+            \catcode`\;\active
+            \catcode`\:\active
+            \catcode`\?\active
+            \catcode`\!\active
+            \catcode`\/\active 
+            \lccode`\~`\~ 	
+        }
+    \makeatother
+
+    \let\OriginalVerbatim=\Verbatim
+    \makeatletter
+    \renewcommand{\Verbatim}[1][1]{%
+        %\parskip\z@skip
+        \sbox\Wrappedcontinuationbox {\Wrappedcontinuationsymbol}%
+        \sbox\Wrappedvisiblespacebox {\FV@SetupFont\Wrappedvisiblespace}%
+        \def\FancyVerbFormatLine ##1{\hsize\linewidth
+            \vtop{\raggedright\hyphenpenalty\z@\exhyphenpenalty\z@
+                \doublehyphendemerits\z@\finalhyphendemerits\z@
+                \strut ##1\strut}%
+        }%
+        % If the linebreak is at a space, the latter will be displayed as visible
+        % space at end of first line, and a continuation symbol starts next line.
+        % Stretch/shrink are however usually zero for typewriter font.
+        \def\FV@Space {%
+            \nobreak\hskip\z@ plus\fontdimen3\font minus\fontdimen4\font
+            \discretionary{\copy\Wrappedvisiblespacebox}{\Wrappedafterbreak}
+            {\kern\fontdimen2\font}%
+        }%
+        
+        % Allow breaks at special characters using \PYG... macros.
+        \Wrappedbreaksatspecials
+        % Breaks at punctuation characters . , ; ? ! and / need catcode=\active 	
+        \OriginalVerbatim[#1,codes*=\Wrappedbreaksatpunct]%
+    }
+    \makeatother
+
+    % Exact colors from NB
+    \definecolor{incolor}{HTML}{303F9F}
+    \definecolor{outcolor}{HTML}{D84315}
+    \definecolor{cellborder}{HTML}{CFCFCF}
+    \definecolor{cellbackground}{HTML}{F7F7F7}
+    
+    % prompt
+    \makeatletter
+    \newcommand{\boxspacing}{\kern\kvtcb@left@rule\kern\kvtcb@boxsep}
+    \makeatother
+    \newcommand{\prompt}[4]{
+        {\ttfamily\llap{{\color{#2}[#3]:\hspace{3pt}#4}}\vspace{-\baselineskip}}
+    }
+    
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+\begin{document}
+    
+    \maketitle
+    
+    
+
+    
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{1}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{o}{\PYZpc{}}\PY{k}{load\PYZus{}ext} lab\PYZus{}black
+\PY{c+c1}{\PYZsh{} Import important tools}
+\PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
+\PY{k+kn}{import} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{pyplot} \PY{k}{as} \PY{n+nn}{plt}
+\PY{k+kn}{import} \PY{n+nn}{matplotlib} \PY{k}{as} \PY{n+nn}{mpl}
+\PY{k+kn}{from} \PY{n+nn}{scipy}\PY{n+nn}{.}\PY{n+nn}{io} \PY{k+kn}{import} \PY{n}{loadmat}\PY{p}{,} \PY{n}{savemat}
+\PY{k+kn}{from} \PY{n+nn}{mpl\PYZus{}toolkits}\PY{n+nn}{.}\PY{n+nn}{mplot3d} \PY{k+kn}{import} \PY{n}{Axes3D}
+\PY{k+kn}{from} \PY{n+nn}{scipy}\PY{n+nn}{.}\PY{n+nn}{optimize} \PY{k+kn}{import} \PY{n}{curve\PYZus{}fit}\PY{p}{,} \PY{n}{minimize}\PY{p}{,} \PY{n}{least\PYZus{}squares}
+\PY{k+kn}{from} \PY{n+nn}{scipy}\PY{n+nn}{.}\PY{n+nn}{integrate} \PY{k+kn}{import} \PY{n}{trapz}
+\PY{k+kn}{from} \PY{n+nn}{scipy}\PY{n+nn}{.}\PY{n+nn}{stats} \PY{k+kn}{import} \PY{n}{norm}\PY{p}{,} \PY{n}{kurtosis}
+\PY{k+kn}{from} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{ticker} \PY{k+kn}{import} \PY{n}{ScalarFormatter}
+\PY{k+kn}{from} \PY{n+nn}{matplotlib} \PY{k+kn}{import} \PY{n}{rc}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{ }{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{2}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{mpl}\PY{o}{.}\PY{n}{rcParams}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{xtick.direction}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{in}\PY{l+s+s2}{\PYZdq{}}
+\PY{n}{mpl}\PY{o}{.}\PY{n}{rcParams}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{ytick.direction}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{in}\PY{l+s+s2}{\PYZdq{}}
+\PY{n}{mpl}\PY{o}{.}\PY{n}{rcParams}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{lines.markeredgecolor}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{k}\PY{l+s+s2}{\PYZdq{}}
+\PY{n}{mpl}\PY{o}{.}\PY{n}{rcParams}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{lines.markeredgewidth}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]} \PY{o}{=} \PY{l+m+mi}{1}
+\PY{n}{mpl}\PY{o}{.}\PY{n}{rcParams}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{figure.dpi}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]} \PY{o}{=} \PY{l+m+mi}{130}
+\PY{n}{rc}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{font}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{family}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{serif}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{rc}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{text}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{usetex}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+\PY{n}{rc}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{xtick}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{labelsize}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{x\PYZhy{}small}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{rc}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{ytick}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{labelsize}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{x\PYZhy{}small}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+
+
+\PY{k}{def} \PY{n+nf}{cm2inch}\PY{p}{(}\PY{n}{value}\PY{p}{)}\PY{p}{:}
+    \PY{k}{return} \PY{n}{value} \PY{o}{/} \PY{l+m+mf}{2.54}
+\end{Verbatim}
+\end{tcolorbox}
+
+    We load the data
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{3}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{raw\PYZus{}data} \PY{o}{=} \PY{n}{loadmat}\PY{p}{(}
+    \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{fit\PYZus{}result\PYZus{}dur\PYZus{}27052020\PYZus{}n\PYZus{}r\PYZus{}fix\PYZus{}0p0513\PYZus{}wav\PYZus{}532\PYZus{}r\PYZus{}1p516\PYZus{}n\PYZus{}1.597.mat}\PY{l+s+s2}{\PYZdq{}}
+\PY{p}{)}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{data}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{:}\PY{l+m+mi}{3}\PY{p}{]}
+\PY{n}{r} \PY{o}{=} \PY{l+m+mf}{1.516} \PY{o}{*} \PY{l+m+mf}{1e\PYZhy{}6}
+\PY{n}{n\PYZus{}part} \PY{o}{=} \PY{l+m+mf}{1.597}
+\PY{n}{fps} \PY{o}{=} \PY{l+m+mi}{60}
+\PY{n}{time} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{arange}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{shape}\PY{p}{(}\PY{n}{raw\PYZus{}data}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)} \PY{o}{/} \PY{n}{fps}
+\PY{n}{dataset} \PY{o}{=} \PY{p}{\PYZob{}}\PY{p}{\PYZcb{}}
+\PY{n}{dataset}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{r}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]} \PY{o}{=} \PY{n}{r}
+\PY{n}{dataset}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{n}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]} \PY{o}{=} \PY{n}{n\PYZus{}part}
+\PY{n}{dataset}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{fps}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]} \PY{o}{=} \PY{n}{fps}
+\PY{n}{dataset}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{time}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]} \PY{o}{=} \PY{n}{time}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \hypertarget{data-exploration}{%
+\section{Data exploration}\label{data-exploration}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{4}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} We put everything in microns}
+\PY{n}{raw\PYZus{}data\PYZus{}m} \PY{o}{=} \PY{n}{raw\PYZus{}data}
+\PY{n}{raw\PYZus{}data\PYZus{}m}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{:}\PY{l+m+mi}{3}\PY{p}{]} \PY{o}{=} \PY{n}{raw\PYZus{}data\PYZus{}m}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{:}\PY{l+m+mi}{3}\PY{p}{]} \PY{o}{*} \PY{l+m+mf}{0.0513}
+\PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{time} \PY{o}{/} \PY{n}{fps}\PY{p}{,} \PY{n}{raw\PYZus{}data\PYZus{}m}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{]}\PY{p}{)}
+\PY{n}{x} \PY{o}{=} \PY{n}{raw\PYZus{}data\PYZus{}m}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{]}
+\PY{n}{y} \PY{o}{=} \PY{n}{raw\PYZus{}data\PYZus{}m}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{]}
+\PY{n}{z} \PY{o}{=} \PY{n}{raw\PYZus{}data\PYZus{}m}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{]}
+
+\PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZdl{}t\PYZdl{} (minutes)}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZdl{}z\PYZdl{} (\PYZdl{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{mathrm}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{mu m\PYZcb{}\PYZdl{})}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{data_analyse_files/data_analyse_6_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{5}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{time} \PY{o}{/} \PY{n}{fps}\PY{p}{,} \PY{n}{raw\PYZus{}data\PYZus{}m}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{x}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{time} \PY{o}{/} \PY{n}{fps}\PY{p}{,} \PY{n}{raw\PYZus{}data\PYZus{}m}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{y}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZdl{}t\PYZdl{} (minutes)}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZdl{}x\PYZdl{} (\PYZdl{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{mathrm}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{mu m\PYZcb{}\PYZdl{})}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{data_analyse_files/data_analyse_7_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \hypertarget{msd}{%
+\section{MSD}\label{msd}}
+
+We compute the MSD using the formula:
+
+\begin{equation}
+    \langle\Delta r_i(t)^2 \rangle_t = \langle[r_i(t+\Delta t) - r_i(t)]^2\rangle_t\ .
+    \label{MSDdef}
+\end{equation}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{6}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{def} \PY{n+nf}{MSD}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{t}\PY{p}{)}\PY{p}{:}
+    \PY{n}{MSD} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{t}\PY{p}{)}\PY{p}{)}
+    \PY{k}{for} \PY{n}{n}\PY{p}{,} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{enumerate}\PY{p}{(}\PY{n}{t}\PY{p}{)}\PY{p}{:}
+        \PY{n}{MSD}\PY{p}{[}\PY{n}{n}\PY{p}{]} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{nanmean}\PY{p}{(}\PY{p}{(}\PY{n}{x}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{:}\PY{o}{\PYZhy{}}\PY{n}{i}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{x}\PY{p}{[}\PY{n}{i}\PY{p}{:}\PY{p}{]}\PY{p}{)} \PY{o}{*}\PY{o}{*} \PY{l+m+mi}{2}\PY{p}{)}
+    \PY{k}{return} \PY{n}{MSD}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{7}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{t} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}
+    \PY{p}{[}
+        \PY{o}{*}\PY{n}{np}\PY{o}{.}\PY{n}{arange}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)}\PY{p}{,}
+        \PY{o}{*}\PY{n}{np}\PY{o}{.}\PY{n}{arange}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{,} \PY{l+m+mi}{100}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{)}\PY{p}{,}
+        \PY{o}{*}\PY{n}{np}\PY{o}{.}\PY{n}{arange}\PY{p}{(}\PY{l+m+mi}{100}\PY{p}{,} \PY{l+m+mi}{1000}\PY{p}{,} \PY{l+m+mi}{100}\PY{p}{)}\PY{p}{,}
+        \PY{o}{*}\PY{n}{np}\PY{o}{.}\PY{n}{arange}\PY{p}{(}\PY{l+m+mi}{1000}\PY{p}{,} \PY{l+m+mi}{40000}\PY{p}{,} \PY{l+m+mi}{1000}\PY{p}{)}\PY{p}{,}
+    \PY{p}{]}
+\PY{p}{)}
+\PY{n}{MSD\PYZus{}x} \PY{o}{=} \PY{n}{MSD}\PY{p}{(}\PY{n}{x} \PY{o}{*} \PY{l+m+mf}{1e\PYZhy{}6}\PY{p}{,} \PY{n}{t}\PY{p}{)}  \PY{c+c1}{\PYZsh{} m² conversion}
+\PY{n}{MSD\PYZus{}y} \PY{o}{=} \PY{n}{MSD}\PY{p}{(}\PY{n}{y} \PY{o}{*} \PY{l+m+mf}{1e\PYZhy{}6}\PY{p}{,} \PY{n}{t}\PY{p}{)}
+\PY{n}{MSD\PYZus{}z} \PY{o}{=} \PY{n}{MSD}\PY{p}{(}\PY{n}{z} \PY{o}{*} \PY{l+m+mf}{1e\PYZhy{}6}\PY{p}{,} \PY{n}{t}\PY{p}{)}
+
+
+\PY{n}{plt}\PY{o}{.}\PY{n}{loglog}\PY{p}{(}\PY{n}{time}\PY{p}{[}\PY{n}{t}\PY{p}{]}\PY{p}{,} \PY{n}{MSD\PYZus{}x}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{o}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZdl{}x\PYZdl{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{time}\PY{p}{[}\PY{n}{t}\PY{p}{]}\PY{p}{,} \PY{n}{MSD\PYZus{}y}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{o}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZdl{}y\PYZdl{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{time}\PY{p}{[}\PY{n}{t}\PY{p}{]}\PY{p}{,} \PY{n}{MSD\PYZus{}z}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{o}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZdl{}z\PYZdl{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{MSD (\PYZdl{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{mathrm}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{m\PYZca{}2\PYZcb{}\PYZdl{})}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZdl{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{Delta t\PYZdl{} (s)}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+
+\PY{n}{plt}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{p}{)}
+
+\PY{n}{dataset}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{MSD\PYZus{}x\PYZus{}tot}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]} \PY{o}{=} \PY{n}{MSD\PYZus{}x}
+\PY{n}{dataset}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{MSD\PYZus{}y\PYZus{}tot}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]} \PY{o}{=} \PY{n}{MSD\PYZus{}y}
+\PY{n}{dataset}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{MSD\PYZus{}z\PYZus{}tot}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]} \PY{o}{=} \PY{n}{MSD\PYZus{}z}
+\PY{n}{dataset}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{MSD\PYZus{}time\PYZus{}tot}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]} \PY{o}{=} \PY{n}{time}\PY{p}{[}\PY{n}{t}\PY{p}{]}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{data_analyse_files/data_analyse_10_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    We fit the short time MSD with and average diffusion coefficient such
+as:
+
+\begin{equation}
+    \langle\Delta r_i(t)^2 \rangle_t = 2 \langle D_i \rangle \Delta t\ ,
+    \label{averagediff}
+\end{equation}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{8}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{Do} \PY{o}{=} \PY{l+m+mf}{4e\PYZhy{}21} \PY{o}{/} \PY{p}{(}\PY{l+m+mi}{6} \PY{o}{*} \PY{n}{np}\PY{o}{.}\PY{n}{pi} \PY{o}{*} \PY{l+m+mf}{0.001} \PY{o}{*} \PY{n}{r}\PY{p}{)}
+\PY{n}{f} \PY{o}{=} \PY{k}{lambda} \PY{n}{x}\PY{p}{,} \PY{n}{a}\PY{p}{,} \PY{n}{noiselevel}\PY{p}{:} \PY{l+m+mi}{2} \PY{o}{*} \PY{n}{Do} \PY{o}{*} \PY{n}{a} \PY{o}{*} \PY{n}{x} \PY{o}{+} \PY{p}{(}\PY{n}{noiselevel} \PY{o}{*} \PY{l+m+mf}{1e\PYZhy{}9}\PY{p}{)} \PY{o}{*}\PY{o}{*} \PY{l+m+mi}{2}
+\PY{n}{popt\PYZus{}1}\PY{p}{,} \PY{n}{pcov\PYZus{}1} \PY{o}{=} \PY{n}{curve\PYZus{}fit}\PY{p}{(}\PY{n}{f}\PY{p}{,} \PY{n}{time}\PY{p}{[}\PY{n}{t}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{:}\PY{l+m+mi}{5}\PY{p}{]}\PY{p}{]}\PY{p}{,} \PY{n}{MSD\PYZus{}x}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{:}\PY{l+m+mi}{5}\PY{p}{]}\PY{p}{,} \PY{n}{p0}\PY{o}{=}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{30}\PY{p}{]}\PY{p}{)}
+\PY{n}{popt\PYZus{}2}\PY{p}{,} \PY{n}{pcov\PYZus{}1} \PY{o}{=} \PY{n}{curve\PYZus{}fit}\PY{p}{(}\PY{n}{f}\PY{p}{,} \PY{n}{time}\PY{p}{[}\PY{n}{t}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{:}\PY{l+m+mi}{5}\PY{p}{]}\PY{p}{]}\PY{p}{,} \PY{n}{MSD\PYZus{}y}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{:}\PY{l+m+mi}{5}\PY{p}{]}\PY{p}{,} \PY{n}{p0}\PY{o}{=}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{30}\PY{p}{]}\PY{p}{)}
+\PY{n}{popt\PYZus{}3}\PY{p}{,} \PY{n}{pcov\PYZus{}1} \PY{o}{=} \PY{n}{curve\PYZus{}fit}\PY{p}{(}\PY{n}{f}\PY{p}{,} \PY{n}{time}\PY{p}{[}\PY{n}{t}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{:}\PY{l+m+mi}{5}\PY{p}{]}\PY{p}{]}\PY{p}{,} \PY{n}{MSD\PYZus{}z}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{:}\PY{l+m+mi}{5}\PY{p}{]}\PY{p}{,} \PY{n}{p0}\PY{o}{=}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{30}\PY{p}{]}\PY{p}{)}
+
+\PY{n}{dataset}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{x\PYZus{}MSD\PYZus{}fit}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]} \PY{o}{=} \PY{n}{time}\PY{p}{[}\PY{n}{t}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{:}\PY{l+m+mi}{5}\PY{p}{]}\PY{p}{]}
+
+\PY{n}{dataset}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{MSD\PYZus{}x}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]} \PY{o}{=} \PY{n}{MSD\PYZus{}x}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{:}\PY{l+m+mi}{5}\PY{p}{]}
+\PY{n}{dataset}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{MSD\PYZus{}y}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]} \PY{o}{=} \PY{n}{MSD\PYZus{}y}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{:}\PY{l+m+mi}{5}\PY{p}{]}
+\PY{n}{dataset}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{MSD\PYZus{}z}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]} \PY{o}{=} \PY{n}{MSD\PYZus{}z}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{:}\PY{l+m+mi}{5}\PY{p}{]}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+C:\textbackslash{}Users\textbackslash{}m.lavaud\textbackslash{}.conda\textbackslash{}envs\textbackslash{}analyse\textbackslash{}lib\textbackslash{}site-
+packages\textbackslash{}scipy\textbackslash{}optimize\textbackslash{}minpack.py:828: OptimizeWarning: Covariance of the
+parameters could not be estimated
+  warnings.warn('Covariance of the parameters could not be estimated',
+    \end{Verbatim}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{9}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n+nb}{print}\PY{p}{(}
+    \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{We measure a reduced mean diffusion coefficient of }\PY{l+s+si}{\PYZob{}:.3f\PYZcb{}}\PY{l+s+s2}{ for the perpendicular motion and of }\PY{l+s+si}{\PYZob{}:.3f\PYZcb{}}\PY{l+s+s2}{ for the parallel motion}\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}
+        \PY{p}{(}\PY{n}{popt\PYZus{}1}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{+} \PY{n}{popt\PYZus{}2}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)} \PY{o}{/} \PY{l+m+mi}{2}\PY{p}{,} \PY{n}{popt\PYZus{}3}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+    \PY{p}{)}
+\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+We measure a reduced mean diffusion coefficient of 0.522 for the perpendicular
+motion and of 0.243 for the parallel motion
+    \end{Verbatim}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{10}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{plt}\PY{o}{.}\PY{n}{loglog}\PY{p}{(}\PY{n}{time}\PY{p}{[}\PY{n}{t}\PY{p}{]}\PY{p}{,} \PY{n}{MSD\PYZus{}x}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{o}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZdl{}x\PYZdl{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{time}\PY{p}{[}\PY{n}{t}\PY{p}{]}\PY{p}{,} \PY{n}{MSD\PYZus{}y}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{o}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZdl{}y\PYZdl{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{time}\PY{p}{[}\PY{n}{t}\PY{p}{]}\PY{p}{,} \PY{n}{MSD\PYZus{}z}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{o}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZdl{}z\PYZdl{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{MSD (\PYZdl{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{mathrm}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{m\PYZca{}2\PYZcb{}\PYZdl{})}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZdl{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{Delta t\PYZdl{} (s)}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{tt} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{linspace}\PY{p}{(}\PY{l+m+mf}{1e\PYZhy{}2}\PY{p}{,} \PY{l+m+mf}{1e3}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{tt}\PY{p}{,} \PY{n}{f}\PY{p}{(}\PY{n}{tt}\PY{p}{,} \PY{o}{*}\PY{n}{popt\PYZus{}1}\PY{p}{)}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{k}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{tt}\PY{p}{,} \PY{n}{f}\PY{p}{(}\PY{n}{tt}\PY{p}{,} \PY{o}{*}\PY{n}{popt\PYZus{}3}\PY{p}{)}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{k}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+
+\PY{n}{plt}\PY{o}{.}\PY{n}{xlim}\PY{p}{(}\PY{p}{(}\PY{l+m+mf}{1e\PYZhy{}2}\PY{p}{,} \PY{l+m+mf}{1e3}\PY{p}{)}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{10}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+<matplotlib.legend.Legend at 0x27a80c0b700>
+\end{Verbatim}
+\end{tcolorbox}
+        
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{data_analyse_files/data_analyse_14_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \hypertarget{displacement-distributions}{%
+\section{Displacement distributions}\label{displacement-distributions}}
+
+\hypertarget{delta-x-distributions}{%
+\subsection{\texorpdfstring{\(\Delta x\)
+distributions}{\textbackslash Delta x distributions}}\label{delta-x-distributions}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{11}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{def} \PY{n+nf}{pdf}\PY{p}{(}\PY{n}{data}\PY{p}{,} \PY{n}{bins}\PY{o}{=}\PY{l+m+mi}{10}\PY{p}{,} \PY{n}{density}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}\PY{p}{:}
+    \PY{l+s+sd}{\PYZdq{}\PYZdq{}\PYZdq{}}
+\PY{l+s+sd}{    function to automatize the computations of experimental probability density functions.}
+\PY{l+s+sd}{    \PYZdq{}\PYZdq{}\PYZdq{}}
+
+    \PY{n}{pdf}\PY{p}{,} \PY{n}{bins\PYZus{}edge} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{histogram}\PY{p}{(}\PY{n}{data}\PY{p}{,} \PY{n}{bins}\PY{o}{=}\PY{n}{bins}\PY{p}{,} \PY{n}{density}\PY{o}{=}\PY{n}{density}\PY{p}{)}
+    \PY{n}{bins\PYZus{}center} \PY{o}{=} \PY{p}{(}\PY{n}{bins\PYZus{}edge}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{:}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{+} \PY{n}{bins\PYZus{}edge}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{:}\PY{p}{]}\PY{p}{)} \PY{o}{/} \PY{l+m+mi}{2}
+
+    \PY{k}{return} \PY{n}{pdf}\PY{p}{,} \PY{n}{bins\PYZus{}center}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{12}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{I} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{,} \PY{l+m+mi}{50}\PY{p}{,} \PY{l+m+mi}{100}\PY{p}{,} \PY{l+m+mi}{500}\PY{p}{,} \PY{l+m+mi}{1000}\PY{p}{,} \PY{l+m+mi}{2000}\PY{p}{]}
+
+\PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n}{I}\PY{p}{:}
+
+    \PY{n}{Dezs} \PY{o}{=} \PY{n}{x}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{:}\PY{o}{\PYZhy{}}\PY{n}{i}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{x}\PY{p}{[}\PY{n}{i}\PY{p}{:}\PY{p}{]}
+    \PY{n}{hist}\PY{p}{,} \PY{n}{bins\PYZus{}center} \PY{o}{=} \PY{n}{pdf}\PY{p}{(}\PY{n}{Dezs}\PY{p}{,} \PY{n}{bins}\PY{o}{=}\PY{l+m+mi}{50}\PY{p}{)}
+
+    \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{bins\PYZus{}center}\PY{p}{,} \PY{n}{hist}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{ t = }\PY{l+s+si}{\PYZob{}:.2f\PYZcb{}}\PY{l+s+s2}{ s}\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{time}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+
+\PY{n}{plt}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZdl{}P(}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{Delta x)\PYZdl{} [a.u.]}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZdl{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{Delta x\PYZdl{} [\PYZdl{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{mathrm}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{mu m\PYZcb{}\PYZdl{}]}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{12}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+Text(0.5, 0, '\$\textbackslash{}\textbackslash{}Delta x\$ [\$\textbackslash{}\textbackslash{}mathrm\{\textbackslash{}\textbackslash{}mu m\}\$]')
+\end{Verbatim}
+\end{tcolorbox}
+        
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{data_analyse_files/data_analyse_17_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    If we now normalize by the standard deviation
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{13}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{def} \PY{n+nf}{gauss\PYZus{}function}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{a}\PY{p}{,} \PY{n}{x0}\PY{p}{,} \PY{n}{sigma}\PY{p}{)}\PY{p}{:}
+    \PY{k}{return} \PY{n}{a} \PY{o}{*} \PY{n}{np}\PY{o}{.}\PY{n}{exp}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{p}{(}\PY{p}{(}\PY{n}{x} \PY{o}{\PYZhy{}} \PY{n}{x0}\PY{p}{)} \PY{o}{*}\PY{o}{*} \PY{l+m+mi}{2}\PY{p}{)} \PY{o}{/} \PY{p}{(}\PY{l+m+mi}{2} \PY{o}{*} \PY{n}{sigma} \PY{o}{*}\PY{o}{*} \PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{14}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{for} \PY{n}{n}\PY{p}{,} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{enumerate}\PY{p}{(}\PY{n}{I}\PY{p}{)}\PY{p}{:}
+
+    \PY{n}{Dezs} \PY{o}{=} \PY{n}{x}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{:}\PY{o}{\PYZhy{}}\PY{n}{i}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{x}\PY{p}{[}\PY{n}{i}\PY{p}{:}\PY{p}{]}
+    \PY{n}{Dezs} \PY{o}{=} \PY{n}{Dezs} \PY{o}{/} \PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{l+m+mi}{2} \PY{o}{*} \PY{n}{Do} \PY{o}{*} \PY{n}{time}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{)}
+    \PY{n}{hist}\PY{p}{,} \PY{n}{bins\PYZus{}center} \PY{o}{=} \PY{n}{pdf}\PY{p}{(}\PY{n}{Dezs}\PY{p}{,} \PY{n}{bins}\PY{o}{=}\PY{l+m+mi}{30}\PY{p}{)}
+
+    \PY{c+c1}{\PYZsh{} if i == I[0]:}
+    \PY{c+c1}{\PYZsh{}    popt, pcov = curve\PYZus{}fit(gauss\PYZus{}function, bins\PYZus{}center/np.max(bins\PYZus{}center), hist, p0 = [1, np.mean(hist), np.std(hist)])}
+    \PY{c+c1}{\PYZsh{}    plt.plot(bins\PYZus{}center/np.max(bins\PYZus{}center), gauss\PYZus{}function(bins\PYZus{}center, *popt), label = \PYZdq{}fit at t = \PYZob{}:.2f\PYZcb{} s\PYZdq{}.format(time[i]))}
+    \PY{c+c1}{\PYZsh{}    plt.plot(bins\PYZus{}center/np.max(bins\PYZus{}center), hist, \PYZdq{}x\PYZdq{},label = \PYZdq{} t = \PYZob{}:.2f\PYZcb{} s\PYZdq{}.format(time[i]),color = \PYZdq{}tab:blue\PYZdq{})}
+    \PY{c+c1}{\PYZsh{}    continue}
+
+    \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}
+        \PY{n}{bins\PYZus{}center} \PY{o}{/} \PY{n}{np}\PY{o}{.}\PY{n}{max}\PY{p}{(}\PY{n}{bins\PYZus{}center}\PY{p}{)}\PY{p}{,}
+        \PY{n}{hist}\PY{p}{,}
+        \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{.}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}
+        \PY{n}{label}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{ \PYZdl{}Delta\PYZdl{}t = }\PY{l+s+si}{\PYZob{}:.2f\PYZcb{}}\PY{l+s+s2}{ s}\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{time}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{)}\PY{p}{,}
+    \PY{p}{)}
+
+
+\PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZdl{}P(}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{Delta x)\PYZdl{} [a.u.]}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{normalized \PYZdl{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{Delta x\PYZdl{} [a.u.]}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{14}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+Text(0.5, 0, 'normalized \$\textbackslash{}\textbackslash{}Delta x\$ [a.u.]')
+\end{Verbatim}
+\end{tcolorbox}
+        
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{data_analyse_files/data_analyse_20_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{15}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{p}{(}\PY{l+m+mf}{3.5e\PYZhy{}22}\PY{p}{)} \PY{o}{*}\PY{o}{*} \PY{p}{(}\PY{l+m+mi}{1} \PY{o}{/} \PY{l+m+mi}{3}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{15}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+7.047298732064899e-08
+\end{Verbatim}
+\end{tcolorbox}
+        
+    We can see a clear change but we would need to average on different
+trajectectories to have consitant results.
+
+    \hypertarget{delta-z-distributions}{%
+\subsection{\texorpdfstring{\(\Delta z\)
+distributions}{\textbackslash Delta z distributions}}\label{delta-z-distributions}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{16}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{I} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{,} \PY{l+m+mi}{50}\PY{p}{,} \PY{l+m+mi}{100}\PY{p}{,} \PY{l+m+mi}{500}\PY{p}{,} \PY{l+m+mi}{1000}\PY{p}{,} \PY{l+m+mi}{2000}\PY{p}{,} \PY{l+m+mi}{5000}\PY{p}{,} \PY{l+m+mi}{10000}\PY{p}{]}
+
+\PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n}{I}\PY{p}{:}
+
+    \PY{n}{Dezs} \PY{o}{=} \PY{n}{z}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{:}\PY{o}{\PYZhy{}}\PY{n}{i}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{z}\PY{p}{[}\PY{n}{i}\PY{p}{:}\PY{p}{]}
+    \PY{n}{hist}\PY{p}{,} \PY{n}{bins\PYZus{}center} \PY{o}{=} \PY{n}{pdf}\PY{p}{(}\PY{n}{Dezs}\PY{p}{[}\PY{o}{\PYZti{}}\PY{n}{np}\PY{o}{.}\PY{n}{isnan}\PY{p}{(}\PY{n}{Dezs}\PY{p}{)}\PY{p}{]}\PY{p}{,} \PY{n}{bins}\PY{o}{=}\PY{l+m+mi}{50}\PY{p}{)}
+
+    \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{bins\PYZus{}center}\PY{p}{,} \PY{n}{hist}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{ t = }\PY{l+s+si}{\PYZob{}:.2f\PYZcb{}}\PY{l+s+s2}{ s}\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{time}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+
+\PY{n}{plt}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZdl{}P(}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{Delta x)\PYZdl{} [a.u.]}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZdl{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{Delta x\PYZdl{} [\PYZdl{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{mathrm}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{mu m\PYZcb{}\PYZdl{}]}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{16}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+Text(0.5, 0, '\$\textbackslash{}\textbackslash{}Delta x\$ [\$\textbackslash{}\textbackslash{}mathrm\{\textbackslash{}\textbackslash{}mu m\}\$]')
+\end{Verbatim}
+\end{tcolorbox}
+        
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{data_analyse_files/data_analyse_24_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{17}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n}{I}\PY{p}{:}
+
+    \PY{n}{Dezs} \PY{o}{=} \PY{n}{z}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{:}\PY{o}{\PYZhy{}}\PY{n}{i}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{z}\PY{p}{[}\PY{n}{i}\PY{p}{:}\PY{p}{]}
+    \PY{n}{Dezs} \PY{o}{=} \PY{n}{Dezs} \PY{o}{/} \PY{n}{np}\PY{o}{.}\PY{n}{nanstd}\PY{p}{(}\PY{n}{Dezs}\PY{p}{)}
+    \PY{n}{hist}\PY{p}{,} \PY{n}{bins\PYZus{}center} \PY{o}{=} \PY{n}{pdf}\PY{p}{(}\PY{n}{Dezs}\PY{p}{[}\PY{o}{\PYZti{}}\PY{n}{np}\PY{o}{.}\PY{n}{isnan}\PY{p}{(}\PY{n}{Dezs}\PY{p}{)}\PY{p}{]}\PY{p}{,} \PY{n}{bins}\PY{o}{=}\PY{l+m+mi}{30}\PY{p}{)}
+
+    \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{bins\PYZus{}center}\PY{p}{,} \PY{n}{hist}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{ t = }\PY{l+s+si}{\PYZob{}:.2f\PYZcb{}}\PY{l+s+s2}{ s}\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{time}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+
+\PY{n}{plt}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZdl{}P(}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{Delta x)\PYZdl{} [a.u.]}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZdl{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{Delta x\PYZdl{} [\PYZdl{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{mathrm}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{mu m\PYZcb{}\PYZdl{}]}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{17}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+Text(0.5, 0, '\$\textbackslash{}\textbackslash{}Delta x\$ [\$\textbackslash{}\textbackslash{}mathrm\{\textbackslash{}\textbackslash{}mu m\}\$]')
+\end{Verbatim}
+\end{tcolorbox}
+        
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{data_analyse_files/data_analyse_25_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \hypertarget{short-time-distributions}{%
+\subsubsection{Short time
+distributions}\label{short-time-distributions}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{18}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{I} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{,} \PY{l+m+mi}{6}\PY{p}{,} \PY{l+m+mi}{9}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{]}
+
+\PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n}{I}\PY{p}{:}
+
+    \PY{n}{Dezs} \PY{o}{=} \PY{n}{z}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{:}\PY{o}{\PYZhy{}}\PY{n}{i}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{z}\PY{p}{[}\PY{n}{i}\PY{p}{:}\PY{p}{]}
+    \PY{n}{Dezs} \PY{o}{=} \PY{n}{Dezs} \PY{o}{/} \PY{n}{np}\PY{o}{.}\PY{n}{std}\PY{p}{(}\PY{n}{Dezs}\PY{p}{)}
+    \PY{n}{hist}\PY{p}{,} \PY{n}{bins\PYZus{}center} \PY{o}{=} \PY{n}{pdf}\PY{p}{(}\PY{n}{Dezs}\PY{p}{[}\PY{o}{\PYZti{}}\PY{n}{np}\PY{o}{.}\PY{n}{isnan}\PY{p}{(}\PY{n}{Dezs}\PY{p}{)}\PY{p}{]}\PY{p}{,} \PY{n}{bins}\PY{o}{=}\PY{l+m+mi}{100}\PY{p}{)}
+
+    \PY{k}{if} \PY{n}{i} \PY{o}{==} \PY{n}{I}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{:}
+        \PY{n}{popt}\PY{p}{,} \PY{n}{pcov} \PY{o}{=} \PY{n}{curve\PYZus{}fit}\PY{p}{(}
+            \PY{n}{gauss\PYZus{}function}\PY{p}{,} \PY{n}{bins\PYZus{}center}\PY{p}{,} \PY{n}{hist}\PY{p}{,} \PY{n}{p0}\PY{o}{=}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{hist}\PY{p}{)}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{std}\PY{p}{(}\PY{n}{hist}\PY{p}{)}\PY{p}{]}
+        \PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{bins\PYZus{}center}\PY{p}{,} \PY{n}{gauss\PYZus{}function}\PY{p}{(}\PY{n}{bins\PYZus{}center}\PY{p}{,} \PY{o}{*}\PY{n}{popt}\PY{p}{)}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}
+            \PY{n}{bins\PYZus{}center}\PY{p}{,}
+            \PY{n}{hist}\PY{p}{,}
+            \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{.}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}
+            \PY{n}{label}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{ t = }\PY{l+s+si}{\PYZob{}:.2f\PYZcb{}}\PY{l+s+s2}{ s}\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{time}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{)}\PY{p}{,}
+            \PY{n}{color}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{tab:blue}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}
+        \PY{p}{)}
+        \PY{k}{continue}
+    \PY{n}{plt}\PY{o}{.}\PY{n}{semilogy}\PY{p}{(}\PY{n}{bins\PYZus{}center}\PY{p}{,} \PY{n}{hist}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{.}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{ t = }\PY{l+s+si}{\PYZob{}:.2f\PYZcb{}}\PY{l+s+s2}{ s}\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{time}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+
+\PY{n}{plt}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZdl{}P(}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{Delta r\PYZus{}z)\PYZdl{} [a.u.]}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZdl{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{Delta r\PYZus{}z\PYZdl{} [\PYZdl{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{mathrm}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{mu m\PYZcb{}\PYZdl{}]}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{axes} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{gca}\PY{p}{(}\PY{p}{)}
+\PY{n}{axes}\PY{o}{.}\PY{n}{set\PYZus{}ylim}\PY{p}{(}\PY{p}{[}\PY{l+m+mf}{1e\PYZhy{}5}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{18}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+(1e-05, 1)
+\end{Verbatim}
+\end{tcolorbox}
+        
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{data_analyse_files/data_analyse_27_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    The non-Gaussianity is due to the hindered mobility. Taking into account
+the hindered mobility the PDF of displacement writes:
+
+\begin{equation} P(\Delta r_i , \Delta t) = \int_0 ^\infty \mathrm{d}DP(D_i) \frac{1}{\sqrt{4 \pi D_i \Delta t}} \exp\left[ \frac{-\Delta_i r_i ^2}{4D_i\Delta t} \right]~. \end{equation}
+
+This non-Gaussianity can be fitted as done at the end of this appendix
+and shown in the manuscript.
+
+    \hypertarget{long-time-distributions}{%
+\subsection{Long time distributions}\label{long-time-distributions}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{19}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{I} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{2000}\PY{p}{,} \PY{l+m+mi}{5000}\PY{p}{,} \PY{l+m+mi}{10000}\PY{p}{]}
+
+\PY{n}{color\PYZus{}long\PYZus{}time} \PY{o}{=} \PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{tab:gray}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{tab:olive}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{tab:cyan}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}
+\PY{k}{for} \PY{n}{n}\PY{p}{,} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{enumerate}\PY{p}{(}\PY{n}{I}\PY{p}{)}\PY{p}{:}
+
+    \PY{n}{Dezs} \PY{o}{=} \PY{n}{z}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{:}\PY{o}{\PYZhy{}}\PY{n}{i}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{z}\PY{p}{[}\PY{n}{i}\PY{p}{:}\PY{p}{]}
+    \PY{n}{hist}\PY{p}{,} \PY{n}{bins\PYZus{}center} \PY{o}{=} \PY{n}{pdf}\PY{p}{(}\PY{n}{Dezs}\PY{p}{[}\PY{o}{\PYZti{}}\PY{n}{np}\PY{o}{.}\PY{n}{isnan}\PY{p}{(}\PY{n}{Dezs}\PY{p}{)}\PY{p}{]}\PY{p}{,} \PY{n}{bins}\PY{o}{=}\PY{l+m+mi}{10}\PY{p}{)}
+
+    \PY{n}{plt}\PY{o}{.}\PY{n}{semilogy}\PY{p}{(}
+        \PY{n}{bins\PYZus{}center}\PY{p}{,}
+        \PY{n}{hist}\PY{p}{,}
+        \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{o}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}
+        \PY{n}{label}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{ \PYZdl{}t = }\PY{l+s+si}{\PYZob{}:.2f\PYZcb{}}\PY{l+s+s2}{\PYZdl{} s}\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{time}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{)}\PY{p}{,}
+        \PY{n}{color}\PY{o}{=}\PY{n}{color\PYZus{}long\PYZus{}time}\PY{p}{[}\PY{n}{n}\PY{p}{]}\PY{p}{,}
+    \PY{p}{)}
+
+\PY{n}{plt}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{p}{)}
+
+\PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZdl{}P(}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{Delta r\PYZus{}z)\PYZdl{} [a.u.]}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZdl{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{Delta r\PYZus{}z\PYZdl{} [\PYZdl{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{mathrm}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{mu m\PYZcb{}\PYZdl{}]}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{19}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+Text(0.5, 0, '\$\textbackslash{}\textbackslash{}Delta r\_z\$ [\$\textbackslash{}\textbackslash{}mathrm\{\textbackslash{}\textbackslash{}mu m\}\$]')
+\end{Verbatim}
+\end{tcolorbox}
+        
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{data_analyse_files/data_analyse_30_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    Indeed at long time it becomes exponential and it's no longer dependent
+on \(\Delta t\) At very long time intervals \(\Delta t\) each position
+measurement can be seen as random measurement on the Boltzmann
+distribution. Thus, one can write the probability distribution as a
+convolution of two PDF:
+\begin{equation} P(\Delta z) = \int ^ \infty _{- \infty} dz P_B (z)P_B (z + \Delta z), \end{equation}
+with :
+\begin{equation} P_B(z) = Ae^{\left(Bexp\left(-\frac{z}{l_d}\right) - \frac{z}{l_b}\right)} \end{equation}
+Also, \(P_B(z < 0)\) giving at long time step :
+\begin{equation} P(\Delta z) = A'exp \left[Bexp\left[-\frac{z}{l_d}\right] (1 + exp[- \frac{\Delta z}{ l_d}]) - \frac{ 2z + \Delta z}{l_b} \right] \end{equation}
+
+    \hypertarget{analysis-of-pdf-of-the-delta-z-at-large-time-step}{%
+\subsection{\texorpdfstring{Analysis of pdf of the \(\Delta z\) at large
+time
+step}{Analysis of pdf of the \textbackslash Delta z at large time step}}\label{analysis-of-pdf-of-the-delta-z-at-large-time-step}}
+
+To have a better measurement we average the PDF of displacement
+\(\Delta r_z\) over different time-step \(\Delta t\) . But, first of
+all, we need to get rid of the drifts at long time. We do that by taking
+a moving minimum.
+
+    \hypertarget{dedrifting-the-z-trajectory}{%
+\subsection{Dedrifting the z
+trajectory}\label{dedrifting-the-z-trajectory}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{20}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{def} \PY{n+nf}{movmin}\PY{p}{(}\PY{n}{datas}\PY{p}{,} \PY{n}{k}\PY{p}{)}\PY{p}{:}
+    \PY{n}{result} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{empty\PYZus{}like}\PY{p}{(}\PY{n}{datas}\PY{p}{)}
+    \PY{n}{start\PYZus{}pt} \PY{o}{=} \PY{l+m+mi}{0}
+    \PY{n}{end\PYZus{}pt} \PY{o}{=} \PY{n+nb}{int}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{ceil}\PY{p}{(}\PY{n}{k} \PY{o}{/} \PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}
+
+    \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{datas}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+        \PY{k}{if} \PY{n}{i} \PY{o}{\PYZlt{}} \PY{n+nb}{int}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{ceil}\PY{p}{(}\PY{n}{k} \PY{o}{/} \PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+            \PY{n}{start\PYZus{}pt} \PY{o}{=} \PY{l+m+mi}{0}
+        \PY{k}{if} \PY{n}{i} \PY{o}{\PYZgt{}} \PY{n+nb}{len}\PY{p}{(}\PY{n}{datas}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{n+nb}{int}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{ceil}\PY{p}{(}\PY{n}{k} \PY{o}{/} \PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+            \PY{n}{end\PYZus{}pt} \PY{o}{=} \PY{n+nb}{len}\PY{p}{(}\PY{n}{datas}\PY{p}{)}
+        \PY{n}{result}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{min}\PY{p}{(}\PY{n}{datas}\PY{p}{[}\PY{n}{start\PYZus{}pt}\PY{p}{:}\PY{n}{end\PYZus{}pt}\PY{p}{]}\PY{p}{)}
+        \PY{n}{start\PYZus{}pt} \PY{o}{+}\PY{o}{=} \PY{l+m+mi}{1}
+        \PY{n}{end\PYZus{}pt} \PY{o}{+}\PY{o}{=} \PY{l+m+mi}{1}
+
+    \PY{k}{return} \PY{n}{result}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{21}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{z\PYZus{}dedrift} \PY{o}{=} \PY{n}{z} \PY{o}{\PYZhy{}} \PY{n}{movmin}\PY{p}{(}\PY{n}{z}\PY{p}{,} \PY{l+m+mi}{10000}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{22}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} Fig for comparing the two}
+
+\PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{time}\PY{p}{,} \PY{n}{z} \PY{o}{\PYZhy{}} \PY{n}{np}\PY{o}{.}\PY{n}{min}\PY{p}{(}\PY{n}{z}\PY{p}{)}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{raw}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{time}\PY{p}{,} \PY{n}{z\PYZus{}dedrift}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{dedrifted}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{p}{)}
+
+\PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{t [s]}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{z [\PYZdl{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{mathrm}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{mu m\PYZcb{}\PYZdl{}]}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{22}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+Text(0, 0.5, 'z [\$\textbackslash{}\textbackslash{}mathrm\{\textbackslash{}\textbackslash{}mu m\}\$]')
+\end{Verbatim}
+\end{tcolorbox}
+        
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{data_analyse_files/data_analyse_36_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \hypertarget{measuring-pdf-at-large-delta-t-with-the-dedrifted-trajectory-and-analysing-it}{%
+\subsubsection{\texorpdfstring{Measuring pdf at large \(\Delta t\) with
+the dedrifted trajectory and analysing
+it}{Measuring pdf at large \textbackslash Delta t with the dedrifted trajectory and analysing it}}\label{measuring-pdf-at-large-delta-t-with-the-dedrifted-trajectory-and-analysing-it}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{23}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{t\PYZus{}start} \PY{o}{=} \PY{l+m+mi}{25}
+\PY{n}{t\PYZus{}end} \PY{o}{=} \PY{l+m+mi}{30}
+\PY{n}{I} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{arange}\PY{p}{(}\PY{n}{t\PYZus{}start} \PY{o}{*} \PY{n}{fps}\PY{p}{,} \PY{n}{t\PYZus{}end} \PY{o}{*} \PY{n}{fps}\PY{p}{)}
+\PY{n}{bins} \PY{o}{=} \PY{l+m+mi}{50}
+
+\PY{n}{hists} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{p}{(}\PY{n}{bins}\PY{p}{,} \PY{n+nb}{len}\PY{p}{(}\PY{n}{I}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+\PY{n}{bins\PYZus{}centers} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{p}{(}\PY{n}{bins}\PY{p}{,} \PY{n+nb}{len}\PY{p}{(}\PY{n}{I}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+
+\PY{k}{for} \PY{n}{n}\PY{p}{,} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{enumerate}\PY{p}{(}\PY{n}{I}\PY{p}{)}\PY{p}{:}
+
+    \PY{n}{Dezs} \PY{o}{=} \PY{n}{z\PYZus{}dedrift}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{:}\PY{o}{\PYZhy{}}\PY{n}{i}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{z\PYZus{}dedrift}\PY{p}{[}\PY{n}{i}\PY{p}{:}\PY{p}{]}
+    \PY{n}{hist}\PY{p}{,} \PY{n}{bins\PYZus{}center} \PY{o}{=} \PY{n}{pdf}\PY{p}{(}\PY{n}{Dezs}\PY{p}{[}\PY{o}{\PYZti{}}\PY{n}{np}\PY{o}{.}\PY{n}{isnan}\PY{p}{(}\PY{n}{Dezs}\PY{p}{)}\PY{p}{]}\PY{p}{,} \PY{n}{bins}\PY{o}{=}\PY{n}{bins}\PY{p}{)}
+
+    \PY{n}{hists}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{n}{n}\PY{p}{]} \PY{o}{=} \PY{n}{hist}
+    \PY{n}{bins\PYZus{}centers}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{n}{n}\PY{p}{]} \PY{o}{=} \PY{n}{bins\PYZus{}center}
+
+
+\PY{n}{pdf\PYZus{}long\PYZus{}t} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{hists}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+\PY{n}{bins\PYZus{}centers\PYZus{}long\PYZus{}t} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{bins\PYZus{}centers}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+\PY{n}{err\PYZus{}long\PYZus{}t} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{std}\PY{p}{(}\PY{n}{hists}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+\PY{n}{err\PYZus{}bins\PYZus{}centers} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{std}\PY{p}{(}\PY{n}{bins\PYZus{}centers}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{24}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{bins\PYZus{}centers\PYZus{}long\PYZus{}t}\PY{p}{,} \PY{n}{pdf\PYZus{}long\PYZus{}t}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{fill\PYZus{}between}\PY{p}{(}
+    \PY{n}{bins\PYZus{}centers\PYZus{}long\PYZus{}t}\PY{p}{,} \PY{n}{pdf\PYZus{}long\PYZus{}t} \PY{o}{\PYZhy{}} \PY{n}{err\PYZus{}long\PYZus{}t}\PY{p}{,} \PY{n}{pdf\PYZus{}long\PYZus{}t} \PY{o}{+} \PY{n}{err\PYZus{}long\PYZus{}t}\PY{p}{,} \PY{n}{alpha}\PY{o}{=}\PY{l+m+mf}{0.3}
+\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZdl{}P(}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{Delta x)\PYZdl{} (\PYZdl{}m\PYZca{}}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{\PYZhy{}1\PYZcb{}\PYZdl{})}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZdl{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{Delta x\PYZdl{} (\PYZdl{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{mathrm}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{mu m\PYZcb{}\PYZdl{})}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{24}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+Text(0.5, 0, '\$\textbackslash{}\textbackslash{}Delta x\$ (\$\textbackslash{}\textbackslash{}mathrm\{\textbackslash{}\textbackslash{}mu m\}\$)')
+\end{Verbatim}
+\end{tcolorbox}
+        
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{data_analyse_files/data_analyse_39_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    We are now going to code the function
+\begin{equation} P(\Delta z) = \int ^ \infty _{- \infty}A'exp \left[Bexp\left[-\frac{z}{l_d}\right] (1 + exp[- \frac{\Delta z}{ l_d}]) - \frac{ 2z + \Delta z}{l_b} \right] \end{equation}
+
+Noting that coding the form :
+\begin{equation} P(\Delta z) = \int ^ \infty _{- \infty} dz P_B (z)P_B (z + \Delta z), \end{equation}
+
+Will be easier and \(P_B\) will be reused later on. Also since
+\(P_B(z < 0) = 0\) :
+\begin{equation} P(\Delta z) = \int ^ \infty _{0} dz P_B (z)P_B (z + \Delta z), \end{equation}
+
+with :
+\begin{equation} P_B(z) = Ae^{\left(Bexp\left(-\frac{z}{l_d}\right) - \frac{z}{l_b}\right)} \end{equation}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{25}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{def} \PY{n+nf}{P\PYZus{}b}\PY{p}{(}\PY{n}{z}\PY{p}{,} \PY{n}{A}\PY{p}{,} \PY{n}{B}\PY{p}{,} \PY{n}{ld}\PY{p}{,} \PY{n}{lb}\PY{p}{)}\PY{p}{:}
+    \PY{n}{P\PYZus{}b} \PY{o}{=} \PY{n}{A} \PY{o}{*} \PY{n}{np}\PY{o}{.}\PY{n}{exp}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{n}{B} \PY{o}{*} \PY{n}{np}\PY{o}{.}\PY{n}{exp}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{n}{z} \PY{o}{/} \PY{p}{(}\PY{n}{ld}\PY{p}{)}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{n}{z} \PY{o}{/} \PY{n}{lb}\PY{p}{)}
+    \PY{n}{P\PYZus{}b}\PY{p}{[}\PY{n}{z} \PY{o}{\PYZlt{}} \PY{l+m+mi}{0}\PY{p}{]} \PY{o}{=} \PY{l+m+mi}{0}
+    \PY{k}{return} \PY{n}{P\PYZus{}b}
+
+
+\PY{k}{def} \PY{n+nf}{dPdeltaz\PYZus{}long}\PY{p}{(}\PY{n}{z}\PY{p}{,} \PY{n}{DZ}\PY{p}{,} \PY{n}{A}\PY{p}{,} \PY{n}{B}\PY{p}{,} \PY{n}{ld}\PY{p}{,} \PY{n}{lb}\PY{p}{)}\PY{p}{:}
+    \PY{k}{return} \PY{n}{P\PYZus{}b}\PY{p}{(}\PY{n}{z}\PY{p}{,} \PY{n}{A}\PY{p}{,} \PY{n}{B}\PY{p}{,} \PY{n}{ld}\PY{p}{,} \PY{n}{lb}\PY{p}{)} \PY{o}{*} \PY{n}{P\PYZus{}b}\PY{p}{(}\PY{n}{z} \PY{o}{+} \PY{n}{DZ}\PY{p}{,} \PY{n}{A}\PY{p}{,} \PY{n}{B}\PY{p}{,} \PY{n}{ld}\PY{p}{,} \PY{n}{lb}\PY{p}{)}
+
+
+\PY{k}{def} \PY{n+nf}{P\PYZus{}computation}\PY{p}{(}\PY{n}{DZ}\PY{p}{,} \PY{n}{A}\PY{p}{,} \PY{n}{B}\PY{p}{,} \PY{n}{ld}\PY{p}{,} \PY{n}{lb}\PY{p}{)}\PY{p}{:}
+    \PY{n}{z} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{linspace}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mf}{20e\PYZhy{}6}\PY{p}{,} \PY{l+m+mi}{1000}\PY{p}{)}
+    \PY{n}{dP} \PY{o}{=} \PY{n}{dPdeltaz\PYZus{}long}\PY{p}{(}\PY{n}{z}\PY{p}{,} \PY{n}{DZ}\PY{p}{,} \PY{n}{A}\PY{p}{,} \PY{n}{B}\PY{p}{,} \PY{n}{ld}\PY{p}{,} \PY{n}{lb}\PY{p}{)}
+    \PY{n}{P} \PY{o}{=} \PY{n}{trapz}\PY{p}{(}\PY{n}{dP}\PY{p}{,} \PY{n}{z}\PY{p}{)}
+    \PY{k}{return} \PY{n}{P}
+
+
+\PY{k}{def} \PY{n+nf}{Pdeltaz\PYZus{}long}\PY{p}{(}\PY{n}{DZ}\PY{p}{,} \PY{n}{B}\PY{p}{,} \PY{n}{ld}\PY{p}{,} \PY{n}{lb}\PY{p}{)}\PY{p}{:}
+    \PY{k}{if} \PY{n+nb}{type}\PY{p}{(}\PY{n}{DZ}\PY{p}{)} \PY{o}{==} \PY{n+nb}{float}\PY{p}{:}
+        \PY{k}{return} \PY{n}{P\PYZus{}computation}\PY{p}{(}\PY{n}{i}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{n}{B}\PY{p}{,} \PY{n}{ld}\PY{p}{,} \PY{n}{lb}\PY{p}{)}
+
+    \PY{n}{pdf} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{n}{P\PYZus{}computation}\PY{p}{(}\PY{n}{i}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{n}{B}\PY{p}{,} \PY{n}{ld} \PY{o}{*} \PY{l+m+mf}{1e\PYZhy{}9}\PY{p}{,} \PY{n}{lb} \PY{o}{*} \PY{l+m+mf}{1e\PYZhy{}9}\PY{p}{)} \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n}{DZ}\PY{p}{]}\PY{p}{)}
+
+    \PY{c+c1}{\PYZsh{} normalisation of the PDF to not use A}
+
+    \PY{n}{A} \PY{o}{=} \PY{n}{trapz}\PY{p}{(}\PY{n}{pdf}\PY{p}{,} \PY{n}{DZ} \PY{o}{*} \PY{l+m+mf}{1e6}\PY{p}{)}
+
+    \PY{k}{return} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{n}{P\PYZus{}computation}\PY{p}{(}\PY{n}{i}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{n}{B}\PY{p}{,} \PY{n}{ld} \PY{o}{*} \PY{l+m+mf}{1e\PYZhy{}9}\PY{p}{,} \PY{n}{lb} \PY{o}{*} \PY{l+m+mf}{1e\PYZhy{}9}\PY{p}{)} \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n}{DZ}\PY{p}{]}\PY{p}{)} \PY{o}{/} \PY{n}{A}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{26}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{A} \PY{o}{=} \PY{l+m+mf}{0.14e8}
+\PY{n}{B} \PY{o}{=} \PY{l+m+mi}{4}
+\PY{n}{ld} \PY{o}{=} \PY{l+m+mi}{70}
+\PY{n}{lb} \PY{o}{=} \PY{l+m+mi}{500}
+\PY{n}{p1} \PY{o}{=} \PY{p}{[}\PY{n}{B}\PY{p}{,} \PY{n}{ld}\PY{p}{,} \PY{n}{lb}\PY{p}{]}
+
+\PY{c+c1}{\PYZsh{} Normalisation fo the pdf}
+
+\PY{n}{pdf\PYZus{}long\PYZus{}t} \PY{o}{=} \PY{n}{pdf\PYZus{}long\PYZus{}t} \PY{o}{/} \PY{n}{trapz}\PY{p}{(}\PY{n}{pdf\PYZus{}long\PYZus{}t}\PY{p}{,} \PY{n}{bins\PYZus{}centers\PYZus{}long\PYZus{}t}\PY{p}{)}
+
+
+\PY{n}{popt}\PY{p}{,} \PY{n}{pcov} \PY{o}{=} \PY{n}{curve\PYZus{}fit}\PY{p}{(}\PY{n}{Pdeltaz\PYZus{}long}\PY{p}{,} \PY{n}{bins\PYZus{}centers\PYZus{}long\PYZus{}t} \PY{o}{*} \PY{l+m+mf}{1e\PYZhy{}6}\PY{p}{,} \PY{n}{pdf\PYZus{}long\PYZus{}t}\PY{p}{,} \PY{n}{p0}\PY{o}{=}\PY{n}{p1}\PY{p}{)}
+\PY{n}{dataset}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{pdf\PYZus{}longtime}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]} \PY{o}{=} \PY{n}{pdf\PYZus{}long\PYZus{}t}
+\PY{n}{dataset}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{x\PYZus{}pdf\PYZus{}longtime}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]} \PY{o}{=} \PY{n}{bins\PYZus{}centers\PYZus{}long\PYZus{}t} \PY{o}{*} \PY{l+m+mf}{1e\PYZhy{}6}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+<ipython-input-25-d08630fe76fc>:2: RuntimeWarning: overflow encountered in exp
+  P\_b = A * np.exp(-B * np.exp(-z / (ld)) - z / lb)
+    \end{Verbatim}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{27}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{A} \PY{o}{=} \PY{l+m+mf}{0.14e8}
+\PY{n}{B} \PY{o}{=} \PY{l+m+mi}{400}
+\PY{n}{ld} \PY{o}{=} \PY{l+m+mi}{70}
+\PY{n}{lb} \PY{o}{=} \PY{l+m+mi}{500}
+\PY{n}{p0} \PY{o}{=} \PY{p}{[}\PY{n}{B}\PY{p}{,} \PY{n}{ld}\PY{p}{,} \PY{n}{lb}\PY{p}{]}
+
+
+\PY{n}{plt}\PY{o}{.}\PY{n}{semilogy}\PY{p}{(}\PY{n}{bins\PYZus{}centers\PYZus{}long\PYZus{}t}\PY{p}{,} \PY{n}{pdf\PYZus{}long\PYZus{}t}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZdl{}P\PYZus{}z(}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{Delta r\PYZus{}z)\PYZdl{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{fill\PYZus{}between}\PY{p}{(}
+    \PY{n}{bins\PYZus{}centers\PYZus{}long\PYZus{}t}\PY{p}{,} \PY{n}{pdf\PYZus{}long\PYZus{}t} \PY{o}{\PYZhy{}} \PY{n}{err\PYZus{}long\PYZus{}t}\PY{p}{,} \PY{n}{pdf\PYZus{}long\PYZus{}t} \PY{o}{+} \PY{n}{err\PYZus{}long\PYZus{}t}\PY{p}{,} \PY{n}{alpha}\PY{o}{=}\PY{l+m+mf}{0.3}
+\PY{p}{)}
+
+\PY{n}{zz} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{linspace}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{4}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{,} \PY{l+m+mi}{1000}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{zz}\PY{p}{,} \PY{n}{Pdeltaz\PYZus{}long}\PY{p}{(}\PY{n}{zz} \PY{o}{*} \PY{l+m+mf}{1e\PYZhy{}6}\PY{p}{,} \PY{o}{*}\PY{n}{popt}\PY{p}{)}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{fit}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{k}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{xlim}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{4}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZdl{}P(}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{Delta z)\PYZdl{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZdl{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{Delta z\PYZdl{} [\PYZdl{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{mathrm}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{mu m\PYZcb{}\PYZdl{}]}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{27}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+Text(0.5, 0, '\$\textbackslash{}\textbackslash{}Delta z\$ [\$\textbackslash{}\textbackslash{}mathrm\{\textbackslash{}\textbackslash{}mu m\}\$]')
+\end{Verbatim}
+\end{tcolorbox}
+        
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{data_analyse_files/data_analyse_43_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{28}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{We measure, B = }\PY{l+s+si}{\PYZob{}:.2f\PYZcb{}}\PY{l+s+s2}{, ld = }\PY{l+s+si}{\PYZob{}:.2f\PYZcb{}}\PY{l+s+s2}{ nm, lb = }\PY{l+s+si}{\PYZob{}:.2f\PYZcb{}}\PY{l+s+s2}{ nm}\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{o}{*}\PY{n}{popt}\PY{p}{)}\PY{p}{)}
+\PY{n}{B}\PY{p}{,} \PY{n}{ld}\PY{p}{,} \PY{n}{lb} \PY{o}{=} \PY{n}{popt}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+We measure, B = 20.71, ld = 71.84 nm, lb = 504.78 nm
+    \end{Verbatim}
+
+    \hypertarget{analyse-of-the-msd-z-plateau}{%
+\subsection{Analyse of the MSD z
+plateau}\label{analyse-of-the-msd-z-plateau}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{29}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{t} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{concatenate}\PY{p}{(}
+    \PY{p}{(}
+        \PY{n}{np}\PY{o}{.}\PY{n}{arange}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)}\PY{p}{,}
+        \PY{n}{np}\PY{o}{.}\PY{n}{arange}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{,} \PY{l+m+mi}{100}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{)}\PY{p}{,}
+        \PY{n}{np}\PY{o}{.}\PY{n}{arange}\PY{p}{(}\PY{l+m+mi}{100}\PY{p}{,} \PY{l+m+mi}{1000}\PY{p}{,} \PY{l+m+mi}{100}\PY{p}{)}\PY{p}{,}
+        \PY{n}{np}\PY{o}{.}\PY{n}{arange}\PY{p}{(}\PY{l+m+mi}{1000}\PY{p}{,} \PY{l+m+mi}{10000}\PY{p}{,} \PY{l+m+mi}{1000}\PY{p}{)}\PY{p}{,}
+        \PY{n}{np}\PY{o}{.}\PY{n}{arange}\PY{p}{(}\PY{l+m+mi}{10000}\PY{p}{,} \PY{l+m+mi}{50000}\PY{p}{,} \PY{l+m+mi}{5000}\PY{p}{)}\PY{p}{,}
+    \PY{p}{)}
+\PY{p}{)}
+
+\PY{n}{MSD\PYZus{}z\PYZus{}dedrift} \PY{o}{=} \PY{n}{MSD}\PY{p}{(}\PY{n}{z\PYZus{}dedrift} \PY{o}{*} \PY{l+m+mf}{1e\PYZhy{}6}\PY{p}{,} \PY{n}{t}\PY{p}{)}
+
+\PY{n}{plt}\PY{o}{.}\PY{n}{loglog}\PY{p}{(}\PY{n}{time}\PY{p}{[}\PY{n}{t}\PY{p}{]}\PY{p}{,} \PY{n}{MSD\PYZus{}z\PYZus{}dedrift}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{o}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{MSDz undrifted}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{tab:green}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{MSD (m\PYZdl{}\PYZca{}2\PYZdl{})}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZdl{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{Delta\PYZdl{}t (s)}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{29}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+Text(0.5, 0, '\$\textbackslash{}\textbackslash{}Delta\$t (s)')
+\end{Verbatim}
+\end{tcolorbox}
+        
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{data_analyse_files/data_analyse_46_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{30}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{plateau} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{MSD\PYZus{}z\PYZus{}dedrift}\PY{p}{[}\PY{n}{time}\PY{p}{[}\PY{n}{t}\PY{p}{]} \PY{o}{\PYZgt{}} \PY{l+m+mf}{1e2}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{31}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{plt}\PY{o}{.}\PY{n}{loglog}\PY{p}{(}\PY{n}{time}\PY{p}{[}\PY{n}{t}\PY{p}{]}\PY{p}{,} \PY{n}{MSD\PYZus{}z\PYZus{}dedrift}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{o}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZdl{}z\PYZdl{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{tab:green}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{tt}\PY{p}{,} \PY{p}{[}\PY{n}{plateau}\PY{p}{]} \PY{o}{*} \PY{n+nb}{len}\PY{p}{(}\PY{n}{tt}\PY{p}{)}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{k}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{tt}\PY{p}{,} \PY{n}{f}\PY{p}{(}\PY{n}{tt}\PY{p}{,} \PY{o}{*}\PY{n}{popt\PYZus{}3}\PY{p}{)}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{k}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{xlim}\PY{p}{(}\PY{p}{(}\PY{l+m+mf}{1e\PYZhy{}2}\PY{p}{,} \PY{l+m+mf}{1e3}\PY{p}{)}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{ylim}\PY{p}{(}\PY{p}{(}\PY{k+kc}{None}\PY{p}{,} \PY{l+m+mf}{1e\PYZhy{}12}\PY{p}{)}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{MSD (m\PYZdl{}\PYZca{}2\PYZdl{})}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZdl{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{Delta\PYZdl{}t (s)}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{31}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+Text(0.5, 0, '\$\textbackslash{}\textbackslash{}Delta\$t (s)')
+\end{Verbatim}
+\end{tcolorbox}
+        
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{data_analyse_files/data_analyse_48_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{32}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{np}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{MSD\PYZus{}z\PYZus{}dedrift}\PY{p}{[}\PY{n}{time}\PY{p}{[}\PY{n}{t}\PY{p}{]} \PY{o}{\PYZgt{}} \PY{l+m+mf}{1e2}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{32}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+5.348018604759325e-13
+\end{Verbatim}
+\end{tcolorbox}
+        
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{33}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} dataset[\PYZdq{}plateau\PYZus{}MSD\PYZdq{}] = popt[0]}
+\PY{n}{dataset}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{plateau\PYZus{}MSD}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{MSD\PYZus{}z\PYZus{}dedrift}\PY{p}{[}\PY{n}{time}\PY{p}{[}\PY{n}{t}\PY{p}{]} \PY{o}{\PYZgt{}} \PY{l+m+mf}{1e2}\PY{p}{]}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Measured plateau : }\PY{l+s+si}{\PYZob{}:e\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{popt}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Measured plateau : 2.070536e+01
+    \end{Verbatim}
+
+    The MSD plateau is theoritically given by:
+
+\begin{equation} 
+Plateau = \int _{-\infty} ^{+\infty} \Delta z ^ 2 P_{\Delta z, t \rightarrow +\infty}(\Delta z,B,l_d,l_b) d\Delta z
+\end{equation}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{34}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{x\PYZus{}Th\PYZus{}Plateau} \PY{o}{=} \PY{n}{bins\PYZus{}centers\PYZus{}long\PYZus{}t} \PY{o}{*} \PY{l+m+mf}{1e\PYZhy{}6}
+
+
+\PY{k}{def} \PY{n+nf}{Theoritical\PYZus{}Plateau}\PY{p}{(}\PY{n}{B}\PY{p}{,} \PY{n}{ld}\PY{p}{,} \PY{n}{lb}\PY{p}{)}\PY{p}{:}
+    \PY{n}{x} \PY{o}{=} \PY{n}{dataset}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{x\PYZus{}pdf\PYZus{}longtime}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}
+    \PY{n}{P} \PY{o}{=} \PY{n}{Pdeltaz\PYZus{}long}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{B}\PY{p}{,} \PY{n}{ld}\PY{p}{,} \PY{n}{lb}\PY{p}{)} \PY{o}{/} \PY{n}{trapz}\PY{p}{(}\PY{n}{Pdeltaz\PYZus{}long}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{B}\PY{p}{,} \PY{n}{ld}\PY{p}{,} \PY{n}{lb}\PY{p}{)}\PY{p}{,} \PY{n}{x}\PY{p}{)}
+
+    \PY{n}{res} \PY{o}{=} \PY{n}{trapz}\PY{p}{(}\PY{p}{(}\PY{n}{x} \PY{o}{*}\PY{o}{*} \PY{l+m+mi}{2}\PY{p}{)} \PY{o}{*} \PY{n}{P}\PY{p}{,} \PY{n}{x}\PY{p}{)}
+    \PY{k}{return} \PY{n}{res}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{35}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{def} \PY{n+nf}{minimize\PYZus{}plateau}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{:}
+    \PY{n}{B} \PY{o}{=} \PY{n}{x}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+    \PY{n}{ld} \PY{o}{=} \PY{n}{x}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}
+    \PY{n}{lb} \PY{o}{=} \PY{n}{x}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}
+    \PY{k}{return} \PY{p}{(}
+        \PY{n}{np}\PY{o}{.}\PY{n}{log}\PY{p}{(}\PY{n}{Theoritical\PYZus{}Plateau}\PY{p}{(}\PY{n}{B}\PY{p}{,} \PY{n}{ld}\PY{p}{,} \PY{n}{lb}\PY{p}{)}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{n}{np}\PY{o}{.}\PY{n}{log}\PY{p}{(}\PY{n}{dataset}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{plateau\PYZus{}MSD}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{)}
+    \PY{p}{)} \PY{o}{*}\PY{o}{*} \PY{l+m+mi}{2} \PY{o}{/} \PY{n}{np}\PY{o}{.}\PY{n}{log}\PY{p}{(}\PY{n}{Theoritical\PYZus{}Plateau}\PY{p}{(}\PY{n}{B}\PY{p}{,} \PY{n}{ld}\PY{p}{,} \PY{n}{lb}\PY{p}{)}\PY{p}{)} \PY{o}{*}\PY{o}{*} \PY{l+m+mi}{2}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{36}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{res\PYZus{}plateau} \PY{o}{=} \PY{n}{minimize}\PY{p}{(}\PY{n}{minimize\PYZus{}plateau}\PY{p}{,} \PY{n}{x0}\PY{o}{=}\PY{p}{[}\PY{n}{B}\PY{p}{,} \PY{n}{ld}\PY{p}{,} \PY{n}{lb}\PY{p}{]}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{We measure, B = }\PY{l+s+si}{\PYZob{}:.2f\PYZcb{}}\PY{l+s+s2}{, ld = }\PY{l+s+si}{\PYZob{}:.2f\PYZcb{}}\PY{l+s+s2}{ nm, lb = }\PY{l+s+si}{\PYZob{}:.2f\PYZcb{}}\PY{l+s+s2}{ nm}\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{o}{*}\PY{n}{res\PYZus{}plateau}\PY{o}{.}\PY{n}{x}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+We measure, B = 20.71, ld = 71.84 nm, lb = 504.78 nm
+    \end{Verbatim}
+
+    \hypertarget{pdf-of-heights}{%
+\subsection{PDF of heights}\label{pdf-of-heights}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{37}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{def} \PY{n+nf}{logarithmic\PYZus{}hist}\PY{p}{(}\PY{n}{data}\PY{p}{,} \PY{n}{begin}\PY{p}{,} \PY{n}{stop}\PY{p}{,} \PY{n}{num}\PY{o}{=}\PY{l+m+mi}{50}\PY{p}{,} \PY{n}{base}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{:}
+
+    \PY{k}{if} \PY{n}{begin} \PY{o}{==} \PY{l+m+mi}{0}\PY{p}{:}
+        \PY{n}{beg} \PY{o}{=} \PY{n}{stop} \PY{o}{/} \PY{n}{num}
+        \PY{n}{bins} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{logspace}\PY{p}{(}
+            \PY{n}{np}\PY{o}{.}\PY{n}{log}\PY{p}{(}\PY{n}{beg}\PY{p}{)} \PY{o}{/} \PY{n}{np}\PY{o}{.}\PY{n}{log}\PY{p}{(}\PY{n}{base}\PY{p}{)}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{log}\PY{p}{(}\PY{n}{stop}\PY{p}{)} \PY{o}{/} \PY{n}{np}\PY{o}{.}\PY{n}{log}\PY{p}{(}\PY{n}{base}\PY{p}{)}\PY{p}{,} \PY{n}{num} \PY{o}{\PYZhy{}} \PY{l+m+mi}{1}\PY{p}{,} \PY{n}{base}\PY{o}{=}\PY{n}{base}
+        \PY{p}{)}
+        \PY{n}{widths} \PY{o}{=} \PY{n}{bins}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{:}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{bins}\PY{p}{[}\PY{p}{:}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}
+        \PY{n}{bins} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{cumsum}\PY{p}{(}\PY{n}{widths}\PY{p}{[}\PY{p}{:}\PY{p}{:}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+        \PY{n}{bins} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{concatenate}\PY{p}{(}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{bins}\PY{p}{)}\PY{p}{)}
+        \PY{n}{widths} \PY{o}{=} \PY{n}{bins}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{:}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{bins}\PY{p}{[}\PY{p}{:}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}
+
+    \PY{k}{else}\PY{p}{:}
+        \PY{n}{bins} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{logspace}\PY{p}{(}
+            \PY{n}{np}\PY{o}{.}\PY{n}{log}\PY{p}{(}\PY{n}{begin}\PY{p}{)} \PY{o}{/} \PY{n}{np}\PY{o}{.}\PY{n}{log}\PY{p}{(}\PY{n}{base}\PY{p}{)}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{log}\PY{p}{(}\PY{n}{stop}\PY{p}{)} \PY{o}{/} \PY{n}{np}\PY{o}{.}\PY{n}{log}\PY{p}{(}\PY{n}{base}\PY{p}{)}\PY{p}{,} \PY{n}{num}\PY{p}{,} \PY{n}{base}\PY{o}{=}\PY{n}{base}
+        \PY{p}{)}
+        \PY{n}{widths} \PY{o}{=} \PY{n}{bins}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{:}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{bins}\PY{p}{[}\PY{p}{:}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}
+
+    \PY{n}{hist}\PY{p}{,} \PY{n}{bins} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{histogram}\PY{p}{(}\PY{n}{data}\PY{p}{,} \PY{n}{bins}\PY{o}{=}\PY{n}{bins}\PY{p}{,} \PY{n}{density}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+    \PY{c+c1}{\PYZsh{} normalize by bin width}
+    \PY{n}{bins\PYZus{}center} \PY{o}{=} \PY{p}{(}\PY{n}{bins}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{:}\PY{p}{]} \PY{o}{+} \PY{n}{bins}\PY{p}{[}\PY{p}{:}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)} \PY{o}{/} \PY{l+m+mi}{2}
+
+    \PY{k}{return} \PY{n}{bins\PYZus{}center}\PY{p}{,} \PY{n}{widths}\PY{p}{,} \PY{n}{hist}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{38}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{pdf\PYZus{}z}\PY{p}{,} \PY{n}{bins\PYZus{}center\PYZus{}pdf\PYZus{}z} \PY{o}{=} \PY{n}{pdf}\PY{p}{(}\PY{n}{z\PYZus{}dedrift}\PY{p}{[}\PY{n}{z\PYZus{}dedrift} \PY{o}{\PYZlt{}} \PY{l+m+mf}{1.5}\PY{p}{]}\PY{p}{,} \PY{n}{bins}\PY{o}{=}\PY{l+m+mi}{150}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{bins\PYZus{}center\PYZus{}pdf\PYZus{}z}\PY{p}{,} \PY{n}{pdf\PYZus{}z}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{o}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{z (\PYZdl{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{mathrm}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{mu m\PYZcb{}\PYZdl{})}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZdl{}P\PYZus{}z(z)\PYZdl{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{38}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+Text(0, 0.5, '\$P\_z(z)\$')
+\end{Verbatim}
+\end{tcolorbox}
+        
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{data_analyse_files/data_analyse_57_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    The idea now is to find where the substrate is, to do this we will use a
+first method which consist to adjust the PDF with an offset to make it
+fit with the measured mean Diffusion coefficient. With :
+\begin{equation} 
+< D_i > = \int _{-\infty} ^{\infty} dz D_i(z)P(z) 
+\end{equation}
+
+For z we are going to use the Padé approx :
+\begin{equation} D_z (z) \approx D_0 \left( \frac{6z^2 + 2rz}{6z^2 + 9rz + 2r^2} \right) \end{equation}
+
+For x we are going to use the Faxen formula :
+\begin{equation} D_x (z) \approx D_0 \left[ 1 - \frac{9}{16} \left(\frac{r}{z}\right) + \frac{1}{8} \left(\frac{r}{z}\right)^3 - \frac{45}{236} \left(\frac{r}{z}\right)^4 - \frac{1}{16} \left(\frac{r}{z}\right)^5 \right] \end{equation}
+
+To do this we will fit the PDF with an offset, adjust it with the mean
+value of z. Let's first do it over z
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{39}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{def} \PY{n+nf}{P\PYZus{}b\PYZus{}off}\PY{p}{(}\PY{n}{z}\PY{p}{,} \PY{n}{z\PYZus{}off}\PY{p}{,} \PY{n}{B}\PY{p}{,} \PY{n}{ld}\PY{p}{,} \PY{n}{lb}\PY{p}{)}\PY{p}{:}
+    \PY{n}{z\PYZus{}off} \PY{o}{=} \PY{n}{z\PYZus{}off} \PY{o}{*} \PY{l+m+mf}{1e\PYZhy{}6}
+    \PY{n}{lb} \PY{o}{=} \PY{n}{lb} \PY{o}{*} \PY{l+m+mf}{1e\PYZhy{}9}
+    \PY{n}{ld} \PY{o}{=} \PY{n}{ld} \PY{o}{*} \PY{l+m+mf}{1e\PYZhy{}9}
+    \PY{n}{z} \PY{o}{=} \PY{n}{z} \PY{o}{\PYZhy{}} \PY{n}{z\PYZus{}off}
+    \PY{n}{P\PYZus{}b} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{exp}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{n}{B} \PY{o}{*} \PY{n}{np}\PY{o}{.}\PY{n}{exp}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{n}{z} \PY{o}{/} \PY{p}{(}\PY{n}{ld}\PY{p}{)}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{n}{z} \PY{o}{/} \PY{n}{lb}\PY{p}{)}
+    \PY{n}{P\PYZus{}b}\PY{p}{[}\PY{n}{z} \PY{o}{\PYZlt{}} \PY{l+m+mi}{0}\PY{p}{]} \PY{o}{=} \PY{l+m+mi}{0}
+
+    \PY{c+c1}{\PYZsh{} Normalization of P\PYZus{}b}
+
+    \PY{n}{A} \PY{o}{=} \PY{n}{trapz}\PY{p}{(}\PY{n}{P\PYZus{}b}\PY{p}{,} \PY{n}{z} \PY{o}{*} \PY{l+m+mf}{1e6}\PY{p}{)}
+    \PY{n}{P\PYZus{}b} \PY{o}{=} \PY{n}{P\PYZus{}b} \PY{o}{/} \PY{n}{A}
+
+    \PY{k}{return} \PY{n}{P\PYZus{}b}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{40}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} Normalization of the PDF}
+
+\PY{n}{pdf\PYZus{}z} \PY{o}{=} \PY{n}{pdf\PYZus{}z} \PY{o}{/} \PY{n}{trapz}\PY{p}{(}\PY{n}{pdf\PYZus{}z}\PY{p}{,} \PY{n}{bins\PYZus{}center\PYZus{}pdf\PYZus{}z}\PY{p}{)}
+
+
+\PY{n}{p2} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{n}{B}\PY{p}{,} \PY{n}{ld}\PY{p}{,} \PY{n}{lb}\PY{p}{]}
+
+\PY{n}{popt}\PY{p}{,} \PY{n}{pcov} \PY{o}{=} \PY{n}{curve\PYZus{}fit}\PY{p}{(}\PY{n}{P\PYZus{}b\PYZus{}off}\PY{p}{,} \PY{n}{bins\PYZus{}center\PYZus{}pdf\PYZus{}z} \PY{o}{*} \PY{l+m+mf}{1e\PYZhy{}6}\PY{p}{,} \PY{n}{pdf\PYZus{}z}\PY{p}{,} \PY{n}{p0}\PY{o}{=}\PY{n}{p2}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+<ipython-input-39-f5e0b340e678>:6: RuntimeWarning: overflow encountered in exp
+  P\_b = np.exp(-B * np.exp(-z / (ld)) - z / lb)
+<ipython-input-39-f5e0b340e678>:12: RuntimeWarning: invalid value encountered in
+true\_divide
+  P\_b = P\_b / A
+    \end{Verbatim}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{41}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{plt}\PY{o}{.}\PY{n}{semilogy}\PY{p}{(}\PY{n}{bins\PYZus{}center\PYZus{}pdf\PYZus{}z}\PY{p}{,} \PY{n}{pdf\PYZus{}z}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{o}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{bins\PYZus{}center\PYZus{}pdf\PYZus{}z}\PY{p}{,} \PY{n}{P\PYZus{}b\PYZus{}off}\PY{p}{(}\PY{n}{bins\PYZus{}center\PYZus{}pdf\PYZus{}z} \PY{o}{*} \PY{l+m+mf}{1e\PYZhy{}6}\PY{p}{,} \PY{o}{*}\PY{n}{popt}\PY{p}{)}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{k}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+
+\PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{z \PYZdl{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{mathrm}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{(}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{mu m)\PYZcb{}\PYZdl{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{P(z)}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{grid}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{data_analyse_files/data_analyse_61_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{42}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{mean\PYZus{}Dx} \PY{o}{=} \PY{p}{(}\PY{n}{popt\PYZus{}1}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{+} \PY{n}{popt\PYZus{}2}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)} \PY{o}{/} \PY{l+m+mi}{2}
+\PY{n}{mean\PYZus{}Dz} \PY{o}{=} \PY{n}{popt\PYZus{}3}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+\PY{n+nb}{print}\PY{p}{(}
+    \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{We measure a mean diffusion coefficient of }\PY{l+s+si}{\PYZob{}:.3f\PYZcb{}}\PY{l+s+s2}{D0 for the perpendicular motion and of }\PY{l+s+si}{\PYZob{}:.3f\PYZcb{}}\PY{l+s+s2}{D0 for the parallel motion}\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}
+        \PY{p}{(}\PY{n}{popt\PYZus{}1}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{+} \PY{n}{popt\PYZus{}2}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)} \PY{o}{/} \PY{l+m+mi}{2}\PY{p}{,} \PY{n}{popt\PYZus{}3}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+    \PY{p}{)}
+\PY{p}{)}
+
+
+\PY{n}{dataset}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{D\PYZus{}para}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]} \PY{o}{=} \PY{n}{mean\PYZus{}Dx}
+\PY{n}{dataset}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{D\PYZus{}perp}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]} \PY{o}{=} \PY{n}{mean\PYZus{}Dz}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+We measure a mean diffusion coefficient of 0.522D0 for the perpendicular motion
+and of 0.243D0 for the parallel motion
+    \end{Verbatim}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{43}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{Do} \PY{o}{=} \PY{l+m+mf}{4e\PYZhy{}21} \PY{o}{/} \PY{p}{(}\PY{l+m+mi}{6} \PY{o}{*} \PY{n}{np}\PY{o}{.}\PY{n}{pi} \PY{o}{*} \PY{l+m+mf}{0.001} \PY{o}{*} \PY{n}{r}\PY{p}{)}
+
+
+\PY{k}{def} \PY{n+nf}{Dz\PYZus{}z}\PY{p}{(}\PY{n}{z}\PY{p}{)}\PY{p}{:}
+    \PY{n}{result} \PY{o}{=} \PY{p}{(}\PY{l+m+mi}{6} \PY{o}{*} \PY{n}{z} \PY{o}{*} \PY{n}{z} \PY{o}{+} \PY{l+m+mi}{2} \PY{o}{*} \PY{n}{r} \PY{o}{*} \PY{n}{z}\PY{p}{)} \PY{o}{/} \PY{p}{(}\PY{l+m+mi}{6} \PY{o}{*} \PY{n}{z} \PY{o}{*} \PY{n}{z} \PY{o}{+} \PY{l+m+mi}{9} \PY{o}{*} \PY{n}{r} \PY{o}{*} \PY{n}{z} \PY{o}{+} \PY{l+m+mi}{2} \PY{o}{*} \PY{n}{r} \PY{o}{*} \PY{n}{r}\PY{p}{)}
+    \PY{k}{return} \PY{n}{result}
+
+
+\PY{k}{def} \PY{n+nf}{Dx\PYZus{}z}\PY{p}{(}\PY{n}{z}\PY{p}{)}\PY{p}{:}
+    \PY{n}{result} \PY{o}{=} \PY{p}{(}
+        \PY{l+m+mi}{1}
+        \PY{o}{\PYZhy{}} \PY{l+m+mi}{9} \PY{o}{/} \PY{l+m+mi}{16} \PY{o}{*} \PY{p}{(}\PY{n}{r} \PY{o}{/} \PY{p}{(}\PY{n}{z} \PY{o}{+} \PY{n}{r}\PY{p}{)}\PY{p}{)}
+        \PY{o}{+} \PY{l+m+mi}{1} \PY{o}{/} \PY{l+m+mi}{8} \PY{o}{*} \PY{p}{(}\PY{n}{r} \PY{o}{/} \PY{p}{(}\PY{n}{z} \PY{o}{+} \PY{n}{r}\PY{p}{)}\PY{p}{)} \PY{o}{*}\PY{o}{*} \PY{l+m+mi}{3}
+        \PY{o}{\PYZhy{}} \PY{l+m+mi}{45} \PY{o}{/} \PY{l+m+mi}{256} \PY{o}{*} \PY{p}{(}\PY{n}{r} \PY{o}{/} \PY{p}{(}\PY{n}{z} \PY{o}{+} \PY{n}{r}\PY{p}{)}\PY{p}{)} \PY{o}{*}\PY{o}{*} \PY{l+m+mi}{4}
+        \PY{o}{\PYZhy{}} \PY{l+m+mi}{1} \PY{o}{/} \PY{l+m+mi}{16} \PY{o}{*} \PY{p}{(}\PY{n}{r} \PY{o}{/} \PY{p}{(}\PY{n}{z} \PY{o}{+} \PY{n}{r}\PY{p}{)}\PY{p}{)} \PY{o}{*}\PY{o}{*} \PY{l+m+mi}{5}
+    \PY{p}{)}
+    \PY{k}{return} \PY{n}{result}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{44}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{def} \PY{n+nf}{minimizer}\PY{p}{(}\PY{n}{z\PYZus{}off}\PY{p}{)}\PY{p}{:}
+    \PY{n}{Dx\PYZus{}pdf} \PY{o}{=} \PY{n}{trapz}\PY{p}{(}
+        \PY{n}{Dx\PYZus{}z}\PY{p}{(}\PY{n}{bins\PYZus{}center\PYZus{}pdf\PYZus{}z} \PY{o}{*} \PY{l+m+mf}{1e\PYZhy{}6}\PY{p}{)}
+        \PY{o}{*} \PY{n}{P\PYZus{}b\PYZus{}off}\PY{p}{(}\PY{n}{bins\PYZus{}center\PYZus{}pdf\PYZus{}z} \PY{o}{*} \PY{l+m+mf}{1e\PYZhy{}6}\PY{p}{,} \PY{n}{z\PYZus{}off}\PY{p}{,} \PY{o}{*}\PY{n}{popt}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{:}\PY{p}{]}\PY{p}{)}\PY{p}{,}
+        \PY{n}{bins\PYZus{}center\PYZus{}pdf\PYZus{}z}\PY{p}{,}
+    \PY{p}{)}
+    \PY{n}{Dz\PYZus{}pdf} \PY{o}{=} \PY{n}{trapz}\PY{p}{(}
+        \PY{n}{Dz\PYZus{}z}\PY{p}{(}\PY{n}{bins\PYZus{}center\PYZus{}pdf\PYZus{}z} \PY{o}{*} \PY{l+m+mf}{1e\PYZhy{}6}\PY{p}{)}
+        \PY{o}{*} \PY{n}{P\PYZus{}b\PYZus{}off}\PY{p}{(}\PY{n}{bins\PYZus{}center\PYZus{}pdf\PYZus{}z} \PY{o}{*} \PY{l+m+mf}{1e\PYZhy{}6}\PY{p}{,} \PY{n}{z\PYZus{}off}\PY{p}{,} \PY{o}{*}\PY{n}{popt}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{:}\PY{p}{]}\PY{p}{)}\PY{p}{,}
+        \PY{n}{bins\PYZus{}center\PYZus{}pdf\PYZus{}z}\PY{p}{,}
+    \PY{p}{)}
+
+    \PY{k}{return} \PY{n}{np}\PY{o}{.}\PY{n}{abs}\PY{p}{(}\PY{p}{(}\PY{l+m+mi}{1} \PY{o}{\PYZhy{}} \PY{n}{mean\PYZus{}Dx} \PY{o}{/} \PY{n}{Dx\PYZus{}pdf}\PY{p}{)} \PY{o}{+} \PY{p}{(}\PY{l+m+mi}{1} \PY{o}{\PYZhy{}} \PY{n}{mean\PYZus{}Dx} \PY{o}{/} \PY{n}{Dx\PYZus{}pdf}\PY{p}{)}\PY{p}{)}
+
+
+\PY{n}{res} \PY{o}{=} \PY{n}{minimize}\PY{p}{(}\PY{n}{minimizer}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{n}{method}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{nelder\PYZhy{}mead}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{45}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{offset} \PY{o}{=} \PY{n}{res}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{46}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{offset} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{res}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{final\PYZus{}simplex}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}
+    \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{From the measurement of the mean diffusion coefficient, we measure an offset of }\PY{l+s+si}{\PYZob{}:.3f\PYZcb{}}\PY{l+s+s2}{ um}\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}
+        \PY{n}{offset}
+    \PY{p}{)}
+\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+From the measurement of the mean diffusion coefficient, we measure an offset of
+0.005 um
+    \end{Verbatim}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{47}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{def} \PY{n+nf}{logarithmic\PYZus{}hist}\PY{p}{(}\PY{n}{data}\PY{p}{,} \PY{n}{begin}\PY{p}{,} \PY{n}{stop}\PY{p}{,} \PY{n}{num}\PY{o}{=}\PY{l+m+mi}{50}\PY{p}{,} \PY{n}{base}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{:}
+    \PY{l+s+sd}{\PYZdq{}\PYZdq{}\PYZdq{}}
+\PY{l+s+sd}{    Function to make logarithmic histograms to have more points}
+\PY{l+s+sd}{    near the surface and where the particle spend the most of its time.}
+\PY{l+s+sd}{    \PYZdq{}\PYZdq{}\PYZdq{}}
+    \PY{k}{if} \PY{n}{begin} \PY{o}{==} \PY{l+m+mi}{0}\PY{p}{:}
+        \PY{n}{beg} \PY{o}{=} \PY{n}{stop} \PY{o}{/} \PY{n}{num}
+        \PY{n}{bins} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{logspace}\PY{p}{(}
+            \PY{n}{np}\PY{o}{.}\PY{n}{log}\PY{p}{(}\PY{n}{beg}\PY{p}{)} \PY{o}{/} \PY{n}{np}\PY{o}{.}\PY{n}{log}\PY{p}{(}\PY{n}{base}\PY{p}{)}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{log}\PY{p}{(}\PY{n}{stop}\PY{p}{)} \PY{o}{/} \PY{n}{np}\PY{o}{.}\PY{n}{log}\PY{p}{(}\PY{n}{base}\PY{p}{)}\PY{p}{,} \PY{n}{num} \PY{o}{\PYZhy{}} \PY{l+m+mi}{1}\PY{p}{,} \PY{n}{base}\PY{o}{=}\PY{n}{base}
+        \PY{p}{)}
+        \PY{n}{widths} \PY{o}{=} \PY{n}{bins}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{:}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{bins}\PY{p}{[}\PY{p}{:}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}
+        \PY{n}{bins} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{cumsum}\PY{p}{(}\PY{n}{widths}\PY{p}{[}\PY{p}{:}\PY{p}{:}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+        \PY{n}{bins} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{concatenate}\PY{p}{(}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{bins}\PY{p}{)}\PY{p}{)}
+        \PY{n}{widths} \PY{o}{=} \PY{n}{bins}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{:}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{bins}\PY{p}{[}\PY{p}{:}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}
+
+    \PY{k}{else}\PY{p}{:}
+        \PY{n}{bins} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{logspace}\PY{p}{(}
+            \PY{n}{np}\PY{o}{.}\PY{n}{log}\PY{p}{(}\PY{n}{begin}\PY{p}{)} \PY{o}{/} \PY{n}{np}\PY{o}{.}\PY{n}{log}\PY{p}{(}\PY{n}{base}\PY{p}{)}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{log}\PY{p}{(}\PY{n}{stop}\PY{p}{)} \PY{o}{/} \PY{n}{np}\PY{o}{.}\PY{n}{log}\PY{p}{(}\PY{n}{base}\PY{p}{)}\PY{p}{,} \PY{n}{num}\PY{p}{,} \PY{n}{base}\PY{o}{=}\PY{n}{base}
+        \PY{p}{)}
+        \PY{n}{widths} \PY{o}{=} \PY{n}{bins}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{:}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{bins}\PY{p}{[}\PY{p}{:}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}
+
+    \PY{n}{hist}\PY{p}{,} \PY{n}{a} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{histogram}\PY{p}{(}\PY{n}{data}\PY{p}{,} \PY{n}{bins}\PY{o}{=}\PY{n}{bins}\PY{p}{,} \PY{n}{density}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+    \PY{c+c1}{\PYZsh{} normalize by bin width}
+    \PY{n}{bins\PYZus{}center} \PY{o}{=} \PY{p}{(}\PY{n}{bins}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{:}\PY{p}{]} \PY{o}{+} \PY{n}{bins}\PY{p}{[}\PY{p}{:}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)} \PY{o}{/} \PY{l+m+mi}{2}
+
+    \PY{k}{return} \PY{n}{bins\PYZus{}center}\PY{p}{,} \PY{n}{widths}\PY{p}{,} \PY{n}{hist}
+
+
+\PY{n}{bins\PYZus{}center\PYZus{}pdf\PYZus{}z}\PY{p}{,} \PY{n}{widths}\PY{p}{,} \PY{n}{pdf\PYZus{}z} \PY{o}{=} \PY{n}{logarithmic\PYZus{}hist}\PY{p}{(}\PY{n}{z\PYZus{}dedrift}\PY{p}{,} \PY{l+m+mf}{0.01}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{n}{num}\PY{o}{=}\PY{l+m+mi}{50}\PY{p}{,} \PY{n}{base}\PY{o}{=}\PY{l+m+mi}{12}\PY{p}{)}
+
+\PY{n}{p2} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{n}{B}\PY{p}{,} \PY{n}{ld}\PY{p}{,} \PY{n}{lb}\PY{p}{]}
+\PY{n}{popt\PYZus{}pdf}\PY{p}{,} \PY{n}{pcov\PYZus{}pdf} \PY{o}{=} \PY{n}{curve\PYZus{}fit}\PY{p}{(}\PY{n}{P\PYZus{}b\PYZus{}off}\PY{p}{,} \PY{n}{bins\PYZus{}center\PYZus{}pdf\PYZus{}z} \PY{o}{*} \PY{l+m+mf}{1e\PYZhy{}6}\PY{p}{,} \PY{n}{pdf\PYZus{}z}\PY{p}{,} \PY{n}{p0}\PY{o}{=}\PY{n}{p2}\PY{p}{)}
+\PY{n}{dataset}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{pdf\PYZus{}z}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]} \PY{o}{=} \PY{n}{pdf\PYZus{}z}
+\PY{n}{dataset}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{x\PYZus{}pdf\PYZus{}z}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]} \PY{o}{=} \PY{n}{bins\PYZus{}center\PYZus{}pdf\PYZus{}z} \PY{o}{*} \PY{l+m+mf}{1e\PYZhy{}6}
+
+\PY{n}{plt}\PY{o}{.}\PY{n}{semilogy}\PY{p}{(}\PY{n}{bins\PYZus{}center\PYZus{}pdf\PYZus{}z}\PY{p}{,} \PY{n}{pdf\PYZus{}z}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{o}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{bins\PYZus{}center\PYZus{}pdf\PYZus{}z}\PY{p}{,} \PY{n}{P\PYZus{}b\PYZus{}off}\PY{p}{(}\PY{n}{bins\PYZus{}center\PYZus{}pdf\PYZus{}z} \PY{o}{*} \PY{l+m+mf}{1e\PYZhy{}6}\PY{p}{,} \PY{o}{*}\PY{n}{popt\PYZus{}pdf}\PY{p}{)}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{black}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+
+\PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{z (\PYZdl{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{mathrm}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{mu m\PYZcb{}\PYZdl{})}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{P(z)  (\PYZdl{}m\PYZca{}}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{\PYZhy{}1\PYZcb{}\PYZdl{})}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+<ipython-input-39-f5e0b340e678>:6: RuntimeWarning: overflow encountered in exp
+  P\_b = np.exp(-B * np.exp(-z / (ld)) - z / lb)
+<ipython-input-39-f5e0b340e678>:12: RuntimeWarning: invalid value encountered in
+true\_divide
+  P\_b = P\_b / A
+    \end{Verbatim}
+
+            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{47}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+Text(0, 0.5, 'P(z)  (\$m\^{}\{-1\}\$)')
+\end{Verbatim}
+\end{tcolorbox}
+        
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{data_analyse_files/data_analyse_67_2.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{48}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{offset\PYZus{}pdf}\PY{p}{,} \PY{n}{B\PYZus{}pdf}\PY{p}{,} \PY{n}{ld\PYZus{}offset}\PY{p}{,} \PY{n}{lb\PYZus{}offset} \PY{o}{=} \PY{n}{popt\PYZus{}pdf}
+\end{Verbatim}
+\end{tcolorbox}
+
+    We write the diffusion function.
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{49}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{def} \PY{n+nf}{Dz\PYZus{}z}\PY{p}{(}\PY{n}{z}\PY{p}{,} \PY{n}{off}\PY{p}{)}\PY{p}{:}
+    \PY{n}{off} \PY{o}{=} \PY{n}{off} \PY{o}{*} \PY{l+m+mf}{1e\PYZhy{}6}
+    \PY{n}{z} \PY{o}{=} \PY{n}{z} \PY{o}{\PYZhy{}} \PY{n}{off}
+    \PY{n}{result} \PY{o}{=} \PY{p}{(}\PY{l+m+mi}{6} \PY{o}{*} \PY{n}{z} \PY{o}{*} \PY{n}{z} \PY{o}{+} \PY{l+m+mi}{2} \PY{o}{*} \PY{n}{r} \PY{o}{*} \PY{n}{z}\PY{p}{)} \PY{o}{/} \PY{p}{(}\PY{l+m+mi}{6} \PY{o}{*} \PY{n}{z} \PY{o}{*} \PY{n}{z} \PY{o}{+} \PY{l+m+mi}{9} \PY{o}{*} \PY{n}{r} \PY{o}{*} \PY{n}{z} \PY{o}{+} \PY{l+m+mi}{2} \PY{o}{*} \PY{n}{r} \PY{o}{*} \PY{n}{r}\PY{p}{)}
+    \PY{k}{return} \PY{n}{result}
+
+
+\PY{k}{def} \PY{n+nf}{Dx\PYZus{}z\PYZus{}off}\PY{p}{(}\PY{n}{z}\PY{p}{,} \PY{n}{offset}\PY{p}{)}\PY{p}{:}
+    \PY{n}{offset} \PY{o}{=} \PY{n}{offset} \PY{o}{*} \PY{l+m+mf}{1e\PYZhy{}6}
+    \PY{n}{z} \PY{o}{=} \PY{n}{z} \PY{o}{+} \PY{n}{offset}
+    \PY{n}{result} \PY{o}{=} \PY{p}{(}
+        \PY{l+m+mi}{1}
+        \PY{o}{\PYZhy{}} \PY{l+m+mi}{9} \PY{o}{/} \PY{l+m+mi}{16} \PY{o}{*} \PY{p}{(}\PY{n}{r} \PY{o}{/} \PY{p}{(}\PY{n}{z} \PY{o}{+} \PY{n}{r}\PY{p}{)}\PY{p}{)}
+        \PY{o}{+} \PY{l+m+mi}{1} \PY{o}{/} \PY{l+m+mi}{8} \PY{o}{*} \PY{p}{(}\PY{n}{r} \PY{o}{/} \PY{p}{(}\PY{n}{z} \PY{o}{+} \PY{n}{r}\PY{p}{)}\PY{p}{)} \PY{o}{*}\PY{o}{*} \PY{l+m+mi}{3}
+        \PY{o}{\PYZhy{}} \PY{l+m+mi}{45} \PY{o}{/} \PY{l+m+mi}{256} \PY{o}{*} \PY{p}{(}\PY{n}{r} \PY{o}{/} \PY{p}{(}\PY{n}{z} \PY{o}{+} \PY{n}{r}\PY{p}{)}\PY{p}{)} \PY{o}{*}\PY{o}{*} \PY{l+m+mi}{4}
+        \PY{o}{\PYZhy{}} \PY{l+m+mi}{1} \PY{o}{/} \PY{l+m+mi}{16} \PY{o}{*} \PY{p}{(}\PY{n}{r} \PY{o}{/} \PY{p}{(}\PY{n}{z} \PY{o}{+} \PY{n}{r}\PY{p}{)}\PY{p}{)} \PY{o}{*}\PY{o}{*} \PY{l+m+mi}{5}
+    \PY{p}{)}
+    \PY{k}{return} \PY{n}{result}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \hypertarget{measuring-the-diffusion-coefficient-using-the-frishman-and-roncerays-method}{%
+\subsection{Measuring the diffusion coefficient using the Frishman and
+Ronceray's
+method}\label{measuring-the-diffusion-coefficient-using-the-frishman-and-roncerays-method}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{50}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k+kn}{from} \PY{n+nn}{scipy}\PY{n+nn}{.}\PY{n+nn}{io} \PY{k+kn}{import} \PY{n}{loadmat}
+
+\PY{n}{dataset}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{D\PYZus{}0}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]} \PY{o}{=} \PY{l+m+mf}{4e\PYZhy{}21} \PY{o}{/} \PY{p}{(}\PY{l+m+mi}{6} \PY{o}{*} \PY{n}{np}\PY{o}{.}\PY{n}{pi} \PY{o}{*} \PY{l+m+mf}{0.001} \PY{o}{*} \PY{n}{dataset}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{r}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{)}
+\PY{n}{D} \PY{o}{=} \PY{n}{loadmat}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{diffusionAnalysis.mat}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{diffusion}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}
+\PY{n}{dataset}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{z\PYZus{}D}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]} \PY{o}{=} \PY{n}{D}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{]}
+\PY{n}{dataset}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{z\PYZus{}D\PYZus{}x}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]} \PY{o}{=} \PY{p}{(}\PY{n}{D}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{]} \PY{o}{+} \PY{n}{D}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{]}\PY{p}{)} \PY{o}{/} \PY{l+m+mi}{2}
+\PY{n}{dataset}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{z\PYZus{}D\PYZus{}z}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]} \PY{o}{=} \PY{n}{D}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{]}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{51}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{dataset}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{z\PYZus{}D}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{,} \PY{n}{dataset}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{z\PYZus{}D\PYZus{}x}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]} \PY{o}{/} \PY{n}{dataset}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{D\PYZus{}0}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{o}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{loglog}\PY{p}{(}\PY{n}{dataset}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{z\PYZus{}D}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{,} \PY{n}{dataset}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{z\PYZus{}D\PYZus{}z}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]} \PY{o}{/} \PY{n}{dataset}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{D\PYZus{}0}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{o}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+
+\PY{n}{zz} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{linspace}\PY{p}{(}\PY{l+m+mf}{1e\PYZhy{}8}\PY{p}{,} \PY{l+m+mf}{1e\PYZhy{}5}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{zz}\PY{p}{,} \PY{n}{Dz\PYZus{}z}\PY{p}{(}\PY{n}{zz}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{k}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+
+\PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{zz}\PY{p}{,} \PY{n}{Dx\PYZus{}z\PYZus{}off}\PY{p}{(}\PY{n}{zz}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{k}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{51}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+[<matplotlib.lines.Line2D at 0x27a85cc7850>]
+\end{Verbatim}
+\end{tcolorbox}
+        
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{data_analyse_files/data_analyse_73_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{52}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{def} \PY{n+nf}{c\PYZus{}P\PYZus{}D}\PY{p}{(}\PY{n}{B}\PY{p}{,} \PY{n}{ld}\PY{p}{,} \PY{n}{lb}\PY{p}{,} \PY{n}{offset}\PY{o}{=}\PY{k+kc}{None}\PY{p}{)}\PY{p}{:}
+    \PY{k}{if} \PY{n}{offset} \PY{o}{==} \PY{k+kc}{None}\PY{p}{:}
+        \PY{n}{offset} \PY{o}{=} \PY{l+m+mi}{0}
+
+    \PY{n}{z} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{linspace}\PY{p}{(}\PY{l+m+mf}{1e\PYZhy{}9}\PY{p}{,} \PY{l+m+mf}{15e\PYZhy{}6}\PY{p}{,} \PY{l+m+mi}{1000}\PY{p}{)}
+
+    \PY{n}{P\PYZus{}D} \PY{o}{=} \PY{n}{Dz\PYZus{}z}\PY{p}{(}\PY{n}{z}\PY{p}{,} \PY{n}{offset}\PY{p}{)} \PY{o}{*} \PY{n}{Do} \PY{o}{*} \PY{n}{P\PYZus{}b\PYZus{}off}\PY{p}{(}\PY{n}{z}\PY{p}{,} \PY{n}{offset}\PY{p}{,} \PY{n}{B}\PY{p}{,} \PY{n}{ld}\PY{p}{,} \PY{n}{lb}\PY{p}{)}
+
+    \PY{k}{return} \PY{n}{Dz\PYZus{}z}\PY{p}{(}\PY{n}{z}\PY{p}{,} \PY{n}{offset}\PY{p}{)} \PY{o}{*} \PY{n}{Do}\PY{p}{,} \PY{n}{P\PYZus{}D} \PY{o}{/} \PY{n}{np}\PY{o}{.}\PY{n}{trapz}\PY{p}{(}\PY{n}{P\PYZus{}D}\PY{p}{,} \PY{n}{z}\PY{p}{)}
+
+
+\PY{k}{def} \PY{n+nf}{\PYZus{}P\PYZus{}Dz\PYZus{}short\PYZus{}time}\PY{p}{(}\PY{n}{Dz}\PY{p}{,} \PY{n}{Dt}\PY{p}{,} \PY{n}{B}\PY{p}{,} \PY{n}{ld}\PY{p}{,} \PY{n}{lb}\PY{p}{,} \PY{n}{offset}\PY{o}{=}\PY{k+kc}{None}\PY{p}{)}\PY{p}{:}
+    \PY{k}{if} \PY{n}{offset} \PY{o}{==} \PY{k+kc}{None}\PY{p}{:}
+        \PY{n}{offset} \PY{o}{=} \PY{l+m+mi}{0}
+
+    \PY{n}{D\PYZus{}z}\PY{p}{,} \PY{n}{P\PYZus{}D} \PY{o}{=} \PY{n}{c\PYZus{}P\PYZus{}D}\PY{p}{(}\PY{n}{B}\PY{p}{,} \PY{n}{ld}\PY{p}{,} \PY{n}{lb}\PY{p}{,} \PY{n}{offset}\PY{p}{)}
+
+    \PY{n}{P} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{trapz}\PY{p}{(}
+        \PY{n}{P\PYZus{}D} \PY{o}{/} \PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{l+m+mi}{4} \PY{o}{*} \PY{n}{np}\PY{o}{.}\PY{n}{pi} \PY{o}{*} \PY{n}{D\PYZus{}z} \PY{o}{*} \PY{n}{Dt}\PY{p}{)} \PY{o}{*} \PY{n}{np}\PY{o}{.}\PY{n}{exp}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{p}{(}\PY{n}{Dz} \PY{o}{*}\PY{o}{*} \PY{l+m+mi}{2}\PY{p}{)} \PY{o}{/} \PY{p}{(}\PY{l+m+mi}{4} \PY{o}{*} \PY{n}{D\PYZus{}z} \PY{o}{*} \PY{n}{Dt}\PY{p}{)}\PY{p}{)}\PY{p}{,} \PY{n}{D\PYZus{}z}
+    \PY{p}{)}
+
+    \PY{k}{return} \PY{n}{P}
+
+
+\PY{k}{def} \PY{n+nf}{P\PYZus{}Dz\PYZus{}short\PYZus{}time}\PY{p}{(}\PY{n}{Dz}\PY{p}{,} \PY{n}{Dt}\PY{p}{,} \PY{n}{B}\PY{p}{,} \PY{n}{ld}\PY{p}{,} \PY{n}{lb}\PY{p}{,} \PY{n}{offset}\PY{o}{=}\PY{k+kc}{None}\PY{p}{)}\PY{p}{:}
+    \PY{k}{if} \PY{n}{offset} \PY{o}{==} \PY{k+kc}{None}\PY{p}{:}
+        \PY{n}{offset} \PY{o}{=} \PY{l+m+mi}{0}
+
+    \PY{n}{P} \PY{o}{=} \PY{p}{[}\PY{n}{\PYZus{}P\PYZus{}Dz\PYZus{}short\PYZus{}time}\PY{p}{(}\PY{n}{i}\PY{p}{,} \PY{n}{Dt}\PY{p}{,} \PY{n}{B}\PY{p}{,} \PY{n}{ld}\PY{p}{,} \PY{n}{lb}\PY{p}{,} \PY{n}{offset}\PY{o}{=}\PY{n}{offset}\PY{p}{)} \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n}{Dz}\PY{p}{]}
+    \PY{n}{P} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{n}{P}\PY{p}{)}
+    \PY{n}{P} \PY{o}{=} \PY{n}{P} \PY{o}{/} \PY{n}{np}\PY{o}{.}\PY{n}{trapz}\PY{p}{(}\PY{n}{P}\PY{p}{,} \PY{n}{Dz}\PY{p}{)}
+
+    \PY{k}{return} \PY{n}{P}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \hypertarget{fit-everything-in-the-same-time}{%
+\section{Fit everything in the same time
+!}\label{fit-everything-in-the-same-time}}
+
+Finaly we can fit everything in the same time to recap we have :
+
+\begin{itemize}
+\tightlist
+\item
+  MSD x and MSD y =\textgreater{} \(< D >\)
+\item
+  MSD z =\textgreater{} \(< D >\)
+\item
+  mean \(< D >\) with the pdf
+\item
+  Long time pdf \(\Delta z\) =\textgreater{} \(l_d,l_b,B\)
+\item
+  Pdf z =\textgreater{} \(offset,l_d,l_b, B\)
+\item
+  D parallel, perp =\textgreater{} offset
+\end{itemize}
+
+The minimizer \(\chi ^2\) we are going to optimize can be written as :
+\begin{equation} \chi^2 = \sum _{n = 1} ^{N} \chi_n^2 \end{equation}\begin{equation} \chi_n^2 = \sum^A(n) _i = 1 \frac{1}{\sigma_{ni}}(y_{ni} - y_n(x_{ni},\boldsymbol{a}))^2 \end{equation}
+
+with \(\sigma_{ni}\) the uncertainty (can be set to 1), A the number of
+point in the dataset for each function, \(y_n\), nth equation,
+\(\boldsymbol{a}\) the fit parameters
+
+We have nonlinear functions so we can use the Marquardt to optimize or
+Nelder-Mead methods to optimize the minimizer.
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{53}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{def} \PY{n+nf}{minimizer\PYZus{}diffusion\PYZus{}coeff}\PY{p}{(}\PY{n}{mean\PYZus{}D\PYZus{}para}\PY{p}{,} \PY{n}{mean\PYZus{}D\PYZus{}perp}\PY{p}{,} \PY{n}{z\PYZus{}off}\PY{p}{,} \PY{n}{B}\PY{p}{,} \PY{n}{ld}\PY{p}{,} \PY{n}{lb}\PY{p}{)}\PY{p}{:}
+    \PY{c+c1}{\PYZsh{} minimization of the mean diffusion coefficient measurement with the PDF and MSD}
+    \PY{n}{a} \PY{o}{=} \PY{n}{trapz}\PY{p}{(}
+        \PY{n}{Dx\PYZus{}z\PYZus{}off}\PY{p}{(}\PY{n}{bins\PYZus{}center\PYZus{}pdf\PYZus{}z} \PY{o}{*} \PY{l+m+mf}{1e\PYZhy{}6}\PY{p}{,} \PY{n}{z\PYZus{}off}\PY{p}{)}
+        \PY{o}{*} \PY{n}{P\PYZus{}b\PYZus{}off}\PY{p}{(}\PY{n}{bins\PYZus{}center\PYZus{}pdf\PYZus{}z} \PY{o}{*} \PY{l+m+mf}{1e\PYZhy{}6}\PY{p}{,} \PY{n}{z\PYZus{}off}\PY{p}{,} \PY{n}{B}\PY{p}{,} \PY{n}{ld}\PY{p}{,} \PY{n}{lb}\PY{p}{)}\PY{p}{,}
+        \PY{n}{bins\PYZus{}center\PYZus{}pdf\PYZus{}z}\PY{p}{,}
+    \PY{p}{)}
+    \PY{n}{b} \PY{o}{=} \PY{n}{trapz}\PY{p}{(}
+        \PY{n}{Dz\PYZus{}z}\PY{p}{(}\PY{n}{bins\PYZus{}center\PYZus{}pdf\PYZus{}z} \PY{o}{*} \PY{l+m+mf}{1e\PYZhy{}6}\PY{p}{,} \PY{n}{z\PYZus{}off}\PY{p}{)}
+        \PY{o}{*} \PY{n}{P\PYZus{}b\PYZus{}off}\PY{p}{(}\PY{n}{bins\PYZus{}center\PYZus{}pdf\PYZus{}z} \PY{o}{*} \PY{l+m+mf}{1e\PYZhy{}6}\PY{p}{,} \PY{n}{z\PYZus{}off}\PY{p}{,} \PY{n}{B}\PY{p}{,} \PY{n}{ld}\PY{p}{,} \PY{n}{lb}\PY{p}{)}\PY{p}{,}
+        \PY{n}{bins\PYZus{}center\PYZus{}pdf\PYZus{}z}\PY{p}{,}
+    \PY{p}{)}
+    \PY{n}{at} \PY{o}{=} \PY{n}{mean\PYZus{}Dx}
+    \PY{n}{bt} \PY{o}{=} \PY{n}{mean\PYZus{}Dz}
+    \PY{k}{return} \PY{p}{(}\PY{n}{a} \PY{o}{\PYZhy{}} \PY{n}{at}\PY{p}{)} \PY{o}{*}\PY{o}{*} \PY{l+m+mi}{2} \PY{o}{/} \PY{n}{at} \PY{o}{*}\PY{o}{*} \PY{l+m+mi}{2} \PY{o}{+} \PY{p}{(}\PY{n}{b} \PY{o}{\PYZhy{}} \PY{n}{bt}\PY{p}{)} \PY{o}{*}\PY{o}{*} \PY{l+m+mi}{2} \PY{o}{/} \PY{n}{bt} \PY{o}{*}\PY{o}{*} \PY{l+m+mi}{2}
+
+
+\PY{n}{dataset}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{z}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]} \PY{o}{=} \PY{n}{z\PYZus{}dedrift}
+\PY{n}{dataset}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{x}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]} \PY{o}{=} \PY{n}{x}
+\PY{n}{dataset}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{y}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]} \PY{o}{=} \PY{n}{y}
+
+
+\PY{k}{def} \PY{n+nf}{minimizer\PYZus{}Dz\PYZus{}small\PYZus{}t}\PY{p}{(}\PY{n}{B}\PY{p}{,} \PY{n}{ld}\PY{p}{,} \PY{n}{lb}\PY{p}{)}\PY{p}{:}
+    \PY{n}{xi} \PY{o}{=} \PY{l+m+mi}{0}
+
+    \PY{k}{for} \PY{n}{n}\PY{p}{,} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{enumerate}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{]}\PY{p}{)}\PY{p}{:}
+        \PY{n}{Dezs} \PY{o}{=} \PY{p}{(}\PY{n}{dataset}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{z}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{:}\PY{o}{\PYZhy{}}\PY{n}{i}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{dataset}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{z}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{[}\PY{n}{i}\PY{p}{:}\PY{p}{]}\PY{p}{)} \PY{o}{*} \PY{l+m+mf}{1e\PYZhy{}6}
+        \PY{n}{Dezs} \PY{o}{=} \PY{n}{Dezs}  \PY{c+c1}{\PYZsh{} \PYZhy{} np.mean(Dezs)}
+
+        \PY{n}{hist}\PY{p}{,} \PY{n}{bins\PYZus{}center} \PY{o}{=} \PY{n}{pdf}\PY{p}{(}\PY{n}{Dezs}\PY{p}{[}\PY{o}{\PYZti{}}\PY{n}{np}\PY{o}{.}\PY{n}{isnan}\PY{p}{(}\PY{n}{Dezs}\PY{p}{)}\PY{p}{]}\PY{p}{,} \PY{n}{bins}\PY{o}{=}\PY{l+m+mi}{30}\PY{p}{)}
+        \PY{n}{hist} \PY{o}{=} \PY{n}{hist} \PY{o}{/} \PY{n}{np}\PY{o}{.}\PY{n}{trapz}\PY{p}{(}\PY{n}{hist}\PY{p}{,} \PY{n}{bins\PYZus{}center}\PY{p}{)}
+
+        \PY{n}{Dz\PYZus{}th} \PY{o}{=} \PY{n}{bins\PYZus{}center}
+        \PY{n}{PPP} \PY{o}{=} \PY{n}{P\PYZus{}Dz\PYZus{}short\PYZus{}time}\PY{p}{(}\PY{n}{Dz\PYZus{}th}\PY{p}{,} \PY{n}{time}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{,} \PY{n}{B}\PY{p}{,} \PY{n}{ld}\PY{p}{,} \PY{n}{lb}\PY{p}{)}
+
+        \PY{c+c1}{\PYZsh{} xi = xi + np.nanmean((((np.abs(hist) \PYZhy{} (PPP) ) ) ** 2) / ((np.abs(hist)**2)))}
+        \PY{n}{xi} \PY{o}{=} \PY{n}{xi} \PY{o}{+} \PY{n}{np}\PY{o}{.}\PY{n}{nanmean}\PY{p}{(}
+            \PY{p}{(}\PY{p}{(}\PY{n}{hist}\PY{p}{[}\PY{n}{hist} \PY{o}{\PYZgt{}} \PY{l+m+mi}{0}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{PPP}\PY{p}{[}\PY{n}{hist} \PY{o}{\PYZgt{}} \PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)} \PY{o}{*}\PY{o}{*} \PY{l+m+mi}{2}\PY{p}{)} \PY{o}{/} \PY{n}{hist}\PY{p}{[}\PY{n}{hist} \PY{o}{\PYZgt{}} \PY{l+m+mi}{0}\PY{p}{]} \PY{o}{*}\PY{o}{*} \PY{l+m+mi}{2}
+        \PY{p}{)}
+    \PY{k}{return} \PY{n}{xi}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{54}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{dataset}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{D\PYZus{}para}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]} \PY{o}{=} \PY{n}{mean\PYZus{}Dx}
+\PY{n}{dataset}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{D\PYZus{}perp}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]} \PY{o}{=} \PY{n}{mean\PYZus{}Dz}
+
+
+\PY{k}{def} \PY{n+nf}{minimizer}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{o}{*}\PY{n}{args}\PY{p}{)}\PY{p}{:}
+    \PY{n}{data} \PY{o}{=} \PY{n}{dataset}
+    \PY{n}{ld} \PY{o}{=} \PY{n}{x}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+    \PY{n}{lb} \PY{o}{=} \PY{n}{x}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}
+    \PY{n}{B} \PY{o}{=} \PY{n}{x}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}
+    \PY{n}{offset\PYZus{}dif} \PY{o}{=} \PY{n}{x}\PY{p}{[}\PY{l+m+mi}{3}\PY{p}{]}
+
+    \PY{n}{chi\PYZus{}mean\PYZus{}D\PYZus{}pdf} \PY{o}{=} \PY{n}{minimizer\PYZus{}diffusion\PYZus{}coeff}\PY{p}{(}
+        \PY{n}{dataset}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{D\PYZus{}para}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{,} \PY{n}{dataset}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{D\PYZus{}perp}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{n}{B}\PY{p}{,} \PY{n}{ld}\PY{p}{,} \PY{n}{lb}
+    \PY{p}{)}
+    \PY{n}{chi\PYZus{}MSD\PYZus{}plateau} \PY{o}{=} \PY{n}{minimize\PYZus{}plateau}\PY{p}{(}\PY{p}{[}\PY{n}{B}\PY{p}{,} \PY{n}{ld}\PY{p}{,} \PY{n}{lb}\PY{p}{]}\PY{p}{)}
+
+    \PY{n}{E\PYZus{}longtime\PYZus{}pdf} \PY{o}{=} \PY{p}{(}\PY{n}{Pdeltaz\PYZus{}long}\PY{p}{(}\PY{n}{data}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{x\PYZus{}pdf\PYZus{}longtime}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{,} \PY{n}{B}\PY{p}{,} \PY{n}{ld}\PY{p}{,} \PY{n}{lb}\PY{p}{)}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{p}{(}
+        \PY{n}{data}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{pdf\PYZus{}longtime}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}
+    \PY{p}{)}
+    \PY{n}{chi\PYZus{}longtime\PYZus{}pdf} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{mean}\PY{p}{(}
+        \PY{p}{(}\PY{n}{E\PYZus{}longtime\PYZus{}pdf}\PY{p}{[}\PY{n}{E\PYZus{}longtime\PYZus{}pdf} \PY{o}{\PYZgt{}} \PY{o}{\PYZhy{}}\PY{n}{np}\PY{o}{.}\PY{n}{inf}\PY{p}{]} \PY{o}{*}\PY{o}{*} \PY{l+m+mi}{2}\PY{p}{)}
+        \PY{o}{/} \PY{p}{(}\PY{p}{(}\PY{p}{(}\PY{n}{Pdeltaz\PYZus{}long}\PY{p}{(}\PY{n}{data}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{x\PYZus{}pdf\PYZus{}longtime}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{,} \PY{n}{B}\PY{p}{,} \PY{n}{ld}\PY{p}{,} \PY{n}{lb}\PY{p}{)}\PY{p}{)}\PY{p}{)} \PY{o}{*}\PY{o}{*} \PY{l+m+mi}{2}\PY{p}{)}
+    \PY{p}{)}
+
+    \PY{n}{E\PYZus{}chi\PYZus{}pdf\PYZus{}z} \PY{o}{=} \PY{n}{P\PYZus{}b\PYZus{}off}\PY{p}{(}\PY{n}{data}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{x\PYZus{}pdf\PYZus{}z}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{n}{B}\PY{p}{,} \PY{n}{ld}\PY{p}{,} \PY{n}{lb}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{n}{data}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{pdf\PYZus{}z}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}
+    \PY{n}{chi\PYZus{}pdf\PYZus{}z} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{nanmean}\PY{p}{(}
+        \PY{p}{(}\PY{n}{E\PYZus{}chi\PYZus{}pdf\PYZus{}z}\PY{p}{[}\PY{n}{E\PYZus{}chi\PYZus{}pdf\PYZus{}z} \PY{o}{\PYZgt{}} \PY{o}{\PYZhy{}}\PY{n}{np}\PY{o}{.}\PY{n}{inf}\PY{p}{]} \PY{o}{*}\PY{o}{*} \PY{l+m+mi}{2}\PY{p}{)}
+        \PY{o}{/} \PY{p}{(}\PY{p}{(}\PY{n}{P\PYZus{}b\PYZus{}off}\PY{p}{(}\PY{n}{data}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{x\PYZus{}pdf\PYZus{}z}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{n}{B}\PY{p}{,} \PY{n}{ld}\PY{p}{,} \PY{n}{lb}\PY{p}{)}\PY{p}{)} \PY{o}{*}\PY{o}{*} \PY{l+m+mi}{2}\PY{p}{)}
+    \PY{p}{)}
+
+    \PY{n}{E\PYZus{}D\PYZus{}z} \PY{o}{=} \PY{p}{(}\PY{n}{Dz\PYZus{}z}\PY{p}{(}\PY{n}{data}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{z\PYZus{}D}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{,} \PY{n}{offset\PYZus{}dif}\PY{p}{)}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{p}{(}\PY{n}{data}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{z\PYZus{}D\PYZus{}z}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]} \PY{o}{/} \PY{n}{Do}\PY{p}{)}
+    \PY{n}{chi\PYZus{}D\PYZus{}z} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{mean}\PY{p}{(}
+        \PY{p}{(}\PY{n}{E\PYZus{}D\PYZus{}z}\PY{p}{[}\PY{n}{E\PYZus{}D\PYZus{}z} \PY{o}{\PYZgt{}} \PY{o}{\PYZhy{}}\PY{n}{np}\PY{o}{.}\PY{n}{inf}\PY{p}{]} \PY{o}{*}\PY{o}{*} \PY{l+m+mi}{2}\PY{p}{)} \PY{o}{/} \PY{p}{(}\PY{p}{(}\PY{n}{Dz\PYZus{}z}\PY{p}{(}\PY{n}{data}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{z\PYZus{}D}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{,} \PY{n}{offset\PYZus{}dif}\PY{p}{)}\PY{p}{)} \PY{o}{*}\PY{o}{*} \PY{l+m+mi}{2}\PY{p}{)}
+    \PY{p}{)}
+
+    \PY{n}{E\PYZus{}D\PYZus{}x} \PY{o}{=} \PY{p}{(}\PY{n}{Dx\PYZus{}z\PYZus{}off}\PY{p}{(}\PY{n}{data}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{z\PYZus{}D}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{,} \PY{n}{offset\PYZus{}dif}\PY{p}{)}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{p}{(}\PY{n}{data}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{z\PYZus{}D\PYZus{}x}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]} \PY{o}{/} \PY{n}{Do}\PY{p}{)}
+    \PY{n}{chi\PYZus{}D\PYZus{}x} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{mean}\PY{p}{(}
+        \PY{p}{(}\PY{n}{E\PYZus{}D\PYZus{}x}\PY{p}{[}\PY{n}{E\PYZus{}D\PYZus{}x} \PY{o}{\PYZgt{}} \PY{o}{\PYZhy{}}\PY{n}{np}\PY{o}{.}\PY{n}{inf}\PY{p}{]} \PY{o}{*}\PY{o}{*} \PY{l+m+mi}{2}\PY{p}{)} \PY{o}{/} \PY{p}{(}\PY{p}{(}\PY{n}{Dx\PYZus{}z\PYZus{}off}\PY{p}{(}\PY{n}{data}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{z\PYZus{}D}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{,} \PY{n}{offset\PYZus{}dif}\PY{p}{)}\PY{p}{)} \PY{o}{*}\PY{o}{*} \PY{l+m+mi}{2}\PY{p}{)}
+    \PY{p}{)}
+
+    \PY{n}{chi\PYZus{}Dz\PYZus{}small\PYZus{}t} \PY{o}{=} \PY{n}{minimizer\PYZus{}Dz\PYZus{}small\PYZus{}t}\PY{p}{(}\PY{n}{B}\PY{p}{,} \PY{n}{ld}\PY{p}{,} \PY{n}{lb}\PY{p}{)}
+
+    \PY{n}{summ} \PY{o}{=} \PY{p}{(}
+        \PY{n}{chi\PYZus{}mean\PYZus{}D\PYZus{}pdf}
+        \PY{o}{+} \PY{n}{chi\PYZus{}MSD\PYZus{}plateau}
+        \PY{o}{+} \PY{n}{chi\PYZus{}longtime\PYZus{}pdf}
+        \PY{o}{+} \PY{n}{chi\PYZus{}pdf\PYZus{}z}
+        \PY{o}{+} \PY{n}{chi\PYZus{}D\PYZus{}z}
+        \PY{o}{+} \PY{n}{chi\PYZus{}D\PYZus{}x}
+        \PY{o}{+} \PY{n}{chi\PYZus{}Dz\PYZus{}small\PYZus{}t}
+    \PY{p}{)}
+
+    \PY{k}{return} \PY{n}{summ}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{55}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{B} \PY{o}{=} \PY{l+m+mi}{5}
+\PY{n}{ld} \PY{o}{=} \PY{n}{ld\PYZus{}offset}
+\PY{n}{x0} \PY{o}{=} \PY{p}{[}\PY{n}{ld}\PY{p}{,} \PY{l+m+mi}{550}\PY{p}{,} \PY{n}{B}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{n}{offset\PYZus{}pdf}\PY{p}{]}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{56}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k+kn}{from} \PY{n+nn}{scipy}\PY{n+nn}{.}\PY{n+nn}{optimize} \PY{k+kn}{import} \PY{n}{leastsq}
+
+\PY{n}{options} \PY{o}{=} \PY{p}{\PYZob{}}
+    \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{maxc1or}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{l+m+mi}{30}\PY{p}{,}
+    \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{ftol}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{l+m+mf}{2.2e\PYZhy{}10}\PY{p}{,}
+    \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{gtol}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{l+m+mf}{1e\PYZhy{}5}\PY{p}{,}
+    \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{eps}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{l+m+mf}{1e\PYZhy{}08}\PY{p}{,}
+    \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{maxfun}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{l+m+mi}{15000}\PY{p}{,}
+    \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{maxiter}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{l+m+mi}{15000}\PY{p}{,}
+    \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{maxls}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{l+m+mi}{20}\PY{p}{,}
+    \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{finite\PYZus{}diff\PYZus{}rel\PYZus{}step}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{k+kc}{None}\PY{p}{,}
+\PY{p}{\PYZcb{}}
+
+\PY{n}{res} \PY{o}{=} \PY{n}{minimize}\PY{p}{(}
+    \PY{n}{minimizer}\PY{p}{,}
+    \PY{n}{x0}\PY{p}{,}
+    \PY{n}{method}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{BFGS}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}
+    \PY{n}{tol}\PY{o}{=}\PY{l+m+mf}{1e\PYZhy{}1}\PY{p}{,}
+\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{57}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{res}\PY{o}{.}\PY{n}{x}
+\PY{n}{results} \PY{o}{=} \PY{p}{\PYZob{}}
+    \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{ld}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{n}{res}\PY{o}{.}\PY{n}{x}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,}
+    \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{lb}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{n}{res}\PY{o}{.}\PY{n}{x}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,}
+    \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{B}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{n}{res}\PY{o}{.}\PY{n}{x}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{,}
+    \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{offset\PYZus{}diffusion}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{n}{res}\PY{o}{.}\PY{n}{x}\PY{p}{[}\PY{l+m+mi}{3}\PY{p}{]}\PY{p}{,}
+\PY{p}{\PYZcb{}}
+
+\PY{n}{results}
+\end{Verbatim}
+\end{tcolorbox}
+
+            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{57}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\{'ld': 25.53322987706852,
+ 'lb': 549.9956782843908,
+ 'B': 4.856896668800334,
+ 'offset\_diffusion': 0.0019089236000464675\}
+\end{Verbatim}
+\end{tcolorbox}
+        
+    This final result has been used to plot theories along the manuscript.
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+\end{document}
