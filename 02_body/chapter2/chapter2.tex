@@ -113,7 +113,7 @@ By taking $k_1 = - k_2$ due to the reflection properties, we have:
 \end{equation}
 
 
-So far we supposed that the reflection occurs at a unique point; however, we would likely be using spherical colloids. Therefore, illuminating from the bottom, the reflection happens on half of the sphere surface. Moreover, thanks to the spherical geometry the holograms exhibit a radial symmetry, we thus write one can write the radial interference intensity $I(x)$, with $x$ the distance from the pattern center, through \cite{ raedler_measurement_1992}:
+So far we supposed that the reflection occurs at a unique point; however, we would likely be using spherical colloids. Therefore, illuminating from the bottom, the reflection happens on half of the sphere surface. Moreover, thanks to the spherical geometry the holograms exhibit a radial symmetry, one can write the radial interference intensity $I(x)$, with $x$ the distance from the pattern center, through \cite{ raedler_measurement_1992}:
 
 
 \begin{equation}
@@ -163,7 +163,7 @@ with $\vec{f}_\mathrm{s}$, the Lorenz-Mie scattering function. The intensity $I$
 	\end{aligned}
 \end{equation}
 
-Most of the experimental defects on the images are due to spacial illumination variations caused by dust particles. They can be corrected by normalizing the image by the background. In another word, we normalize $I(\vec{r})$ by the intensity of the incident field $I_0 = E_0(\vec{r})^2$ which corresponds the experimental background. 
+Most of the experimental defects on the images are due to spacial illumination variations caused by dust particles. They can be corrected by normalizing the image by the background. In another word, we normalize $I(\vec{r})$ by the intensity of the incident field $I_0 = E_0(\vec{r})^2$ which corresponds to the experimental background. 
 
 Experimentally, the background can be measured by different methods. One is to have an empty field of view and the other one, which is more convenient, is to compute the median of a stack of images. Additionally, for the latter to work, the video should be long enough for the particle to diffuse sufficiently. If this condition is not satisfied, a ghost of the particle will appear on the background. Moreover, this process permits getting rid of any immobile particles that could generate any additional noise. Examples of hologram before and after the normalization are shown in Figs.\ref{fig.Lorenz_mie_demo} a-c).
 
@@ -233,7 +233,7 @@ and:
 
 where $\zeta = n_\mathrm{p} / n_m $, and where the prime notation denotes differentiation with respect to the argument. 
 
-Finally, a hologram is mainly given by the Lorenz-Mie scattering function of Eq.~(\ref{Eq.Lorenz-Mie-function}). Moreover, as we can observe in Eqs.~(\ref{Eq:an})~and~(\ref{Eq:bn}), a hologram depends on a lot of parameters and variables ($\lambda$, $n_m$, $n_\mathrm{p}$, $a$ and $\vec{r}_\mathrm{p}$) . The parameters can be fitted by comparison to experimental data. In general, the illumination wavelength $\lambda$ and medium index $n_\mathrm{m}$ are known and do not need to be fitted. From only one hologram, one can measure  the position $\vec{r}_\mathrm{p}$ precisely of the particle and simultaneously characterize the radius and optical index of the colloid. As a side note, it is even possible to characterize a particle without aprioristic knowledge of its characteristics using a Bayesian approach \cite{gregory_bayesian_2005, dimiduk_bayesian_2016}.
+Finally, a hologram is mainly given by the Lorenz-Mie scattering function of Eq.~(\ref{Eq.Lorenz-Mie-function}). Moreover, as we can observe in Eqs.~(\ref{Eq:an})~and~(\ref{Eq:bn}), a hologram depends on a lot of parameters and variables ($\lambda$, $n_m$, $n_\mathrm{p}$, $a$ and $\vec{r}_\mathrm{p}$) . The parameters can be fitted by comparison to experimental data. In general, the illumination wavelength $\lambda$ and medium index $n_\mathrm{m}$ are known and do not need to be fitted. From only one hologram, one can measure  the position $\vec{r}_\mathrm{p}$ precisely of the particle and simultaneously characterize the radius and optical index of the colloid. As a side note, it is even possible to characterize a particle without aprioristic knowledge of its characteristics (\textit{i.e.} radius and refractive index) using a Bayesian approach \cite{gregory_bayesian_2005, dimiduk_bayesian_2016}.
 
 Computing Eq.~(\ref{Eq.Lorenz-Mie-function}) numerically brings another interesting question, as it is analytically written as a sum over $n$. One could ask after which number $n_\mathrm{c}$ of terms the series converges. It has actually been found that the series converges after a number of terms given by \cite{lentz_generating_1976}:
 \begin{equation}
@@ -413,7 +413,7 @@ where $ R^2 = r^2 + z^2 $ and the sign convention on the propagator indicates th
 By using the convolution theorem \cite{cheong_strategies_2010, goodman_introduction_2005, sherman_application_1967,schnars_digital_1994} and supposing a uniform illumination, one can approximately reconstruct the scattered field at height $z$ as:
 
 \begin{equation}
-	E_\mathrm{s}(\vec{r}, z) \approx frac{\mathrm{e}^{ikz}}{4\pi ^2}
+	E_\mathrm{s}(\vec{r}, z) \approx \frac{\mathrm{e}^{ikz}}{4\pi ^2}
 	\int ^\infty _{- \infty}
 	B(\vec{q}) H(\vec{q}, -z) \mathrm{e}^{i \vec{q} \cdot \vec{r}} \mathrm{d}^2 q
 	\label{Eq.RS} ~,
@@ -474,7 +474,7 @@ The experimental setup I developed during my PhD can be employed to implement bo
 
 A sample consists of a parallelepipedic chamber ($1.5 ~ \text{cm} ~ \times ~ 1.5 ~ \text{cm} ~ \times ~ 150 ~ \mathrm{\mu m} $), made from two glass covers, a parafilm spacer, and sealed with vacuum grease, containing a dilute suspension of spherical polystyrene beads. Sealing the sample with vacuum grease permits to drastically decrease evaporation, which reduces the possible evaporation driven-flow in the sample.
 
-We used 3 different colloidal sizes, of nominal radii $0.56 ~ \mathrm{\mu m}, ~ 1.5 ~ \mathrm{\mu m} \text{ and } 2.5 ~ \mathrm{\mu m} $, at room temperature $T$, in distilled water (type 1, MilliQ device) of dynamic shear viscosity $\eta = 1 ~ \mathrm{mPa.s}$. The particles are made of polystyrene of density $\rho = 1050  ~\mathrm{kg.m^{-3}}$ and optical index $n_\mathrm{p} = 1.598$ at a wavelength of $532$ nm.
+We used 3 different colloidal sizes, of nominal radii $0.56 ~ \mathrm{\mu m}, ~ 1.5 ~ \mathrm{\mu m} \text{ and } 2.5 ~ \mathrm{\mu m} $, at room temperature $T$, in distilled water (type 1, MilliQ device) of dynamic shear viscosity $\eta = 1 ~ \mathrm{mPa.s}$. The particles are made of polystyrene of density $\rho = 1050  ~\mathrm{kg.m^{-3}}$ and optical index $n_\mathrm{p} = 1.598$ at a wavelength $\lambda = 532$ nm.
 
 The sample is illuminated by a collimated laser beam with a $532$ nm wavelength. The laser used delivers a power of 4 mW and has a waist of $3.5$ mm. Since the laser is collimated, it has a near-zero exentricity so that it can be seen as a plane wave. As presented in the section \ref{chap:LM_fit}, the light scattered, by one colloidal particle at a given time $t$, interferes with the incident beam. 
 
@@ -483,7 +483,7 @@ An oil-immersion objective lens (x60 magnification, $1.30$ numerical aperture) c
 \begin{figure}[!ht]
 	\centering
 	\includegraphics{02_body/chapter2/images/figures_setup/photo_setup.pdf}
-	\caption{Photo of the custom-built microscope developed in my thesis. It is composed of a Thorlabs cage system. The camera used is a Basler acA1920-155um. We use a x60 magnification and $1.30$ numerical aperture oil-immersion objective lens. The light source is a collimated  $521 ~ \mathrm{n m}$ wavelength laser.}
+	\caption{Photo of the custom-built microscope developed in my thesis. It is composed of a Thorlabs cage system. The camera used is a Basler acA1920-155um. We use a x60 magnification and $1.30$ numerical aperture oil-immersion objective lens. The light source is a collimated  $ \lambda = 521 ~ \mathrm{n m}$ wavelength laser.}
 	\label{fig:picture}
 \end{figure}
 
@@ -497,7 +497,7 @@ An oil-immersion objective lens (x60 magnification, $1.30$ numerical aperture) c
 
 \subsection{Optical forces}
 
-As we illuminate particles with a laser, it is important to know if the optical forces that arise from the interactions between the light and the particle needs to be taken into account. When a plane wave is incident on a sphere, it scatters and absorbs light. This process depends both on the light wavelength $\lambda$ and on the sphere properties, its radius $a$ and refractive index $n_\mathrm{p} = n_{r} - jn_i$. For polystyrene $n_i \ll 1$, as shown in Fig.\ref{fig:refractive_index} such that we neglect it in the Lorenz-Mie framework. However, computing the optical forces, and hence, the light quantity which is absorbed requires $n_i$, so we consider it this section. Additionally, in the Mie theory, the particle is characterized by the size parameter $\tilde{x}= 2\pi a /\lambda$. The optical force $F_\mathrm{opt}$ is given by \cite{f_bohren_absorption_1998}
+As we illuminate particles with the laser light, it is important to know if the optical forces that arise from the interactions between the light and the particle needs to be taken into account. When a plane wave is incident on a sphere, it scatters and absorbs light. This process depends both on the light wavelength $\lambda$ and on the sphere properties, its radius $a$ and refractive index $n_\mathrm{p} = n_{r} - jn_i$. For polystyrene $n_i \ll 1$, as shown in Fig.\ref{fig:refractive_index} such that we neglect it in the Lorenz-Mie framework. However, computing the optical forces, and hence, the light quantity which is absorbed requires $n_i$, so we consider it in this section. Additionally, in the Mie theory, the particle is characterized by the size parameter $\tilde{x}= 2\pi a /\lambda$. The optical force $F_\mathrm{opt}$ is given by \cite{f_bohren_absorption_1998}
 
 \begin{equation}
 	F_\mathrm{opt} = \frac{I_\mathrm{r} n_\mathrm{m} \pi a^2 }{c} (Q_\mathrm{ext} - gQ_\mathrm{sca}) ~,
@@ -595,17 +595,17 @@ To conclude, for all of these reasons, we chose to use the MP4 file format (MPEG
 \subsubsection{Fitting the holograms}
 
 
-Once the holograms are recorded, we fit all of the images to retrieve the trajectory of the particle. To do so, we chose to use the \mintinline{python}{pylorenzmie} module developed by the Grier's lab at New York University. Although this module presents a lot of capabilities, it is not adapted to MP4 input. Thus, I developed a wrapper\footnote{A wrapper is a code that encapsulates or ``wraps" another code to make it easier to use. For example, it is particularly useful to adapt a program to a particular type of input data. Creating wrapping function is a commonly done by developers add some abstraction to the source codes and readability. } around \mintinline{python}{pylorenzmie} that I called Wraplorenzmie which can be found on my Github repository \href{https://github.com/eXpensia/wraplorenzmie}{\faGithub}. 
+Once the holograms are recorded, we fit all of the images to retrieve the trajectory of the particle. To do so, we chose to use the \mintinline{python}{pylorenzmie} module developed by the Grier's lab at New York University. Although this module presents a lot of capabilities, it is not adapted to MP4 input. Thus, I developed a wrapper\footnote{A wrapper is a code that encapsulates or ``wraps" another code to make it easier to use. For example, it is particularly useful to adapt a program to a particular type of input data. Creating wrapping function is commonly done by developers. In the end, wrapping adds some abstraction and readability to the source codes.} around \mintinline{python}{pylorenzmie} that I called Wraplorenzmie which can be found on my Github repository \href{https://github.com/eXpensia/wraplorenzmie}{\faGithub}. 
 
 This wrapper permits to directly load the MP4 files, compute the background and choose if what parameters should be fitted. Also, it manages the process fitting a time series of images by using results of previous image as initial fit parameters.
 
-However, as presented in the section \ref{chap:LM_fit}, the main drawback is the time to fit an image. Indeed, using a Python algorithm, one needs $30$ seconds to fit images of $100 \times  100$ pixels and a few minutes for a $500\times 500$ pixels hologram. We can directly see a bottleneck, if one wants to track one trajectory made of $100~000$ images .In such case, one would need to typically 70 days for a series of images that needs only a few minutes to be recorded experimentally. 
+However, as presented in the section \ref{chap:LM_fit}, the main drawback is the time to fit an image. Indeed, using a Python algorithm, one needs $30$ seconds to fit images of $100 \times  100$ pixels and a few minutes for a $500\times 500$ pixels hologram. We can directly see a bottleneck, if one wants to track one trajectory made of $100~000$ images. In such case, one would need to typically 70 days for a series of images that needs only a few minutes to be recorded experimentally. 
 
 When I started my PhD, two groups, the Grier's lab and the Manoharan's lab, had already created Python packages, respectively Pylorenzmie and Holopy, in order to inverse holograms. They had introduced ways to only fit a set of randomly chosen pixels, and demonstrated that taking only $1~\%$ of the image pixels, could lead to similar precision thus improving considerably the fit's execution time \cite{dimiduk_random-subset_2014}.
 
 Unfortunately, even if fitting  a random subset of pixels is faster, it leads to a few images per second, and is still too long for the amount of data we want to have. This part of my thesis is certainly the one where I spent the longest time, and I learned a lot about code optimization and computer cluster usage. 
 
-In the middle of my thesis, \mintinline{python}{pylorenzmie} got a new commit\footnote{A commit is an update of the files on a Git repository.} on the authors' Github repository which was saying that the authors succeeded in using GPU acceleration with CUDA\footnote{CUDA is the acronym of Compute Unified Device Architecture. It is a parallel computing platform, and programming model made to permit an easier use of the GPU for general purposes. CUDA is developed by NVIDIA since 2012, thus all recent NVIDIA's GPUs are CUDA-enable. It is possible to use CUDA with every language as long as a library has been developed, such as \mintinline{python}{cupy}for Python \href{https://github.com/cupy/cupy}{\faGithub}.}. This was not an easy task since they needed to reconstruct the Bessel functions in an understandable way for the GPU. Fortunately, it is possible to do so by using continued fractions \cite{lentz_generating_1976}. This appreciable update permits fitting whole images with a speed improvement of 20 fps. At this speed, we  precisely extract the tridimensional position of the particle, as well as the radius and optical index. 
+In the middle of my thesis, \mintinline{python}{pylorenzmie} got a new commit\footnote{A commit is an update of the files on a Git repository.} on the authors' Github repository which was saying that the authors succeeded in using GPU acceleration with CUDA\footnote{CUDA is the acronym of Compute Unified Device Architecture. It is a parallel computing platform, and programming model made to permit an easier use of the GPU for general purposes. CUDA is developed by NVIDIA since 2012, thus all recent NVIDIA's GPUs are CUDA-enable. It is possible to use CUDA with every language as long as a library has been developed, such as \mintinline{python}{cupy} for Python \href{https://github.com/cupy/cupy}{\faGithub}.}. This was not an easy task since they needed to reconstruct the Bessel functions in an understandable way for the GPU. Fortunately, it is possible to do so by using continued fractions \cite{lentz_generating_1976}. This appreciable update permits fitting whole images with a speed improvement of 20 fps. At this speed, we  precisely extract the three dimensional position of the particle, as well as the radius and optical index. 
 
 As a remark, the fits are done by solving a least-squares problem using the Levenberg-Marquardt algorithm \cite{more_levenberg-marquardt_1978}. This algorithm is largely used in curve-fitting applications due to its capabilities to find a minimum even by starting far from it. As mentioned, it is also possible to use various models of Machine Learning or Deep Learning to do the fits \cite{altman_catch_2020}. However, since we can write analytically the holograms, the Deep Learning’s models cannot be more accurate than a standard least-square-fitting process. Deep Learning, however, could be a great option is one wanted to prioritize the computation time over the fit's precision.
 
@@ -624,7 +624,7 @@ Using $10 ~ 000$ measurements of $a$ and $n_\mathrm{p}$ one can do a 2D histogra
 
 
 
-Finally, as explain above, using this measurement of the radius and optical index, we then fit the whole video by removing them from the free parameters. Doing so, we measure the 3D trajectory of the particle as shown in Fig.\ref{fig:3dtrajec} in tridimension for the particle previously characterized.
+Finally, as explain above, using this measurement of the radius and optical index, we then fit the whole video by removing them from the free parameters. Doing so, we measure the 3D trajectory of the particle as shown in Fig.\ref{fig:3dtrajec} in three dimensions for the particle previously characterized.
 
 \begin{figure}[!ht]
 	\centering
@@ -648,7 +648,7 @@ In order to test the Lorenz-Mie framework, we consider a well-known problem: a s
 \begin{figure}[H]
 	\centering
 	\includegraphics{02_body/chapter2/images/sedimenting/traj_sedimenting.pdf}
-	\caption{Experimental trajectory of a polystyrene particle of radius $a = 1.5 \mathrm{mu m}$ sedimenting in water, along the $z$-axis --- \textit{i.e.} the axis where the gravity acts.}
+	\caption{Experimental trajectory of a polystyrene particle of radius $a = 1.5 \mathrm{\mu m}$ sedimenting in water, along the $z$-axis --- \textit{i.e.} the axis where the gravity acts.}
 	\label{fig:trajsed}
 \end{figure}
 
@@ -666,12 +666,12 @@ where $\Delta \rho$ is the density difference between the fluid and colloid dens
 	\label{Eq.sedmsd}
 \end{equation}
 
-where $D_0$ is the bulk diffusion coefficient (see Eq.~(\ref{Eq:D_einstein})) and $\xi$ being the noise-level due to the statistical uncertainty on the position measurement. Using the radius measured from the Lorenz-Mie method, we find for the observed colloid $D_0 = 146 ~\mathrm{\mu m ^2 . ms^{-1}}$. The experimental \gls{MSD} of the sedimenting colloid is shown in Fig.~\ref{fig:msdsed}. Once the \gls{MSD} computed, we measure both the diffusion coefficient $D_0$ and the terminal sedimentation velocity $v_\mathrm{sed}$ by fitting the experimental \gls{MSD} to Eq.~\ref{Eq.sedmsd}. Doing so, we experimentally measure $D_0 = 144 \pm 1 ~ \mathrm{\mu m ^2 . ms^{-1}}$ and $v_\mathrm{sed} = 222 \pm 1 ~ \mathrm{nm.s^{-1}}$, corresponding to errors of $1\%$ and $3\%$, respectively. From the MSD we also evaluate the statistical error on the particle position measurement along the $z$-axis to $\xi = 25$ nm. This uncertainty can be reduced by using a larger images and more sensitive cameras. However, for the study of confined particle where the range of motion is smaller, we optimized the position of the focal plane to reduce the uncertainty on the position measurement. Finally, using Eq.~\ref{vsed} we can calculate the density difference $\Delta \rho = 48.4 \pm 0.2~ \mathrm{kg.m^{-3}}$. The discrepancy from the tabulated $\Delta \rho = 50~ \mathrm{kg.m^{-3}}$ for polystyrene in water might be attributed to rugosities and/or porosity. Nonetheless, with the small measured deviations from the theory, we correctly showed the viability of the Lorenz-Mie framework to study Brownian dynamics.  
+where $D_0$ is the bulk diffusion coefficient (see Eq.~(\ref{Eq:D_einstein})) and $\xi$ being the noise-level due to the statistical uncertainty on the position measurement. Using the radius measured from the Lorenz-Mie method, we find for the observed colloid $D_0 = 146 ~\mathrm{\mu m ^2 . ms^{-1}}$. The experimental \gls{MSD} of the sedimenting colloid is shown in Fig.~\ref{fig:msdsed}. Once the \gls{MSD} is computed, we measure both the diffusion coefficient $D_0$ and the terminal sedimentation velocity $v_\mathrm{sed}$ by fitting the experimental \gls{MSD} to Eq.~\ref{Eq.sedmsd}. Doing so, we experimentally measure $D_0 = 144 \pm 1 ~ \mathrm{\mu m ^2 . ms^{-1}}$ and $v_\mathrm{sed} = 222 \pm 1 ~ \mathrm{nm.s^{-1}}$, corresponding to errors of $1\%$ and $3\%$, respectively. From the MSD we also evaluate the statistical error on the particle position measurement along the $z$-axis to $\xi = 25$ nm. This uncertainty can be reduced by using a larger images and more sensitive cameras. However, for the study of confined particle where the range of motion is smaller, we optimized the position of the focal plane to reduce the uncertainty on the position measurement. Finally, using Eq.~\ref{vsed} we can calculate the density difference $\Delta \rho = 48.4 \pm 0.2~ \mathrm{kg.m^{-3}}$. The discrepancy from the tabulated $\Delta \rho = 50~ \mathrm{kg.m^{-3}}$ for polystyrene in water might be attributed to rugosities and/or porosity. Nonetheless, with the small measured deviations from the theory, we correctly showed the viability of the Lorenz-Mie framework to study Brownian dynamics.  
 
 \begin{figure}[H]
 	\centering
 	\includegraphics{02_body/chapter2/images/sedimenting/msd_sedimentation.pdf}
-	\caption{Measured mean-squared displacement as function of the time increment $\Delta t$, along the $z$-axis. The solid line is the best fit to Eq.~(\ref{Eq.sedmsd}), with $D_0 = 144 \pm 1 ~ \mathrm{\mu m ^2 . ms^{-1}}$, $v_\mathrm{sed} = 222 \pm 1 ~ \mathrm{nm.s^{-1}}$ and $xi = 25 $ nm.}
+	\caption{Measured mean-squared displacement as a function of the time increment $\Delta t$, along the $z$-axis. The solid line is the best fit to Eq.~(\ref{Eq.sedmsd}), with $D_0 = 144 \pm 1 ~ \mathrm{\mu m ^2 . ms^{-1}}$, $v_\mathrm{sed} = 222 \pm 1 ~ \mathrm{nm.s^{-1}}$ and $xi = 25 $ nm.}
 	\label{fig:msdsed}
 \end{figure}
 
@@ -679,7 +679,7 @@ where $D_0$ is the bulk diffusion coefficient (see Eq.~(\ref{Eq:D_einstein})) an
 
 \subsubsection{Conclusion}
 
-In this chapter, we have covered different techniques that enable the tracking of individual microparticles. Each method has pros and cons. We decided to employ the Lorenz-Mie framework since it requires no calibration. Then, we have shown how we implement it in practice, from the experimental setup to the numerical treatment. An example of the Jupyter notebooks employed for the tracking can be found in appendix \ref{app:tracking}.  We have discussed how to have fast and accurate fits to retrieve the particle trajectory. To do so, we first characterize the particle fully, namely, its radius and optical index, analyzing solely the trajectory over before tracking a whole video. 
+In this chapter, we have covered different techniques that enable the tracking of individual microparticles. Each method has pros and cons. We decided to employ the Lorenz-Mie framework since it requires no calibration. Then, we have shown how we implement it in practice, from the experimental setup to the numerical treatment. An example of the Jupyter notebooks employed for the tracking can be found in appendix \ref{app:tracking}.  We have discussed how to have fast and accurate fits to retrieve the particle trajectory. To do so, we first characterize the particle fully, namely, its radius and optical index, before tracking a whole video. 
 
 Now that we have an understanding on the tracking of single colloids, we can use the measured trajectories in order to understand how the Brownian motion is affected in various configurations. 
 
