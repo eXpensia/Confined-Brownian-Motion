@@ -21,7 +21,7 @@ Elastohydrodynamics (\gls{EHD}) is the field of mechanics that couples elasticit
 	\label{Eq.lift_deter}
 \end{equation}
 
- where the $0.41$ factor has been computed by Bertin \textit{et al.} \cite{bertin_soft-lubrication_2021}. To incorporate fluctuations into this deterministic picture, a simple idea is to replace the velocity $V$ in Eq.~(\ref{Eq.lift_deter}) by the typical horizontal thermal velocity $\sqrt{k_\mathrm{B}T / m}$ obtained through the Maxwell-Boltzmann distribution , leading the following estimate of an hypothetical Brownian \gls{EHD} lift force:
+ where the $0.41$ factor has been computed by Bertin \textit{et al.} \cite{bertin_soft-lubrication_2021} as well as other force and torque components. To incorporate fluctuations into this deterministic picture, a simple idea is to replace the velocity $V$ in Eq.~(\ref{Eq.lift_deter}) by the typical horizontal thermal velocity $\sqrt{k_\mathrm{B}T / m}$ obtained through the Maxwell-Boltzmann distribution , leading the following estimate of an hypothetical Brownian \gls{EHD} lift force:
 
 \begin{equation}
 	F_\mathrm{lift, Brown} \sim 0.41\frac{\eta ^2 k_\mathrm{B}T}{G\rho_\mathrm{p} a^{1/2} z^{5/2}} ~.
@@ -51,7 +51,7 @@ where $n$ is the number of $\mathrm{Si(CH_3)_2 O}$ dimethyl groups. By mixing a 
 \end{figure}
 
 
-Due to the crosslinker, the \gls{PDMS} turns into an elastomer, modelled as an incompressible and linear-elastic solid. Some of its characteristics are to be hydrophobic and to exhibit strong gas permeability \cite{xia_soft_1998}. The elastic modulus $G$ of the crosslinked \gls{PDMS} can be tuned by changing the mixing ratio of base polymer solutions and curing agent. For example, for one of the most used \gls{PDMS}, which is Sylgard 184, a mixing ratio of $10:1$ leads to an elastic modulus $G=1.5$ MPa, and $35:1$ leads to $G\simeq 100$ kPa \cite{wang_crosslinking_2014}. To prepare experimental samples, it possible to spin coat the microscope slides with the base-agent mixture before it is cured in order to have a thick soft surface coating onto the slides. However, for simplicity, we first decided to use already prepared samples sold by Ibidi, these came as soft coated Petri dishes with a coverslip on the bottom that we can directly fit into our microscope.
+Due to the crosslinker, the \gls{PDMS} turns into an elastomer, modelled as an incompressible and linear-elastic solid. Some of its characteristics are to be hydrophobic and to exhibit strong gas permeability \cite{xia_soft_1998}. The elastic modulus $G$ of the crosslinked \gls{PDMS} can be tuned by changing the mixing ratio of base polymer solutions and curing agent. For example, for one of the most used \gls{PDMS}, which is Sylgard 184, a mixing ratio of $10:1$ leads to an elastic modulus $G=1.5$ MPa, and $35:1$ leads to $G\simeq 100$ kPa \cite{wang_crosslinking_2014}. To prepare experimental samples, it possible to spin coat the microscope slides with the base-agent mixture before it is cured in order to have a thick soft surface coating onto the slides. Moreover, after curing some uncrosslinked chains (or free chains) usually remains in samples which can play important role when working near the soft surfaces. Indeed, Hourlier-Fargette \textit{et al.} \cite{hourlier-fargette_role_2017} shown that these free chains are drawn by water drops, altering there sliding dynamics. To avoid any issue, Glover \textit{et al.}  \cite{glover_extracting_2020} proposed an inexpensive method to clean \gls{PDMS}. There method consists in putting a \gls{PDMS} sheet at a water - organic solvent interface and wait that free chains migrate into the solvent. However, for simplicity, we first decided to use already prepared samples sold by Ibidi, these came as soft coated Petri dishes with a coverslip on the bottom that we can directly fit into our microscope.
 
 
 \subsubsection{Measuring non-conservative forces}
@@ -116,7 +116,7 @@ Let us focus on the \gls{MSD}s along the $x$-, $y$- and $z$-axes which are shown
 The plateau of the MSD along  $x$ and $y$ has an average value   $4.3 \times 10 ^{-15} ~ \mathrm{m^2}$. By supposing that the particle is in a harmonic potential, we can make an estimate of the spring constant $k_\mathrm{H}$, using the relation:
 
 \begin{equation}
-	k_\mathrm{H} = \frac{  k_\mathrm{B} T}{ \lim\limits_{\Delta t \rightarrow \infty }\langle \Delta x ^2 \rangle} = \frac{8 \times 10^{-21}}{4.3 \times 10 ^{-15}} \simeq 1 ~ \mathrm{\mu N . m^{-1}}~.
+	k_\mathrm{H} = \frac{2  k_\mathrm{B} T}{ \lim\limits_{\Delta t \rightarrow \infty }\langle \Delta x ^2 \rangle} = \frac{8 \times 10^{-21}}{4.3 \times 10 ^{-15}} \simeq 2 ~ \mathrm{\mu N . m^{-1}}~.
 \end{equation}
 
 Beyond further understanding the origin of such a stiffness, and possibly relating it to adhesion, it would be interesting to reproduce the same study using a soft surface and see if we can observe a change of $k_\mathrm{H}$ with the elastic modulus $G$. If the latter is true, this experiment could lead to a local determination of elastic moduli using Brownian colloids attached on soft surfaces. Additionally, we can look at the displacement \gls{PDF}s $P_i$ as shown in the Fig.~\ref{fig.P_dxz_stucked}. Contrary to the result we had for a freely diffusing particle (see Fig.~\ref{fig.displacement}) we do not observe a clear non-Gaussianity here.
