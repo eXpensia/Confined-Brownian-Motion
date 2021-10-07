@@ -541,9 +541,16 @@ To simplify the computation of $\lambda_\bot$, Honig \cite{honig_effect_1971}, a
 In the near-wall regime, such that $z \ll a$, it is possible to further approximate $\lambda_\bot$ by its asymptotic expression:
 
 \begin{equation}
-	\lambda_\bot \simeq \frac{a}{z} ~.
+	\lambda_\bot (z) \simeq \frac{a}{z} ~.
 	\label{Eq:etaz_small}
 \end{equation}
+
+For the particle parallel motion, Chaoui and Feuillebois \cite{chaoui_creeping_2003} found an asymptotic expression as:
+
+\begin{equation}
+	lambda _\parallel \simeq \left(\frac{8}{15}\log\left(\frac{z}{a}\right) - 0.95429\right)~.
+	\label{Eq.etax_small}
+\end{equation} 
 
 
 \begin{figure}[H]
@@ -842,7 +849,7 @@ A typical example of drift velocity $\bar{v}$ for a colloidal particle of radius
 
 
 \subsubsection{Numerical simulations of confined Brownian motion}
-
+\label{sec:simconfined}
 We previously determined that the simulation of a bulk Brownian motion without external forces can be simulated using Eq.~(\ref{Eq.shortnumlangevin}).
 However, in the case of confined Brownian motion, and without density matching, one needs to take into account the hindered mobility, external forces due to gravity and the double-layer interaction, as well as the confinement-induced spurious drift. Putting all that together leads to a new equation for $x_i$ which reads for the motion parallel to wall (\textit{i.e.} along the $x$- and $y$-axes):
 
@@ -1102,7 +1109,7 @@ Having focused on the \gls{MSD}, \textit{i.e.} on the second moment only, we now
 	\end{aligned}
 \end{equation}
 
-The latter can be reduced to \cite{matse_state-dependent_nodate, risken_fokker-planck_2012}:
+The latter can be reduced at short times to\cite{matse_state-dependent_nodate, risken_fokker-planck_2012}:
 
 \begin{equation}
 	P_z(\Delta z, z_0, \Delta t) =   \frac{1}{\sqrt{4 \pi D_i(z_0) \Delta t}} \exp \left[-\frac{(\Delta r_i - \bar{v}_\mathrm{d}\Delta t)^2}{4 D_i(z_0) \Delta t}   \right]\ ,
@@ -1167,8 +1174,19 @@ which contains in particular the second moment:
 	\label{Eq:plateau}
 \end{equation}
 
-As shown in Fig.~\ref{fig.displacement}-e), Eq.~(\ref{auxiliary}) captures the long-term data along $z$ very well. Additionally, Eq.~(\ref{Eq:plateau}) permits to fit the long-term plateau of the \gls{MSD} shown in Fig.~\ref{fig.MSD}. Eq.~(\ref{auxiliary}) can be evaluated using the following Python function:
+As shown in Fig.~\ref{fig.displacement}-e), Eq.~(\ref{auxiliary}) captures the long-term data along $z$ very well. Moreover, it possible to show that $\lim_{\Delta t\rightarrow\infty}\langle\Delta z ^2\rangle \sim \ell _\mathrm{B}^2$. Using this approximation we can evaluate the time $\tau_c$ needed to attain the equilibrium regime. If a particle diffuses with a diffusion coefficient $\langle D_\parallel \rangle$ it needs, on average a time: 
 
+\begin{equation}
+	\tau_c = \frac{\ell_\mathrm{B}^2}{2\langle D_\parallel \rangle},
+\end{equation}
+
+to diffuse over distance $\ell_\mathrm{B}$. By approximating the average coefficient by $\langle D_\parallel \rangle \sim D_0 \ell_\mathrm{B}/ a $, one can find that $\tau_c$ scales as:
+
+\begin{equation}
+	\tau_c \sim \frac{\ell_\mathrm{B} a}{D_0} = \frac{\eta}{\Delta \rho a g} ~.
+\end{equation}
+
+Interestingly, that means that taking smaller particles that has higher diffusion coefficient do not reach equilibrium faster. Additionally, Eq.~(\ref{Eq:plateau}) permits to fit the long-term plateau of the \gls{MSD} shown in Fig.~\ref{fig.MSD}. Eq.~(\ref{auxiliary}) can be evaluated using the following Python function.
 
 \begin{minted}
 	[
@@ -1300,6 +1318,7 @@ with $\{x_{ni},y_{ni}\}$ the experimental data of set $n$, $M_n$ the number of e
 Due to strong dependence of the normal diffusion coefficient $D_z$ with $z$, it is possible to find the wall position with a 10 nm resolution, thus overcoming a drawback of the Lorenz-Mie technique which only provides the axial distance relative to the focus of the objective lens. Besides, the three physical parameters globally extracted from the multifitting procedure are: $B = 4.8 \pm 0.6$, $\ell_\mathrm{D} = 21 \pm 1~ \mathrm{nm} $, and $\ell_\mathrm{B} = 530 \pm 2~ \mathrm{nm}$. Using the particle radius $a = 1.518 \pm 0.006 ~ \mathrm{\mu m}$ calibrated from the preliminary fits of the interference patterns to the Lorenz-Mie scattering function (see section \ref{sec:radius_charac}), and the $\rho_\mathrm{p} = 1050 ~ \mathrm{kg.m^{-3}}$ tabulated bulk density of polystyrene, we would have expected $\ell_\mathrm{B}=559 ~ \mathrm{nm}$ instead, which corresponds to less than $2\,\%$ error, and might be attributed to nanometric offsets, such as \textit{e.g.} the particle and/or wall rugosity. 
 
 \subsubsection{Measuring external forces using the local drifts}
+\label{sec:force}
 Finally, we investigate the total conservative force $F_z(z)$ acting on the particle along $z$. The first way to measure it is to calculate the gradient of the potential $U$ which is experimentally measured from the position \gls{PDF} giving:
 
 
@@ -1334,11 +1353,22 @@ Using the physical parameters extracted from the above multifitting procedure, w
 	\label{fig.figure_force_total}
 \end{figure}
 
+\subsubsection{Testing on simulated data}
+
+As detailed in section \ref{sec:simconfined} we can simulate Brownian motion near a surface. To check if the constructed method works on simulated data where the physical parameters, $B$, $\ell_\mathrm{B}$ and $\ell_\mathrm{D}$ are known. We thus simulated a Brownian trajectory $B = 4.8$, $\ell_\mathrm{D} = 21 ~ \mathrm{nm}$, $\ell_\mathrm{B} = 570~\mathrm{nm}$ and a time-step $\tau = 1/60$. The multi-fitting method of all the observable measures $B = 4.2 \pm 0.5$, $\ell_\mathrm{D} = 21\pm 1 ~ \mathrm{nm}$, and $\ell_\mathrm{B} = 570 \pm 1~\mathrm{nm}$ which is in good agreement with the parameters used for the simulation. A summary of the fitted observables is shown in Fig.~\ref{fig.simconfined}. The Figs.~\ref{fig.simconfined}-a-c) shows that the non-Gaussian properties of the displacement are correctly retrieved. Additionally, we correctly measure the local mobility as shown in Fig.~\ref{fig.simconfined}-d) and the \gls{MSD} in Fig.~\ref{fig.simconfined}-e). Finally, we recover the forces using the local drifts as explained in section \ref{sec:force}. As the simulated trajectory is 10 times longer than the experimental one, we can observe in Fig.~\ref{fig.simconfined}-f) that the thermal noise is smaller than for the experiment (see Fig.~\ref{fig.figure_force_total}). Indeed using Eq.~\ref{tnl} having a trajectory 10 times longer reduces the thermal noise by a factor $\approx 3$. This demonstrates that the method developed in this section can correctly retrieve the statistical properties of confined Brownian motion near a wall, and measure surface force at the thermal resolution.
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics{02_body/chapter3/images/simulation_confined_Brownian_motion/method_sim.pdf}
+	\caption{Summary of our inference method on simulated data with $B = 4.8$, $\ell_\mathrm{D} = 21 ~ \mathrm{nm}$, and $\ell_\mathrm{B} = 570~\mathrm{nm}$. The multi-fitting method of all the observable measures $B = 4.2 \pm 0.5$, $\ell_\mathrm{D} = 21\pm 1 ~ \mathrm{nm}$, and $\ell_\mathrm{B} = 570 \pm 1~\mathrm{nm}$  a,b) Normalized probability density functions $P_i\,\sigma$ of the normalized displacements $\Delta x/\sigma$ and $\Delta z/\sigma$, at short times, with $\sigma^2$ the corresponding MSD (see Fig.~\ref{fig.MSD}), for different time increments $\Delta t$ ranging from 0.0167~s to 0.083~s, as indicated with different colors. The solid lines are the best fits to Eq.~(\ref{Eq:PDzshort}), using Eqs.~(\ref{Eq:PDF}),~(\ref{Eq:etaz}),~and~(\ref{Eq:etax}). For comparison, the gray dashed lines are normalized Gaussian distributions, with zero means and unit variances. c) Probability density function $P_z$ of the displacement $\Delta z$, at long times, averaged over several values of $\Delta t$ ranging between 25 s and 30~s. The solid line is the best fit to Eq.~(\ref{auxiliary}), using Eq.~(\ref{Eq:PDF}).d) Measured local short-term diffusion coefficients $D_i$ of the microparticle, normalized by the bulk value $D_0$, as functions of the distance $z$ to the wall, along both a transverse direction $x$ or $y$ ($D_i=D_\parallel=D_x=D_y$, blue) and the normal direction $z$ ($D_i=D_z$, green) to the wall. The solid lines are the theoretical predictions, $D_{\parallel}(z)=D_0\eta/\eta_{\parallel}(z)$ and $D_z(z)=D_0\eta/\eta_z(z)$, using the local effective viscosities $\eta_{\bot}(z)$ and $\eta_\parallel(z)$ of Eqs.~(\ref{Eq:etaz})~and~(\ref{Eq:etaz}), respectively.e)Measured mean-squared displacements (MSD, see Eq.~(\ref{MSDdef})) as functions of the time increment $\Delta t$, for the three spatial directions, $x$, $y$, and $z$. The solid lines are best fits to Eq.~(\ref{averagediff}), using Eqs.~(\ref{Eq:PDF}),~(\ref{Eq:etaz})~and~(\ref{Eq:etax})
+		providing the average diffusion coefficients $\langle{D_\parallel}\rangle= \langle D_x\rangle=\langle D_y \rangle =0.52\,D_0$ and $\langle D_z \rangle =0.24\, D_0$. The dashed line is the best fit to Eq.~(\ref{Eq:plateau}), using Eq.~(\ref{Eq:PDF}), with $B = 4.8$, $\ell_\mathrm{D} = 21 ~ \mathrm{nm}$, and $\ell_\mathrm{B} = 530~\mathrm{nm}$.f) Total normal conservative force $F_z$ exerted on the particle as a function of the distance $z$ to the wall, reconstructed from Eq.~(\ref{stokes}), using Eq.~(\ref{Eq:etaz_pade}) for the circles and Eq.~(\ref{Eq.conservative_force}) for the squares. The solid line corresponds to Eq.~(\ref{Eq:Force}), with $B=4.8$, $\ell_{\mathrm{D}}=21\,\mathrm{nm}$ and $\ell_{\mathrm{B}}=530\,\mathrm{nm}$. The black dashed lines and gray area indicate the amplitude of the thermal noise computed from Eq.~(\ref{tnl}). The horizontal red dashed line indicates the buoyant weight $F_{\textrm{g}}=-7$~fN of the particle.}
+	\label{fig.simconfined}
+\end{figure}
+
+
 \subsection{Conclusion}
 
 In this section we have covered the physics we need to take into account when considering confined Brownian motion. We first detailed the gravitational and DLVO interactions to detail the Gibbs-Boltzmann distribution. Then, we detail the space-varying damping due to the hydrodynamic interactions between the wall and the particle. The damping which is now space-varying in the Langevin induces a non-trivial integration of the Langevin force, which induces the appearance of a spurious drift term in the Fokker-Planck equation. We then present a method that permits to estimate how the simulation time-step should be selected, then we show that the spurious drift term is needed to be taken into account to recover the correct equilibrium distribution.
 
-In a second part, we present a multi-scale statistical analysis for the problem of freely diffusing individual colloids near a rigid wall. Combining the equilibrium distribution in position, time-dependent non-Gaussian statistics for the spatial displacements, a novel method to infer local diffusion coefficients, and a multifitting procedure, allowed us to reduce drastically the measurement uncertainties and reach the nanoscale and thermal-noise-limited femtoNewton spatial and force resolutions, respectively.
-
-
-
+In a second part, we present a multi-scale statistical analysis for the problem of freely diffusing individual colloids near a rigid wall. Combining the equilibrium distribution in position, time-dependent non-Gaussian statistics for the spatial displacements, a novel method to infer local diffusion coefficients, and a multifitting procedure, allowed us to reduce drastically the measurement uncertainties and reach the nanoscale and thermal-noise-limited femtoNewton spatial and force resolutions, respectively. 

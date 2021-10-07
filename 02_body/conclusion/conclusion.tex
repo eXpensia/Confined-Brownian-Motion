@@ -17,46 +17,21 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 \section{Conclusion}
 
-In this manuscript, we have addressed experimentally, numerically and theoretically several aspects related to  Brownian motion. In chapter \ref{sec:chapter1}, we started with history by presenting the first observation in the XIXth century by Robert Brown and the subsequent mathematical description, and numerical simulation. We have then, in chapter \ref{sec:chapter2}, reviewed different techniques that permit tracking of individual microparticles. We mainly focused on the Lorenz-Mie framework that we used in order to study the free confined Brownian motion. Indeed, it requires no calibration by offering a direct measure of the radius and optical index of each tracked particle. We then showed the experimental setup, which is a custom-made inverted microscope that we optized over the years to capture Lorenz-Mie holograms. To retrieve the trajectory from the captured holograms we mainly used a tool developped at the Grier's Lab under the name of Pylorenzmie \href{https://github.com/davidgrier/pylorenzmie}{\faGithub} and a custom version, Wraplorenzmie, to automate the tracking across whole movies and simplify the use of MP4 files \href{https://github.com/eXpensia/wraplorenzmie}{\faGithub}..
+In this manuscript, we have addressed experimentally, numerically and theoretically several aspects related to  Brownian motion. In chapter \ref{sec:chapter1}, we started with history by presenting the first observation in the XIXth century by Robert Brown and the subsequent mathematical description, and numerical simulation. We have then, in chapter \ref{sec:chapter2}, reviewed different techniques that permit tracking of individual microparticles. We mainly focused on the Lorenz-Mie framework that we used in order to study the free confined Brownian motion. Indeed, it requires no calibration by offering a direct measure of the radius and optical index of each tracked particle. We then showed the experimental setup, which is a custom-made inverted microscope that we optimized over the years to capture Lorenz-Mie holograms. To retrieve the trajectory from the captured holograms we mainly used a tool developped at the Grier's Lab under the name of Pylorenzmie \href{https://github.com/davidgrier/pylorenzmie}{\faGithub} and a custom version, Wraplorenzmie, to automate the tracking across whole movies and simplify the use of MP4 files \href{https://github.com/eXpensia/wraplorenzmie}{\faGithub}.
 
 The particles thus tracked and the trajectories retrieved, in chapter \ref{chap3}, we focused on the analysis of Brownian motion near a rigid and charged wall. We first detailed in section \ref{sec:confined} how the physics changes due to the wall, from the DLVO interactions between the surface and the particles to hindered diffusion. Due the latter, a spurious drift appears in the overdamped Fokker-Planck equation which needs to be taken into account in numerical simulations, and also for force measurements.
 
-Once the underlying theory has been explained,in section \ref{section:expresults}, we described  the experimental results and how the trajectories were analyzed. We addressed static observables such as equilibrium distribution, and dynamic observables such as the Mean Squared Displacements (\gls{MSD}s) and displacement distributions. In particular, for the motion perpendicular to the wall, the \gls{MSD} exhibits a normal distribution at short time, and a plateau equilibrium value at long time. Furthermore, the short-time displacement distribution exhibits non-Gaussian properties which is a direct signature of the hindered mobility induced by the rigid boundary.
+Once the underlying theory has been explained,in section \ref{section:expresults}, we described the trajectory analysis. We addressed static observables such as equilibrium distribution, and dynamic observables such as the Mean Squared Displacements (\gls{MSD}s) and displacement distributions. In particular, for the motion perpendicular to the wall, the \gls{MSD} exhibits a normal distribution at short time, and an equilibrium plateau at long time. Furthermore, the short-time displacement distribution exhibits non-Gaussian properties which is a direct signature of the hindered mobility induced by the rigid boundary.
 
-The statistical properties of a confined colloid understood and correctly measured, we then focused on measuring the hindered diffusion coefficient. This measure was done using a novel method developped by Frishman and Ronceray \cite{frishman_learning_2020}, using information theory to infere the local mobility onto a basis of fit functions, leading to high accuracy near the surface (where there is less data). 
+Once the statistical properties of a confined colloid understood and correctly measured, we then focused on measuring the hindered diffusion coefficient. This measure was done using a novel method developped by Frishman and Ronceray \cite{frishman_learning_2020}, using information theory to infere the local mobility onto a basis of fit functions, leading to high accuracy near the surface (where there is less data). 
 
 All the data, from the equilibrium distribution to the hindered mobility can be described by the three parameters of the system $B$, $\ell _\mathrm{D}$ and $\ell_\mathrm{B}$. We thus built a multi-fitting method, that permits to infere precisely these parameters by taking into account all the observables at once. From this method, we extracted precisely the equilibrium potential from which we computed the conservative forces. This force measuremement was successfully corroborated by an independent one based on the drifts of the trajectories.
 
 All together, we are able to reach a thermal-noise-limited femtonewton force resolution as well as a spatial resolution at the nanoscale.
 
-As shown in chapter \ref{chapfin}, we are currently using our device and method in order to investigate and original coupling between soft lubrication theory and Brownian motion. Also, we are working on pushing the limits of our resolution to measure fine effects on higher-order cumulents. Finally, we believe that the ability to measure tiny surface forces, locally, and at equilibrium, as well as the possible application of the method towards non-conservative forces and out-of-equilibrium settings, open fascinating perspectives for nanophysics and biophysics.
+As shown in chapter \ref{chapfin}, we are currently using our device and method in order to investigate an original coupling between soft lubrication theory and Brownian motion. Also, we are working on pushing the limits of our resolution to measure fine effects on higher-order cumulents. Finally, we believe that the ability to measure tiny surface forces, locally, and at equilibrium, as well as the possible application of the method towards non-conservative forces and out-of-equilibrium settings, open fascinating perspectives for nanophysics and biophysics.
 
 
 

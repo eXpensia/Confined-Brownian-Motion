@@ -90,7 +90,7 @@ Specifically, we will vary three parameters, $\eta$, $G$ and $a$ to check if we 
 	\label{fig.ghost_stucked}
 \end{figure}
 
-When performing the experiments near a rigid wall in order to  measure the Debye length $\ell _\mathrm{D}$ (see section~\ref{sec:Eqdistrib}) as a function of the concentration of NaCl, we observed that some particles were stuck on the surface. As we first expected for this stuck particles, we did not observe any motion of the particle. However, surprisingly, in some cases we observed that some particles were slightly diffusing. This slight diffusion can be observed directly from the raw data, by looking at the median of the images of the video capture from an hologram of a stuck yet moving particle. The latter median is shown in Fig.~\ref{fig.ghost_stucked}, where we observe a blurry hologram due to the particle motion. Moreover, as we cannot properly have the background in this experiment since the particle does not diffuse enough, the statistical error is increased. The measured trajectory is shown in Fig.\ref{fig.trajectory_stuck}, where we observe that a mechanical drift happened during the experiment. This could be due to a shifting in time of the sample or the objective position, for example. The corresponding drift velocity is on the order of $2 ~ \mathrm{\mu m.h^{-1}}$ along the $x$- and $y$-axes and  $6 ~ \mathrm{\mu m.h^{-1}}$ along the $z$-axis. In the following, we look at the short-time dynamics ($t < 1$~s), since the drift over such a time scale is of the ordert the nm.s{$^-1$}.
+When performing the experiments near a rigid wall in order to  measure the Debye length $\ell _\mathrm{D}$ (see section~\ref{sec:Eqdistrib}) as a function of the concentration of NaCl, we observed that some particles were stuck on the surface. As we first expected for this stuck particles, we did not observe any motion of the particle. However, surprisingly, in some cases we observed that some particles were slightly diffusing. This slight diffusion can be observed directly from the raw data, by looking at the median of the images of the video capture from an hologram of a stuck yet moving particle. The latter median is shown in Fig.~\ref{fig.ghost_stucked}, where we observe a blurry hologram due to the particle motion. Moreover, as we cannot properly have the background in this experiment since the particle does not diffuse enough, the statistical error is increased. The measured trajectory is shown in Fig.\ref{fig.trajectory_stuck}, where we remove a mechanical drift velocity of the order of $2 ~ \mathrm{\mu m.h^{-1}}$ along the $x$- and $y$-axes and  $6 ~ \mathrm{\mu m.h^{-1}}$ along the $z$-axis. In the following, we look at the short-time dynamics ($t < 1$~s), since the drift over such a time scale is of the ordert the nm.s{$^-1$}.
 
 \begin{figure}[H]
 	\centering
@@ -119,7 +119,7 @@ The plateau of the MSD along  $x$ and $y$ has an average value   $4.3 \times 10 
 	k_\mathrm{H} = \frac{2  k_\mathrm{B} T}{ \lim\limits_{\Delta t \rightarrow \infty }\langle \Delta x ^2 \rangle} = \frac{8 \times 10^{-21}}{4.3 \times 10 ^{-15}} \simeq 2 ~ \mathrm{\mu N . m^{-1}}~.
 \end{equation}
 
-Beyond further understanding the origin of such a stiffness, and possibly relating it to adhesion, it would be interesting to reproduce the same study using a soft surface and see if we can observe a change of $k_\mathrm{H}$ with the elastic modulus $G$. If the latter is true, this experiment could lead to a local determination of elastic moduli using Brownian colloids attached on soft surfaces. Additionally, we can look at the displacement \gls{PDF}s $P_i$ as shown in the Fig.~\ref{fig.P_dxz_stucked}. Contrary to the result we had for a freely diffusing particle (see Fig.~\ref{fig.displacement}) we do not observe a clear non-Gaussianity here.
+
 
 
 \begin{figure}[H]
@@ -129,10 +129,25 @@ Beyond further understanding the origin of such a stiffness, and possibly relati
 	\label{fig.P_dxz_stucked}
 \end{figure}
 
+To measure $k_\mathrm{H}$ from the \gls{MSD} we supposed that the particle is in an harmonic potential. Another way to measure it is to use the positional Gibbs-Boltzmann equilibrium \gls{PDF}, which writes:
+
+\begin{equation}
+	P_\mathrm{Heq}(x) =A \exp \left[ -\frac{k_\mathrm{k_H}x^2}{2k_\mathrm{B}T} \right]~,
+	\label{Peqstuck}
+\end{equation}
+
+where $A$ is a normalization constant such that $\int _0 ^\infty P_\mathrm{Heq\mathrm{d}x} =1$. The experimental Gibbs-Boltzmann equilibrium \gls{PDF} $P_\mathrm{Heq}$ is shown in Fig.~\ref{fig.pdfstuck}. We can observe a good agreement between the fitted distribution from Eq.~\ref{Peqstuck}. From the latter fit, we measure more precisely $k_\mathrm{k_\mathrm{H}} = 1.738 \pm 0.004 ~\mathrm{\mu N . m^{-1}}$.
+
+\begin{figure}
+		\includegraphics{02_body/chapter4/images/stucked_particle/Peq_stuck.pdf}
+		\caption{Measured equilibrium probability distribution function $P_{Heq}$ of the position $x$ of the stuck particle. The solid line represents the best fit to the normalized Gibbs-Boltzmann distribution in position a particle in an harmonic potential (see Eq.~(\ref{Peqstuck})) for $k_\mathrm{k_\mathrm{H}} = 1.738 \pm 0.004 ~\mathrm{\mu N . m^{-1}}$.}
+		\label{fig.pdfstuck}
+\end{figure}
+Beyond further understanding the origin of such a stiffness, and possibly relating it to adhesion, it would be interesting to reproduce the same study using a soft surface and see if we can observe a change of $k_\mathrm{H}$ with the elastic modulus $G$. If the latter is true, this experiment could lead to a local determination of elastic moduli using Brownian colloids attached on soft surfaces. Additionally, we can look at the displacement \gls{PDF}s $P_i$ as shown in the Fig.~\ref{fig.P_dxz_stucked}. Contrary to the result we had for a freely diffusing particle (see Fig.~\ref{fig.displacement}) we do not observe a clear non-Gaussianity here. 
 
 \subsection{Long-time 4th cumulent}
 
-In this subsection we consider a cumulent of higher order than 2 (\gls{MSD}). The 4th order cumulent readss:
+In this subsection we consider a cumulent of higher order than 2 (\gls{MSD}). The 4th order cumulent reads:
 
 \begin{equation}
 	C_4 (\Delta t) = \frac{1}{4!} \left(
@@ -149,13 +164,14 @@ For a Gaussian-distributed variable $x$ , $C_4$ is given by the second order mom
 	\label{c4.dx}
 \end{equation}
 
-In this context, Eq.~(\ref{c4}) can be simplified in two regimes [unpublished work by Alexandre \textit{et al.}], for $\Delta t \ll 1 $, one has:
+In this context, Eq.~(\ref{c4}) can be simplified in two regimes [unpublished work by Alexandre \textit{et al.}], for $\Delta t $ tends to $0$, one has:
 
 \begin{equation}
 	\lim\limits_{\Delta t \rightarrow 0 } C_4 (\Delta t) = \frac{\Delta t ^2}{2}
 	\left(
 	\langle D_\parallel ^2 \rangle - \langle D _\parallel \rangle ^2 
 	\right)~,
+	\label{c4short}
 \end{equation}
 
 where the averages are done over the equilibrium distribution $P_\mathrm{eq}$. The forth-cumulent thus varies as $\Delta t ^2$ at short time. In the limit $\Delta t \rightarrow \infty$, Eq.~(\ref{c4}) can be simplified to:
@@ -164,7 +180,14 @@ where the averages are done over the equilibrium distribution $P_\mathrm{eq}$. T
 	\lim\limits_{\Delta t \rightarrow \infty } C_4 (\Delta t) = C_4 ^0 \Delta t - C^1 _4 ~,
 \end{equation}
 
-where $ C_4 ^0$ and $ C_4 ^1$ are constants that depend on the equilibrium distribution $P_\mathrm{eq}$, and can be written as functions of $B$, $\ell _ \mathrm{D}$ and $\ell _\mathrm{B}$. Unlike the first and second moments of the parallel displacement (the average displacement $\langle \Delta x \rangle_t$ and the \gls{MSD} $\langle \Delta x ^2 \rangle_t $ respectively), the 4th cumulent exhibits a peculiar regime at late times. This result is thus interesting as it gives a new statistical observable to characterize the long-term trajectory. If this prediction is verified, it could be added to our inference method (see section \ref{section:expresults}) in order to gain precision and robustness.
+where $ C_4 ^0$ and $ C_4 ^1$ are constants that depend on the equilibrium distribution $P_\mathrm{eq}$, and can be written as functions of $B$, $\ell _ \mathrm{D}$, $\ell _\mathrm{B}$ and $D_\parallel$. Unlike the first and second moments of the parallel displacement (the average displacement $\langle \Delta x \rangle_t$ and the \gls{MSD} $\langle \Delta x ^2 \rangle_t $ respectively), the 4th cumulent exhibits a peculiar regime at late times. This result is thus interesting as it gives a new statistical observable to characterize the long-term trajectory. If this prediction is verified, it could be added to our inference method (see section \ref{section:expresults}) in order to gain precision and robustness. We first test the forth cumulent on a simulated 45 minutes long trajectory (see section \ref{sec:simconfined}) with the physical parameters $B=4.8$, $\ell_\mathrm{D} = 21$ nm, $\ell_\mathrm{B} = 670$ nm, and a time-step $\tau = 0.05$ s. The forth cumulent thus computed is shown in Fig.~\ref{fig.simc4}. Thanks to this simulation, we can observe that with particle of radius $a=1.5e-6 ~\mathrm{\mu m}$, we experimentally explore only the short time regime of Eq.~\ref{c4short}.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics{02_body/chapter4/images/4th_cumulent/simulatedc4.pdf}
+	\caption{Forth cumulent of the transverse displacement as a function of time increment calculated on a simulated 45 minutes long trajectory (see section \ref{sec:simconfined}) with the physical parameters $B=4.8$, $\ell_\mathrm{D} = 21$ nm, $\ell_\mathrm{B} = 670$ nm, and a time-step $\tau = 0.05$ s. The plain line corresponds to the short time approximation of Eq.~(\ref{c4short}).}
+	\label{fig.simc4}
+\end{figure}
 
 As we are only interested in the $x$- and $y$-axis displacements to show this result, we do not need 3D tracking. Thus, we only need to find the hologram centroids, and therefore we can use faster algorithms than the one employed in the full Mie framework. To do so, we use the Trackpy package \href{https://github.com/soft-matter/trackpy}{\faGithub} \cite{allan_soft-mattertrackpy_2021} which implements the Crocker–Grier algorithm \cite{crocker_methods_1996}. The latter permits tracking the centroids of hundreds of colloids rapidly. Trajectories recorded this way are shown in Fig.~\ref{fig.trajtrackpy}.
 \begin{figure}[H]
