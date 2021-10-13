@@ -1142,9 +1142,9 @@ This equation can be evaluated using the following Python snippet.
 def P_D(B, ld, lb):
   # Computing the D PDF.
   z = np.linspace(1e-9, 15e-6, 1000)
-  P_D = Dz(z) * P_b_off(z, offset, B, ld, lb)
+  P_D = Dz(z) * P_eq(z, B, ld, lb)
   P_D = P_D / np.trapz(P_D, z)  # extra step to ensure PDF normalization
-  return Dz, P_D
+  return Dz(z), P_D
 	
 	
 def _P_Dz_short_time(Dz, Dt, B, ld, lb):
