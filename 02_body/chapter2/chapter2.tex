@@ -284,7 +284,7 @@ hp.show(holo)
 
 
 
-As we can see with the Eq.~(\ref{Eq.Lorenz-Mie-function}), the in-line holograms vary with the position, radius and optical index of the particle. For in-line holograms, as both incident and scattered field are collinear, the $x$ and $y$ positions of the particle are given by the center of the hologram. Thus, it is possible to track the motion of a colloid only in two dimensions by using algorithms such as the Hough transforms to find the center. As a side note, in that case, it would be optimal to place the particle just above the focal plane to have an Airy disk-like hologram, as shown in Fig.\ref{fig:holo_fix_n} for $a = 2.5 ~ \mathrm{\mu m}$ and $z = 5 ~\mathrm{\mu m}$.
+As we can see with the Eq.~(\ref{Eq.Lorenz-Mie-function}), the in-line holograms vary with the position, radius and optical index of the particle. For in-line holograms, as both incident and scattered field are collinear, the $x$ and $y$ positions of the particle are given by the center of the hologram. Thus, it is possible to track the motion of a colloid only in two dimensions by using algorithms such as the Hough transforms to find the center. As a side note, in that case, it would be optimal to place the particle just above the focal plane to have an Airy disk-like hologram, as shown in Fig.~\ref{fig:holo_fix_n} for $a = 2.5 ~ \mathrm{\mu m}$ and $z = 5 ~\mathrm{\mu m}$.
 
 \begin{figure}[H]
 	\centering
@@ -293,11 +293,11 @@ As we can see with the Eq.~(\ref{Eq.Lorenz-Mie-function}), the in-line holograms
 	\label{fig:holo_onlyz}
 \end{figure}
 
-In order to gain some insights on how the holograms vary with the various parameters, one can compute theoretical (see. Eq.~(\ref{Eq.normalized_Mie})) holograms for particles of different sizes and heights. We start by considering a particle of radius $a = 1.5 ~ \mathrm{\mu m} $, and optical index $n_\mathrm{p}= 1.59 $ as shown in Fig.\ref{fig:holo_onlyz}. In this case, one can observe that as the distance $z$ between the particle and the focal plane increases, the hologram's rings get wider.
+In order to gain some insights on how the holograms vary with the various parameters, one can compute theoretical (see. Eq.~(\ref{Eq.normalized_Mie})) holograms for particles of different sizes and heights. We start by considering a particle of radius $a = 1.5 ~ \mathrm{\mu m} $, and optical index $n_\mathrm{p}= 1.59 $ as shown in Fig.~\ref{fig:holo_onlyz}. In this case, one can observe that as the distance $z$ between the particle and the focal plane increases, the hologram's rings get wider.
 
-Additionally, this thickening of the rings can also be observed in the Fig.\ref{fig:holo_z_fit}, where hologram intensity profiles are plotted as a function of the height $z$ both theoretically and experimentally for a polystyrene colloidal particle of radius  $a = 1.5 ~ \mathrm{\mu m} $, and for different couples of parameters in Fig.\ref{fig:holo_fix_n}.
+Additionally, this thickening of the rings can also be observed in the Fig.~\ref{fig:holo_z_fit}, where hologram intensity profiles are plotted as a function of the height $z$ both theoretically and experimentally for a polystyrene colloidal particle of radius  $a = 1.5 ~ \mathrm{\mu m} $, and for different couples of parameters in Fig.~\ref{fig:holo_fix_n}.
 
-Also, we note that if $z$ is not large enough compared to the radius of the particle, the center of a hologram can be so bright that the rings could not be seen if the camera does not have a large enough dynamic range.  Thus, for having an optimal condition for the fits, one should take care of defocusing enough the objective lens to have $z >> a$.
+Also, we note that if $z$ is not large enough compared to the radius of the particle, the center of a hologram can be so bright that the rings could not be seen if the camera does not have a large enough dynamic range.  Thus, for having an optimal condition for the fits, one should take care of defocusing enough the objective lens to have $z \gg a$.
 
 
 
@@ -318,14 +318,14 @@ Also, we note that if $z$ is not large enough compared to the radius of the part
 \end{figure}
 
 
-We can now look at the holograms variation with respect to the radius of the particle as shown in Fig.\ref{fig:holo_onlyr} for a particle of optical index $n = 1.59$ and at a distance $z = 15 ~\mathrm{\mu m }$ for a wavelength $\lambda = 532$ nm. One can observe that for small particles compared to the wavelength, \textit{i.e.} $a << \lambda$, we do not observe the rings. This is due to the fact that for the small particles, the scattering can be approximated using the Rayleigh theory in which the scattering is isotropic. Thus, the variation of intensity around $I_0$ will be smaller for smaller particles.
+We can now look at the holograms variation with respect to the radius of the particle as shown in Fig.\ref{fig:holo_onlyr} for a particle of optical index $n = 1.59$ and at a distance $z = 15 ~\mathrm{\mu m }$ for a wavelength $\lambda = 532$ nm. One can observe that for small particles compared to the wavelength, \textit{i.e.} $a \ll \lambda$, we do not observe the rings. This is due to the fact that for the small particles, the scattering can be approximated using the Rayleigh theory in which the scattering is isotropic. Thus, the variation of intensity around $I_0$ will be smaller for smaller particles.
 
 Also, in this small-particle regime, the particle size does not affect the general shape of the hologram but just its intensity as shown in Fig.\ref{fig:small_part_holo}, for particles of radii between $a = 0.02 ~\mathrm{\mu m}$ and $a = 0.07 ~\mathrm{\mu m}$, and for a wavelength $\lambda = 532 ~\mathrm{nm}$.
 
 Additionally, since the signal-to-noise ratio is lower than for larger particles, it is less precise to characterize small colloids compared to the wavelength.
 
 
-As the particle gets bigger, the scattering becomes anisotropic and is mostly oriented towards the incident plane-wave direction. This effect leads to an increase of the amplitude $I/I_0$ of the rings, as one can see in Fig.\ref{fig:holo_onlyr}. Thus, the signal-to-noise ratio is high enough to easily discern the hologram on top of the noise as one can see on the experimental picture of Fig.\ref{fig.Lorenz_mie_demo}-a). One who wants to employ this method should thus use large enough particles for the hologram intensity to be greater than the camera noise level.
+As the particle gets bigger, the scattering becomes anisotropic and is mostly oriented towards the incident plane-wave direction. This effect leads to an increase of the amplitude $I/I_0$ of the rings, as one can see in Fig.~\ref{fig:holo_onlyr}. Thus, the signal-to-noise ratio is high enough to easily discern the hologram on top of the noise as one can see on the experimental picture of Fig.~\ref{fig.Lorenz_mie_demo}-a). One who wants to employ this method should thus use large enough particles for the hologram intensity to be greater than the camera noise level.
 
 
 
@@ -337,7 +337,7 @@ As the particle gets bigger, the scattering becomes anisotropic and is mostly or
 \end{figure}
 
 
-Finally, one can check how the holograms are varying with the optical index of a particle. In this case, it is not the particle's optical index $n_\mathrm{p}$ which matters the most but the ratio $\zeta = n_\mathrm{p} / n_\mathrm{m} $ which can be found in the $a_n$ and $b_n$ formulas, in Eqs.\ref{Eq:an} and \ref{Eq:bn}. Indeed, for the scattering to happen, the optical index $n_\mathrm{p}$ of the colloid needs to be different from the optical index $n_\mathrm{m}$ of the surrounding medium. Additionally, the numerical solution of the Lorenz-Mie framework needs precaution for $n_\mathrm{p} \simeq n_\mathrm{m}$ \cite{wiscombe_improved_1980, lentz_generating_1976}. In Fig.\ref{fig:holo_onlyn}, we can observe holograms of a particle of radius $a = 1.5 ~ \mathrm{\mu m}$ at fixed distance $z=15 ~ \mathrm{\mu m}$ between the particle and the focal plane of the objective lens with a varying colloid's optical index, in water where $n_\mathrm{m} = 1.33$. In Fig.\ref{fig:holo_onlyn}, one can thus observe that for  $n_\mathrm{p} \simeq n_\mathrm{m}$ we do not see any holograms.  Additionally, one can observe that the signal-to-noise ratio gradually increases as $n_\mathrm{p}$ becomes different from $n_\mathrm{m}$. One who wants to use this technique should thus have $n_\mathrm{m}$ different enough from $n_\mathrm{p}$ for the hologram intensity to be greater than the camera noise level.
+Finally, one can check how the holograms are varying with the optical index of a particle. In this case, it is not the particle's optical index $n_\mathrm{p}$ which matters the most but the ratio $\zeta = n_\mathrm{p} / n_\mathrm{m} $ which can be found in the $a_n$ and $b_n$ formulas, in Eqs.~\ref{Eq:an} and \ref{Eq:bn}. Indeed, for the scattering to happen, the optical index $n_\mathrm{p}$ of the colloid needs to be different from the optical index $n_\mathrm{m}$ of the surrounding medium. Additionally, the numerical solution of the Lorenz-Mie framework needs precaution for $n_\mathrm{p} \simeq n_\mathrm{m}$ \cite{wiscombe_improved_1980, lentz_generating_1976}. In Fig.\ref{fig:holo_onlyn}, we can observe holograms of a particle of radius $a = 1.5 ~ \mathrm{\mu m}$ at fixed distance $z=15 ~ \mathrm{\mu m}$ between the particle and the focal plane of the objective lens with a varying colloid's optical index, in water where $n_\mathrm{m} = 1.33$. In Fig.\ref{fig:holo_onlyn}, one can thus observe that for  $n_\mathrm{p} \simeq n_\mathrm{m}$ we do not see any holograms.  Additionally, one can observe that the signal-to-noise ratio gradually increases as $n_\mathrm{p}$ becomes different from $n_\mathrm{m}$. One who wants to use this technique should thus have $n_\mathrm{m}$ different enough from $n_\mathrm{p}$ for the hologram intensity to be greater than the camera noise level.
 
 
 
@@ -624,7 +624,7 @@ Using $10 ~ 000$ measurements of $a$ and $n_\mathrm{p}$ one can do a 2D histogra
 
 
 
-Finally, as explain above, using this measurement of the radius and optical index, we then fit the whole video by removing them from the free parameters. Doing so, we measure the 3D trajectory of the particle as shown in Fig.\ref{fig:3dtrajec} in three dimensions for the particle previously characterized.
+Finally, as explain above, using this measurement of the radius and optical index, we then fit the whole video by removing them from the free parameters. Doing so, we measure the 3D trajectory of the particle as shown in Fig.~\ref{fig:3dtrajec} in three dimensions for the particle previously characterized.
 
 \begin{figure}[!ht]
 	\centering
@@ -671,7 +671,7 @@ where $D_0$ is the bulk diffusion coefficient (see Eq.~(\ref{Eq:D_einstein})) an
 \begin{figure}[H]
 	\centering
 	\includegraphics{02_body/chapter2/images/sedimenting/msd_sedimentation.pdf}
-	\caption{Measured mean-squared displacement as a function of the time increment $\Delta t$, along the $z$-axis. The solid line is the best fit to Eq.~(\ref{Eq.sedmsd}), with $D_0 = 144 \pm 1 ~ \mathrm{\mu m ^2 . ms^{-1}}$, $v_\mathrm{sed} = 222 \pm 1 ~ \mathrm{nm.s^{-1}}$ and $xi = 25 $ nm.}
+	\caption{Measured mean-squared displacement as a function of the time increment $\Delta t$, along the $z$-axis. The solid line is the best fit to Eq.~(\ref{Eq.sedmsd}), with $D_0 = 144 \pm 1 ~ \mathrm{\mu m ^2 . ms^{-1}}$, $v_\mathrm{sed} = 222 \pm 1 ~ \mathrm{nm.s^{-1}}$ and $\xi = 25 $ nm.}
 	\label{fig:msdsed}
 \end{figure}
 
