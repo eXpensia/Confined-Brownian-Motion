@@ -737,7 +737,18 @@ The Fokker-Plank equation with multiplicative noise finally writes:
 	\label{final_fokker}
 \end{equation} 
 
-due to the presence of multiplicative noise, we now have a new drift velocity term that depends on the stochastic interpretation of the Langevin equation.
+due to the presence of multiplicative noise, we now have a new drift velocity term that depends on the stochastic interpretation of the Langevin equation. The latter equation rarely has an exact solution, and numerical methods are often used in order to solve it. Considering a toy model of a particle with linear diffusion coefficient $D_\bot(z) = z/a$, and under a constant force $-F$ (e.g. gravity). Along the $z$-axis, taking the Ito convention ($\alpha = 0$), Eq.~(\ref{final_fokker}) can be rewritten as:
+
+\begin{equation}
+	\frac{\partial P(z, t)}{\partial t}=  \frac{\partial}{\partial z} \left\{ \frac{F}{\gamma_\bot(z)}\right\} P(z, t) + \frac{1}{2}\frac{\partial^2}{\partial z^2} \left\{\frac{z}{a} \right\} P(z, t)~.
+	\label{Eq.toy}
+\end{equation}
+
+Lau and Lubensky \cite{lau_state-dependent_2007} derived an exact solution to Eq.~(\ref{Eq.toy}) as:
+
+\begin{equation}
+	P(z,t) = \frac{1}{k_\mathrm{B}T} \frac{F}{1 - \mathrm{e}^{-\frac{Ft}{ak_\mathrm{B}T}}}
+\end{equation}
 
 \subsubsection{Spurious drift}
 \label{sec:spurious}
