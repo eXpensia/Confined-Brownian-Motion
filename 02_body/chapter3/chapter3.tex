@@ -29,6 +29,7 @@ where $\Delta m$ is the difference between the mass of the particle and that of 
 
 \begin{equation}
 	\ell _\mathrm{B} = \frac{k_\mathrm{B}T}{(4/3) \pi a ^3 \Delta \rho g } ~,
+	\label{lB}
 \end{equation}
 
 one can rewrite Eq.~(\ref{eq:ug_full}) as:
@@ -744,11 +745,33 @@ due to the presence of multiplicative noise, we now have a new drift velocity te
 	\label{Eq.toy}
 \end{equation}
 
-Lau and Lubensky \cite{lau_state-dependent_2007} derived an exact solution to Eq.~(\ref{Eq.toy}) as:
+Lau and Lubensky \cite{lau_state-dependent_2007} derived an exact solution to Eq.~(\ref{Eq.toy}) using the Ito convention ($\alpha = 0$) as:
 
 \begin{equation}
-	P(z,t) = \frac{1}{k_\mathrm{B}T} \frac{F}{1 - \mathrm{e}^{-\frac{Ft}{ak_\mathrm{B}T}}}
+	P(z,t) = \frac{\sqrt{z_0z\mathrm{e}^{Ft/(ak_\mathrm{B}T)}}}{(k_\mathrm{B}T)^2} \frac{F^2}{\left(1 - \mathrm{e}^{-\frac{Ft}{ak_\mathrm{B}T}}\right) ^2} \mathrm{e}^{-\frac{F\left(z + z_0 \mathrm{e}^{-\frac{Ft}{ak_\mathrm{B}T}}\right)}{1 - \mathrm{e}^{\frac{Ft}{ak_\mathrm{B}T}}}} ~.
+	\label{sol_exact}
 \end{equation}
+
+Where the latter has been obtained by requiring the equilibrium distribution as $\lim\limits_{t\rightarrow+\infty} = \mathrm{e}^{-Fz/(k_\mathrm{B}T)}$. From the analytical solution Eq.~(\ref{sol_exact}), one can extract the first two moments of $z(t)$ as:
+
+\begin{equation}
+	\langle z (t)\rangle = z_0 \mathrm{e}^{-\frac{Ft}{ak_\mathrm{B}T}} + \frac{k_\mathrm{B}T}{F}\left(1 - \mathrm{e}^{-\frac{Ft}{ak_\mathrm{B}T}}\right)~,
+\end{equation}
+
+and:
+
+\begin{equation}
+	\langle z^2 (t)\rangle = z_0^2 \mathrm{e}^{-2\frac{Ft}{ak_\mathrm{B}T}} + \frac{4k_\mathrm{B}Tz_0\mathrm{e}^{-\frac{Ft}{ak_\mathrm{B}T}}}{F} \left(1 - \mathrm{e}^{-\frac{Ft}{ak_\mathrm{B}T}}\right) + 2 \left(\frac{ k_\mathrm{B}T}{F}\right)^2\left(1 - \mathrm{e}^{-\frac{Ft}{ak_\mathrm{B}T}}\right)^2 ~.
+\end{equation}
+
+
+In particular, at long time, where the distribution is dictated by the equilibrium distribution, we have 
+
+\begin{equation}
+	 \lim\limits_{t\leftarrow+\infty}\langle z^2 (t)\rangle = \left(\frac{k_\mathrm{B}T}{F}\right)^2 ~.
+\end{equation}
+
+In the case where $F=m_\mathrm{p}g$ is the gravitational force, we have $ \lim\limits_{t\leftarrow+\infty}\langle z^2 (t)\rangle = \ell_{\mathrm{B}}^2$ the typical length of the system (see Eq.~(\ref{lB})).
 
 \subsubsection{Spurious drift}
 \label{sec:spurious}
