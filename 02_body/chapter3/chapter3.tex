@@ -570,11 +570,11 @@ The exact result, together with the Padé approximation and the near-wall asympt
 %Now that the external forces acting on the particle and hindered diffusion coefficients are known, we rewrite the overdamped Langevin (see Eq.~(\ref{Eq.overdamped_SDE})) as:
 %
 %\begin{equation}
-%	V_t^i \textnormal{d}t  = -\mu(z)\frac{\partial U(z)}{\partial x_i}  \textnormal{d}t + \sqrt{2D_i (z)}  \textnormal{d}B_t ~,
+%	V_t^i \textnormal{d}t  = -\mu(z)\frac{\partial U(z)}{\partial x_i}  \textnormal{d}t + \sqrt{2D_i (z)}  \textnormal{d}W ~,
 %	\label{Eq:langevin_z}
 %\end{equation}
 %
-%where $\mu(z) = 1/ (6 \pi \eta_i(z) a)$, and $i$ denotes one of the three spatial directions, $x,~ y$ and $z$, where the previously determined $\eta_\parallel$ or $D_\parallel$ corresponds to the $x$- and $y$-axes, while $\eta_\bot$ or $D_\bot$ corresponds to the $z$-axis, and $ \textnormal{d}B_t$ is a Gaussian-distributed satisfying $\langle \textnormal{d}B_t \rangle = 0$ and $\langle \textnormal{d}B_t ^2 \rangle = \textnormal{d}t$. As discussed previously, the potential energy $U$ only varies along the $z$-axis, an thus, the external force only acts on the particle along the $z$-axis while the particle diffuses freely along the $x$- and $y$-axes. 
+%where $\mu(z) = 1/ (6 \pi \eta_i(z) a)$, and $i$ denotes one of the three spatial directions, $x,~ y$ and $z$, where the previously determined $\eta_\parallel$ or $D_\parallel$ corresponds to the $x$- and $y$-axes, while $\eta_\bot$ or $D_\bot$ corresponds to the $z$-axis, and $ \textnormal{d}W$ is a Gaussian-distributed satisfying $\langle \textnormal{d}W \rangle = 0$ and $\langle \textnormal{d}W ^2 \rangle = \textnormal{d}t$. As discussed previously, the potential energy $U$ only varies along the $z$-axis, an thus, the external force only acts on the particle along the $z$-axis while the particle diffuses freely along the $x$- and $y$-axes. 
 
 
 \subsubsection{Fokker-Plank equation}
@@ -582,7 +582,7 @@ The exact result, together with the Padé approximation and the near-wall asympt
 The Fokker-Plank equation is an alternative way to describe Brownian motion. Instead of explicitly calculating a Brownian trajectory by solving the Langevin equation, Fokker-Plank equation describes the Probability Density Function $P(X_t, X_0; t)$ in position. Where for simplicity we place ourselve in 1D, with $X_t$ denoting the particle position at a time $t$ and $X_0$ its initial ($t=0$) position. To derive the Fokker-Plank equation, let us start by taking a generic Langevin equation in 1D:
 
 \begin{equation}
-	\textnormal{d}X_t = u(X_t) \mathrm{d}t + g\textnormal{d}B_t ~,
+	\textnormal{d}X_t = u(X_t) \mathrm{d}t + g\textnormal{d}W ~,
 	\label{SDE2}
 \end{equation}
 
@@ -603,7 +603,7 @@ We now expand $f$ at the first order in the time increment $\textnormal{d}t$ as:
 
 \begin{equation}
 	\begin{aligned}
-		\left\langle \frac{\textnormal{d}f(X_t)}{\textnormal{d}t} \right\rangle_t  &\simeq \left\langle \frac{1}{\textnormal{d}t} \left( \frac{\partial f(X_t)}{\partial X_t} u(X_t) \textnormal{d}t + \frac{\partial f(X_t)}{\partial X_t} g \textnormal{d}B_t + \frac{1}{2} \frac{\partial^2 f(X_t)}{\partial X_t^2} g^2  \textnormal{d}B_t^2   \right) \right\rangle_t \\
+		\left\langle \frac{\textnormal{d}f(X_t)}{\textnormal{d}t} \right\rangle_t  &\simeq \left\langle \frac{1}{\textnormal{d}t} \left( \frac{\partial f(X_t)}{\partial X_t} u(X_t) \textnormal{d}t + \frac{\partial f(X_t)}{\partial X_t} g \textnormal{d}W + \frac{1}{2} \frac{\partial^2 f(X_t)}{\partial X_t^2} g^2  \textnormal{d}W^2   \right) \right\rangle_t \\
 		& =  \frac{1}{\textnormal{d}t} \left( \frac{\partial f(X_t)}{\partial X_t} u(X_t) \textnormal{d}t + \frac{1}{2} \frac{\partial^2 f(X_t)}{\partial X_t^2} g^2 \textnormal{d}t \right) \\
 		& = \frac{\partial f(X_t)}{\partial X_t} u(X_t) + \frac{1}{2} g^2 \frac{\partial^2 f(X_t)}{\partial X_t^2}   ~.
 	\end{aligned}
@@ -670,24 +670,24 @@ Due to the hindered diffusion coefficient the magnitude of the random force $g$ 
 We start by deriving Eq.~(\ref{sde.multipl}) for a time step $\tau$ such that:
 
 \begin{equation}
-	X_{t+\tau} = X_t + \int_{t}^{t+\tau} u(X_{t'})dt' + \int_{t}^{t+\tau} g(X_{t'})\textnormal{d}B_{t'}\textnormal{d}t'
+	X_{t+\tau} = X_t + \int_{t}^{t+\tau} u(X_{t'})dt' + \int_{t}^{t+\tau} g(X_{t'})\textnormal{d}W_{t'}
 	\label{sde.multipl2}
 \end{equation}
 
 The expansion of the first term gives $u(X_t)\tau$ at the first order in $\tau$. However, for the second term, the position at which $g(X_t)$ is evaluated needs to be addressed. The second integral of Eq.~{(\ref{sde.multipl2})} is not unequivocally defined as \cite{sancho_brownian_2011}:
 
 \begin{equation}
-	\int_{t}^{t+\tau}g(X_{t'})\textnormal{d}B_{t'}\textnormal{d}t' \equiv B([1 - \alpha] X_t + \alpha X_{t+\tau}) \Delta W(t),
+	\int_{t}^{t+\tau}g(X_{t'})\textnormal{d}W_{t'}\textnormal{d}t' \equiv B([1 - \alpha] X_t + \alpha X_{t+\tau}) \Delta W(t),
 	\label{sde.alpha}
 \end{equation}
 
 where $\Delta W (t)$ the the Wiener increment:
 
 \begin{equation}
-	\Delta W(t) = \int_{t}^{t+\tau} \textnormal{d} B_{t'} \textnormal{dt'},
+	\Delta W(t) = \int_{t}^{t+\tau} \textnormal{d} W_{t'},
 \end{equation}
 
-which is a Gaussian process with zero mean and variance $\langle \Delta W(t)^2 \rangle = \Delta t $. The parameter $\alpha$ in Eq.~{(\ref{sde.alpha})} corresponds to stochastic interpretation of the Langevin equation, and at which point in the interval $[t, t+\tau]$ the Langevin force magnitude $g$ is evaluated. Theoretically, $\alpha$ can take any value between 0 and 1. However, two canonical values are usually employed :  $\alpha = 0$, in the Itô convention \cite{ito_stochastic_1944}, corresponding to the use of the initial value of $g(X_t)$; $\alpha = 1/2$, in the Stratonovich convention \cite{stratonovich_new_1966}, corresponding to the mid-point value $g(X_{t + (1/2)\tau})$. 
+which is a Gaussian process with zero mean and variance $\langle \Delta W(t)^2 \rangle = \tau $. The parameter $\alpha$ in Eq.~{(\ref{sde.alpha})} corresponds to stochastic interpretation of the Langevin equation, and at which point in the interval $[t, t+\tau]$ the Langevin force magnitude $g$ is evaluated. Theoretically, $\alpha$ can take any value between 0 and 1. However, two canonical values are usually employed :  $\alpha = 0$, in the Itô convention \cite{ito_stochastic_1944}, corresponding to the use of the initial value of $g(X_t)$; $\alpha = 1/2$, in the Stratonovich convention \cite{stratonovich_new_1966}, corresponding to the mid-point value $g(X_{t + (1/2)\tau})$. 
 
 To derive the Fokker-Plank equation we now need to expand Eq.~(\ref{sde.multipl2}) to first order in $\tau $. Combining Eqs.~(\ref{sde.multipl2})~and~(\ref{sde.alpha}), at the order $\tau^{1/2}$, Eq~.(\ref{sde.alpha}) can be approximated by \cite{sancho_brownian_2011}:
 
@@ -700,7 +700,7 @@ By combining Eqs.~(\ref{sde.multipl2})~and~(\ref{sde.firsttaylor}) one has:
 
 \begin{equation}
 	\begin{aligned}
-		\int_{t}^{t+\tau} g(X_{t'}) \textnormal{d}B_{t'}\textnormal{d}t' &= g(X_t + \alpha[X_{t + \tau} - X_t])\Delta W(t) \\
+		\int_{t}^{t+\tau} g(X_{t'}) \textnormal{d}W_{t'} &= g(X_t + \alpha[X_{t + \tau} - X_t])\Delta W(t) \\
 		&\simeq g(X_t + \alpha g(X_t)\Delta W(t))\Delta W(t)\\
 		&\simeq g(X_t) \Delta W(t) + \alpha g(X_t)g'(X_t)[\Delta W(t)]^2,
 	\end{aligned}
@@ -710,7 +710,7 @@ By combining Eqs.~(\ref{sde.multipl2})~and~(\ref{sde.firsttaylor}) one has:
 where $g'(X_t) = \frac{\textnormal{d}}{\textnormal{d} X_t} g(X_t) $. By finally combining Eqs.~(\ref{sde.multipl2})~and~(\ref{sde.taylorend}), one can expand Eq.~(\ref{sde.multipl2}) to the first order in $\tau$:
 
 \begin{equation}
-	X_{t+\tau } \simeq X_t + u(X_t)\Delta t + g(X_t) \Delta W(t) + \alpha g(X_t)g'(X_t)[\Delta W(t)]^2 ~.
+	X_{t+\tau } \simeq X_t + u(X_t)\tau + g(X_t) \Delta W(t) + \alpha g(X_t)g'(X_t)[\Delta W(t)]^2 ~.
 \end{equation}
 
 Finally, by writing the Fokker-Plank equation in its standard form:
@@ -1002,7 +1002,7 @@ In Fig.~\ref{fig.taumax}-b) $\tau_{\mathrm{max}}$ is plotted as a function of $z
 \end{figure}
 
 
-We have developed the numerical simulation of Eqs.~(\ref{eq.langevinnearx})~and~(\ref{eq.langevinnearz}) using Python, as part of the Master's internship of Élodie Millan. The interested reader will find more information on  the simulation of confined Brownian motion in complex systems in her forthcoming thesis. A typical trajectory of a water-immersed colloidal particle of radius $a= 1.5  ~ \mathrm{\mu m}$ and density $\rho_\mathrm{p} = 1050  ~\mathrm{kg.m^{-3}}$, near a wall with which the electrostatic interaction is characterized by $\ell_\mathrm{D} = 50$ nm and $B=4$, is plotted in Fig.~\ref{fig.z_traj_confined_simulated}. It qualitatively resembles the experimental trajectory that was shown in Fig.~\ref{Fig:exp_z_traj} as an introduction to the chapter. In this trajectory, the noise-induced lift is taken into account by using the isothermal convention (\textit{i.e.} $\alpha =1 $). To check if the spurious drift is correctly implemented, the constraint we have is that the long-time statistics should satisfy Eq.~(\ref{Eq.Peq}). To compute an experimental probability density function from a set of points, one can use the following Python snippet.
+We have developed the numerical simulation of Eqs.~(\ref{eq.langevinnearx})~and~(\ref{eq.langevinnearz}) using Python, as part of the Master's internship of Élodie Millan. The interested reader will find more information on  the simulation of confined Brownian motion in complex systems in her forthcoming thesis. A typical trajectory of a water-immersed colloidal particle of radius $a= 1.5  ~ \mathrm{\mu m}$ and density $\rho_\mathrm{p} = 1050  ~\mathrm{kg.m^{-3}}$, near a wall with which the electrostatic interaction is characterized by $\ell_\mathrm{D} = 50$ nm and $B=4$, is plotted in Fig.~\ref{fig.z_traj_confined_simulated}. It qualitatively resembles the experimental trajectory that was shown in Fig.~\ref{Fig:exp_z_traj} as an introduction to the chapter. To check if the spurious drift is correctly implemented, the constraint we have is that the long-time statistics should satisfy Eq.~(\ref{Eq.Peq}). To compute an experimental probability density function from a set of points, one can use the following Python snippet.
 
 \newpage
 \begin{minted}
@@ -1272,7 +1272,7 @@ Using this method, Vestergard \textit{et al.} \cite{vestergaard_estimation_2015}
 	\label{binning_vestergaard}
 \end{equation}
 
-where $R$ is a motion blur coefficient that depends on the aperture time of the camera. Let us write $\tau$ the time lapse between the capture of two images, and $\zeta(t)$ the state of the camera shutter during this time-lapse. $\zeta(t) > 0$ indicates that an open shutter while  $\zeta(t) = 0$ indicates a close shutter. The scale $\zeta(t)$ is fixed by the normalization condition $\int_{0}^{\tau} \zeta(t)\textnormal{d}t$. The motion blur coefficient is given by:
+where $R$ is a motion blur coefficient that depends on the aperture time of the camera. Let us write $\tau$ the time lapse between the capture of two images, and $\zeta(t)$ the state of the camera shutter during this time-lapse. $\zeta(t) > 0$ indicates that an open shutter while  $\zeta(t) = 0$ indicates a close shutter. The scale $\zeta(t)$ is fixed by the normalization condition $\int_{0}^{\tau} \zeta(t)\textnormal{d}t = 1$. The motion blur coefficient is given by:
 
 \begin{equation}
 	R = \frac{1}{\tau} \int_{0}^{\tau} S(t)[1 - S(t)] \textnormal{d}t,

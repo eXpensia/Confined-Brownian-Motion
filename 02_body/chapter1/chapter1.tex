@@ -137,7 +137,7 @@ Furthermore, measuring $N_\mathrm{A}$ also gives us the mass of atoms and molecu
 in physics we generally describe Brownian motion through a particular Stochastic Differential Equations (\gls{SDE}). This model was introduced in 1908 by Langevin \cite{langevin_sur_1908}, this model is now used by the major part of physicists working on random processes. The Langevin equation for a free colloid reads:
 
 \begin{equation}
-	m \textnormal{d}V_t  = - \gamma V_t \textnormal{d}t + g \textnormal{d}B_t ~,
+	m \textnormal{d}V_t  = - \gamma V_t \textnormal{d}t + g \textnormal{d}W ~,
 	\label{Eq.langevinEquation}
 \end{equation}
 
@@ -145,17 +145,17 @@ in physics we generally describe Brownian motion through a particular Stochastic
 \nomenclature{$g$}{Noise amplitude}
 \nomenclature{$T$}{Temperature}
 
-with $m$ the mass and $V_t$ the velocity of the particle. This \gls{SDE} is the Newton's second law, relating the particle momentum change on the left-hand side of the equation to forces on the right-hand side. We see that the total force applied on the particle is given by two terms: a friction term, with a Stokes-like fluid friction coefficient $\gamma$, a random force with $g$ that we will detail for a spherical particle, $\mathrm{d}Bt$ a random noise which has a Gaussian distribution of zero mean thus:
+with $m$ the mass and $V_t$ the velocity of the particle. This \gls{SDE} is the Newton's second law, relating the particle momentum change on the left-hand side of the equation to forces on the right-hand side. We see that the total force applied on the particle is given by two terms: a friction term, with a Stokes-like fluid friction coefficient $\gamma$, a random force with $g$ that we will detail for a spherical particle, $\mathrm{d}B_t$ a random noise which has a Gaussian distribution of zero mean thus:
 
 \begin{equation}
-	\langle \textnormal{d}B_t \rangle  = 0~,
+	\langle \textnormal{d}W \rangle  = 0~,
 	\label{Eq.meandbt}
 \end{equation}
 
 and variance equal to: 
 
 \begin{equation}
-	\langle \textnormal{d}B_t ^2 \rangle = \textnormal{d}t~.
+	\langle \textnormal{d}W ^2 \rangle = \textnormal{d}t~.
 	\label{Eq.meandbt2}
 \end{equation}
 
@@ -165,7 +165,7 @@ For a spherical particle, the friction term is given by the Stoke's formula: $\g
 \nomenclature{$\gamma$}{Friction coefficient}
 
 \begin{equation}
-	\left\langle  \frac{ \textnormal{d}V_t}{\textnormal{d}t} \right\rangle = - \frac{\gamma}{m} \langle V_t \rangle \textnormal{d}t  + \frac{g}{m} \langle  \textnormal{d}B_t \rangle ~,
+	\left\langle   \textnormal{d}V_t \right\rangle = - \frac{\gamma}{m} \langle V_t \rangle \textnormal{d}t  + \frac{g}{m} \langle  \textnormal{d}W \rangle ~,
 	\label{Eq.langevinsd}
 \end{equation}
 
@@ -205,7 +205,7 @@ which has a familiar solution:
 with $V_0$ an initial velocity. This result shows that the average of the velocity should decay to zero with a characteristic time $\tau_\mathrm{B} = \frac{m}{\gamma}$. For instance, the polystyrene particles used during my experiments which are micrometric we have $\tau_\mathrm{B} \approx 10^{-7}$ s. This signifies that if we measure the displacements of a particle with a time interval $ \tau  >> \tau _\mathrm{B} $ the displacement can be taken as independent events as it was stated by Einstein. In physical terms, this means that we are in the over-damped regime, in this case the Langevin equation reads:
 
 \begin{equation}
--\gamma V_t \textnormal{d}t  + g  \textnormal{d}B_t = 0~.	
+-\gamma V_t \textnormal{d}t  + g  \textnormal{d}W = 0~.	
 \label{Eq.overdamped_SDE}
 \end{equation}
 
@@ -223,17 +223,17 @@ The experiments done during my thesis used a video camera that can reach a maxim
 combining Eqs.~(\ref{Eq.langevinEquation})~and~(\ref{Eq.compute1}), we obtain by only keeping  the terms of order $\textnormal{d}t$:
 
 \begin{equation}
-	\textnormal{d}\left(V_t^2\right) = 2V_t\left( -\frac{\gamma}{m}V_t\textnormal{d}t + \frac{g}{m}\textnormal{d}B_t  \right) + \frac{g^2}{m^2}\textnormal{d}B_t ^2 ~. 
+	\textnormal{d}\left(V_t^2\right) = 2V_t\left( -\frac{\gamma}{m}V_t\textnormal{d}t + \frac{g}{m}\textnormal{d}W  \right) + \frac{g^2}{m^2}\textnormal{d}W ^2 ~. 
 \end{equation}
 
 Thus, the average value of $ \textnormal{d}(V_t ^2)$ reads:
 
 \begin{equation}
-	\langle \textnormal{d}(V_t ^2)\rangle = -2 \frac{\gamma}{m} \langle V_t ^2 \rangle \textnormal dt + 2 \frac{g}{m} \langle V_t \textnormal{d}B_t \rangle + \frac{g^2}{m^2} \langle \textnormal{d}B_t ^2 \rangle~.
+	\langle \textnormal{d}(V_t ^2)\rangle = -2 \frac{\gamma}{m} \langle V_t ^2 \rangle \textnormal dt + 2 \frac{g}{m} \langle V_t \textnormal{d}W \rangle + \frac{g^2}{m^2} \langle \textnormal{d}W ^2 \rangle~.
 	\label{Eq.dvt2}
 \end{equation} 
 
-Moreover, since $\textnormal{d}B_t$ is chosen independently of the velocity $V_t$, one can write $\langle V_t \textnormal{d}B_t \rangle $ = $\langle V_t \rangle \langle \textnormal{d}B_t \rangle  =0 $. Taking the latter remark into account and the fact that $\langle \textnormal{d}B_t ^2\rangle = \textnormal{d}t $, Eq.~(\ref{Eq.dvt2}) becomes:
+Moreover, since $\textnormal{d}W$ is chosen independently of the velocity $V_t$, one can write $\langle V_t \textnormal{d}W \rangle $ = $\langle V_t \rangle \langle \textnormal{d}W \rangle  =0 $. Taking the latter remark into account and the fact that $\langle \textnormal{d}W ^2\rangle = \textnormal{d}t $, Eq.~(\ref{Eq.dvt2}) becomes:
 
 \begin{equation}
 	\langle d(V_t^2) \rangle = \left[-2 \frac{\gamma}{m} \langle V_t ^2 \rangle + \frac{g^2}{m^2}\right]\textnormal{d}t~.
@@ -260,7 +260,7 @@ The latter equation permits a direct determination of the amplitude of the noise
 The latter result permits computing the amplitude of the random force in the Langevin equation. Taking the over-damped Langevin equation, it reads:
 
 \begin{equation}
-	V_t\textnormal{d}t  = \sqrt{2\frac{k_\mathrm{B}T}{\gamma}} \textnormal{d}B_t 
+	V_t\textnormal{d}t  = \sqrt{2\frac{k_\mathrm{B}T}{\gamma}} \textnormal{d}W 
 	\label{Eq.v_t_ovdmp}
 \end{equation}
 
@@ -371,7 +371,7 @@ and $\textnormal{d}V_t / \textnormal{d}t$ as
 	\label{Eq.dvtnum}
 \end{equation}
 
-The only term remaining to be computed numerically is the random term $\textnormal{d}B_t$. One can thus replace $\textnormal{d}B_t / \textnormal{d}t$ by $w_i/\tau$ \footnote{The notation $w$ was choosen since in mathematical terms, a real-valued continuous-time stochastic process such as $\textnormal{d}B_t$ is called a Wiener process in honor of Norbert Wiener \cite{durrett_probability_2019}.} a Gaussian distributed random number generated with a mean $\langle w_i \rangle = 0$ and a variance $\langle w_i^2 \rangle  = \tau$. The Probability Density function (PDF) of the Gaussian distribution is thus given by:
+The only term remaining to be computed numerically is the random term $\textnormal{d}W$. One can thus replace $\textnormal{d}W / \textnormal{d}t$ by $w_i/\tau$ \footnote{The notation $w$ was choosen since in mathematical terms, a real-valued continuous-time stochastic process such as $\textnormal{d}W$ is called a Wiener process in honor of Norbert Wiener \cite{durrett_probability_2019}.} a Gaussian distributed random number generated with a mean $\langle w_i \rangle = 0$ and a variance $\langle w_i^2 \rangle  = \tau$. The Probability Density function (PDF) of the Gaussian distribution is thus given by:
 
 \begin{equation}
 	P(w_i) = \frac{1}{\sqrt{2\pi \tau}}\textnormal{e}^{- \frac{w_i^2}{2\tau}}.
@@ -466,7 +466,7 @@ import numpy as np
 	
 def _iqr(wi):
 	"""Function to compute interquartile range."""
-		return np.subtract(*np.percentile(x, [75, 25]))
+		return np.subtract(*np.percentile(wi, [75, 25]))
 	
 	def optimal_bins(wi):
 		"""

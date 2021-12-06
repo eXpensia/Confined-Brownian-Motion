@@ -159,7 +159,7 @@ with $\vec{f}_\mathrm{s}$, the Lorenz-Mie scattering function. The intensity $I$
 \begin{equation}
 	\begin{aligned}
 		I(\vec{r}) & = |\vec{E}_\mathrm{s}(\vec{r}, 0) + \vec{E}_0(\vec{r}, 0)|^2 \\
-		& = E_0^2(\vec{r}) + 2 E_0^2\Re \left(\vec{f}_\mathrm{s}(k(\vec{r}- \vec{r}_p)) \hat{e}\right) + | \vec{f}_\mathrm{s}(k(\vec{r}- \vec{r}_p)) |^2 ~.
+		& = E_0^2(\vec{r}) + 2 E_0^2\Re \left(\vec{f}_\mathrm{s}(k(\vec{r}- \vec{r}_p)) \hat{e}\right) + E_0^2 \left| \vec{f}_\mathrm{s}(k(\vec{r}- \vec{r}_p)) \right|^2 ~.
 	\end{aligned}
 \end{equation}
 
@@ -202,7 +202,7 @@ Now that we have the analytical form of the holograms' intensity, it is possible
 \end{equation} 
 
 
-where $\vec{N}^{(3)}_{eln}(k\vec{r})$ and $\vec{M}^{(3)}_{oln}(k\vec{r})$ are the vectorial spherical harmonics, and $a_n$ and $b_n$ are coefficients depending on the particle and illumination properties. For a spherical and isotropic particle of radius $a$ and refractive index $n_\mathrm{p}$, which is illuminated by a linearly polarized plane wave, the $a_n$ and $b_n$ coefficients are expressed in terms of spherical Bessel functions $j_n$ and Hankel functions $h_n$, as \cite{f_bohren_absorption_1998}:
+where $\vec{N}^{(3)}_{eln}(k\vec{r})$ and $\vec{M}^{(3)}_{oln}(k\vec{r})$ are the vectorial spherical harmonics \cite{lock_generalized_2009, gouesbet_t-matrix_2010}, and $a_n$ and $b_n$ are coefficients depending on the particle and illumination properties. For a spherical and isotropic particle of radius $a$ and refractive index $n_\mathrm{p}$, which is illuminated by a linearly polarized plane wave, the $a_n$ and $b_n$ coefficients are expressed in terms of spherical Bessel functions $j_n$ and Hankel functions $h_n$, as \cite{f_bohren_absorption_1998}:
 
 \begin{equation}
 	a_n = 
@@ -618,7 +618,7 @@ Finally, to have a more reliable and fast-tracking, we begin by fitting the firs
 \subsubsection{Radius and optical index characterization}
 \label{sec:radius_charac}
 
-Using $10 ~ 000$ measurements of $a$ and $n_\mathrm{p}$ one can do a 2D histogram, as presented in Fig.\ref{fig:KDErn} here smoothed using a Gaussian Kernel Density Estimator. Doing so, we determine that the radius of the observed particle is $a=1.514 \pm 0.003 ~ \mathrm{\mu m} $ and its optical index is $n_\mathrm{p} = 1.585 \pm 0.002$.
+Using $10 ~ 000$ measurements of $a$ and $n_\mathrm{p}$ one can do a 2D histogram, as presented in Fig.\ref{fig:KDErn} here smoothed using a Gaussian Kernel Density Estimator\footnote{Kernel Density Estimator is a non-parametric method permitting the estimation of probability density function of random variable. This method is a generalization of histograms. The histogram's rectangle are replaced by Gaussian that are added up to have a smooth estimation of the \gls{PDF}.}. Doing so, we determine that the radius of the observed particle is $a=1.514 \pm 0.003 ~ \mathrm{\mu m} $ and its optical index is $n_\mathrm{p} = 1.585 \pm 0.002$.
 
 
 
