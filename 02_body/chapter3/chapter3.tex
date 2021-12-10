@@ -779,7 +779,7 @@ In the case where $F=m_\mathrm{p}g$ is the gravitational force, we have $ \lim\l
 Now that we derived the Fokker-Planck equation for multiplicative s noise, we can inspect how the new drift velocity term $\alpha g(X_t)g'(X_t)$ plays a role, in the case where one wants to simulate near-wall confined Brownian motion, or, infer forces from a measured trajectory. Let first rewrite Eq.~(\ref{sde.multipl}) along the $z$-axis for a particle confined near a wall:
 
 \begin{equation}
-	\mathrm{d}z = \frac{F(z)}{\gamma_\bot (z)} \mathrm{d}t + \sqrt{2 D_\bot(z)}\mathrm{d}B_t ~,
+	\mathrm{d}z = \frac{F(z)}{\gamma_\bot (z)} \mathrm{d}t + \sqrt{2 D_\bot(z)}\mathrm{d}W ~,
 \end{equation}
 
 where $F(x)=-k_\mathrm{B}T \ln (U(z))$ is the force (due to the DLVO interaction and gravity) exerted on the particle if the system was deterministic. Using Eq.~(\ref{final_fokker}), the average velocity writes:
