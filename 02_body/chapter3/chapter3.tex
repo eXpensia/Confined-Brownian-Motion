@@ -604,8 +604,8 @@ We now expand $f$ at the first order in the time increment $\textnormal{d}t$ as:
 \begin{equation}
 	\begin{aligned}
 		\left\langle \frac{\textnormal{d}f(X_t)}{\textnormal{d}t} \right\rangle_t  &\simeq \left\langle \frac{1}{\textnormal{d}t} \left( \frac{\partial f(X_t)}{\partial X_t} u(X_t) \textnormal{d}t + \frac{\partial f(X_t)}{\partial X_t} g \textnormal{d}W + \frac{1}{2} \frac{\partial^2 f(X_t)}{\partial X_t^2} g^2  \textnormal{d}W^2   \right) \right\rangle_t \\
-		& =  \frac{1}{\textnormal{d}t} \left( \frac{\partial f(X_t)}{\partial X_t} u(X_t) \textnormal{d}t + \frac{1}{2} \frac{\partial^2 f(X_t)}{\partial X_t^2} g^2 \textnormal{d}t \right) \\
-		& = \frac{\partial f(X_t)}{\partial X_t} u(X_t) + \frac{1}{2} g^2 \frac{\partial^2 f(X_t)}{\partial X_t^2}   ~.
+		& = 	\left\langle \frac{1}{\textnormal{d}t} \left( \frac{\partial f(X_t)}{\partial X_t} u(X_t) \textnormal{d}t + \frac{1}{2} \frac{\partial^2 f(X_t)}{\partial X_t^2} g^2 \textnormal{d}t \right)\right\rangle_t  \\
+		& = 	\left\langle \frac{\partial f(X_t)}{\partial X_t} u(X_t) + \frac{1}{2} g^2 \frac{\partial^2 f(X_t)}{\partial X_t^2} \right\rangle_t   ~.
 	\end{aligned}
 	\label{fokker2}
 \end{equation}
@@ -615,7 +615,7 @@ By combining Eqs.~(\ref{fokker1})~and~(\ref{fokker2}), we get:
 \begin{equation}
 	\begin{aligned}
 		\int \textnormal{d} X_t ~\frac{\partial P(X_t, X_0 ; t) }{\partial t} f(X_t)
-		& =  \frac{\partial f(X_t)}{\partial X_t} u(X_t) + \frac{1}{2} \frac{\partial^2 f(X_t)}{\partial X_t^2} g^2 \\
+		& = \left\langle \frac{\partial f(X_t)}{\partial X_t} u(X_t) + \frac{1}{2} \frac{\partial^2 f(X_t)}{\partial X_t^2} g^2 \right\rangle_t \\
 		& = \int \textnormal{d}X_t ~ P(X_t, X_0 ; t) G f(X_t) ~,
 	\end{aligned}
 \end{equation}
